@@ -9,3 +9,14 @@ C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Teszt\Teszt\bin\Debug\System.Draw
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Teszt\Teszt\bin\Debug\System.Drawing.Common.pdb
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Teszt\Teszt\bin\Debug\System.Drawing.Common.xml
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Teszt\Teszt\obj\Debug\Teszt.csproj.Up2Date
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\bin\Debug\Teszt.exe.config
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\bin\Debug\Teszt.exe
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\bin\Debug\Teszt.pdb
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\bin\Debug\System.Drawing.Common.dll
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\bin\Debug\System.Drawing.Common.pdb
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\bin\Debug\System.Drawing.Common.xml
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\obj\Debug\Teszt.csproj.AssemblyReference.cache
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\obj\Debug\Teszt.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\obj\Debug\Teszt.csproj.CopyComplete
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\obj\Debug\Teszt.exe
+C:\Users\user\Documents\GitHub\SZAKDOGA\Teszt\Teszt\obj\Debug\Teszt.pdb
