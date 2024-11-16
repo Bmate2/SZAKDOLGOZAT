@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Threading.Tasks;
 using System.IO;
+using System.IO.Ports;
+using System.Threading;
 namespace Teszt
 {
     internal class Program
@@ -253,80 +255,75 @@ namespace Teszt
         {
             // p: A 4 közeli pixel értéke
             // x: Az interpolációs pozíció (0-1 között)
-
-            double[] a = new double[4];
-
-            // Interpolációs súlyok kiszámítása (Cubic Hermite Spline)
-            for (int i = 0; i < 4; i++)
-            {
-                a[i] = p[i];
-            }
-
-            return a[1] + 0.5 * x * (a[2] - a[0] + x * (2 * a[0] - 5 * a[1] + 4 * a[2] - a[3] + x * (3 * (a[1] - a[2]) + a[3] - a[0])));
+            return p[1] + 0.5 * x * (p[2] - p[0] + x * (2 * p[0] - 5 * p[1] + 4 * p[2] - p[3] + x * (3 * (p[1] - p[2]) + p[3] - p[0])));
         }
 
-        public static double[,] BicubicResize(double[,] inputMatrix)
+        public static double[,,] BicubicResize(double[,,] inputMatrix)
         {
             int oldWidth = inputMatrix.GetLength(1);
             int oldHeight = inputMatrix.GetLength(0);
             int newWidth = oldWidth * 2 - 1;
-            int newHeight= oldHeight * 2 - 1;
-            double[,] outputMatrix = new double[newHeight, newWidth];
+            int newHeight = oldHeight * 2 - 1;
+            int channels = inputMatrix.GetLength(2);
+
+            double[,,] outputMatrix = new double[newHeight, newWidth, channels];
 
             // Vízszintes interpoláció
-            for (int y = 0; y < newHeight; y++)
+            for (int y = 0; y < oldHeight; y++)
             {
                 for (int x = 0; x < newWidth; x++)
                 {
-                    // Az új pozíciók kiszámítása az eredeti méret alapján
                     double gx = (double)x / (newWidth - 1) * (oldWidth - 1);
-                    int x0 = (int)gx;
-                    int x1 = Math.Min(x0 + 1, oldWidth - 1);
-                    int x2 = Math.Min(x0 + 2, oldWidth - 1);
-                    int x3 = Math.Min(x0 + 3, oldWidth - 1);
+                    int x0 = Math.Max((int)gx - 1, 0);
+                    int x1 = Math.Min((int)gx, oldWidth - 1);
+                    int x2 = Math.Min(x1 + 1, oldWidth - 1);
+                    int x3 = Math.Min(x2 + 1, oldWidth - 1);
+                    double dx = gx - x1;
 
-                    // Interpolálás az egyes sorokra
-                    double[] row = new double[4];
-                    row[0] = inputMatrix[y, x0];
-                    row[1] = inputMatrix[y, x1];
-                    row[2] = inputMatrix[y, x2];
-                    row[3] = inputMatrix[y, x3];
+                    for (int c = 0; c < channels; c++)
+                    {
+                        double[] values = {
+                    inputMatrix[y, x0, c],
+                    inputMatrix[y, x1, c],
+                    inputMatrix[y, x2, c],
+                    inputMatrix[y, x3, c]
+                };
 
-                    double interpolatedX = BicubicInterpolate(row, gx - x0);
-
-                    outputMatrix[y, x] = interpolatedX;
+                        outputMatrix[y, x, c] = BicubicInterpolate(values, dx);
+                    }
                 }
             }
 
             // Függőleges interpoláció
-            double[,] tempMatrix = new double[newHeight, newWidth];
+            double[,,] tempMatrix = new double[newHeight, newWidth, channels];
             for (int x = 0; x < newWidth; x++)
             {
                 for (int y = 0; y < newHeight; y++)
                 {
-                    // Az új pozíciók kiszámítása az eredeti méret alapján
                     double gy = (double)y / (newHeight - 1) * (oldHeight - 1);
-                    int y0 = (int)gy;
-                    int y1 = Math.Min(y0 + 1, oldHeight - 1);
-                    int y2 = Math.Min(y0 + 2, oldHeight - 1);
-                    int y3 = Math.Min(y0 + 3, oldHeight - 1);
+                    int y0 = Math.Max((int)gy - 1, 0);
+                    int y1 = Math.Min((int)gy, oldHeight - 1);
+                    int y2 = Math.Min(y1 + 1, oldHeight - 1);
+                    int y3 = Math.Min(y2 + 1, oldHeight - 1);
+                    double dy = gy - y1;
 
-                    // Interpolálás az egyes oszlopokra
-                    double[] col = new double[4];
-                    col[0] = outputMatrix[y0, x];
-                    col[1] = outputMatrix[y1, x];
-                    col[2] = outputMatrix[y2, x];
-                    col[3] = outputMatrix[y3, x];
+                    for (int c = 0; c < channels; c++)
+                    {
+                        double[] values = {
+                    outputMatrix[y0, x, c],
+                    outputMatrix[y1, x, c],
+                    outputMatrix[y2, x, c],
+                    outputMatrix[y3, x, c]
+                };
 
-                    double interpolatedY = BicubicInterpolate(col, gy - y0);
-
-                    tempMatrix[y, x] = interpolatedY;
+                        tempMatrix[y, x, c] = BicubicInterpolate(values, dy);
+                    }
                 }
             }
 
-            // Az eredmény visszaadása
             return tempMatrix;
         }
+
 
         //public static float[,,] BicubicInterpolation(
         //double[,,] data,
@@ -519,11 +516,13 @@ namespace Teszt
             return matrix;
         }
 
+        static SerialPort _serialPort;
+
         public static void Main()
         {
             #region
-            //int width = 128;
-            //int height = 128;
+            int width = 128;
+            int height = 128;
             //double[,,] originalImage = GenerateRandomRGBMatrix(width, height);
 
             //for (int i = 0; i < originalImage.GetLength(0); i++)
@@ -545,30 +544,24 @@ namespace Teszt
             //    }
             //    Console.WriteLine("\n------------------------------------------------------------------------");
             //}
-            //Bitmap originalBitmap = MatrixToBitmap(originalImage);
-            //Bitmap scaledBitmap = MatrixToBitmap(scaledImage);
 
-            Bitmap originalImage;
-            try
-            {
-                originalImage = new Bitmap(@"C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Teszt\Teszt\bin\Debug\smiley.png");
-                Console.WriteLine("Kép betöltése sikeres!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Hiba a kép betöltése során: {ex.Message}");
-            }
-            //double[,,] originalMatrix = BitmapToMatrix(originalImage);
-            //double[,,] scaledMatrix = BicubicInterpolation3D(originalMatrix, originalMatrix.GetLength(0)*2, originalMatrix.GetLength(1)*2);
-            //Bitmap scaledImage = MatrixToBitmap(scaledMatrix);
-            //scaledImage.Save("scaled_image.png");
 
+
+            //Bitmap image = new Bitmap("smiley.jpg");
+            //double[,,] imageMatrix = BitmapToMatrix(image);
+            //double[,,] scaledImageMatrix = BicubicInterpolation3D(imageMatrix, imageMatrix.GetLength(0) * 2, imageMatrix.GetLength(1) * 2);
+            //Bitmap scaledImage = MatrixToBitmap(scaledImageMatrix);
+            //scaledImage.Save("scaled_smiley.png");
+
+            //Bitmap originalBitmap = MatrixToBitmap(originalMatrix);
+            //Bitmap scaledBitmap = MatrixToBitmap(BicubicInterpolation3D(originalMatrix,originalMatrix.GetLength(0)*2,originalMatrix.GetLength(1)*2));
 
             //originalBitmap.Save("original_image.png");
             //scaledBitmap.Save("scaled_image.png");
-            ////ScaleImageBilinear("original_image.png", "scaled_image.png", 2);
-            ////Console.WriteLine("Images saved as 'original_image.png' and 'scaled_image.png'.");
+
+
             #endregion
+            #region
             //Random rnd = new Random();
             //int width = 4;
             //int height = 4;
@@ -594,7 +587,98 @@ namespace Teszt
             //    }
             //    Console.WriteLine("\n---------------");
             //}
+            #endregion
+            string portName = "COM3"; // Az Arduino portja
+            int baudRate = 9600; // Az Arduino baud rate értéke
 
+            //using (SerialPort serialPort = new SerialPort(portName, baudRate))
+            //{
+            //    serialPort.Open(); // Soros port megnyitása
+
+            //    Console.WriteLine("Várakozás adatokra...");
+            //    string data = string.Empty;
+
+            //    while (true)
+            //    {
+            //        // Olvasd be a teljes adatot
+            //        data = serialPort.ReadLine();
+            //        Console.WriteLine($"Kapott adat: {data}");
+
+            //        // Adatok feldolgozása mátrixként
+            //        string[] rows = data.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            //        int[,] matrix = new int[rows.Length, rows[0].Split(',').Length];
+
+            //        for (int i = 0; i < rows.Length; i++)
+            //        {
+            //            string[] values = rows[i].Split(',');
+            //            for (int j = 0; j < values.Length; j++)
+            //            {
+            //                matrix[i, j] = int.Parse(values[j]);
+            //            }
+            //        }
+
+            //        // Kiírás a konzolra a mátrix tartalmával
+            //        Console.WriteLine("Kapott mátrix:");
+            //        for (int i = 0; i < matrix.GetLength(0); i++)
+            //        {
+            //            for (int j = 0; j < matrix.GetLength(1); j++)
+            //            {
+            //                Console.Write(matrix[i, j] + " ");
+            //            }
+            //            Console.WriteLine();
+            //        }
+            //    }
+            //}
+
+
+
+            SerialPort serialPort = new SerialPort("COM3", 9600); // A helyes COM port megadása
+            serialPort.Open();
+
+            try
+            {
+                // Első sor: Mátrix dimenzióinak beolvasása
+                string dimensionsLine = serialPort.ReadLine();
+                string[] dimensions = dimensionsLine.Split(',');
+                int rows = int.Parse(dimensions[0]);
+                int cols = int.Parse(dimensions[1]);
+                int depth = int.Parse(dimensions[2]);
+
+                // 3D mátrix inicializálása
+                int[,,] matrix = new int[rows, cols, depth];
+
+                // Értékek beolvasása
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        string[] rgbValues = serialPort.ReadLine().Split(',');
+                        for (int k = 0; k < depth; k++)
+                        {
+                            matrix[i, j, k] = int.Parse(rgbValues[k]);
+                        }
+                    }
+                }
+
+                // Mátrix kiírása ellenőrzéshez
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        Console.Write($"[ ");
+                        for (int k = 0; k < depth; k++)
+                        {
+                            Console.Write(matrix[i, j, k] + " ");
+                        }
+                        Console.Write("] ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            finally
+            {
+                serialPort.Close();
+            }
             Console.ReadKey();
         }
     }
