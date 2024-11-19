@@ -8,77 +8,6 @@ namespace Teszt
 {
     internal class Program
     {
-        //    public static int[,,] BilinearInterpolation(int[,,] originalImage)
-    //    {
-    //        int originalHeight = originalImage.GetLength(0);
-    //        int originalWidth = originalImage.GetLength(1);
-    //        int[,,] scaledImage = new int[originalHeight * 2, originalWidth * 2, 3];
-
-    //        for (int i = 0; i < originalHeight; i++)
-    //        {
-    //            for (int j = 0; j < originalWidth; j++)
-    //            {
-    //                // Az eredeti kép pixelek másolása az új mátrixba
-    //                int r = originalImage[i, j, 0];
-    //                int g = originalImage[i, j, 1];
-    //                int b = originalImage[i, j, 2];
-
-    //                // Az új kép mátrix pozícióinak számítása
-    //                int x = i * 2;
-    //                int y = j * 2;
-
-    //                // Eredeti pixel helye az új mátrixban
-    //                scaledImage[x, y, 0] = r;
-    //                scaledImage[x, y, 1] = g;
-    //                scaledImage[x, y, 2] = b;
-
-    //                // Jobbra, le, és átlós köztes pixelek interpolációja
-    //                if (j + 1 < originalWidth)
-    //                {
-    //                    scaledImage[x, y + 1, 0] = (r + originalImage[i, j + 1, 0]) / 2;
-    //                    scaledImage[x, y + 1, 1] = (g + originalImage[i, j + 1, 1]) / 2;
-    //                    scaledImage[x, y + 1, 2] = (b + originalImage[i, j + 1, 2]) / 2;
-    //                }
-
-    //                if (i + 1 < originalHeight)
-    //                {
-    //                    scaledImage[x + 1, y, 0] = (r + originalImage[i + 1, j, 0]) / 2;
-    //                    scaledImage[x + 1, y, 1] = (g + originalImage[i + 1, j, 1]) / 2;
-    //                    scaledImage[x + 1, y, 2] = (b + originalImage[i + 1, j, 2]) / 2;
-    //                }
-
-    //                if (i + 1 < originalHeight && j + 1 < originalWidth)
-    //                {
-    //                    scaledImage[x + 1, y + 1, 0] = (r + originalImage[i, j + 1, 0] + originalImage[i + 1, j, 0] + originalImage[i + 1, j + 1, 0]) / 4;
-    //                    scaledImage[x + 1, y + 1, 1] = (g + originalImage[i, j + 1, 1] + originalImage[i + 1, j, 1] + originalImage[i + 1, j + 1, 1]) / 4;
-    //                    scaledImage[x + 1, y + 1, 2] = (b + originalImage[i, j + 1, 2] + originalImage[i + 1, j, 2] + originalImage[i + 1, j + 1, 2]) / 4;
-    //                }
-    //            }
-    //        }
-
-    //        return scaledImage;
-    //    }
-
-    //    public static void ScaleImageBilinear(string inputPath, string outputPath, int scaleFactor)
-    //    {
-    //        using (Bitmap originalBitmap = new Bitmap(inputPath))
-    //        {
-    //            int newWidth = originalBitmap.Width * scaleFactor;
-    //            int newHeight = originalBitmap.Height * scaleFactor;
-    //            using (Bitmap scaledBitmap = new Bitmap(newWidth, newHeight))
-    //            {
-    //                using (Graphics graphics = Graphics.FromImage(scaledBitmap))
-    //                {
-    //                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
-    //                    graphics.DrawImage(originalBitmap, 0, 0, newWidth, newHeight);
-    //                }
-
-    //                scaledBitmap.Save(outputPath);
-    //            }
-    //        }
-    //    }
-
-
         public static Bitmap MatrixToBitmap(double[,,] matrix)
         {
             int height = matrix.GetLength(0);
@@ -152,177 +81,177 @@ namespace Teszt
 
         //}
 
-        public static double[,,] InterpolateRGBMatrix(double[,,] matrix)
-        {
-            int originalRows = matrix.GetLength(0);
-            int originalCols = matrix.GetLength(1);
-            int newRows = originalRows * 2 - 1;
-            int newCols = originalCols * 2 - 1;
+        //public static double[,,] InterpolateRGBMatrix(double[,,] matrix)
+        //{
+        //    int originalRows = matrix.GetLength(0);
+        //    int originalCols = matrix.GetLength(1);
+        //    int newRows = originalRows * 2 - 1;
+        //    int newCols = originalCols * 2 - 1;
 
-            double[,,] result = new double[newRows, newCols, 3];
+        //    double[,,] result = new double[newRows, newCols, 3];
 
-            for (int i = 0; i < newRows; i++)
-            {
-                for (int j = 0; j < newCols; j++)
-                {
-                    // Eredeti mátrix indexek
-                    int rowBase = i / 2;
-                    int colBase = j / 2;
+        //    for (int i = 0; i < newRows; i++)
+        //    {
+        //        for (int j = 0; j < newCols; j++)
+        //        {
+        //            // Eredeti mátrix indexek
+        //            int rowBase = i / 2;
+        //            int colBase = j / 2;
 
-                    if (i % 2 == 0 && j % 2 == 0)
-                    {
-                        // Másoljuk az eredeti mátrix elemeit
-                        result[i, j, 0] = matrix[rowBase, colBase, 0];
-                        result[i, j, 1] = matrix[rowBase, colBase, 1];
-                        result[i, j, 2] = matrix[rowBase, colBase, 2];
-                    }
-                    else if (i % 2 == 0)
-                    {
-                        // Soron belüli interpoláció
-                        result[i, j, 0] = (matrix[rowBase, colBase, 0] + matrix[rowBase, colBase + 1, 0]) / 2.0;
-                        result[i, j, 1] = (matrix[rowBase, colBase, 1] + matrix[rowBase, colBase + 1, 1]) / 2.0;
-                        result[i, j, 2] = (matrix[rowBase, colBase, 2] + matrix[rowBase, colBase + 1, 2]) / 2.0;
-                    }
-                    else if (j % 2 == 0)
-                    {
-                        // Oszlopon belüli interpoláció
-                        result[i, j, 0] = (matrix[rowBase, colBase, 0] + matrix[rowBase + 1, colBase, 0]) / 2.0;
-                        result[i, j, 1] = (matrix[rowBase, colBase, 1] + matrix[rowBase + 1, colBase, 1]) / 2.0;
-                        result[i, j, 2] = (matrix[rowBase, colBase, 2] + matrix[rowBase + 1, colBase, 2]) / 2.0;
-                    }
-                    else
-                    {
-                        // Négy elem átlaga
-                        result[i, j, 0] = (matrix[rowBase, colBase, 0] + matrix[rowBase, colBase + 1, 0]
-                                        + matrix[rowBase + 1, colBase, 0] + matrix[rowBase + 1, colBase + 1, 0]) / 4.0;
-                        result[i, j, 1] = (matrix[rowBase, colBase, 1] + matrix[rowBase, colBase + 1, 1]
-                                        + matrix[rowBase + 1, colBase, 1] + matrix[rowBase + 1, colBase + 1, 1]) / 4.0;
-                        result[i, j, 2] = (matrix[rowBase, colBase, 2] + matrix[rowBase, colBase + 1, 2]
-                                        + matrix[rowBase + 1, colBase, 2] + matrix[rowBase + 1, colBase + 1, 2]) / 4.0;
-                    }
-                }
-            }
+        //            if (i % 2 == 0 && j % 2 == 0)
+        //            {
+        //                // Másoljuk az eredeti mátrix elemeit
+        //                result[i, j, 0] = matrix[rowBase, colBase, 0];
+        //                result[i, j, 1] = matrix[rowBase, colBase, 1];
+        //                result[i, j, 2] = matrix[rowBase, colBase, 2];
+        //            }
+        //            else if (i % 2 == 0)
+        //            {
+        //                // Soron belüli interpoláció
+        //                result[i, j, 0] = (matrix[rowBase, colBase, 0] + matrix[rowBase, colBase + 1, 0]) / 2.0;
+        //                result[i, j, 1] = (matrix[rowBase, colBase, 1] + matrix[rowBase, colBase + 1, 1]) / 2.0;
+        //                result[i, j, 2] = (matrix[rowBase, colBase, 2] + matrix[rowBase, colBase + 1, 2]) / 2.0;
+        //            }
+        //            else if (j % 2 == 0)
+        //            {
+        //                // Oszlopon belüli interpoláció
+        //                result[i, j, 0] = (matrix[rowBase, colBase, 0] + matrix[rowBase + 1, colBase, 0]) / 2.0;
+        //                result[i, j, 1] = (matrix[rowBase, colBase, 1] + matrix[rowBase + 1, colBase, 1]) / 2.0;
+        //                result[i, j, 2] = (matrix[rowBase, colBase, 2] + matrix[rowBase + 1, colBase, 2]) / 2.0;
+        //            }
+        //            else
+        //            {
+        //                // Négy elem átlaga
+        //                result[i, j, 0] = (matrix[rowBase, colBase, 0] + matrix[rowBase, colBase + 1, 0]
+        //                                + matrix[rowBase + 1, colBase, 0] + matrix[rowBase + 1, colBase + 1, 0]) / 4.0;
+        //                result[i, j, 1] = (matrix[rowBase, colBase, 1] + matrix[rowBase, colBase + 1, 1]
+        //                                + matrix[rowBase + 1, colBase, 1] + matrix[rowBase + 1, colBase + 1, 1]) / 4.0;
+        //                result[i, j, 2] = (matrix[rowBase, colBase, 2] + matrix[rowBase, colBase + 1, 2]
+        //                                + matrix[rowBase + 1, colBase, 2] + matrix[rowBase + 1, colBase + 1, 2]) / 4.0;
+        //            }
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        public static double[,] InterpolateMatrix(double[,] matrix)
-        {
-            int originalRows = matrix.GetLength(0);
-            int originalCols = matrix.GetLength(1);
-            int newRows = originalRows * 2-1;
-            int newCols = originalCols * 2-1;
+        //public static double[,] InterpolateMatrix(double[,] matrix)
+        //{
+        //    int originalRows = matrix.GetLength(0);
+        //    int originalCols = matrix.GetLength(1);
+        //    int newRows = originalRows * 2-1;
+        //    int newCols = originalCols * 2-1;
 
-            double[,] result = new double[newRows, newCols];
+        //    double[,] result = new double[newRows, newCols];
 
-            for (int i = 0; i < newRows; i++)
-            {
-                for (int j = 0; j < newCols; j++)
-                {
-                    // Eredeti mátrix indexek
-                    int rowBase = i / 2;
-                    int colBase = j / 2;
+        //    for (int i = 0; i < newRows; i++)
+        //    {
+        //        for (int j = 0; j < newCols; j++)
+        //        {
+        //            // Eredeti mátrix indexek
+        //            int rowBase = i / 2;
+        //            int colBase = j / 2;
 
-                    if (i % 2 == 0 && j % 2 == 0)
-                    {
-                        // Másoljuk az eredeti mátrix elemeit
-                        result[i, j] = matrix[rowBase, colBase];
+        //            if (i % 2 == 0 && j % 2 == 0)
+        //            {
+        //                // Másoljuk az eredeti mátrix elemeit
+        //                result[i, j] = matrix[rowBase, colBase];
                                 
-                    }
-                    else if (i % 2 == 0)
-                    {
-                        // Soron belüli interpoláció
-                        result[i, j] = (matrix[rowBase, colBase] + matrix[rowBase, colBase + 1]) / 2.0;
-                    }
-                    else if (j % 2 == 0)
-                    {
-                        // Oszlopon belüli interpoláció
-                        result[i, j] = (matrix[rowBase, colBase] + matrix[rowBase + 1, colBase]) / 2.0;
-                    }
-                    else
-                    {
-                        // Négy elem átlaga
-                        result[i, j] = (matrix[rowBase, colBase] + matrix[rowBase, colBase + 1]
-                                        + matrix[rowBase + 1, colBase] + matrix[rowBase + 1, colBase + 1]) / 4.0;
-                    }
-                }
-            }
+        //            }
+        //            else if (i % 2 == 0)
+        //            {
+        //                // Soron belüli interpoláció
+        //                result[i, j] = (matrix[rowBase, colBase] + matrix[rowBase, colBase + 1]) / 2.0;
+        //            }
+        //            else if (j % 2 == 0)
+        //            {
+        //                // Oszlopon belüli interpoláció
+        //                result[i, j] = (matrix[rowBase, colBase] + matrix[rowBase + 1, colBase]) / 2.0;
+        //            }
+        //            else
+        //            {
+        //                // Négy elem átlaga
+        //                result[i, j] = (matrix[rowBase, colBase] + matrix[rowBase, colBase + 1]
+        //                                + matrix[rowBase + 1, colBase] + matrix[rowBase + 1, colBase + 1]) / 4.0;
+        //            }
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        public static double BicubicInterpolate(double[] p, double x)
-        {
-            // p: A 4 közeli pixel értéke
-            // x: Az interpolációs pozíció (0-1 között)
-            return p[1] + 0.5 * x * (p[2] - p[0] + x * (2 * p[0] - 5 * p[1] + 4 * p[2] - p[3] + x * (3 * (p[1] - p[2]) + p[3] - p[0])));
-        }
+        //public static double BicubicInterpolate(double[] p, double x)
+        //{
+        //    // p: A 4 közeli pixel értéke
+        //    // x: Az interpolációs pozíció (0-1 között)
+        //    return p[1] + 0.5 * x * (p[2] - p[0] + x * (2 * p[0] - 5 * p[1] + 4 * p[2] - p[3] + x * (3 * (p[1] - p[2]) + p[3] - p[0])));
+        //}
 
-        public static double[,,] BicubicResize(double[,,] inputMatrix)
-        {
-            int oldWidth = inputMatrix.GetLength(1);
-            int oldHeight = inputMatrix.GetLength(0);
-            int newWidth = oldWidth * 2 - 1;
-            int newHeight = oldHeight * 2 - 1;
-            int channels = inputMatrix.GetLength(2);
+        //public static double[,,] BicubicResize(double[,,] inputMatrix)
+        //{
+        //    int oldWidth = inputMatrix.GetLength(1);
+        //    int oldHeight = inputMatrix.GetLength(0);
+        //    int newWidth = oldWidth * 2 - 1;
+        //    int newHeight = oldHeight * 2 - 1;
+        //    int channels = inputMatrix.GetLength(2);
 
-            double[,,] outputMatrix = new double[newHeight, newWidth, channels];
+        //    double[,,] outputMatrix = new double[newHeight, newWidth, channels];
 
-            // Vízszintes interpoláció
-            for (int y = 0; y < oldHeight; y++)
-            {
-                for (int x = 0; x < newWidth; x++)
-                {
-                    double gx = (double)x / (newWidth - 1) * (oldWidth - 1);
-                    int x0 = Math.Max((int)gx - 1, 0);
-                    int x1 = Math.Min((int)gx, oldWidth - 1);
-                    int x2 = Math.Min(x1 + 1, oldWidth - 1);
-                    int x3 = Math.Min(x2 + 1, oldWidth - 1);
-                    double dx = gx - x1;
+        //    // Vízszintes interpoláció
+        //    for (int y = 0; y < oldHeight; y++)
+        //    {
+        //        for (int x = 0; x < newWidth; x++)
+        //        {
+        //            double gx = (double)x / (newWidth - 1) * (oldWidth - 1);
+        //            int x0 = Math.Max((int)gx - 1, 0);
+        //            int x1 = Math.Min((int)gx, oldWidth - 1);
+        //            int x2 = Math.Min(x1 + 1, oldWidth - 1);
+        //            int x3 = Math.Min(x2 + 1, oldWidth - 1);
+        //            double dx = gx - x1;
 
-                    for (int c = 0; c < channels; c++)
-                    {
-                        double[] values = {
-                    inputMatrix[y, x0, c],
-                    inputMatrix[y, x1, c],
-                    inputMatrix[y, x2, c],
-                    inputMatrix[y, x3, c]
-                };
+        //            for (int c = 0; c < channels; c++)
+        //            {
+        //                double[] values = {
+        //            inputMatrix[y, x0, c],
+        //            inputMatrix[y, x1, c],
+        //            inputMatrix[y, x2, c],
+        //            inputMatrix[y, x3, c]
+        //        };
 
-                        outputMatrix[y, x, c] = BicubicInterpolate(values, dx);
-                    }
-                }
-            }
+        //                outputMatrix[y, x, c] = BicubicInterpolate(values, dx);
+        //            }
+        //        }
+        //    }
 
-            // Függőleges interpoláció
-            double[,,] tempMatrix = new double[newHeight, newWidth, channels];
-            for (int x = 0; x < newWidth; x++)
-            {
-                for (int y = 0; y < newHeight; y++)
-                {
-                    double gy = (double)y / (newHeight - 1) * (oldHeight - 1);
-                    int y0 = Math.Max((int)gy - 1, 0);
-                    int y1 = Math.Min((int)gy, oldHeight - 1);
-                    int y2 = Math.Min(y1 + 1, oldHeight - 1);
-                    int y3 = Math.Min(y2 + 1, oldHeight - 1);
-                    double dy = gy - y1;
+        //    // Függőleges interpoláció
+        //    double[,,] tempMatrix = new double[newHeight, newWidth, channels];
+        //    for (int x = 0; x < newWidth; x++)
+        //    {
+        //        for (int y = 0; y < newHeight; y++)
+        //        {
+        //            double gy = (double)y / (newHeight - 1) * (oldHeight - 1);
+        //            int y0 = Math.Max((int)gy - 1, 0);
+        //            int y1 = Math.Min((int)gy, oldHeight - 1);
+        //            int y2 = Math.Min(y1 + 1, oldHeight - 1);
+        //            int y3 = Math.Min(y2 + 1, oldHeight - 1);
+        //            double dy = gy - y1;
 
-                    for (int c = 0; c < channels; c++)
-                    {
-                        double[] values = {
-                    outputMatrix[y0, x, c],
-                    outputMatrix[y1, x, c],
-                    outputMatrix[y2, x, c],
-                    outputMatrix[y3, x, c]
-                };
+        //            for (int c = 0; c < channels; c++)
+        //            {
+        //                double[] values = {
+        //            outputMatrix[y0, x, c],
+        //            outputMatrix[y1, x, c],
+        //            outputMatrix[y2, x, c],
+        //            outputMatrix[y3, x, c]
+        //        };
 
-                        tempMatrix[y, x, c] = BicubicInterpolate(values, dy);
-                    }
-                }
-            }
+        //                tempMatrix[y, x, c] = BicubicInterpolate(values, dy);
+        //            }
+        //        }
+        //    }
 
-            return tempMatrix;
-        }
+        //    return tempMatrix;
+        //}
 
 
         //public static float[,,] BicubicInterpolation(
@@ -434,7 +363,7 @@ namespace Teszt
                 throw new ArgumentException("Expected output size to be [1, 1] or greater.");
             }
 
-            int depth = data.GetLength(2); // Színtér (például RGB)
+            int depth = data.GetLength(2);
             int rows = data.GetLength(0);
             int cols = data.GetLength(1);
             double[,,] result = new double[outHeight, outWidth, depth];
@@ -521,29 +450,29 @@ namespace Teszt
         public static void Main()
         {
             #region
-            int width = 128;
-            int height = 128;
-            //double[,,] originalImage = GenerateRandomRGBMatrix(width, height);
+            int width = 2;
+            int height = 2;
+            double[,,] originalImage = GenerateRandomRGBMatrix(width, height);
 
-            //for (int i = 0; i < originalImage.GetLength(0); i++)
-            //{
-            //    for (int j = 0; j < originalImage.GetLength(1); j++)
-            //    {
-            //        Console.Write($"({originalImage[i, j, 0]}; {originalImage[i, j, 1]}; {originalImage[i, j, 2]}) |");
-            //    }
-            //    Console.WriteLine("\n------------------------------------------------------------------------");
-            //}
-            //Console.WriteLine("--------------------");
-            //double[,,] scaledImage = BicubicInterpolation3D(originalImage,256,256);
+            for (int i = 0; i < originalImage.GetLength(0); i++)
+            {
+                for (int j = 0; j < originalImage.GetLength(1); j++)
+                {
+                    Console.Write($"({originalImage[i, j, 0]}; {originalImage[i, j, 1]}; {originalImage[i, j, 2]}) |");
+                }
+                Console.WriteLine("\n------------------------------------------------------------------------");
+            }
+            Console.WriteLine("--------------------");
+            double[,,] scaledImage = BicubicInterpolation3D(originalImage, 4, 4);
 
-            //for (int i = 0; i < scaledImage.GetLength(0); i++)
-            //{
-            //    for (int j = 0; j < scaledImage.GetLength(1); j++)
-            //    {
-            //        Console.Write($"({scaledImage[i, j, 0]}, {scaledImage[i, j, 1]}, {scaledImage[i, j, 2]}) |");
-            //    }
-            //    Console.WriteLine("\n------------------------------------------------------------------------");
-            //}
+            for (int i = 0; i < scaledImage.GetLength(0); i++)
+            {
+                for (int j = 0; j < scaledImage.GetLength(1); j++)
+                {
+                    Console.Write($"({scaledImage[i, j, 0]}, {scaledImage[i, j, 1]}, {scaledImage[i, j, 2]}) |");
+                }
+                Console.WriteLine("\n------------------------------------------------------------------------");
+            }
 
 
 
@@ -588,8 +517,9 @@ namespace Teszt
             //    Console.WriteLine("\n---------------");
             //}
             #endregion
-            string portName = "COM3"; // Az Arduino portja
-            int baudRate = 9600; // Az Arduino baud rate értéke
+            #region
+            //string portName = "COM3"; // Az Arduino portja
+            //int baudRate = 9600; // Az Arduino baud rate értéke
 
             //using (SerialPort serialPort = new SerialPort(portName, baudRate))
             //{
@@ -632,53 +562,54 @@ namespace Teszt
 
 
 
-            SerialPort serialPort = new SerialPort("COM3", 9600); // A helyes COM port megadása
-            serialPort.Open();
+            //SerialPort serialPort = new SerialPort("COM3", 9600); // A helyes COM port megadása
+            //serialPort.Open();
 
-            try
-            {
-                // Első sor: Mátrix dimenzióinak beolvasása
-                string dimensionsLine = serialPort.ReadLine();
-                string[] dimensions = dimensionsLine.Split(',');
-                int rows = int.Parse(dimensions[0]);
-                int cols = int.Parse(dimensions[1]);
-                int depth = int.Parse(dimensions[2]);
+            //try
+            //{
+            //    // Első sor: Mátrix dimenzióinak beolvasása
+            //    string dimensionsLine = serialPort.ReadLine();
+            //    string[] dimensions = dimensionsLine.Split(',');
+            //    int rows = int.Parse(dimensions[0]);
+            //    int cols = int.Parse(dimensions[1]);
+            //    int depth = int.Parse(dimensions[2]);
 
-                // 3D mátrix inicializálása
-                int[,,] matrix = new int[rows, cols, depth];
+            //    // 3D mátrix inicializálása
+            //    int[,,] matrix = new int[rows, cols, depth];
 
-                // Értékek beolvasása
-                for (int i = 0; i < rows; i++)
-                {
-                    for (int j = 0; j < cols; j++)
-                    {
-                        string[] rgbValues = serialPort.ReadLine().Split(',');
-                        for (int k = 0; k < depth; k++)
-                        {
-                            matrix[i, j, k] = int.Parse(rgbValues[k]);
-                        }
-                    }
-                }
+            //    // Értékek beolvasása
+            //    for (int i = 0; i < rows; i++)
+            //    {
+            //        for (int j = 0; j < cols; j++)
+            //        {
+            //            string[] rgbValues = serialPort.ReadLine().Split(',');
+            //            for (int k = 0; k < depth; k++)
+            //            {
+            //                matrix[i, j, k] = int.Parse(rgbValues[k]);
+            //            }
+            //        }
+            //    }
 
-                // Mátrix kiírása ellenőrzéshez
-                for (int i = 0; i < rows; i++)
-                {
-                    for (int j = 0; j < cols; j++)
-                    {
-                        Console.Write($"[ ");
-                        for (int k = 0; k < depth; k++)
-                        {
-                            Console.Write(matrix[i, j, k] + " ");
-                        }
-                        Console.Write("] ");
-                    }
-                    Console.WriteLine();
-                }
-            }
-            finally
-            {
-                serialPort.Close();
-            }
+            //    // Mátrix kiírása ellenőrzéshez
+            //    for (int i = 0; i < rows; i++)
+            //    {
+            //        for (int j = 0; j < cols; j++)
+            //        {
+            //            Console.Write($"[ ");
+            //            for (int k = 0; k < depth; k++)
+            //            {
+            //                Console.Write(matrix[i, j, k] + " ");
+            //            }
+            //            Console.Write("] ");
+            //        }
+            //        Console.WriteLine();
+            //    }
+            //}
+            //finally
+            //{
+            //    serialPort.Close();
+            //}
+            #endregion
             Console.ReadKey();
         }
     }
