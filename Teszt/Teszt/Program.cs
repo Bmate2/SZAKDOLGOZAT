@@ -46,6 +46,21 @@ namespace Teszt
 
             return matrix;
         }
+        public static double[,] GenerateRandomMatrix(int width, int height)
+        {
+            Random random = new Random();
+            double[,] matrix = new double[height, width]; 
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    matrix[i, j] = random.NextDouble() * 255; 
+                }
+            }
+
+            return matrix;
+        }
 
         //public static double[,] Bilinear(double[,] originalMatrix)
         //{
@@ -73,9 +88,9 @@ namespace Teszt
         //            {
         //                scaledMatrix[x + 1, y + 1] = (originalMatrix[i, j] + originalMatrix[i, j + 1] + originalMatrix[i + 1, j] + originalMatrix[i + 1, j + 1]) / 4;
         //            }
-                    
+
         //        }
-                
+
         //    }
         //    return scaledMatrix;
 
@@ -156,7 +171,7 @@ namespace Teszt
         //            {
         //                // Másoljuk az eredeti mátrix elemeit
         //                result[i, j] = matrix[rowBase, colBase];
-                                
+
         //            }
         //            else if (i % 2 == 0)
         //            {
@@ -254,107 +269,102 @@ namespace Teszt
         //}
 
 
-        //public static float[,,] BicubicInterpolation(
-        //double[,,] data,
-        //int outWidth,
-        //int outHeight,
-        //int outDepth)
-        //{
-        //    if (outWidth < 1 || outHeight < 1 || outDepth < 1)
-        //    {
-        //        throw new ArgumentException(
-        //            "BicubicInterpolation: Expected output size to be " +
-        //            $"[1, 1, 1] or greater, got [{outHeight}, {outWidth}, {outDepth}].");
-        //    }
+        public static double[,] BicubicInterpolation(double[,] data,int outWidth,int outHeight)
+        {
+            if (outWidth < 1 || outHeight < 1)
+            {
+                throw new ArgumentException(
+                    "BicubicInterpolation: Expected output size to be " +
+                    $"[1, 1, 1] or greater, got [{outHeight}, {outWidth}].");
+            }
 
-        //    // Bikubikus interpolációt végző függvény
-        //    double InterpolateCubic(double v0, double v1, double v2, double v3, double fraction)
-        //    {
-        //        double p = (v3 - v2) - (v0 - v1);
-        //        double q = (v0 - v1) - p;
-        //        double r = v2 - v0;
+            // Bikubikus interpolációt végző függvény
+            double InterpolateCubic(double v0, double v1, double v2, double v3, double fraction)
+            {
+                double p = (v3 - v2) - (v0 - v1);
+                double q = (v0 - v1) - p;
+                double r = v2 - v0;
 
-        //        return (fraction * ((fraction * ((fraction * p) + q)) + r)) + v1;
-        //    }
+                return (fraction * ((fraction * ((fraction * p) + q)) + r)) + v1;
+            }
 
-        //    // A chunk méretének meghatározása a párhuzamos feldolgozáshoz
-        //    int rowsPerChunk = 6000 / outWidth;
-        //    if (rowsPerChunk == 0)
-        //    {
-        //        rowsPerChunk = 1;
-        //    }
+            // A chunk méretének meghatározása a párhuzamos feldolgozáshoz
+            int rowsPerChunk = 6000 / outWidth;
+            if (rowsPerChunk == 0)
+            {
+                rowsPerChunk = 1;
+            }
 
-        //    int chunkCount = (outHeight / rowsPerChunk)
-        //                     + (outHeight % rowsPerChunk != 0 ? 1 : 0);
+            int chunkCount = (outHeight / rowsPerChunk)
+                             + (outHeight % rowsPerChunk != 0 ? 1 : 0);
 
-        //    var depth = data.GetLength(2);
-        //    var width = data.GetLength(1);
-        //    var height = data.GetLength(0);
-        //    var ret = new float[outHeight, outWidth, outDepth];
+            var width = data.GetLength(1);
+            var height = data.GetLength(0);
+            var ret = new double[outHeight, outWidth];
 
-        //    Parallel.For(0, chunkCount, (chunkNumber) =>
-        //    {
-        //        int jStart = chunkNumber * rowsPerChunk;
-        //        int jStop = jStart + rowsPerChunk;
-        //        if (jStop > outHeight)
-        //        {
-        //            jStop = outHeight;
-        //        }
+            Parallel.For(0, chunkCount, (chunkNumber) =>
+            {
+                int jStart = chunkNumber * rowsPerChunk;
+                int jStop = jStart + rowsPerChunk;
+                if (jStop > outHeight)
+                {
+                    jStop = outHeight;
+                }
 
-        //        for (int j = jStart; j < jStop; ++j)
-        //        {
-        //            float jLocationFraction = j / (float)outHeight;
-        //            var jFloatPosition = height * jLocationFraction;
-        //            var j2 = (int)jFloatPosition;
-        //            var jFraction = jFloatPosition - j2;
-        //            var j1 = j2 > 0 ? j2 - 1 : j2;
-        //            var j3 = j2 < height - 1 ? j2 + 1 : j2;
-        //            var j4 = j3 < height - 1 ? j3 + 1 : j3;
+                for (int j = jStart; j < jStop; ++j)
+                {
+                    float jLocationFraction = j / (float)outHeight;
+                    var jFloatPosition = height * jLocationFraction;
+                    var j2 = (int)jFloatPosition;
+                    var jFraction = jFloatPosition - j2;
+                    var j1 = j2 > 0 ? j2 - 1 : j2;
+                    var j3 = j2 < height - 1 ? j2 + 1 : j2;
+                    var j4 = j3 < height - 1 ? j3 + 1 : j3;
 
-        //            for (int i = 0; i < outWidth; ++i)
-        //            {
-        //                float iLocationFraction = i / (float)outWidth;
-        //                var iFloatPosition = width * iLocationFraction;
-        //                var i2 = (int)iFloatPosition;
-        //                var iFraction = iFloatPosition - i2;
-        //                var i1 = i2 > 0 ? i2 - 1 : i2;
-        //                var i3 = i2 < width - 1 ? i2 + 1 : i2;
-        //                var i4 = i3 < width - 1 ? i3 + 1 : i3;
+                    for (int i = 0; i < outWidth; ++i)
+                    {
+                        float iLocationFraction = i / (float)outWidth;
+                        var iFloatPosition = width * iLocationFraction;
+                        var i2 = (int)iFloatPosition;
+                        var iFraction = iFloatPosition - i2;
+                        var i1 = i2 > 0 ? i2 - 1 : i2;
+                        var i3 = i2 < width - 1 ? i2 + 1 : i2;
+                        var i4 = i3 < width - 1 ? i3 + 1 : i3;
 
-        //                // Bikubikus interpoláció X irányban
-        //                float jValue1 = (float)InterpolateCubic(
-        //                    data[j1, i1, 0], data[j1, i2, 0], data[j1, i3, 0], data[j1, i4, 0], iFraction);
-        //                float jValue2 = (float)InterpolateCubic(
-        //                    data[j2, i1, 0], data[j2, i2, 0], data[j2, i3, 0], data[j2, i4, 0], iFraction);
-        //                float jValue3 = (float)InterpolateCubic(
-        //                    data[j3, i1, 0], data[j3, i2, 0], data[j3, i3, 0], data[j3, i4, 0], iFraction);
-        //                float jValue4 = (float)InterpolateCubic(
-        //                    data[j4, i1, 0], data[j4, i2, 0], data[j4, i3, 0], data[j4, i4, 0], iFraction);
+                        // Bikubikus interpoláció X irányban
+                        float jValue1 = (float)InterpolateCubic(
+                            data[j1, i1], data[j1, i2], data[j1, i3], data[j1, i4], iFraction);
+                        float jValue2 = (float)InterpolateCubic(
+                            data[j2, i1], data[j2, i2], data[j2, i3], data[j2, i4], iFraction);
+                        float jValue3 = (float)InterpolateCubic(
+                            data[j3, i1], data[j3, i2], data[j3, i3], data[j3, i4], iFraction);
+                        float jValue4 = (float)InterpolateCubic(
+                            data[j4, i1], data[j4, i2], data[j4, i3], data[j4, i4], iFraction);
 
-        //                // Bikubikus interpoláció Y irányban
-        //                float iValue1 = (float)InterpolateCubic(jValue1, jValue2, jValue3, jValue4, jFraction);
+                        // Bikubikus interpoláció Y irányban
+                        float iValue1 = (float)InterpolateCubic(jValue1, jValue2, jValue3, jValue4, jFraction);
 
-        //                // Most Z irányú interpoláció (a mélység dimenzió)
-        //                for (int k = 0; k < outDepth; ++k)
-        //                {
-        //                    float kLocationFraction = k / (float)outDepth;
-        //                    var kFloatPosition = depth * kLocationFraction;
-        //                    var k2 = (int)kFloatPosition;
-        //                    var kFraction = kFloatPosition - k2;
-        //                    var k1 = k2 > 0 ? k2 - 1 : k2;
-        //                    var k3 = k2 < depth - 1 ? k2 + 1 : k2;
-        //                    var k4 = k3 < depth - 1 ? k3 + 1 : k3;
+                        // Most Z irányú interpoláció (a mélység dimenzió)
+                        for (int k = 0; k < 1; ++k)
+                        {
+                            float kLocationFraction = k / (float)1;
+                            var kFloatPosition = 1 * kLocationFraction;
+                            var k2 = (int)kFloatPosition;
+                            var kFraction = kFloatPosition - k2;
+                            var k1 = k2 > 0 ? k2 - 1 : k2;
+                            var k3 = k2 < 1 - 1 ? k2 + 1 : k2;
+                            var k4 = k3 < 1 - 1 ? k3 + 1 : k3;
 
-        //                    // Bikubikus interpoláció Z irányban (mélységi interpoláció)
-        //                    ret[j, i, k] = InterpolateCubic(
-        //                        iValue1, iValue1, iValue1, iValue1, kFraction); // Egyszerűsített, Z irányban egyértékű interpoláció
-        //                }
-        //            }
-        //        }
-        //    });
+                            // Bikubikus interpoláció Z irányban (mélységi interpoláció)
+                            ret[j, i] = (float)InterpolateCubic(
+                                iValue1, iValue1, iValue1, iValue1, kFraction); // Egyszerűsített, Z irányban egyértékű interpoláció
+                        }
+                    }
+                }
+            });
 
-        //    return ret;
-        //}
+            return ret;
+        }
 
         public static double[,,] BicubicInterpolation3D(double[,,] data, int outWidth, int outHeight)
         {
@@ -450,29 +460,48 @@ namespace Teszt
         public static void Main()
         {
             #region
-            int width = 2;
-            int height = 2;
-            double[,,] originalImage = GenerateRandomRGBMatrix(width, height);
-
-            for (int i = 0; i < originalImage.GetLength(0); i++)
+            int width = 16;
+            int height = 16;
+            double[,] originalMatrix = GenerateRandomMatrix(width, height);
+            for (int i = 0; i < originalMatrix.GetLength(0); i++)
             {
-                for (int j = 0; j < originalImage.GetLength(1); j++)
+                for (int j = 0; j < originalMatrix.GetLength(1); j++)
                 {
-                    Console.Write($"({originalImage[i, j, 0]}; {originalImage[i, j, 1]}; {originalImage[i, j, 2]}) |");
+                    Console.Write($"({originalMatrix[i,j]}) | ");
                 }
                 Console.WriteLine("\n------------------------------------------------------------------------");
             }
-            Console.WriteLine("--------------------");
-            double[,,] scaledImage = BicubicInterpolation3D(originalImage, 4, 4);
-
-            for (int i = 0; i < scaledImage.GetLength(0); i++)
+            double[,] scaledMatrix=BicubicInterpolation(originalMatrix, 32, 32);
+            for (int i = 0; i < scaledMatrix.GetLength(0); i++)
             {
-                for (int j = 0; j < scaledImage.GetLength(1); j++)
+                for (int j = 0; j < scaledMatrix.GetLength(1); j++)
                 {
-                    Console.Write($"({scaledImage[i, j, 0]}, {scaledImage[i, j, 1]}, {scaledImage[i, j, 2]}) |");
+                    Console.Write($"({scaledMatrix[i, j]}) | ");
                 }
                 Console.WriteLine("\n------------------------------------------------------------------------");
             }
+
+            //double[,,] originalImage = GenerateRandomRGBMatrix(width, height);
+
+            //for (int i = 0; i < originalImage.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < originalImage.GetLength(1); j++)
+            //    {
+            //        Console.Write($"({originalImage[i, j, 0]}; {originalImage[i, j, 1]}; {originalImage[i, j, 2]}) |");
+            //    }
+            //    Console.WriteLine("\n------------------------------------------------------------------------");
+            //}
+            //Console.WriteLine("--------------------");
+            //double[,,] scaledImage = BicubicInterpolation3D(originalImage, 32, 32);
+
+            //for (int i = 0; i < scaledImage.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < scaledImage.GetLength(1); j++)
+            //    {
+            //        Console.Write($"({scaledImage[i, j, 0]}, {scaledImage[i, j, 1]}, {scaledImage[i, j, 2]}) |");
+            //    }
+            //    Console.WriteLine("\n------------------------------------------------------------------------");
+            //}
 
 
 
