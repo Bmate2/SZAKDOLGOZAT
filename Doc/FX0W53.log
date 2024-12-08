@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  8 DEC 2024 10:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  8 DEC 2024 19:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -614,7 +614,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=96, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=100, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 31.
@@ -667,23 +667,23 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc)
 [8
 
 ]
-<nyilatkozat.pdf, id=164, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=169, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 76.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 81.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 76.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 81.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=167, page=1, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=172, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 76.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 81.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 76.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 81.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
@@ -692,17 +692,17 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 76.
 ]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 76.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 81.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 76.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 81.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 76.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 81.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [10
 
@@ -712,13 +712,13 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `FX0W53.out' has not changed.
-(rerunfilecheck)             Checksum: 91E646820CB8DF9E7640D2620E746F98;3866.
+(rerunfilecheck)             Checksum: 9D7EA9F5BB5F4C3CF0220911D5E9A264;4026.
  ) 
 Here is how much of TeX's memory you used:
- 14927 strings out of 473579
- 238501 string characters out of 5732263
- 661778 words of memory out of 5000000
- 37559 multiletter control sequences out of 15000+600000
+ 14929 strings out of 473579
+ 238515 string characters out of 5732263
+ 661780 words of memory out of 5000000
+ 37560 multiletter control sequences out of 15000+600000
  617673 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,93p,543b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -726,10 +726,10 @@ Here is how much of TeX's memory you used:
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
 ri12.pfb>
-Output written on FX0W53.pdf (10 pages, 140232 bytes).
+Output written on FX0W53.pdf (10 pages, 141463 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 196 compressed objects within 2 object streams
- 37 named destinations out of 1000 (max. 500000)
- 210 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 233 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 218 words of extra memory for PDF output out of 10000 (max. 10000000)
 
