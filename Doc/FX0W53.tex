@@ -1,13 +1,4 @@
-%
-% Szakdolgozatminta az Eszterházy Károly Katolikus Egyetem
-% matematika illetve informatika szakos hallgatóinak.
-%
-
-\documentclass[
-% opciók nélkül: egyoldalas nyomtatás, elektronikus verzió
-% twoside,     % kétoldalas nyomtatás
-% tocnopagenum,% oldalszámozás a tartalomjegyzék után kezdődik
-]{thesis-ekf}
+\documentclass[]{thesis-ekf}
 \usepackage[T1]{fontenc}
 \PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
 \usepackage[magyar]{babel}
@@ -23,7 +14,7 @@
 \begin{document}
 
 \institute{Matematikai és Informatikai Intézet}
-\title{Színes szkenner megvalósítása egy egér szenzorral}
+\title{Színes szkenner megvalósítása egér szenzorral}
 \author{Bodnár Máté\\Programtervező informatikus BSc}
 \supervisor{Dr. Geda Gábor\\Egyetemi docens}
 \city{Eger}
@@ -44,10 +35,7 @@
 \chapter{Felhaszánlt technológiák}
 \section{Arduino}
 \subsection{Arduino család}
-Az Arduino egy széleskörűen elterjedt, nyílt forrású fejlesztőplatform. Az Arduinót oktatási céllal hozták létre, de előszeretettel használják otthoni projektekhez, a kisebb automatizálási feladatoktól kezdve az okosotthonok kialakításáig. Ezek mellett ma már az ipari alkalmazások sem ritkák és rengeteg IOT eszköznek is az alapja.
-Az Arduino platform része egy elektronikai áramköri lap és a szoftveres környezet. Maga az áramköri lap nagyon sokféle felépítésben megtalálható.
-
-
+Az Arduino egy széleskörűen elterjedt, nyílt forrású fejlesztőplatform. Az Arduinót oktatási céllal hozták létre, de előszeretettel használják otthoni projektekhez, a kisebb automatizálási feladatoktól kezdve az okosotthonok kialakításáig. Ezek mellett ma már az ipari alkalmazások sem ritkák és rengeteg IOT eszköznek is az alapja. Az Arduino platform része egy elektronikai áramköri lap és a szoftveres környezet. Maga az áramköri lap nagyon sokféle felépítésben megtalálható.
 \subsection{Arduino Uno}
 \section{Visual Studio}
 \section{Github}
@@ -59,9 +47,9 @@ Az Arduino platform része egy elektronikai áramköri lap és a szoftveres kör
 \section{Hardveres bekötés}
 \chapter{Szoftveres megvalósítás}
 \section{3 dimenziós mátrix felhasználása}
-\section{Interpoláció}
-\subsection{Lineáris interpoláció}
-\subsection{Bikubik interpoláció}
+\section{Bikubik interpoláció}
+\subsection{Működése}
+\subsection{Matematikai vonatkozás}
 \section{Mátrix átalakítása képpé}
 
 
