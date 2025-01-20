@@ -19,7 +19,6 @@
 \select@language {magyar} \contentsline {section}{\numberline {4.1}3 dimenziós mátrix felhasználása}{7}{section.4.1}%
 \select@language {magyar} \contentsline {section}{\numberline {4.2}Bikubik interpoláció}{7}{section.4.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Működése}{7}{subsection.4.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}Matematikai vonatkozás}{7}{subsection.4.2.2}%
 \select@language {magyar} \contentsline {section}{\numberline {4.3}Mátrix átalakítása képpé}{7}{section.4.3}%
 \select@language {magyar} \contentsline {chapter}{Összegzés}{8}{chapter*.3}%
 \select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{9}{chapter*.4}%
