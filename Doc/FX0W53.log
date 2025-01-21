@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  21 JAN 2025 13:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  21 JAN 2025 13:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -672,20 +672,20 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc)
 <nyilatkozat.pdf, id=173, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 93.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 92.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 93.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 92.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 <nyilatkozat.pdf, id=176, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 93.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 93.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
@@ -694,17 +694,17 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 93.
 ]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 93.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 93.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 93.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [11
 
@@ -723,12 +723,12 @@ Here is how much of TeX's memory you used:
  37560 multiletter control sequences out of 15000+600000
  617673 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,17n,93p,752b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,17n,93p,1291b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
 ri12.pfb>
-Output written on FX0W53.pdf (11 pages, 145589 bytes).
+Output written on FX0W53.pdf (11 pages, 146121 bytes).
 PDF statistics:
  237 PDF objects out of 1000 (max. 8388607)
  204 compressed objects within 3 object streams
