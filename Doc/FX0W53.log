@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  21 JAN 2025 13:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.13)  22 JAN 2025 19:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -614,7 +614,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=100, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=104, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 22.
@@ -648,65 +648,104 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc)
 
 [5]
 2. fejezet.
+<ArduinoFamily.png, id=162, 770.88pt x 380.17032pt>
+File: ArduinoFamily.png Graphic file (type png)
+<use ArduinoFamily.png>
+Package pdftex.def Info: ArduinoFamily.png  used on input line 49.
+(pdftex.def)             Requested size: 396.91325pt x 195.74059pt.
 
 
 [6
 
-]
+ <./ArduinoFamily.png (PNG copy)>]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 6
+9.
+
+(c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+<ATMEGA328P-PU.jpg, id=169, 433.62pt x 289.08pt>
+File: ATMEGA328P-PU.jpg Graphic file (type jpg)
+<use ATMEGA328P-PU.jpg>
+Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 76.
+(pdftex.def)             Requested size: 176.40439pt x 117.60165pt.
+
+
+[7{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+<ArduinoParts.png, id=177, 770.88pt x 463.7325pt>
+File: ArduinoParts.png Graphic file (type png)
+<use ArduinoParts.png>
+Package pdftex.def Info: ArduinoParts.png  used on input line 88.
+(pdftex.def)             Requested size: 308.71106pt x 185.70906pt.
+
+
+[8 <./ATMEGA328P-PU.jpg> <./ArduinoParts.png>]
+
+[9]
 3. fejezet.
-
-
-[7
-
-]
-4. fejezet.
-
-
-[8
-
-]
-
-[9
-
-]
-<nyilatkozat.pdf, id=173, 597.50829pt x 845.0471pt>
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 92.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 92.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=176, page=1, 597.50829pt x 845.0471pt>
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 [10
 
 ]
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+4. fejezet.
 
 
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 92.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [11
+
+]
+
+[12
+
+]
+Overfull \hbox (1.39384pt too wide) in paragraph at lines 135--136
+[]\T1/lmr/m/n/12 2.1[]. áb-ra: \T1/lmr/m/it/12 https://predictabledesigns.com/w
+p-content/uploads/2017/10/HeroImage.png 
+ []
+
+
+
+[13
+
+]
+<nyilatkozat.pdf, id=214, 597.50829pt x 845.0471pt>
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 144.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 144.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+<nyilatkozat.pdf, id=217, page=1, 597.50829pt x 845.0471pt>
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 144.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 144.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+
+[14
+
+]
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 144.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 144.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 144.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+[15
 
  <./nyilatkozat.pdf>] (./FX0W53.aux)
  ***********
@@ -714,24 +753,24 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `FX0W53.out' has not changed.
-(rerunfilecheck)             Checksum: 6339D30513AF4009CBCB058464D8F7A1;4286.
+(rerunfilecheck)             Checksum: ECDAE25586D0C1AD696D7A064F974ABC;4525.
  ) 
 Here is how much of TeX's memory you used:
- 14930 strings out of 473579
- 238522 string characters out of 5732263
- 661778 words of memory out of 5000000
- 37560 multiletter control sequences out of 15000+600000
- 617673 words of font info for 84 fonts, out of 8000000 for 9000
+ 15023 strings out of 473579
+ 240530 string characters out of 5732263
+ 662957 words of memory out of 5000000
+ 37637 multiletter control sequences out of 15000+600000
+ 618242 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,93p,1291b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
-ri12.pfb>
-Output written on FX0W53.pdf (11 pages, 146121 bytes).
+r8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
+Output written on FX0W53.pdf (15 pages, 901640 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 39 named destinations out of 1000 (max. 500000)
- 218 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 282 PDF objects out of 1000 (max. 8388607)
+ 239 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 241 words of extra memory for PDF output out of 10000 (max. 10000000)
 

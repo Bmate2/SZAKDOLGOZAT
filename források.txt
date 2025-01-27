@@ -1,0 +1,8 @@
+Arduino platform: 
+https://learn.sparkfun.com/tutorials/what-is-an-arduino/all
+http://dx.doi.org/10.6084/m9.figshare.11971794.v1
+	ArduinoFamily.png: https://predictabledesigns.com/wp-content/uploads/2017/10/HeroImage.png
+	ATmega328P.jpg:https://upload.wikimedia.org/wikipedia/commons/0/0c/ATMEGA328P-PU.jpg
+	ArduinoParts.png:https://www.inf.u-szeged.hu/~makan/tananyagok/wp-content/uploads/2020/07/ArduinoParts3-768x462.png
+	
+	
