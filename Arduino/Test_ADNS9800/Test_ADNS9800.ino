@@ -81,7 +81,7 @@ void setup() {
   // choose your baud rate
   Serial.begin(9600);
   //Serial.begin(57600); 
-  //Serial.begin(38400); 
+  //Serial.begin(31250); 
   while (!Serial);
   
   pinMode(ncs, OUTPUT);
@@ -232,13 +232,17 @@ void frameCapture(){
   int i; 
   for(i = 0; i < 900; i++){
     if((i % 30) == 0 && i != 0){
-      Serial.print(";"); 
+      Serial.print('\n'); 
     }
-    byte output = 0; 
-    output = SPI.transfer(0); 
-    // deliver frame pixels.
-    Serial.print(output);
-    Serial.print(" "); 
+    else {
+      byte output = 0; 
+      output = SPI.transfer(0); 
+      // deliver frame pixels.
+      byte pixel_value = map(output, 0, 255, 20, 235); // Kerüli a teljesen fekete és fehér pontokat
+      Serial.print(pixel_value);
+      Serial.print(","); 
+    }
+    
     
     delayMicroseconds(15); // tload
   }
@@ -247,7 +251,7 @@ void frameCapture(){
   digitalWrite(ncs, HIGH); 
   //delayMicroseconds(100); // time to wait before another frame can be captured.  
   delayMicroseconds(5); 
-  Serial.println("#");
+  Serial.println("\n#");
 }
 
 int xdir = 0; 
@@ -285,8 +289,7 @@ void UpdatePointer(void){
 
   void loop() {
       if(numCaptured < 100){
-        frameCapture();
-        Serial.println(";  ");  // delimiter indicating the end of a frame (has two spaces). 
+        frameCapture(); // delimiter indicating the end of a frame (has two spaces). 
         //numCaptured = numCaptured + 1; 
       }
   }
