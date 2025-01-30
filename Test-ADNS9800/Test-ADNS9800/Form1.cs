@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Text;
 using System.Windows.Forms;
@@ -21,10 +22,10 @@ namespace Test_ADNS9800
             InitializeSerialPort();
             InitializeImage();
         }
-
+        
         private void InitializeSerialPort()
         {
-            serialPort = new SerialPort("COM4", 9600);
+            serialPort = new SerialPort("COM4", 31250);
             serialPort.DataReceived += SerialPort_DataReceived;
             serialPort.Open();
         }
@@ -42,6 +43,8 @@ namespace Test_ADNS9800
             ProcessSerialData(data);
         }
 
+        private int frameCounter = 0; // Képkocka számláló
+
         private void ProcessSerialData(string data)
         {
             if (string.IsNullOrEmpty(data)) return;
@@ -56,40 +59,83 @@ namespace Test_ADNS9800
 
                 if (this.InvokeRequired)
                 {
-                    this.Invoke(new Action(() => listBox1.Items.Add(fullLine)));
+                    this.Invoke(new Action(() => listBox1.Items.Add($"Beérkező sor: {fullLine}")));
                 }
                 else
                 {
-                    listBox1.Items.Add(fullLine);
+                    listBox1.Items.Add($"Beérkező sor: {fullLine}");
                 }
 
-                if (fullLine.Trim() == "#") // Új frame kezdődik
+                if (fullLine.Trim() == "#")
                 {
-                    currentRow = 0; // Új képkocka kezdődik
+                    currentRow = 0;
                     Invoke(new Action(() =>
                     {
-                        pictureBox.Image = new Bitmap(currentFrame); // Új képet állítunk be
-                        pictureBox.Refresh();
+                        pictureBox.Image = new Bitmap(currentFrame); // Kép frissítése
+                        pictureBox.Invalidate();
+                        pictureBox.Update();
                     }));
                 }
                 else if (fullLine.Contains(",")) // Ha egy valódi pixel sor érkezett
                 {
                     string[] pixels = fullLine.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    if (pixels.Length == FrameWidth && currentRow < FrameHeight)
+                    if ((pixels.Length == FrameWidth || pixels.Length==FrameWidth-1)&& currentRow < FrameHeight-1)
                     {
-                        for (int col = 0; col < FrameWidth; col++)
+                        for (int col = 0; col < FrameWidth-1; col++)
                         {
-                            if (byte.TryParse(pixels[col], out byte grayscale))
+                            if (int.TryParse(pixels[col], out int grayscale))
                             {
                                 Color color = Color.FromArgb(grayscale, grayscale, grayscale);
                                 currentFrame.SetPixel(col, currentRow, color);
                             }
                         }
 
-                        currentRow++; // Következő sor
+                         // Következő sor
+
+                        if (this.InvokeRequired)
+                        {
+                            currentRow++;
+                            this.Invoke(new Action(() => listBox1.Items.Add($"Új sor: {currentRow}")));
+                        }
+                        else
+                        {
+                            currentRow++;
+                            listBox1.Items.Add($"Új sor: {currentRow}");
+                        }
+                    }
+                    else
+                    {
+                        if (this.InvokeRequired)
+                        {
+                            this.Invoke(new Action(() => listBox1.Items.Add($"Hibás sor hossz: {pixels.Length}")));
+                        }
+                        else
+                        {
+                            listBox1.Items.Add($"Hibás sor hossz: {pixels.Length}");
+                        }
                     }
                 }
+            }
+        }
+
+        private void SaveFrame()
+        {
+            try
+            {
+                string folderPath = Path.Combine(Application.StartupPath, "SavedFrames");
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                string filePath = Path.Combine(folderPath, $"frame_{frameCounter:D4}.png");
+                currentFrame.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+                frameCounter++; // Következő frame számláló növelése
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

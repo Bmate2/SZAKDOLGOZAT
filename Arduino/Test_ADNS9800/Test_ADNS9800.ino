@@ -79,9 +79,9 @@ extern const unsigned char firmware_data[];
 
 void setup() {
   // choose your baud rate
-  Serial.begin(9600);
+  //Serial.begin(9600);
   //Serial.begin(57600); 
-  //Serial.begin(31250); 
+  Serial.begin(31250); 
   while (!Serial);
   
   pinMode(ncs, OUTPUT);
@@ -179,8 +179,8 @@ void performStartup(void){
   // upload the firmware
   adns_upload_firmware();
   delay(10);
-  //adns_write_reg(REG_Configuration_I, 0x01); // 200 cpi
-  adns_write_reg(REG_Configuration_I, 0xa4); // 8200 cpi
+  adns_write_reg(REG_Configuration_I, 0x01); // 200 cpi
+  //adns_write_reg(REG_Configuration_I, 0xa4); // 8200 cpi
   delay(10);
 
   //enable laser(bit 0 = 0b), in normal mode (bits 3,2,1 = 000b)
@@ -237,9 +237,7 @@ void frameCapture(){
     else {
       byte output = 0; 
       output = SPI.transfer(0); 
-      // deliver frame pixels.
-      byte pixel_value = map(output, 0, 255, 20, 235); // Kerüli a teljesen fekete és fehér pontokat
-      Serial.print(pixel_value);
+      Serial.print(output);
       Serial.print(","); 
     }
     
