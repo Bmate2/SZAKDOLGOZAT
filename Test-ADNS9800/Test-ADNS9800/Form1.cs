@@ -25,7 +25,7 @@ namespace Test_ADNS9800
         
         private void InitializeSerialPort()
         {
-            serialPort = new SerialPort("COM4", 31250);
+            serialPort = new SerialPort("COM4", 57600);
             serialPort.DataReceived += SerialPort_DataReceived;
             serialPort.Open();
         }
@@ -144,6 +144,22 @@ namespace Test_ADNS9800
             if (serialPort != null && serialPort.IsOpen)
             {
                 serialPort.Close();
+            }
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("start");
+            }
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("stop");
             }
         }
     }

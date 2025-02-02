@@ -57,11 +57,13 @@ const int ncs = 10;
 extern const unsigned short firmware_length;
 extern const unsigned char firmware_data[];
 
+bool shouldCapture=false;
+
 void setup() {
   // choose your baud rate
   //Serial.begin(9600);
-  //Serial.begin(57600); 
-  Serial.begin(31250); 
+  //Serial.begin(31250); 
+  Serial.begin(57600); 
   while (!Serial);
   
   pinMode(ncs, OUTPUT);
@@ -69,7 +71,7 @@ void setup() {
   SPI.begin();
   SPI.setDataMode(SPI_MODE3);
   SPI.setBitOrder(MSBFIRST);
-  SPI.setClockDivider(8);
+  SPI.setClockDivider(SPI_CLOCK_DIV4);
 
   performStartup();
   increaseShutterTime();
@@ -183,8 +185,8 @@ void performStartup(void){
   // upload the firmware
   adns_upload_firmware();
   delay(10);
-  adns_write_reg(REG_Configuration_I, 0x01); // 200 cpi
-  //adns_write_reg(REG_Configuration_I, 0xa4); // 8200 cpi
+  //adns_write_reg(REG_Configuration_I, 0x01); // 200 cpi
+  adns_write_reg(REG_Configuration_I, 0xa4); // 8200 cpi
   delay(10);
 
   //enable laser(bit 0 = 0b), in normal mode (bits 3,2,1 = 000b)
@@ -260,6 +262,21 @@ void sendFrame() {
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  sendFrame();
+  if(Serial.available()>0){
+    String command=Serial.readStringUntil('\n');
+    command.trim();
+
+    if(command=="start"){
+      shouldCapture=true;
+      Serial.println("Adatküldés indítva...");
+    }
+    else if(command="stop"){
+      shouldCapture=false;
+      Serial.println("Adatküldés leállítva...");
+    }
+  }
+  if(shouldCapture){
+    sendFrame();
+    delay(100);
+  }
 }
