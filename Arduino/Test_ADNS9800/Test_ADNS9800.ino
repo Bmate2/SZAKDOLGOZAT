@@ -1,25 +1,5 @@
 #include <SPI.h>
 #include <avr/pgmspace.h>
-
-/**
- * The circuit:
- * 
- * Connect these to the appropriate pins for you board
- * AG - Analog ground 
- * DG - Digital ground
- * VI - Voltage in
- * MO - Master out slave in (MOSI)
- * MI - Master in slave out (MISO)
- * SS - Slave Select (ncs)
- * 
- * MOT - Motion does not need to be connected
- * 
- * The program will output to the serial port byte values corresponding to 
- * a pixel in grayscale. Each frame is delimited by a ; followed by two spaces. 
- * and a row of pixels is delimited by a ; followed by one space. 
- */
-
-// Registers
 #define REG_Product_ID                           0x00
 #define REG_Revision_ID                          0x01
 #define REG_Motion                               0x02
@@ -92,11 +72,37 @@ void setup() {
   SPI.setClockDivider(8);
 
   performStartup();
+  increaseShutterTime();
+  enableAutoExposure();
   delay(100);
+
   initComplete=9;
 }
 
+void enableAutoExposure() {
+    digitalWrite(SS, LOW);
+    SPI.transfer(0x0F); // Configuration_I regiszter
+    SPI.transfer(0x01); // Auto-exposure engedélyezése
+    digitalWrite(SS, HIGH);
 
+    Serial.println("Automatikus expozíció engedélyezve.");
+}
+
+void increaseShutterTime() {
+    digitalWrite(SS, LOW);
+    SPI.transfer(0x0B); // Shutter_Lower regiszter
+    SPI.transfer(0xFF); // Maximum érték
+    digitalWrite(SS, HIGH);
+
+    delayMicroseconds(50);
+
+    digitalWrite(SS, LOW);
+    SPI.transfer(0x0C); // Shutter_Upper regiszter
+    SPI.transfer(0xFF); // Maximum érték
+    digitalWrite(SS, HIGH);
+
+    Serial.println("Expozíció maximálisra állítva.");
+}
 void adns_com_begin(){
   digitalWrite(ncs, LOW);
 }
@@ -104,7 +110,6 @@ void adns_com_begin(){
 void adns_com_end(){
   digitalWrite(ncs, HIGH);
 }
-
 
 byte adns_read_reg(byte reg_addr){
   adns_com_begin();
@@ -162,8 +167,7 @@ void adns_upload_firmware(){
     delayMicroseconds(15); 
   }
   adns_com_end();
-  }
-
+}
 
 void performStartup(void){
   adns_com_begin(); // ensure that the Serial port is reset
@@ -193,9 +197,8 @@ void performStartup(void){
   adns_write_reg(REG_LASER_CTRL0, laser_ctrl0 );
   delay(1);
 }
-
-void frameCapture(){
-  // Serial.println("Capturing frame: "); 
+void sendFrame() {
+    // Serial.println("Capturing frame: "); 
 
   // send instructions to the adns to capture a frame. 
   digitalWrite(ncs, LOW); 
@@ -229,21 +232,24 @@ void frameCapture(){
     SPI.transfer(REG_Pixel_Burst & 0x7f); 
     delayMicroseconds(100); // tSRAD
   
-  int i; 
-  for(i = 0; i < 900; i++){
-    if((i % 30) == 0 && i != 0){
-      Serial.print('\n'); 
+    for (int row = 0; row < 30; row++) {
+        Serial.print("Beérkező sor: ");
+        int count = 0;
+        
+        for (int col = 0; col < 30; col++) {
+            byte pixelValue = SPI.transfer(0);  // Pixel beolvasása
+            Serial.print(pixelValue);
+            Serial.print(",");
+            count++;
+        }
+        Serial.println();
+
+        if (count != 30) {  // Ha egy sor nem 30 hosszú, akkor hiba
+            Serial.print("HIBA: Rossz hossz! ");
+            Serial.println(count);
+        }
+        delayMicroseconds(15);
     }
-    else {
-      byte output = 0; 
-      output = SPI.transfer(0); 
-      Serial.print(output);
-      Serial.print(","); 
-    }
-    
-    
-    delayMicroseconds(15); // tload
-  }
  
   // end operation. 
   digitalWrite(ncs, HIGH); 
@@ -252,43 +258,8 @@ void frameCapture(){
   Serial.println("\n#");
 }
 
-int xdir = 0; 
-int ydir = 0; 
 
-void UpdatePointer(void){
-  if(initComplete==9){
-
-    digitalWrite(ncs,LOW);
-    xydat[0] = (byte)adns_read_reg(REG_Delta_X_L);
-    xydat[1] = (byte)adns_read_reg(REG_Delta_X_H); 
-    xydat[2] = (byte)adns_read_reg(REG_Delta_Y_L);
-    xydat[3] = (byte)adns_read_reg(REG_Delta_Y_H);
-    digitalWrite(ncs,HIGH); 
-    
-    xdir = xdir + *x; 
-    ydir = ydir + *y; 
-    
-    /*
-    Serial.print("X: ");
-    Serial.print((float)xdir / 200 * 25.4 );
-    Serial.print("mm Y: ");
-    Serial.print((float)ydir / 200 * 25.4 );
-    Serial.println("mm");
-    */
-    
-    Serial.print((float)xdir / 200 * 25.4 );
-    Serial.print(" ");
-    Serial.println((float)ydir / 200 * 25.4 );
-    movementflag=1;
-    }
-  }
-  
-  int numCaptured = 0; 
-
-  void loop() {
-      if(numCaptured < 100){
-        frameCapture(); // delimiter indicating the end of a frame (has two spaces). 
-        //numCaptured = numCaptured + 1; 
-      }
-  }
-  
+void loop() {
+  // put your main code here, to run repeatedly:
+  sendFrame();
+}
