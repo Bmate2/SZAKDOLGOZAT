@@ -63,7 +63,7 @@ volatile unsigned long lastInterruptTime = 0;
 bool shouldCapture=false;
 
 void setup() {
-  Serial.begin(57600); 
+  Serial.begin(115200); 
   while (!Serial);
   
   pinMode(ncs, OUTPUT);
@@ -74,7 +74,7 @@ void setup() {
   SPI.setBitOrder(MSBFIRST);
   SPI.setClockDivider(SPI_CLOCK_DIV8);
   
-  attachInterrupt(digitalPinToInterrupt(2), UpdatePointer, FALLING);
+  //attachInterrupt(0, UpdatePointer, FALLING);
 
   performStartup();
   increaseShutterTime();
@@ -119,7 +119,7 @@ byte adns_read_reg(byte reg_addr){
   adns_com_begin();
   // send adress of the register, with MSBit = 0 to indicate it's a read
   SPI.transfer(reg_addr & 0x7f);
-  delayMicroseconds(100); // tSRAD
+  delayMicroseconds(200); // tSRAD
   // read data
   byte data = SPI.transfer(0);
   
@@ -265,59 +265,47 @@ void sendFrame() {
 
 int posX = 0, posY = 0; 
 
-// void readMotion(){
-//   adns_com_begin();
-//   int8_t deltaX_L = (int8_t)adns_read_reg(0x03);
-//   int8_t deltaX_H = (int8_t)adns_read_reg(0x04);
-//   int8_t deltaY_L = (int8_t)adns_read_reg(0x05);
-//   int8_t deltaY_H = (int8_t)adns_read_reg(0x06);
-//   adns_com_end();
-//   int16_t deltaX = (int16_t)((deltaX_H << 8) | (deltaX_L & 0xFF));
-//   int16_t deltaY = (int16_t)((deltaY_H << 8) | (deltaY_L & 0xFF));
-  
-//   byte motion = adns_read_reg(0x02); // Motion regiszter
-//   if (motion & 0x80) {
-//       posX += deltaX;
-//       posY += deltaY;
-//       Serial.print("MOTION ");
-//       Serial.print(posX);
-//       Serial.print(",");
-//       Serial.println(posY);
-//   } else {
-//       Serial.println("Nincs mozgás.");
-//       adns_read_reg(0x02);  
-//   }
-// }
+void readMotion(){
+    digitalWrite(SS, LOW);
+    int deltaX = (char)SPI.transfer(0x03); // Delta_X_L
+    int deltaY = (char)SPI.transfer(0x05); // Delta_Y_L
+    digitalWrite(SS, HIGH);
 
-int xdir = 0; 
-int ydir = 0; 
+    posX += deltaX;
+    posY += deltaY;
 
-void UpdatePointer(void){
-  unsigned long currentTime = millis();
-
-  if(currentTime - lastInterruptTime > 50 && initComplete==9){
-
-    digitalWrite(ncs,LOW);
-    xydat[0] = (byte)adns_read_reg(REG_Delta_X_L);
-    xydat[1] = (byte)adns_read_reg(REG_Delta_X_H); 
-    xydat[2] = (byte)adns_read_reg(REG_Delta_Y_L);
-    xydat[3] = (byte)adns_read_reg(REG_Delta_Y_H);
-    digitalWrite(ncs,HIGH); 
+    Serial.print("MOTION ");
+    Serial.print(posX);
+    Serial.print(",");
+    Serial.println(posY);
     
-    xdir = xdir + *x; 
-    ydir = ydir + *y; 
-    
-      Serial.print("X:");
-      Serial.println((float)xdir / 200 * 25.4);
-      Serial.print("Y:");
-      Serial.println((float)ydir / 200 * 25.4);
-    
-    
-    movementflag=1;
-    lastInterruptTime = currentTime;
-
-    }
   }
+
+// int xdir = 0; 
+// int ydir = 0; 
+
+// void UpdatePointer(void){
+//   byte motion = adns_read_reg(REG_Motion);
+//   if(initComplete==9 && motion & 0x80){
+
+//     xydat[0] = (byte)adns_read_reg(REG_Delta_X_L);
+//     xydat[1] = (byte)adns_read_reg(REG_Delta_X_H); 
+//     xydat[2] = (byte)adns_read_reg(REG_Delta_Y_L);
+//     xydat[3] = (byte)adns_read_reg(REG_Delta_Y_H);
+    
+//     xdir = xdir + *x; 
+//     ydir = ydir + *y; 
+    
+//     Serial.print("X:");
+//     Serial.println((float)xdir / 200 * 25.4);
+//     Serial.print("Y:");
+//     Serial.println((float)ydir / 200 * 25.4);
+    
+    
+//     movementflag=1;
+
+//     }
+//   }
 
 void loop() {
   if(Serial.available()>0){
@@ -337,4 +325,7 @@ void loop() {
     sendFrame();
     delay(100);
   }
+  
+    readMotion();
+    delay(100);
 }

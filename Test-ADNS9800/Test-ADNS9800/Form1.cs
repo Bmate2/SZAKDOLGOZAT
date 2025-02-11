@@ -25,7 +25,7 @@ namespace Test_ADNS9800
         
         private void InitializeSerialPort()
         {
-            serialPort = new SerialPort("COM4", 57600);
+            serialPort = new SerialPort("COM4", 115200);
             serialPort.DataReceived += SerialPort_DataReceived;
             serialPort.Open();
         }
