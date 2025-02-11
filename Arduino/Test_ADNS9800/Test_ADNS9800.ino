@@ -47,37 +47,39 @@
 #define REG_Pixel_Burst                          0x64
 
 byte initComplete=0;
-volatile byte xydat[4];
-int16_t * x = (int16_t *) &xydat[0];
-int16_t * y = (int16_t *) &xydat[2];
 
-volatile byte movementflag=0;
 const int ncs = 10;
 
 extern const unsigned short firmware_length;
 extern const unsigned char firmware_data[];
 
+volatile byte movementflag=0;
+volatile byte xydat[4];
+int16_t * x = (int16_t *) &xydat[0];
+int16_t * y = (int16_t *) &xydat[2];
+
+volatile unsigned long lastInterruptTime = 0;
+
 bool shouldCapture=false;
 
 void setup() {
-  // choose your baud rate
-  //Serial.begin(9600);
-  //Serial.begin(31250); 
   Serial.begin(57600); 
   while (!Serial);
   
   pinMode(ncs, OUTPUT);
+  pinMode(2, INPUT); 
   
   SPI.begin();
   SPI.setDataMode(SPI_MODE3);
   SPI.setBitOrder(MSBFIRST);
-  SPI.setClockDivider(SPI_CLOCK_DIV4);
+  SPI.setClockDivider(SPI_CLOCK_DIV8);
+  
+  attachInterrupt(digitalPinToInterrupt(2), UpdatePointer, FALLING);
 
   performStartup();
   increaseShutterTime();
   enableAutoExposure();
   delay(100);
-
   initComplete=9;
 }
 
@@ -169,6 +171,7 @@ void adns_upload_firmware(){
     delayMicroseconds(15); 
   }
   adns_com_end();
+  Serial.print("Firmware betöltve");
 }
 
 void performStartup(void){
@@ -203,7 +206,7 @@ void sendFrame() {
     // Serial.println("Capturing frame: "); 
 
   // send instructions to the adns to capture a frame. 
-  digitalWrite(ncs, LOW); 
+  adns_com_begin();
   delayMicroseconds(1);
   SPI.transfer(REG_Frame_Capture | 0x80); 
   SPI.transfer(0x93); 
@@ -213,10 +216,10 @@ void sendFrame() {
   delayMicroseconds(120);
 
   // wait two frames 
-  digitalWrite(ncs, HIGH); 
+  adns_com_end(); 
   // lower this value to increase the frame rate of the incoming data.
   delay(1); // assuming a very slow frame rate ~200Hz
-  digitalWrite(ncs, LOW); 
+  adns_com_begin(); 
 
   delayMicroseconds(100); //TsRAD
 
@@ -254,12 +257,67 @@ void sendFrame() {
     }
  
   // end operation. 
-  digitalWrite(ncs, HIGH); 
+  adns_com_end();
   //delayMicroseconds(100); // time to wait before another frame can be captured.  
   delayMicroseconds(5); 
   Serial.println("\n#");
 }
 
+int posX = 0, posY = 0; 
+
+// void readMotion(){
+//   adns_com_begin();
+//   int8_t deltaX_L = (int8_t)adns_read_reg(0x03);
+//   int8_t deltaX_H = (int8_t)adns_read_reg(0x04);
+//   int8_t deltaY_L = (int8_t)adns_read_reg(0x05);
+//   int8_t deltaY_H = (int8_t)adns_read_reg(0x06);
+//   adns_com_end();
+//   int16_t deltaX = (int16_t)((deltaX_H << 8) | (deltaX_L & 0xFF));
+//   int16_t deltaY = (int16_t)((deltaY_H << 8) | (deltaY_L & 0xFF));
+  
+//   byte motion = adns_read_reg(0x02); // Motion regiszter
+//   if (motion & 0x80) {
+//       posX += deltaX;
+//       posY += deltaY;
+//       Serial.print("MOTION ");
+//       Serial.print(posX);
+//       Serial.print(",");
+//       Serial.println(posY);
+//   } else {
+//       Serial.println("Nincs mozgás.");
+//       adns_read_reg(0x02);  
+//   }
+// }
+
+int xdir = 0; 
+int ydir = 0; 
+
+void UpdatePointer(void){
+  unsigned long currentTime = millis();
+
+  if(currentTime - lastInterruptTime > 50 && initComplete==9){
+
+    digitalWrite(ncs,LOW);
+    xydat[0] = (byte)adns_read_reg(REG_Delta_X_L);
+    xydat[1] = (byte)adns_read_reg(REG_Delta_X_H); 
+    xydat[2] = (byte)adns_read_reg(REG_Delta_Y_L);
+    xydat[3] = (byte)adns_read_reg(REG_Delta_Y_H);
+    digitalWrite(ncs,HIGH); 
+    
+    xdir = xdir + *x; 
+    ydir = ydir + *y; 
+    
+      Serial.print("X:");
+      Serial.println((float)xdir / 200 * 25.4);
+      Serial.print("Y:");
+      Serial.println((float)ydir / 200 * 25.4);
+    
+    
+    movementflag=1;
+    lastInterruptTime = currentTime;
+
+    }
+  }
 
 void loop() {
   if(Serial.available()>0){
@@ -270,7 +328,7 @@ void loop() {
       shouldCapture=true;
       Serial.println("Adatküldés indítva...");
     }
-    else if(command="stop"){
+    else if(command=="stop"){
       shouldCapture=false;
       Serial.println("Adatküldés leállítva...");
     }

@@ -76,13 +76,27 @@ namespace Test_ADNS9800
                         pictureBox.Update();
                     }));
                 }
+                else if (fullLine.StartsWith("MOTION"))
+                {
+
+
+                    if (this.InvokeRequired)
+                    {
+                        this.Invoke(new Action(() => listBox1.Items.Add($"Koordináták: {fullLine}")));
+                    }
+                    else
+                    {
+                        listBox1.Items.Add($"Koordináták: {fullLine}");
+                    }
+                }
+
                 else if (fullLine.Contains(",")) // Ha egy valódi pixel sor érkezett
                 {
                     string[] pixels = fullLine.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    if ((pixels.Length == FrameWidth || pixels.Length==FrameWidth-1)&& currentRow < FrameHeight-1)
+                    if ((pixels.Length == FrameWidth || pixels.Length == FrameWidth - 1) && currentRow < FrameHeight - 1)
                     {
-                        for (int col = 0; col < FrameWidth-1; col++)
+                        for (int col = 0; col < FrameWidth - 1; col++)
                         {
                             if (int.TryParse(pixels[col], out int grayscale))
                             {
@@ -91,7 +105,7 @@ namespace Test_ADNS9800
                             }
                         }
 
-                         // Következő sor
+                        // Következő sor
 
                         if (this.InvokeRequired)
                         {
