@@ -266,10 +266,15 @@ void sendFrame() {
 int posX = 0, posY = 0; 
 
 void readMotion(){
-    digitalWrite(SS, LOW);
-    int deltaX = (char)SPI.transfer(0x03); // Delta_X_L
-    int deltaY = (char)SPI.transfer(0x05); // Delta_Y_L
-    digitalWrite(SS, HIGH);
+    digitalWrite(ncs, LOW);
+    int deltaX_L = (char)adns_read_reg(0x03); // Delta_X_L
+    int deltaY_L = (char)adns_read_reg(0x05); // Delta_Y_L
+    int deltaX_H = (char)adns_read_reg(0x04); // Delta_X_H
+    int deltaY_H = (char)adns_read_reg(0x06); // Delta_Y_H
+    digitalWrite(ncs, HIGH);
+
+    int16_t deltaX = (deltaX_H << 8) | (deltaX_L & 0xFF);
+    int16_t deltaY = (deltaY_H << 8) | (deltaY_L & 0xFF);
 
     posX += deltaX;
     posY += deltaY;
