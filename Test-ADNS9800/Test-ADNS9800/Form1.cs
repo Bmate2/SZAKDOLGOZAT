@@ -176,5 +176,10 @@ namespace Test_ADNS9800
                 serialPort.WriteLine("stop");
             }
         }
+
+        private void deleteListBtn_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+        }
     }
 }

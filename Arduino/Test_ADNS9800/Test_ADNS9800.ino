@@ -204,7 +204,6 @@ void performStartup(void){
 }
 void sendFrame() {
     // Serial.println("Capturing frame: "); 
-
   // send instructions to the adns to capture a frame. 
   adns_com_begin();
   delayMicroseconds(1);
@@ -266,12 +265,15 @@ void sendFrame() {
 int posX = 0, posY = 0; 
 
 void readMotion(){
-    digitalWrite(ncs, LOW);
+    adns_com_begin();
+    
+    byte motion = adns_read_reg(0x02);
     int deltaX_L = (char)adns_read_reg(0x03); // Delta_X_L
     int deltaY_L = (char)adns_read_reg(0x05); // Delta_Y_L
     int deltaX_H = (char)adns_read_reg(0x04); // Delta_X_H
     int deltaY_H = (char)adns_read_reg(0x06); // Delta_Y_H
-    digitalWrite(ncs, HIGH);
+    
+    adns_com_end();  
 
     int16_t deltaX = (deltaX_H << 8) | (deltaX_L & 0xFF);
     int16_t deltaY = (deltaY_H << 8) | (deltaY_L & 0xFF);
@@ -283,8 +285,8 @@ void readMotion(){
     Serial.print(posX);
     Serial.print(",");
     Serial.println(posY);
-    
   }
+
 
 // int xdir = 0; 
 // int ydir = 0; 
@@ -327,10 +329,10 @@ void loop() {
     }
   }
   if(shouldCapture){
+    readMotion();
     sendFrame();
     delay(100);
   }
+
   
-    readMotion();
-    delay(100);
 }

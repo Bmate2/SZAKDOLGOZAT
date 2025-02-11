@@ -32,6 +32,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.startButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
+            this.deleteListBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,11 +72,22 @@
             this.stopButton.UseVisualStyleBackColor = true;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
+            // deleteListBtn
+            // 
+            this.deleteListBtn.Location = new System.Drawing.Point(291, 376);
+            this.deleteListBtn.Name = "deleteListBtn";
+            this.deleteListBtn.Size = new System.Drawing.Size(111, 23);
+            this.deleteListBtn.TabIndex = 4;
+            this.deleteListBtn.Text = "DELETE LIST";
+            this.deleteListBtn.UseVisualStyleBackColor = true;
+            this.deleteListBtn.Click += new System.EventHandler(this.deleteListBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1220, 423);
+            this.Controls.Add(this.deleteListBtn);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.listBox1);
@@ -93,6 +105,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Button deleteListBtn;
     }
 }
 
