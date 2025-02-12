@@ -78,16 +78,17 @@ namespace Test_ADNS9800
                 }
                 else if (fullLine.StartsWith("MOTION"))
                 {
-
-
+                    string coordinates=fullLine.Substring(7);
+                    
                     if (this.InvokeRequired)
                     {
-                        this.Invoke(new Action(() => listBox1.Items.Add($"Koordináták: {fullLine}")));
+                        this.Invoke(new Action(() => listBox1.Items.Add($"Koordináták: {coordinates}")));
                     }
                     else
                     {
-                        listBox1.Items.Add($"Koordináták: {fullLine}");
+                        listBox1.Items.Add($"Koordináták: {coordinates}");
                     }
+                    continue;
                 }
 
                 else if (fullLine.Contains(",")) // Ha egy valódi pixel sor érkezett
