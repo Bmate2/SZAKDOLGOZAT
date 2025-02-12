@@ -15,7 +15,9 @@ namespace Test_ADNS9800
         private const int FrameWidth = 30; // Képkocka szélessége
         private const int FrameHeight = 30; // Képkocka magassága
         private StringBuilder buffer = new StringBuilder(); // Adatbuffer az összefűzéshez
-
+        const int gridWidth = 20;             // 20 blokk szélességben
+        const int gridHeight = 20;
+        int[,,] grid = new int[gridWidth, gridHeight, FrameWidth * FrameHeight];
         public Form1()
         {
             InitializeComponent();
@@ -62,7 +64,7 @@ namespace Test_ADNS9800
                 }
                 else
                 {
-                    listBox1.Items.Add($"Beérkező sdasor: {fullLine}");
+                    listBox1.Items.Add($"Beérkező sor: {fullLine}");
                 }
 
                 if (fullLine.Trim() == "#")
@@ -87,6 +89,9 @@ namespace Test_ADNS9800
                     {
                         listBox1.Items.Add($"Koordináták: {coordinates}");
                     }
+
+
+
                     continue;
                 }
 
@@ -131,25 +136,25 @@ namespace Test_ADNS9800
             }
         }
 
-        private void SaveFrame()
-        {
-            try
-            {
-                string folderPath = Path.Combine(Application.StartupPath, "SavedFrames");
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
+        //private void SaveFrame()
+        //{
+        //    try
+        //    {
+        //        string folderPath = Path.Combine(Application.StartupPath, "SavedFrames");
+        //        if (!Directory.Exists(folderPath))
+        //        {
+        //            Directory.CreateDirectory(folderPath);
+        //        }
 
-                string filePath = Path.Combine(folderPath, $"frame_{frameCounter:D4}.png");
-                currentFrame.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
-                frameCounter++; // Következő frame számláló növelése
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        //        string filePath = Path.Combine(folderPath, $"frame_{frameCounter:D4}.png");
+        //        currentFrame.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+        //        frameCounter++; // Következő frame számláló növelése
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {

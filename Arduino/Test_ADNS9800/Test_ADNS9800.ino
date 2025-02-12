@@ -236,25 +236,32 @@ void sendFrame() {
     SPI.transfer(REG_Pixel_Burst & 0x7f); 
     delayMicroseconds(100); // tSRAD
   
-    for (int row = 0; row < 30; row++) {
-        Serial.print("Beérkező sor: ");
-        int count = 0;
-        
-        for (int col = 0; col < 30; col++) {
-            byte pixelValue = SPI.transfer(0);  // Pixel beolvasása
-            Serial.print(pixelValue);
-            Serial.print(",");
-            count++;
-        }
-        Serial.println();
-
-        if (count != 30) {  // Ha egy sor nem 30 hosszú, akkor hiba
-            Serial.print("HIBA: Rossz hossz! ");
-            Serial.println(count);
-        }
-        delayMicroseconds(15);
+    for (int i = 0;i<900;i++){
+      byte pixelValue = SPI.transfer(0);  // Pixel beolvasása
+      Serial.print(pixelValue);
+      Serial.print(",");
     }
- 
+
+
+    // for (int row = 0; row < 30; row++) {
+    //     Serial.print("Beérkező sor: ");
+    //     int count = 0;
+        
+    //     for (int col = 0; col < 30; col++) {
+    //         byte pixelValue = SPI.transfer(0);  // Pixel beolvasása
+    //         Serial.print(pixelValue);
+    //         Serial.print(",");
+    //         count++;
+    //     }
+    //     Serial.println();
+
+    //     if (count != 30) {  // Ha egy sor nem 30 hosszú, akkor hiba
+    //         Serial.print("HIBA: Rossz hossz! ");
+    //         Serial.println(count);
+    //     }
+      
+    //}
+  delayMicroseconds(15);
   // end operation. 
   adns_com_end();
   //delayMicroseconds(100); // time to wait before another frame can be captured.  
@@ -276,8 +283,8 @@ int posX = 0, posY = 0;
 
 void readMotion(){
     adns_com_begin();
-    
     byte motion = adns_read_reg(0x02);
+
     int deltaX_L = (char)adns_read_reg(0x03); // Delta_X_L
     int deltaY_L = (char)adns_read_reg(0x05); // Delta_Y_L
     int deltaX_H = (char)adns_read_reg(0x04); // Delta_X_H
@@ -291,10 +298,11 @@ void readMotion(){
     posX += deltaX;
     posY += deltaY;
 
-    Serial.print("MOTION ");
+    Serial.print("FRAME ");
     Serial.print(posX);
-    Serial.print(";");
-    Serial.println(posY);
+    Serial.print(",");
+    Serial.print(posY);
+    Serial.print(":");
   }
 
 
@@ -339,9 +347,9 @@ void loop() {
     }
   }
   if(shouldCapture){
-    sendFrame();
-    delay(100);
     readMotion();
+    delay(100);
+    sendFrame();
     delay(100);
   }
 
