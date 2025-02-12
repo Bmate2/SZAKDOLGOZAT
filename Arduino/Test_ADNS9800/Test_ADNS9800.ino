@@ -61,6 +61,7 @@ int16_t * y = (int16_t *) &xydat[2];
 volatile unsigned long lastInterruptTime = 0;
 
 bool shouldCapture=false;
+bool move=false;
 
 void setup() {
   Serial.begin(115200); 
@@ -171,7 +172,6 @@ void adns_upload_firmware(){
     delayMicroseconds(15); 
   }
   adns_com_end();
-  Serial.print("Firmware betöltve");
 }
 
 void performStartup(void){
@@ -259,7 +259,17 @@ void sendFrame() {
   adns_com_end();
   //delayMicroseconds(100); // time to wait before another frame can be captured.  
   delayMicroseconds(5); 
-  Serial.println("\n#");
+  Serial.println("#");
+
+  adns_write_reg(REG_Power_Up_Reset, 0x5A);
+  delay(50);
+  adns_upload_firmware();
+  adns_write_reg(REG_LASER_CTRL0, 0x00);
+  adns_read_reg(REG_Motion);
+  adns_read_reg(REG_Delta_X_L);
+  adns_read_reg(REG_Delta_X_H);
+  adns_read_reg(REG_Delta_Y_L);
+  adns_read_reg(REG_Delta_Y_H);
 }
 
 int posX = 0, posY = 0; 
@@ -329,10 +339,12 @@ void loop() {
     }
   }
   if(shouldCapture){
-    readMotion();
     sendFrame();
     delay(100);
+    readMotion();
+    delay(100);
   }
+
 
   
 }
