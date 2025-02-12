@@ -293,7 +293,7 @@ void readMotion(){
 
     Serial.print("MOTION ");
     Serial.print(posX);
-    Serial.print(",");
+    Serial.print(";");
     Serial.println(posY);
   }
 
