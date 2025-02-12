@@ -43,7 +43,6 @@ namespace Test_ADNS9800
             ProcessSerialData(data);
         }
 
-        private int frameCounter = 0; // Képkocka számláló
 
         private void ProcessSerialData(string data)
         {
@@ -63,7 +62,7 @@ namespace Test_ADNS9800
                 }
                 else
                 {
-                    listBox1.Items.Add($"Beérkező sor: {fullLine}");
+                    listBox1.Items.Add($"Beérkező sdasor: {fullLine}");
                 }
 
                 if (fullLine.Trim() == "#")
@@ -71,7 +70,7 @@ namespace Test_ADNS9800
                     currentRow = 0;
                     Invoke(new Action(() =>
                     {
-                        pictureBox.Image = new Bitmap(currentFrame); // Kép frissítése
+                        pictureBox.Image = new Bitmap(currentFrame); 
                         pictureBox.Invalidate();
                         pictureBox.Update();
                     }));
@@ -91,7 +90,7 @@ namespace Test_ADNS9800
                     continue;
                 }
 
-                else if (fullLine.Contains(",")) // Ha egy valódi pixel sor érkezett
+                else if (fullLine.Contains(",")) 
                 {
                     string[] pixels = fullLine.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -105,8 +104,6 @@ namespace Test_ADNS9800
                                 currentFrame.SetPixel(col, currentRow, color);
                             }
                         }
-
-                        // Következő sor
 
                         if (this.InvokeRequired)
                         {
