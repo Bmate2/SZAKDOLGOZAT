@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
@@ -15,8 +16,8 @@ namespace Test_ADNS9800
         private const int FrameWidth = 30; // Képkocka szélessége
         private const int FrameHeight = 30; // Képkocka magassága
         private StringBuilder buffer = new StringBuilder(); // Adatbuffer az összefűzéshez
-        const int gridWidth = 20;             // 20 blokk szélességben
-        const int gridHeight = 20;
+        const int gridWidth = 2;             // 20 blokk szélességben
+        const int gridHeight = 2;
         int[,,] grid = new int[gridWidth, gridHeight, FrameWidth * FrameHeight];
         public Form1()
         {
@@ -48,6 +49,9 @@ namespace Test_ADNS9800
 
         private void ProcessSerialData(string data)
         {
+
+            int row = 0;
+            int column = 0;
             if (string.IsNullOrEmpty(data)) return;
 
             buffer.Append(data); // Új adatok hozzáfűzése a bufferhez
@@ -75,6 +79,13 @@ namespace Test_ADNS9800
                     {
                         int[] frameData = Array.ConvertAll(pixels, int.Parse);
                         DisplayFrame(frameData);
+                        AddFrameToGrid(row, column, frameData);
+                        row++;
+                        if (row == gridWidth)
+                        {
+                            row = 0;
+                            column++;
+                        }
                     }
                     else
                     {
@@ -87,6 +98,7 @@ namespace Test_ADNS9800
                             listBox1.Items.Add($"Hibás FRAME sor hossz: {pixels.Length}");
                         }
                     }
+                    
                 }
 
 
@@ -163,6 +175,15 @@ namespace Test_ADNS9800
                 //}
             }
         }
+
+        private void AddFrameToGrid(int gridX, int gridY, int[] frameData)
+        {
+            for (int i = 0; i < FrameWidth * FrameHeight; i++)
+            {
+                grid[gridX, gridY, i] = frameData[i];
+            }
+        }
+
         private void DisplayFrame(int[] frameData)
         {
             for (int row = 0; row < FrameHeight; row++)
