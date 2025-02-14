@@ -235,7 +235,7 @@ void sendFrame() {
     // prepare to read the pixel burst register continuously.
     SPI.transfer(REG_Pixel_Burst & 0x7f); 
     delayMicroseconds(100); // tSRAD
-  
+    Serial.print("FRAME:");
     for (int i = 0;i<900;i++){
       byte pixelValue = SPI.transfer(0);  // Pixel beolvasása
       Serial.print(pixelValue);
@@ -266,7 +266,7 @@ void sendFrame() {
   adns_com_end();
   //delayMicroseconds(100); // time to wait before another frame can be captured.  
   delayMicroseconds(5); 
-  Serial.println("#");
+  Serial.println();
 
   adns_write_reg(REG_Power_Up_Reset, 0x5A);
   delay(50);
@@ -279,31 +279,31 @@ void sendFrame() {
   adns_read_reg(REG_Delta_Y_H);
 }
 
-int posX = 0, posY = 0; 
+// int posX = 0, posY = 0; 
 
-void readMotion(){
-    adns_com_begin();
-    byte motion = adns_read_reg(0x02);
+// void readMotion(){
+//     adns_com_begin();
+//     byte motion = adns_read_reg(0x02);
 
-    int deltaX_L = (char)adns_read_reg(0x03); // Delta_X_L
-    int deltaY_L = (char)adns_read_reg(0x05); // Delta_Y_L
-    int deltaX_H = (char)adns_read_reg(0x04); // Delta_X_H
-    int deltaY_H = (char)adns_read_reg(0x06); // Delta_Y_H
+//     int deltaX_L = (char)adns_read_reg(0x03); // Delta_X_L
+//     int deltaY_L = (char)adns_read_reg(0x05); // Delta_Y_L
+//     int deltaX_H = (char)adns_read_reg(0x04); // Delta_X_H
+//     int deltaY_H = (char)adns_read_reg(0x06); // Delta_Y_H
     
-    adns_com_end();  
+//     adns_com_end();  
 
-    int16_t deltaX = (deltaX_H << 8) | (deltaX_L & 0xFF);
-    int16_t deltaY = (deltaY_H << 8) | (deltaY_L & 0xFF);
+//     int16_t deltaX = (deltaX_H << 8) | (deltaX_L & 0xFF);
+//     int16_t deltaY = (deltaY_H << 8) | (deltaY_L & 0xFF);
 
-    posX += deltaX;
-    posY += deltaY;
+//     posX += deltaX;
+//     posY += deltaY;
 
-    Serial.print("FRAME ");
-    Serial.print(posX);
-    Serial.print(",");
-    Serial.print(posY);
-    Serial.print(":");
-  }
+//     Serial.print("FRAME ");
+//     Serial.print(posX);
+//     Serial.print(",");
+//     Serial.print(posY);
+//     Serial.print(":");
+//   }
 
 
 // int xdir = 0; 
@@ -347,8 +347,6 @@ void loop() {
     }
   }
   if(shouldCapture){
-    readMotion();
-    delay(100);
     sendFrame();
     delay(100);
   }

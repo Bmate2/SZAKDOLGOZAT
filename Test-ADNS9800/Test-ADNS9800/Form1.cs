@@ -67,72 +67,128 @@ namespace Test_ADNS9800
                     listBox1.Items.Add($"Beérkező sor: {fullLine}");
                 }
 
-                if (fullLine.Trim() == "#")
+                if (fullLine.StartsWith("FRAME:"))
                 {
-                    currentRow = 0;
-                    Invoke(new Action(() =>
+                    string[] pixels = fullLine.Substring(6).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (pixels.Length == FrameWidth * FrameHeight)
                     {
-                        pictureBox.Image = new Bitmap(currentFrame); 
-                        pictureBox.Invalidate();
-                        pictureBox.Update();
-                    }));
+                        int[] frameData = Array.ConvertAll(pixels, int.Parse);
+                        DisplayFrame(frameData);
+                    }
+                    else
+                    {
+                        if (this.InvokeRequired)
+                        {
+                            this.Invoke(new Action(() => listBox1.Items.Add($"Hibás FRAME sor hossz: {pixels.Length}")));
+                        }
+                        else
+                        {
+                            listBox1.Items.Add($"Hibás FRAME sor hossz: {pixels.Length}");
+                        }
+                    }
                 }
-                else if (fullLine.StartsWith("MOTION"))
-                {
-                    string coordinates=fullLine.Substring(7);
+
+
+
+
+
+
+
+                //if (fullLine.Trim() == "#")
+                //{
+                //    currentRow = 0;
+                //    Invoke(new Action(() =>
+                //    {
+                //        pictureBox.Image = new Bitmap(currentFrame); 
+                //        pictureBox.Invalidate();
+                //        pictureBox.Update();
+                //    }));
+                //}
+                //else if (fullLine.StartsWith("MOTION"))
+                //{
+                //    string coordinates=fullLine.Substring(7);
                     
-                    if (this.InvokeRequired)
-                    {
-                        this.Invoke(new Action(() => listBox1.Items.Add($"Koordináták: {coordinates}")));
-                    }
-                    else
-                    {
-                        listBox1.Items.Add($"Koordináták: {coordinates}");
-                    }
+                //    if (this.InvokeRequired)
+                //    {
+                //        this.Invoke(new Action(() => listBox1.Items.Add($"Koordináták: {coordinates}")));
+                //    }
+                //    else
+                //    {
+                //        listBox1.Items.Add($"Koordináták: {coordinates}");
+                //    }
 
 
 
-                    continue;
-                }
+                //    continue;
+                //}
 
-                else if (fullLine.Contains(",")) 
+                //else if (fullLine.Contains(",")) 
+                //{
+                //    string[] pixels = fullLine.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                //    if ((pixels.Length == FrameWidth || pixels.Length == FrameWidth - 1) && currentRow < FrameHeight - 1)
+                //    {
+                //        for (int col = 0; col < FrameWidth - 1; col++)
+                //        {
+                //            if (int.TryParse(pixels[col], out int grayscale))
+                //            {
+                //                Color color = Color.FromArgb(grayscale, grayscale, grayscale);
+                //                currentFrame.SetPixel(col, currentRow, color);
+                //            }
+                //        }
+
+                //        if (this.InvokeRequired)
+                //        {
+                //            currentRow++;
+                //            this.Invoke(new Action(() => listBox1.Items.Add($"Új sor: {currentRow}")));
+                //        }
+                //        else
+                //        {
+                //            currentRow++;
+                //            listBox1.Items.Add($"Új sor: {currentRow}");
+                //        }
+                //    }
+                //    else
+                //    {
+                //        if (this.InvokeRequired)
+                //        {
+                //            this.Invoke(new Action(() => listBox1.Items.Add($"Hibás sor hossz: {pixels.Length}")));
+                //        }
+                //        else
+                //        {
+                //            listBox1.Items.Add($"Hibás sor hossz: {pixels.Length}");
+                //        }
+                //    }
+                //}
+            }
+        }
+        private void DisplayFrame(int[] frameData)
+        {
+            for (int row = 0; row < FrameHeight; row++)
+            {
+                for (int col = 0; col < FrameWidth; col++)
                 {
-                    string[] pixels = fullLine.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                    if ((pixels.Length == FrameWidth || pixels.Length == FrameWidth - 1) && currentRow < FrameHeight - 1)
-                    {
-                        for (int col = 0; col < FrameWidth - 1; col++)
-                        {
-                            if (int.TryParse(pixels[col], out int grayscale))
-                            {
-                                Color color = Color.FromArgb(grayscale, grayscale, grayscale);
-                                currentFrame.SetPixel(col, currentRow, color);
-                            }
-                        }
-
-                        if (this.InvokeRequired)
-                        {
-                            currentRow++;
-                            this.Invoke(new Action(() => listBox1.Items.Add($"Új sor: {currentRow}")));
-                        }
-                        else
-                        {
-                            currentRow++;
-                            listBox1.Items.Add($"Új sor: {currentRow}");
-                        }
-                    }
-                    else
-                    {
-                        if (this.InvokeRequired)
-                        {
-                            this.Invoke(new Action(() => listBox1.Items.Add($"Hibás sor hossz: {pixels.Length}")));
-                        }
-                        else
-                        {
-                            listBox1.Items.Add($"Hibás sor hossz: {pixels.Length}");
-                        }
-                    }
+                    int pixelValue = frameData[row * FrameWidth + col];
+                    Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
+                    currentFrame.SetPixel(col, row, color);
                 }
+            }
+
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    pictureBox.Image = new Bitmap(currentFrame);
+                    pictureBox.Invalidate();
+                    pictureBox.Update();
+                }));
+            }
+            else
+            {
+                pictureBox.Image = new Bitmap(currentFrame);
+                pictureBox.Invalidate();
+                pictureBox.Update();
             }
         }
 
