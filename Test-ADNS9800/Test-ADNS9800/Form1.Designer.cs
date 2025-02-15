@@ -33,7 +33,9 @@
             this.startButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.deleteListBtn = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -47,9 +49,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(291, 13);
+            this.listBox1.Location = new System.Drawing.Point(669, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(917, 316);
+            this.listBox1.Size = new System.Drawing.Size(670, 316);
             this.listBox1.TabIndex = 1;
             // 
             // startButton
@@ -82,11 +84,20 @@
             this.deleteListBtn.UseVisualStyleBackColor = true;
             this.deleteListBtn.Click += new System.EventHandler(this.deleteListBtn_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(291, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(284, 261);
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1220, 423);
+            this.ClientSize = new System.Drawing.Size(1351, 423);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.deleteListBtn);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);
@@ -95,6 +106,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -106,6 +118,7 @@
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button deleteListBtn;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

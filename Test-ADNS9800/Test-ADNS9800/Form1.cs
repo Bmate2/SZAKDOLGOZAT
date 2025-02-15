@@ -78,7 +78,11 @@ namespace Test_ADNS9800
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
                         int[] frameData = Array.ConvertAll(pixels, int.Parse);
-                        DisplayFrame(frameData);
+                        
+                        DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
+
+                        DisplayFrame(BilinearInterpolation(frameData,4), pictureBox2, FrameHeight*4, FrameWidth*4);
+                        
                         AddFrameToGrid(row, column, frameData);
                         row++;
                         if (row == gridWidth)
@@ -101,79 +105,47 @@ namespace Test_ADNS9800
                     
                 }
 
-
-
-
-
-
-
-                //if (fullLine.Trim() == "#")
-                //{
-                //    currentRow = 0;
-                //    Invoke(new Action(() =>
-                //    {
-                //        pictureBox.Image = new Bitmap(currentFrame); 
-                //        pictureBox.Invalidate();
-                //        pictureBox.Update();
-                //    }));
-                //}
-                //else if (fullLine.StartsWith("MOTION"))
-                //{
-                //    string coordinates=fullLine.Substring(7);
-                    
-                //    if (this.InvokeRequired)
-                //    {
-                //        this.Invoke(new Action(() => listBox1.Items.Add($"Koordináták: {coordinates}")));
-                //    }
-                //    else
-                //    {
-                //        listBox1.Items.Add($"Koordináták: {coordinates}");
-                //    }
-
-
-
-                //    continue;
-                //}
-
-                //else if (fullLine.Contains(",")) 
-                //{
-                //    string[] pixels = fullLine.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                //    if ((pixels.Length == FrameWidth || pixels.Length == FrameWidth - 1) && currentRow < FrameHeight - 1)
-                //    {
-                //        for (int col = 0; col < FrameWidth - 1; col++)
-                //        {
-                //            if (int.TryParse(pixels[col], out int grayscale))
-                //            {
-                //                Color color = Color.FromArgb(grayscale, grayscale, grayscale);
-                //                currentFrame.SetPixel(col, currentRow, color);
-                //            }
-                //        }
-
-                //        if (this.InvokeRequired)
-                //        {
-                //            currentRow++;
-                //            this.Invoke(new Action(() => listBox1.Items.Add($"Új sor: {currentRow}")));
-                //        }
-                //        else
-                //        {
-                //            currentRow++;
-                //            listBox1.Items.Add($"Új sor: {currentRow}");
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if (this.InvokeRequired)
-                //        {
-                //            this.Invoke(new Action(() => listBox1.Items.Add($"Hibás sor hossz: {pixels.Length}")));
-                //        }
-                //        else
-                //        {
-                //            listBox1.Items.Add($"Hibás sor hossz: {pixels.Length}");
-                //        }
-                //    }
-                //}
             }
+        }
+
+        private int[] BilinearInterpolation(int[] framedata,int scale)
+        {
+            int newWidth = FrameWidth * scale;
+            int newHeight = FrameHeight * scale;
+            int[] interpolatedData = new int[newWidth * newHeight];
+
+            int[,] original = new int[FrameHeight, FrameWidth];
+            for (int y = 0; y < FrameHeight; y++)
+            {
+                for (int x = 0; x < FrameWidth; x++)
+                {
+                    original[y, x] = framedata[y * FrameWidth + x];
+                }
+            }
+            for (int y = 0; y < newHeight; y++)
+            {
+                for (int x = 0; x < newWidth; x++)
+                {
+                    float srcY = y / (float)scale;
+                    float srcX = x / (float)scale;
+
+                    int y0 = (int)Math.Floor(srcY);
+                    int x0 = (int)Math.Floor(srcX);
+                    int y1 = Math.Min(y0 + 1, FrameHeight - 1);
+                    int x1 = Math.Min(x0 + 1, FrameWidth - 1);
+
+                    float dy = srcY - y0;
+                    float dx = srcX - x0;
+
+                    float top = (1 - dx) * original[y0, x0] + dx * original[y0, x1];
+                    float bottom = (1 - dx) * original[y1, x0] + dx * original[y1, x1];
+                    float value = (1 - dy) * top + dy * bottom;
+
+                    interpolatedData[y * newWidth + x] = Math.Min(Math.Max((int)value, 0), 255);
+                }
+            }
+
+            return interpolatedData;
         }
 
         private void AddFrameToGrid(int gridX, int gridY, int[] frameData)
@@ -184,15 +156,17 @@ namespace Test_ADNS9800
             }
         }
 
-        private void DisplayFrame(int[] frameData)
+        private void DisplayFrame(int[] frameData,PictureBox pictureBox,int height,int width)
         {
-            for (int row = 0; row < FrameHeight; row++)
+            Bitmap frameBitmap = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
             {
-                for (int col = 0; col < FrameWidth; col++)
+                for (int x = 0; x < width; x++)
                 {
-                    int pixelValue = frameData[row * FrameWidth + col];
+                    int pixelValue = frameData[y * width + x];
                     Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
-                    currentFrame.SetPixel(col, row, color);
+                    frameBitmap.SetPixel(x, y, color);
                 }
             }
 
@@ -200,14 +174,14 @@ namespace Test_ADNS9800
             {
                 this.Invoke(new Action(() =>
                 {
-                    pictureBox.Image = new Bitmap(currentFrame);
+                    pictureBox.Image = frameBitmap;
                     pictureBox.Invalidate();
                     pictureBox.Update();
                 }));
             }
             else
             {
-                pictureBox.Image = new Bitmap(currentFrame);
+                pictureBox.Image = frameBitmap;
                 pictureBox.Invalidate();
                 pictureBox.Update();
             }
