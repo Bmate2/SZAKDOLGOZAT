@@ -38,6 +38,7 @@ namespace Test_ADNS9800
             currentFrame = new Bitmap(FrameWidth, FrameHeight);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Image = currentFrame;
+            //pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -81,7 +82,7 @@ namespace Test_ADNS9800
                         
                         DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
 
-                        DisplayFrame(BilinearInterpolation(frameData,4), pictureBox2, FrameHeight*4, FrameWidth*4);
+                        DisplayFrame(BilinearInterpolation(frameData,2), pictureBox2, FrameHeight*2, FrameWidth*2);
                         
                         AddFrameToGrid(row, column, frameData);
                         row++;
@@ -131,21 +132,41 @@ namespace Test_ADNS9800
 
                     int y0 = (int)Math.Floor(srcY);
                     int x0 = (int)Math.Floor(srcX);
-                    int y1 = Math.Min(y0 + 1, FrameHeight - 1);
-                    int x1 = Math.Min(x0 + 1, FrameWidth - 1);
 
                     float dy = srcY - y0;
                     float dx = srcX - x0;
 
-                    float top = (1 - dx) * original[y0, x0] + dx * original[y0, x1];
-                    float bottom = (1 - dx) * original[y1, x0] + dx * original[y1, x1];
-                    float value = (1 - dy) * top + dy * bottom;
-
+                    int value = BicubicInterpolate(original, x0, y0, dx, dy);
                     interpolatedData[y * newWidth + x] = Math.Min(Math.Max((int)value, 0), 255);
                 }
             }
 
             return interpolatedData;
+        }
+
+
+        private int BicubicInterpolate(int[,] image, int x, int y, float dx, float dy)
+        {
+            int result = 0;
+            for (int m = -1; m <= 2; m++)
+            {
+                for (int n = -1; n <= 2; n++)
+                {
+                    int px= Math.Min(Math.Max(x + n, 0), FrameWidth - 1);
+                    int py= Math.Min(Math.Max(y + m, 0), FrameHeight - 1);
+                    float weight = CubicWeight(n - dx) * CubicWeight(m - dy);
+                    result += (int)(image[py, px] * weight);
+                }
+            }
+            return result;
+        }
+
+        private float CubicWeight(float x)
+        {
+            x = Math.Abs(x);
+            if (x <= 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
+            if (x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
+            return 0;
         }
 
         private void AddFrameToGrid(int gridX, int gridY, int[] frameData)
