@@ -38,7 +38,7 @@ namespace Test_ADNS9800
             currentFrame = new Bitmap(FrameWidth, FrameHeight);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Image = currentFrame;
-            pictureBox2.SizeMode = PictureBoxSizeMode.Normal;
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)

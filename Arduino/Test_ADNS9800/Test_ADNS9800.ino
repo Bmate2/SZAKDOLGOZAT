@@ -85,26 +85,14 @@ void setup() {
 }
 
 void enableAutoExposure() {
-    digitalWrite(SS, LOW);
-    SPI.transfer(0x0F); // Configuration_I regiszter
-    SPI.transfer(0x01); // Auto-exposure engedélyezése
-    digitalWrite(SS, HIGH);
-
+    adns_write_reg(REG_Configuration_I, 0x01);
     Serial.println("Automatikus expozíció engedélyezve.");
 }
 
 void increaseShutterTime() {
-    digitalWrite(SS, LOW);
-    SPI.transfer(0x0B); // Shutter_Lower regiszter
-    SPI.transfer(0xFF); // Maximum érték
-    digitalWrite(SS, HIGH);
 
-    delayMicroseconds(50);
-
-    digitalWrite(SS, LOW);
-    SPI.transfer(0x0C); // Shutter_Upper regiszter
-    SPI.transfer(0xFF); // Maximum érték
-    digitalWrite(SS, HIGH);
+    adns_write_reg(REG_Shutter_Lower, 0xFF);
+    adns_write_reg(REG_Shutter_Upper, 0xFF);
 
     Serial.println("Expozíció maximálisra állítva.");
 }
@@ -189,7 +177,7 @@ void performStartup(void){
   adns_upload_firmware();
   delay(10);
   //adns_write_reg(REG_Configuration_I, 0x01); // 200 cpi
-  adns_write_reg(REG_Configuration_I, 0xa4); // 8200 cpi
+  adns_write_reg(REG_Configuration_I, 0x08); // 8200 cpi
   delay(10);
 
   //enable laser(bit 0 = 0b), in normal mode (bits 3,2,1 = 000b)
@@ -198,8 +186,7 @@ void performStartup(void){
   // change the reserved bytes (like by writing 0x00...) it would not work.
   
   byte laser_ctrl0 = adns_read_reg(REG_LASER_CTRL0);
-  laser_ctrl0 &= 0xf0;
-  adns_write_reg(REG_LASER_CTRL0, laser_ctrl0 );
+  adns_write_reg(REG_LASER_CTRL0, laser_ctrl0 & 0xf0 );
   delay(1);
 }
 void sendFrame() {
@@ -242,25 +229,6 @@ void sendFrame() {
       Serial.print(",");
     }
 
-
-    // for (int row = 0; row < 30; row++) {
-    //     Serial.print("Beérkező sor: ");
-    //     int count = 0;
-        
-    //     for (int col = 0; col < 30; col++) {
-    //         byte pixelValue = SPI.transfer(0);  // Pixel beolvasása
-    //         Serial.print(pixelValue);
-    //         Serial.print(",");
-    //         count++;
-    //     }
-    //     Serial.println();
-
-    //     if (count != 30) {  // Ha egy sor nem 30 hosszú, akkor hiba
-    //         Serial.print("HIBA: Rossz hossz! ");
-    //         Serial.println(count);
-    //     }
-      
-    //}
   delayMicroseconds(15);
   // end operation. 
   adns_com_end();
