@@ -192,17 +192,14 @@ void performStartup(void){
 void sendFrame() {
     // Serial.println("Capturing frame: "); 
   // send instructions to the adns to capture a frame. 
-  adns_com_begin();
-  delayMicroseconds(1);
-  SPI.transfer(REG_Frame_Capture | 0x80); 
-  SPI.transfer(0x93); 
+  adns_write_reg(REG_Frame_Capture,0x93);
   delayMicroseconds(120); 
-  SPI.transfer(REG_Frame_Capture | 0x80); 
-  SPI.transfer(0xc5); 
+  adns_write_reg(REG_Frame_Capture,0xc5);
   delayMicroseconds(120);
+ 
 
   // wait two frames 
-  adns_com_end(); 
+  //adns_com_end(); 
   // lower this value to increase the frame rate of the incoming data.
   delay(1); // assuming a very slow frame rate ~200Hz
   adns_com_begin(); 
@@ -238,13 +235,8 @@ void sendFrame() {
 
   adns_write_reg(REG_Power_Up_Reset, 0x5A);
   delay(50);
-  adns_upload_firmware();
   adns_write_reg(REG_LASER_CTRL0, 0x00);
-  adns_read_reg(REG_Motion);
-  adns_read_reg(REG_Delta_X_L);
-  adns_read_reg(REG_Delta_X_H);
-  adns_read_reg(REG_Delta_Y_L);
-  adns_read_reg(REG_Delta_Y_H);
+
 }
 
 // int posX = 0, posY = 0; 
