@@ -177,7 +177,7 @@ void performStartup(void){
   adns_upload_firmware();
   delay(10);
   //adns_write_reg(REG_Configuration_I, 0x01); // 200 cpi
-  adns_write_reg(REG_Configuration_I, 0x08); // 8200 cpi
+  adns_write_reg(REG_Configuration_I, 0x09); // 8200 cpi
   delay(10);
 
   //enable laser(bit 0 = 0b), in normal mode (bits 3,2,1 = 000b)
@@ -223,7 +223,7 @@ void sendFrame() {
     for (int i = 0;i<900;i++){
       byte pixelValue = SPI.transfer(0);  // Pixel beolvasása
       Serial.print(pixelValue);
-      Serial.print(",");
+      Serial.print(" ");
     }
 
   delayMicroseconds(15);

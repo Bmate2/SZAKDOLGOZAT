@@ -74,7 +74,7 @@ namespace Test_ADNS9800
 
                 if (fullLine.StartsWith("FRAME:"))
                 {
-                    string[] pixels = fullLine.Substring(6).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] pixels = fullLine.Substring(6).Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
