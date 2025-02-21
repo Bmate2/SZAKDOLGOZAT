@@ -17,4 +17,4 @@ C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\D
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.csproj.CoreCompileInputs.cache
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.exe
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.pdb
-C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test_ADNS9800.ImageProcesser.resources
+C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test_ADNS9800.Form1.resources

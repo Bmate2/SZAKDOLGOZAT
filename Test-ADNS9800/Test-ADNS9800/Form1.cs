@@ -38,7 +38,7 @@ namespace Test_ADNS9800
             currentFrame = new Bitmap(FrameWidth, FrameHeight);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Image = currentFrame;
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Normal;
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -190,19 +190,21 @@ namespace Test_ADNS9800
                     frameBitmap.SetPixel(x, y, color);
                 }
             }
+            Bitmap adjusted = AdjustBrightnessContrast(frameBitmap, 50, 50);
+            Bitmap unsharped = UnsharpMask(adjusted,2.5f,1,7);
 
             if (this.InvokeRequired)
             {
                 this.Invoke(new Action(() =>
                 {
-                    pictureBox.Image = frameBitmap;
+                    pictureBox.Image = unsharped;
                     pictureBox.Invalidate();
                     pictureBox.Update();
                 }));
             }
             else
             {
-                pictureBox.Image = frameBitmap;
+                pictureBox.Image = unsharped;
                 pictureBox.Invalidate();
                 pictureBox.Update();
             }
@@ -234,6 +236,65 @@ namespace Test_ADNS9800
             {
                 serialPort.Close();
             }
+        }
+        private Bitmap AdjustBrightnessContrast(Bitmap image, float brightness, float contrast)
+        {
+            Bitmap adjustedImage = new Bitmap(image.Width, image.Height);
+            float contrastFactor = (100.0f + contrast) / 100.0f;
+            contrastFactor *= contrastFactor;
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color pixel = image.GetPixel(x, y);
+
+                    float r = pixel.R / 255.0f;
+                    r += brightness / 255.0f;
+
+                    r = (((r - 0.5f) * contrastFactor) + 0.5f) * 255.0f;
+                    r = Math.Max(0, Math.Min(255, r));
+
+                    Color newColor = Color.FromArgb((int)r, (int)r, (int)r);
+                    adjustedImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            return adjustedImage;
+        }
+
+        private Bitmap UnsharpMask(Bitmap image, float amount, int radius, int threshold)
+        {
+            Bitmap blurred = new Bitmap(image.Width, image.Height);
+            using (Graphics g = Graphics.FromImage(blurred))
+            {
+                System.Drawing.Imaging.ImageAttributes attributes = new System.Drawing.Imaging.ImageAttributes();
+                attributes.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
+                g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, attributes);
+            }
+
+            Bitmap sharpened = new Bitmap(image.Width, image.Height);
+
+            for (int y = 0; y < image.Height; y++)
+            {
+                for (int x = 0; x < image.Width; x++)
+                {
+                    Color original = image.GetPixel(x, y);
+                    Color blur = blurred.GetPixel(x, y);
+
+                    int r = Math.Abs(original.R - blur.R) >= threshold ? (int)(original.R + amount * (original.R - blur.R)) : original.R;
+                    int g = Math.Abs(original.G - blur.G) >= threshold ? (int)(original.G + amount * (original.G - blur.G)) : original.G;
+                    int b = Math.Abs(original.B - blur.B) >= threshold ? (int)(original.B + amount * (original.B - blur.B)) : original.B;
+
+                    r = Math.Min(255, Math.Max(0, r));
+                    g = Math.Min(255, Math.Max(0, g));
+                    b = Math.Min(255, Math.Max(0, b));
+
+                    sharpened.SetPixel(x, y, Color.FromArgb(r, g, b));
+                }
+            }
+
+            return sharpened;
         }
 
         private void startButton_Click(object sender, EventArgs e)
