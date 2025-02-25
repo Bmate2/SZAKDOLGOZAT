@@ -109,6 +109,8 @@ namespace Test_ADNS9800
             }
         }
 
+        #region Bicubic Interpolation
+
         private int[] BilinearInterpolation(int[] framedata,int scale)
         {
             int newWidth = FrameWidth * scale;
@@ -144,7 +146,7 @@ namespace Test_ADNS9800
             return interpolatedData;
         }
 
-
+        
         private int BicubicInterpolate(int[,] image, int x, int y, float dx, float dy)
         {
             int result = 0;
@@ -169,6 +171,8 @@ namespace Test_ADNS9800
             return 0;
         }
 
+        #endregion
+
         private void AddFrameToGrid(int gridX, int gridY, int[] frameData)
         {
             for (int i = 0; i < FrameWidth * FrameHeight; i++)
@@ -186,7 +190,9 @@ namespace Test_ADNS9800
                 for (int x = 0; x < width; x++)
                 {
                     int pixelValue = frameData[y * width + x];
-                    Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
+                    Color color = Color.FromArgb(pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue, 
+                                                 pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue,
+                                                 pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue);
                     frameBitmap.SetPixel(x, y, color);
                 }
             }
@@ -230,13 +236,9 @@ namespace Test_ADNS9800
         //    }
         //}
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (serialPort != null && serialPort.IsOpen)
-            {
-                serialPort.Close();
-            }
-        }
+        
+
+        #region Sharp and Brightness
         private Bitmap AdjustBrightnessContrast(Bitmap image, float brightness, float contrast)
         {
             Bitmap adjustedImage = new Bitmap(image.Width, image.Height);
@@ -297,10 +299,18 @@ namespace Test_ADNS9800
             return sharpened;
         }
 
+        #endregion
+
+        #region Buttons
         private void startButton_Click(object sender, EventArgs e)
         {
             if (serialPort.IsOpen)
             {
+                serialPort.WriteLine("start");
+            }
+            else 
+            { 
+                serialPort.Open();
                 serialPort.WriteLine("start");
             }
         }
@@ -310,12 +320,24 @@ namespace Test_ADNS9800
             if (serialPort.IsOpen)
             {
                 serialPort.WriteLine("stop");
+                serialPort.Close();
             }
         }
 
         private void deleteListBtn_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
+        }
+
+        #endregion
+        
+        
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (serialPort != null && serialPort.IsOpen)
+            {
+                serialPort.Close();
+            }
         }
     }
 }
