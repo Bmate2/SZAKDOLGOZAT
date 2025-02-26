@@ -88,7 +88,6 @@ namespace Test_ADNS9800
                         DisplayFrame(BilinearInterpolation(frameData,2), pictureBox2, FrameHeight*2, FrameWidth*2);
 
                         listGrid[row].Add(BilinearInterpolation(frameData, 2) );
-                        column++;
                     }
                     else
                     {
@@ -106,9 +105,9 @@ namespace Test_ADNS9800
                 if (fullLine.StartsWith("NEW_ROW"))
                 {
                     row++;
-                    column = 0;
                     listGrid.Add(new List<int[]>());
-                    MessageBox.Show("New Row: "+row);
+                    MessageBox.Show($"New Row: {row} Első sor oszlopainak száma: {listGrid[0].Count}");
+
                 }
                 if (fullLine.StartsWith("END"))
                 {
@@ -116,6 +115,8 @@ namespace Test_ADNS9800
                     serialPort.Close();
                 }
             }
+            MessageBox.Show($"Mentés előtt: Sorok = {listGrid.Count}, Oszlopok az első sorban = {listGrid[0].Count}");
+
         }
 
         #region Bicubic Interpolation
@@ -375,6 +376,7 @@ namespace Test_ADNS9800
         {
             if (serialPort != null && serialPort.IsOpen)
             {
+                serialPort.Write("stop");
                 serialPort.Close();
             }
         }

@@ -257,6 +257,11 @@ void loop() {
   }
 
   if(column==20){
+    if(row++==2){
+      row++;
+      column=0;
+      return;
+    }
     row++;
     column=0;
     Serial.println("NEW_ROW");
