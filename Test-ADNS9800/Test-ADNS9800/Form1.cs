@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Drawing;
 using System.IO;
@@ -12,18 +13,22 @@ namespace Test_ADNS9800
     {
         private SerialPort serialPort;
         private Bitmap currentFrame;
-        private int currentRow = 0;
         private const int FrameWidth = 30; // Képkocka szélessége
         private const int FrameHeight = 30; // Képkocka magassága
         private StringBuilder buffer = new StringBuilder(); // Adatbuffer az összefűzéshez
-        const int gridWidth = 2;             // 20 blokk szélességben
-        const int gridHeight = 2;
-        int[,,] grid = new int[gridWidth, gridHeight, FrameWidth * FrameHeight];
+
+        int row = 0;
+        int column = 0;
+
+
+        private List<List<int[]>> listGrid = new List<List<int[]>>();
+        
         public Form1()
         {
             InitializeComponent();
             InitializeSerialPort();
             InitializeImage();
+            listGrid.Add(new List<int[]>()); //első sor hozzáadása
         }
         
         private void InitializeSerialPort()
@@ -51,8 +56,6 @@ namespace Test_ADNS9800
         private void ProcessSerialData(string data)
         {
 
-            int row = 0;
-            int column = 0;
             if (string.IsNullOrEmpty(data)) return;
 
             buffer.Append(data); // Új adatok hozzáfűzése a bufferhez
@@ -83,14 +86,9 @@ namespace Test_ADNS9800
                         DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
 
                         DisplayFrame(BilinearInterpolation(frameData,2), pictureBox2, FrameHeight*2, FrameWidth*2);
-                        
-                        AddFrameToGrid(row, column, frameData);
-                        row++;
-                        if (row == gridWidth)
-                        {
-                            row = 0;
-                            column++;
-                        }
+
+                        listGrid[row].Add(BilinearInterpolation(frameData, 2) );
+                        column++;
                     }
                     else
                     {
@@ -105,7 +103,18 @@ namespace Test_ADNS9800
                     }
                     
                 }
-
+                if (fullLine.StartsWith("NEW_ROW"))
+                {
+                    row++;
+                    column = 0;
+                    listGrid.Add(new List<int[]>());
+                    MessageBox.Show("New Row: "+row);
+                }
+                if (fullLine.StartsWith("END"))
+                {
+                    SaveDoc();
+                    serialPort.Close();
+                }
             }
         }
 
@@ -173,13 +182,6 @@ namespace Test_ADNS9800
 
         #endregion
 
-        private void AddFrameToGrid(int gridX, int gridY, int[] frameData)
-        {
-            for (int i = 0; i < FrameWidth * FrameHeight; i++)
-            {
-                grid[gridX, gridY, i] = frameData[i];
-            }
-        }
 
         private void DisplayFrame(int[] frameData,PictureBox pictureBox,int height,int width)
         {
@@ -216,27 +218,70 @@ namespace Test_ADNS9800
             }
         }
 
-        //private void SaveFrame()
-        //{
-        //    try
-        //    {
-        //        string folderPath = Path.Combine(Application.StartupPath, "SavedFrames");
-        //        if (!Directory.Exists(folderPath))
-        //        {
-        //            Directory.CreateDirectory(folderPath);
-        //        }
 
-        //        string filePath = Path.Combine(folderPath, $"frame_{frameCounter:D4}.png");
-        //        currentFrame.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
-        //        frameCounter++; // Következő frame számláló növelése
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
 
-        
+
+        private Bitmap matrixToBitmap(List<List<int[]>> bigGrid)
+        {
+            if (bigGrid.Count == 0 || bigGrid[0].Count == 0 || bigGrid[0][0] == null)
+            {
+                MessageBox.Show("A mátrix üres, nem lehet képet generálni.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            
+            
+            int width = bigGrid[0].Count*FrameWidth*2;
+            MessageBox.Show("Width: " + width);
+            int height = bigGrid.Count*FrameHeight*2;
+            MessageBox.Show("Height: " + height);
+
+            Bitmap bmp = new Bitmap(width, height);
+            for (int row = 0; row < bigGrid.Count; row++)
+            {
+                for (int col = 0; col < bigGrid[row].Count; col++)
+                {
+                    int[] frameData = bigGrid[row][col];
+
+                    int startX = col * FrameWidth;
+                    int startY = row * FrameHeight;
+
+                    for (int y = 0; y < FrameHeight; y++)
+                    {
+                        for (int x = 0; x < FrameWidth; x++)
+                        {
+                            int pixelValue = frameData[y * (FrameWidth*2) + x]; // Az adott pixel értéke a FRAME-ből
+                            Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
+
+                            // Beírjuk a megfelelő helyre a képen
+                            bmp.SetPixel(startX + x, startY + y, color);
+                        }
+                    }
+                }
+            }
+                return bmp;
+        }
+
+        private void SaveDoc()
+        {
+            try
+            {
+                string folderPath = Path.Combine(Application.StartupPath, "SavedFrames");
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                string filePath = Path.Combine(folderPath);
+                matrixToBitmap(listGrid).Save(filePath + "\\frame.png", System.Drawing.Imaging.ImageFormat.Png);
+                MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         #region Sharp and Brightness
         private Bitmap AdjustBrightnessContrast(Bitmap image, float brightness, float contrast)
@@ -308,11 +353,6 @@ namespace Test_ADNS9800
             {
                 serialPort.WriteLine("start");
             }
-            else 
-            { 
-                serialPort.Open();
-                serialPort.WriteLine("start");
-            }
         }
 
         private void stopButton_Click(object sender, EventArgs e)
@@ -320,7 +360,6 @@ namespace Test_ADNS9800
             if (serialPort.IsOpen)
             {
                 serialPort.WriteLine("stop");
-                serialPort.Close();
             }
         }
 

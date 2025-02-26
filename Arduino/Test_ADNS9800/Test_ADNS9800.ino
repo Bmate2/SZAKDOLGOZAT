@@ -231,6 +231,9 @@ void sendFrame() {
 
 }
 
+int row=0;
+int column=0;
+
 void loop() {
   if(Serial.available()>0){
     String command=Serial.readStringUntil('\n');
@@ -243,13 +246,26 @@ void loop() {
     else if(command=="stop"){
       shouldCapture=false;
       Serial.println("Adatküldés leállítva...");
+      row=0;
+      column=0;
     }
   }
   if(shouldCapture){
     sendFrame();
+    column++;
     delay(100);
   }
 
+  if(column==20){
+    row++;
+    column=0;
+    Serial.println("NEW_ROW");
+  }
 
-  
+  if(row==2){
+    row=0;
+    column=0;
+    Serial.println("END");
+  }
+
 }
