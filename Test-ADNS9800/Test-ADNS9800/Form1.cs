@@ -85,9 +85,13 @@ namespace Test_ADNS9800
                         
                         DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
 
-                        DisplayFrame(BilinearInterpolation(frameData,2), pictureBox2, FrameHeight*2, FrameWidth*2);
+                        int[] upscaled = BilinearInterpolation(frameData, 2);
 
-                        listGrid[row].Add(BilinearInterpolation(frameData, 2) );
+                        DisplayFrame(upscaled, pictureBox2, FrameHeight*2, FrameWidth*2);
+
+                        
+
+                        listGrid[row].Add(upscaled);
                     }
                     else
                     {
@@ -152,7 +156,6 @@ namespace Test_ADNS9800
                     interpolatedData[y * newWidth + x] = Math.Min(Math.Max((int)value, 0), 255);
                 }
             }
-
             return interpolatedData;
         }
 
