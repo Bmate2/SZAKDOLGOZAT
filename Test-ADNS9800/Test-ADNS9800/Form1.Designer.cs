@@ -34,6 +34,7 @@
             this.stopButton = new System.Windows.Forms.Button();
             this.deleteListBtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.resetBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -92,11 +93,22 @@
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
+            // resetBtn
+            // 
+            this.resetBtn.Location = new System.Drawing.Point(188, 376);
+            this.resetBtn.Name = "resetBtn";
+            this.resetBtn.Size = new System.Drawing.Size(75, 23);
+            this.resetBtn.TabIndex = 6;
+            this.resetBtn.Text = "RESET";
+            this.resetBtn.UseVisualStyleBackColor = true;
+            this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 423);
+            this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.deleteListBtn);
             this.Controls.Add(this.stopButton);
@@ -119,6 +131,7 @@
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button deleteListBtn;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button resetBtn;
     }
 }
 

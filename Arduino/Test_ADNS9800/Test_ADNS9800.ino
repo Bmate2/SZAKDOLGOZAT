@@ -70,24 +70,15 @@ void setup() {
   //attachInterrupt(0, UpdatePointer, FALLING);
 
   performStartup();
-  increaseShutterTime();
-  enableAutoExposure();
+  //enableAutoExposure();
   delay(100);
   initComplete=9;
 }
 
 void enableAutoExposure() {
     adns_write_reg(REG_Configuration_I, 0x01);
-    Serial.println("Automatikus expozíció engedélyezve.");
 }
 
-void increaseShutterTime() {
-
-    adns_write_reg(REG_Shutter_Lower, 0x90);
-    adns_write_reg(REG_Shutter_Upper, 0x90);
-
-    Serial.println("Expozíció maximálisra állítva.");
-}
 void adns_com_begin(){
   digitalWrite(ncs, LOW);
 }
@@ -171,6 +162,10 @@ void performStartup(void){
   //adns_write_reg(REG_Configuration_I, 0x01); // 200 cpi
   adns_write_reg(REG_Configuration_I, 0x09); // 8200 cpi
   delay(10);
+  adns_write_reg(REG_Shutter_Lower, 0x90);
+  delay(10);
+  adns_write_reg(REG_Shutter_Upper, 0x90);
+  delay(10);
 
   //enable laser(bit 0 = 0b), in normal mode (bits 3,2,1 = 000b)
   // reading the actual value of the register is important because the real
@@ -180,6 +175,7 @@ void performStartup(void){
   byte laser_ctrl0 = adns_read_reg(REG_LASER_CTRL0);
   adns_write_reg(REG_LASER_CTRL0, laser_ctrl0 & 0xf0 );
   delay(1);
+  Serial.println("Szenzor indul....");
 }
 void sendFrame() {
     // Serial.println("Capturing frame: "); 
@@ -249,6 +245,12 @@ void loop() {
       row=0;
       column=0;
     }
+    else if(command=="reset"){
+      shouldCapture=false;
+      row=0;
+      column=0;
+      performStartup();
+    }
   }
   if(shouldCapture){
     sendFrame();
@@ -257,20 +259,16 @@ void loop() {
   }
 
   if(column==20){
-    if(row++==2){
+    if(row++<2){
       row++;
       column=0;
-      return;
+      Serial.println("NEW_ROW");
     }
-    row++;
-    column=0;
-    Serial.println("NEW_ROW");
-  }
-
-  if(row==2){
-    row=0;
-    column=0;
-    Serial.println("END");
+    else{
+      row=0;
+      column=0;
+      Serial.println("END");
+    }
   }
 
 }

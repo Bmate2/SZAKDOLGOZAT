@@ -110,16 +110,14 @@ namespace Test_ADNS9800
                 {
                     row++;
                     listGrid.Add(new List<int[]>());
-                    MessageBox.Show($"New Row: {row} Első sor oszlopainak száma: {listGrid[0].Count}");
 
                 }
                 if (fullLine.StartsWith("END"))
                 {
+                    serialPort.WriteLine("stop");
                     SaveDoc();
-                    serialPort.Close();
                 }
             }
-            MessageBox.Show($"Mentés előtt: Sorok = {listGrid.Count}, Oszlopok az első sorban = {listGrid[0].Count}");
 
         }
 
@@ -246,12 +244,12 @@ namespace Test_ADNS9800
                 {
                     int[] frameData = bigGrid[row][col];
 
-                    int startX = col * FrameWidth;
-                    int startY = row * FrameHeight;
+                    int startX = col * FrameWidth*2;
+                    int startY = row * FrameHeight*2;
 
-                    for (int y = 0; y < FrameHeight; y++)
+                    for (int y = 0; y < FrameHeight*2; y++)
                     {
-                        for (int x = 0; x < FrameWidth; x++)
+                        for (int x = 0; x < FrameWidth*2; x++)
                         {
                             int pixelValue = frameData[y * (FrameWidth*2) + x]; // Az adott pixel értéke a FRAME-ből
                             Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
@@ -381,6 +379,15 @@ namespace Test_ADNS9800
             {
                 serialPort.Write("stop");
                 serialPort.Close();
+            }
+        }
+
+        private void resetBtn_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("reset");
+                listBox1.Items.Clear();
             }
         }
     }
