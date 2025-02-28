@@ -85,7 +85,7 @@ namespace Test_ADNS9800
                         
                         DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
 
-                        int[] upscaled = BilinearInterpolation(frameData, 2);
+                        int[] upscaled = BicubicInterpolation(frameData, 2);
 
                         DisplayFrame(upscaled, pictureBox2, FrameHeight*2, FrameWidth*2);
 
@@ -125,7 +125,7 @@ namespace Test_ADNS9800
 
         #region Bicubic Interpolation
 
-        private int[] BilinearInterpolation(int[] framedata,int scale)
+        private int[] BicubicInterpolation(int[] framedata,int scale)
         {
             int newWidth = FrameWidth * scale;
             int newHeight = FrameHeight * scale;
@@ -152,28 +152,21 @@ namespace Test_ADNS9800
                     float dy = srcY - y0;
                     float dx = srcX - x0;
 
-                    int value = BicubicInterpolate(original, x0, y0, dx, dy);
+                    int value = 0;
+                    for (int m = -1; m <= 2; m++)
+                    {
+                        for (int n = -1; n <= 2; n++)
+                        {
+                            int px = Reflect(x0 + n, FrameWidth);
+                            int py = Reflect(y0 + m, FrameHeight);
+                            float weight = CubicWeight(dx - n) * CubicWeight(dy - m);
+                            value += (int)(original[py, px] * weight);
+                        }
+                    }
                     interpolatedData[y * newWidth + x] = Math.Min(Math.Max((int)value, 0), 255);
                 }
             }
             return interpolatedData;
-        }
-
-        
-        private int BicubicInterpolate(int[,] image, int x, int y, float dx, float dy)
-        {
-            int result = 0;
-            for (int m = -1; m <= 2; m++)
-            {
-                for (int n = -1; n <= 2; n++)
-                {
-                    int px= Math.Min(Math.Max(x + n, 0), FrameWidth - 1);
-                    int py= Math.Min(Math.Max(y + m, 0), FrameHeight - 1);
-                    float weight = CubicWeight(n - dx) * CubicWeight(m - dy);
-                    result += (int)(image[py, px] * weight);
-                }
-            }
-            return result;
         }
 
         private float CubicWeight(float x)
@@ -182,6 +175,13 @@ namespace Test_ADNS9800
             if (x <= 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
             if (x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
             return 0;
+        }
+
+        int Reflect(int value, int max)
+        {
+            if (value < 0) return -value;
+            if (value >= max) return 2 * max - value - 1;
+            return value;
         }
 
         #endregion
