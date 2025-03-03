@@ -36,15 +36,17 @@ Ebben a projektben megmutatom hogy lehet egy egérszenzort felhasználni hivatal
 \chapter{Bevezető}
 
 \section{Motiváció}
-Az ötletemet több fő tényező is motiválta. Először is, fontosnak tartom, hogy egy olyan eszközt hozzak létre, amely megfizethető alternatívát kínál a drága szkennerek helyett. Az egérszenzorok széles körben elérhetők és olcsók, így ezek felhasználása ideális alapot biztosít egy színes szkennerhez. Ez különösen hasznos lehet olyan helyeken, ahol a költségek csökkentése kiemelten fontos, például iskolákban vagy kisebb cégeknél.
+Az ötletem mögött több tényező is áll. Elsősorban szerettem volna egy olyan eszközt létrehozni, amely megfizethető alternatívát nyújt a drága szkennerekkel szemben. Az egérszenzorok könnyen beszerezhetők és viszonylag olcsók, ezért jó választásnak tűntek egy saját fejlesztésű szkennerhez. Ez különösen hasznos lehet olyan helyeken, ahol a költségek csökkentése nagyon fontos, például iskolákban vagy kisebb cégeknél.
 
-Emellett mindig is érdekelt, hogyan lehet egy egyszerű technológiát kreatív módon új funkcióra használni. Az egérszenzor eredeti célja a mozgás érzékelése, de a projekt során megmutatom, hogyan lehet alkalmazni ezt dokumentumok szkennelésére.
+Mindig is érdekelt, hogyan lehet egy meglévő egyszerű technológiát új és kreatív módon felhasználni. Az egérszenzorokat alapvetően mozgásérzékelésre tervezték, de ebben a projektben megszeretném mutatni, hogy dokumentumok szkennelésére is alkalmasak.
 
-A motivációm része az is, hogy egy ilyen eszköz segítségével bárki könnyen szkennelhet dokumentumokat otthon vagy munkahelyen anélkül, hogy drága eszközöket kellene vásárolnia. 
+Emellett fontos számomra, hogy egy olyan eszközt alkossak, amelyet egy egyszerű felhasználó is használhat, otthon vagy akár a munkahelyén anélkül, hogy drága berendezésekre kellene költenie. 
 
-Valamint kihívást látok ebben a projektben, hogy hogyan is tudom ezt megvalósítani egymagamban. Izgalmas feladat az, hogy ötvözzem az informatikát az elektronikával. Ez nem csak a szakmai tudásomat fejleszti, hanem egy olyan eredményt ad, amelyre büszke lehetek, hogy meg tudtam valósítani.
+Valamint kihívást látok ebben a projektben, hogy hogyan is tudom ezt megvalósítani. Izgalmas feladat az, hogy ötvözzem az informatikát az elektronikával. Ez nem csak a szakmai tudásomat fejleszti, hanem egy olyan eredményt ad, amelyre büszke lehetek.
 \section{Célkitűzés}
-A szakdolgozatom célja, hogy egy általános egérszenzor alacsony felbontású monokróm kamerájából egy színes szkennert készítsek, amely képes dokumentumokat színes és nagyobb felbontású formátumban rögzíteni. Az eszköz működése a három alapszín (piros, zöld, kék) megvilágításán alapul, amely során külön-külön monokróm felvételek készülnek. Ezeket a képeket elemzem, és a színintenzitásuk alapján meghatározom az egyes pixelek színösszetételét (az RGB kódjukat). A felbontás növelésére interpolációs módszereket alkalmazok. Ezek az algoritmusok lehetővé teszik a kép méretének növelését, miközben minimalizálják a minőségvesztést. Az interpolációs technikák nemcsak a felbontás javítására szolgálnak, hanem hozzájárulnak a végső kép részletgazdagságának megőrzéséhez is. A dolgozat eredményeként egy olyan szkennert kívánok létrehozni, amely egyszerű és költséghatékony hardveres megoldást kínál. Az eszköz képes lesz a monokróm kamerával készített képek színes és részletesebb változatát előállítani, ami különösen hasznos lehet olyan helyeken, ahol a hagyományos színes szkennerek elérhetősége vagy költsége problémát jelent.
+A szakdolgozatom célja, egy olyan szkenner létrehozása, amely egy egyszerű egérszenzort használ a dokumentumok fekete-fehér beolvasására. Az eszköz működésének alapja, hogy a szenzor monokróm felvételeket készít a dokumentumról, majd ezeket egy számítógépes programmal feldolgozom és összeállítom egy nagy dokumentummá. Mivel a szenzor csak egy 30\,x\,30-as képet rögzít így azt interpolációval felnövelem. Ezek az algoritmusok lehetővé teszik, hogy a képet megnöveljük kevés minőség vesztéssel. 
+
+A dolgozat eredményeként egy egyszerű és költséghatékony szkennert szeretnék létrehozni, amely hasznos és megkönnyíti az emberek életét.
 \chapter{Felhaszánlt technológiák}
 Ebben a fejezetben a szakdolgozatomban használt technológiákról és azok előnyeiről, fogok beszámolni.
 \section{Arduino}
