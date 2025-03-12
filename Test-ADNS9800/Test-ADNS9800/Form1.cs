@@ -13,10 +13,10 @@ namespace Test_ADNS9800
     {
         private SerialPort serialPort;
         private Bitmap currentFrame;
-        private const int FrameWidth = 30; // Képkocka szélessége
-        private const int FrameHeight = 30; // Képkocka magassága
-        private StringBuilder buffer = new StringBuilder(); // Adatbuffer az összefűzéshez
-        private Bicubic resizer = new Bicubic(30, 30, 2);
+        private const int FrameWidth = 30; 
+        private const int FrameHeight = 30; 
+        private StringBuilder buffer = new StringBuilder(); 
+        private Bicubic resizer = new Bicubic(FrameWidth, FrameHeight, 2);
 
         int row = 0;
         int column = 0;
@@ -59,13 +59,13 @@ namespace Test_ADNS9800
 
             if (string.IsNullOrEmpty(data)) return;
 
-            buffer.Append(data); // Új adatok hozzáfűzése a bufferhez
+            buffer.Append(data); 
 
             while (buffer.ToString().Contains("\n"))
             {
                 int newlineIndex = buffer.ToString().IndexOf("\n");
-                string fullLine = buffer.ToString().Substring(0, newlineIndex).Trim(); // Egy teljes sor kinyerése
-                buffer.Remove(0, newlineIndex + 1); // Eltávolítjuk a már feldolgozott sort a bufferből
+                string fullLine = buffer.ToString().Substring(0, newlineIndex).Trim(); 
+                buffer.Remove(0, newlineIndex + 1); 
 
                 if (this.InvokeRequired)
                 {
@@ -201,21 +201,21 @@ namespace Test_ADNS9800
                     frameBitmap.SetPixel(x, y, color);
                 }
             }
-            Bitmap adjusted = AdjustBrightnessContrast(frameBitmap, 50, 50);
-            Bitmap unsharped = UnsharpMask(adjusted,2.5f,1,7);
+            //Bitmap adjusted = AdjustBrightnessContrast(frameBitmap, 50, 50);
+            //Bitmap unsharped = UnsharpMask(adjusted,2.5f,1,7);
 
             if (this.InvokeRequired)
             {
                 this.Invoke(new Action(() =>
                 {
-                    pictureBox.Image = unsharped;
+                    pictureBox.Image = frameBitmap;
                     pictureBox.Invalidate();
                     pictureBox.Update();
                 }));
             }
             else
             {
-                pictureBox.Image = unsharped;
+                pictureBox.Image = frameBitmap;
                 pictureBox.Invalidate();
                 pictureBox.Update();
             }
@@ -252,10 +252,8 @@ namespace Test_ADNS9800
                     {
                         for (int x = 0; x < FrameWidth*2; x++)
                         {
-                            int pixelValue = frameData[y * (FrameWidth*2) + x]; // Az adott pixel értéke a FRAME-ből
+                            int pixelValue = frameData[y * (FrameWidth*2) + x];
                             Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
-
-                            // Beírjuk a megfelelő helyre a képen
                             bmp.SetPixel(startX + x, startY + y, color);
                         }
                     }
