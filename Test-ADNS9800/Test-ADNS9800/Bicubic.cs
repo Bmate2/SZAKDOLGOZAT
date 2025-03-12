@@ -64,8 +64,8 @@ namespace Test_ADNS9800
         private float CubicWeight(float x)
         {
             x = Math.Abs(x);
-            if (x <= 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
-            if (x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
+            if (0 <= x && x < 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
+            if (1 <= x && x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
             return 0;
         }
 
