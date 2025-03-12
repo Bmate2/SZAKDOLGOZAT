@@ -115,8 +115,6 @@ namespace Test_ADNS9800
                 if (fullLine.StartsWith("NEW_ROW"))
                 {
                     row++;
-                    listGrid.Add(new List<int[]>());
-                    MessageBox.Show("Height:" + listGrid[0].Count);
 
                 }
                 if (fullLine.StartsWith("END"))
