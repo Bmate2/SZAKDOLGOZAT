@@ -37,6 +37,7 @@ namespace Test_ADNS9800
             serialPort = new SerialPort("COM4", 115200);
             serialPort.DataReceived += SerialPort_DataReceived;
             serialPort.Open();
+            serialPort.Write("reset");
         }
 
         private void InitializeImage()
@@ -92,6 +93,10 @@ namespace Test_ADNS9800
 
                         
 
+                        if (row >= listGrid.Count)
+                        {
+                            listGrid.Add(new List<int[]>());
+                        }
                         listGrid[row].Add(upscaled);
                     }
                     else
@@ -111,6 +116,7 @@ namespace Test_ADNS9800
                 {
                     row++;
                     listGrid.Add(new List<int[]>());
+                    MessageBox.Show("Height:" + listGrid[0].Count);
 
                 }
                 if (fullLine.StartsWith("END"))
@@ -121,69 +127,6 @@ namespace Test_ADNS9800
             }
 
         }
-
-        //#region Bicubic Interpolation
-
-        //private int[] BicubicInterpolation(int[] framedata,int scale)
-        //{
-        //    int newWidth = FrameWidth * scale;
-        //    int newHeight = FrameHeight * scale;
-        //    int[] interpolatedData = new int[newWidth * newHeight];
-
-        //    int[,] original = new int[FrameHeight, FrameWidth];
-        //    for (int y = 0; y < FrameHeight; y++)
-        //    {
-        //        for (int x = 0; x < FrameWidth; x++)
-        //        {
-        //            original[y, x] = framedata[y * FrameWidth + x];
-        //        }
-        //    }
-        //    for (int y = 0; y < newHeight; y++)
-        //    {
-        //        for (int x = 0; x < newWidth; x++)
-        //        {
-        //            float srcY = y / (float)scale;
-        //            float srcX = x / (float)scale;
-
-        //            int y0 = (int)Math.Floor(srcY);
-        //            int x0 = (int)Math.Floor(srcX);
-
-        //            float dy = srcY - y0;
-        //            float dx = srcX - x0;
-
-        //            int value = 0;
-        //            for (int m = -1; m <= 2; m++)
-        //            {
-        //                for (int n = -1; n <= 2; n++)
-        //                {
-        //                    int px = Reflect(x0 + n, FrameWidth);
-        //                    int py = Reflect(y0 + m, FrameHeight);
-        //                    float weight = CubicWeight(dx - n) * CubicWeight(dy - m);
-        //                    value += (int)(original[py, px] * weight);
-        //                }
-        //            }
-        //            interpolatedData[y * newWidth + x] = Math.Min(Math.Max((int)value, 0), 255);
-        //        }
-        //    }
-        //    return interpolatedData;
-        //}
-
-        //private float CubicWeight(float x)
-        //{
-        //    x = Math.Abs(x);
-        //    if (x <= 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
-        //    if (x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
-        //    return 0;
-        //}
-
-        //int Reflect(int value, int max)
-        //{
-        //    if (value < 0) return -value;
-        //    if (value >= max) return 2 * max - value - 1;
-        //    return value;
-        //}
-
-        //#endregion
 
 
         private void DisplayFrame(int[] frameData,PictureBox pictureBox,int height,int width)
@@ -387,6 +330,9 @@ namespace Test_ADNS9800
             {
                 serialPort.WriteLine("reset");
                 listBox1.Items.Clear();
+                listGrid.Clear();
+                row = 0;
+                resizer = new Bicubic(FrameWidth, FrameHeight, 2);
             }
         }
     }
