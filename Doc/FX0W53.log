@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.13)  3 MAR 2025 17:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.13)  13 MAR 2025 18:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -614,7 +614,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=104, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=108, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 22.
@@ -646,7 +646,7 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc)
 
 ]
 2. fejezet.
-<ArduinoFamily.png, id=157, 770.88pt x 380.17032pt>
+<ArduinoFamily.png, id=163, 770.88pt x 380.17032pt>
 File: ArduinoFamily.png Graphic file (type png)
 <use ArduinoFamily.png>
 Package pdftex.def Info: ArduinoFamily.png  used on input line 57.
@@ -662,7 +662,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 7
 (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<ATMEGA328P-PU.jpg, id=165, 433.62pt x 289.08pt>
+<ATMEGA328P-PU.jpg, id=170, 433.62pt x 289.08pt>
 File: ATMEGA328P-PU.jpg Graphic file (type jpg)
 <use ATMEGA328P-PU.jpg>
 Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 84.
@@ -670,7 +670,7 @@ Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 84.
 
 
 [6{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-<ArduinoParts.png, id=172, 770.88pt x 463.7325pt>
+<ArduinoParts.png, id=177, 770.88pt x 463.7325pt>
 File: ArduinoParts.png Graphic file (type png)
 <use ArduinoParts.png>
 Package pdftex.def Info: ArduinoParts.png  used on input line 96.
@@ -696,7 +696,7 @@ Package pdftex.def Info: ArduinoParts.png  used on input line 96.
 [11
 
 ]
-Overfull \hbox (1.39384pt too wide) in paragraph at lines 143--144
+Overfull \hbox (1.39384pt too wide) in paragraph at lines 144--145
 []\T1/lmr/m/n/12 2.1[]. áb-ra: \T1/lmr/m/it/12 https://predictabledesigns.com/w
 p-content/uploads/2017/10/HeroImage.png 
  []
@@ -706,23 +706,23 @@ p-content/uploads/2017/10/HeroImage.png
 [12
 
 ]
-<nyilatkozat.pdf, id=209, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=214, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 152.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 153.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 152.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 153.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=212, page=1, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=217, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 152.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 153.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 152.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 153.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
@@ -731,17 +731,17 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 152.
 ]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 152.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 153.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 152.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 153.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 152.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 153.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [14
 
@@ -751,13 +751,13 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `FX0W53.out' has not changed.
-(rerunfilecheck)             Checksum: ECDAE25586D0C1AD696D7A064F974ABC;4525.
+(rerunfilecheck)             Checksum: BB993F983C505EDE2E5495B421975670;4706.
  ) 
 Here is how much of TeX's memory you used:
- 15022 strings out of 473579
- 240523 string characters out of 5732263
+ 15024 strings out of 473579
+ 240557 string characters out of 5732263
  662957 words of memory out of 5000000
- 37637 multiletter control sequences out of 15000+600000
+ 37638 multiletter control sequences out of 15000+600000
  618242 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,93p,670b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -765,10 +765,10 @@ Here is how much of TeX's memory you used:
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
 r8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on FX0W53.pdf (14 pages, 900810 bytes).
+Output written on FX0W53.pdf (14 pages, 901263 bytes).
 PDF statistics:
- 277 PDF objects out of 1000 (max. 8388607)
- 235 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 241 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 283 PDF objects out of 1000 (max. 8388607)
+ 241 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

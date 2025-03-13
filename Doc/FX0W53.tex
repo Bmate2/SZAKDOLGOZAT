@@ -111,10 +111,12 @@ A projekt szoftveres részét Visual Studio\cite{visual-studio} fejlesztői kör
 \section{Github}
 A verziókövetéshez a Githubot\cite{github} használtam azon belül is a Github Desktop-ot, mellyel könnyen tudtam több platformon is dolgozni a projekten, valamint ha valamit elrontottam könnyen vissza tudtam állítani a projektet egy korábbi verzióra.
 \chapter{Hardveres megvalósítás}
-a szenzor mozgatását belevinni
 \section{ADNS-9800 szenzor}
+
 \subsection{Működése}
+Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800 lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége és azért volt megfelelő számomra mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamera.
 \subsection{Adatok beolvasása}
+\subsection{Szenzor mozgása}
 \section{Adatok továbbítása a Visual Studio felé}
 arduino felől rs32 és a studio felé pedig serial
 \section{Hardveres bekötés}
@@ -122,7 +124,7 @@ smartdraw, circuitikz
 \chapter{Szoftveres megvalósítás}
 kell mégegy az arduinohoz az arduino szenzor kezelés és szenzor mozgatás
 egy alkalmazás amiről tudom kezelni a szkennelést
-\section{Beolvasott értékek tárolása 3 dimenzós mátrixban}
+\section{Beolvasott értékek tárolása 2 dimenzós mátrixban}
 adatszeerkezet amiben a beolvasott képet tároljuk
 \section{Bikubik interpoláció}
 \subsection{Működése}
