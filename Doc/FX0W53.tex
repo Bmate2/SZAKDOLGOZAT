@@ -112,10 +112,35 @@ A projekt szoftveres részét Visual Studio\cite{visual-studio} fejlesztői kör
 A verziókövetéshez a Githubot\cite{github} használtam azon belül is a Github Desktop-ot, mellyel könnyen tudtam több platformon is dolgozni a projekten, valamint ha valamit elrontottam könnyen vissza tudtam állítani a projektet egy korábbi verzióra.
 \chapter{Hardveres megvalósítás}
 \section{ADNS-9800 szenzor}
-
+Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800 lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége, és azért volt megfelelő számomra mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamera. Valamint gyors képfeldolgozási képességgel rendelkezik, ezért alkalmas dokumentumok beolvasására. 
 \subsection{Működése}
-Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800 lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége és azért volt megfelelő számomra mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamera.
+ Egy beépített lézer meg világítja a szenzor alatt lévő felületet majd a lencse készít egy képet. A beépített kis processzor dolgozza fel ezeket az adatokat és számítja ki, hogy az eszköz milyen irányba mozdult el. 
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.4\linewidth]{ADNS9800base}
+	\caption[ADNS9800]{ADNS-9800 szenzor}
+	\label{fig:adns9800base}
+\end{figure}
+
+Az általam választott szenzor már nyáklappal volt ellátva így azzal nem volt teendőm. Ezáltal egyszerűbb volt a bekötése is, és az elhelyezése.
+
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{ADNS9800}
+	\caption[ADNS9800]{ADNS-9800 szenzor nyák lapra szerelve}
+	\label{fig:adns9800}
+\end{figure}
+
+Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai szinttel működött viszont az Arduino UNO 5\,V-os szinttel. Így be kellett szereznem egy két irányú logikai szintillesztő modult ami átalakította a 3,3\,V-os jelet 5\,V-ossá. Ehhez a projekthez egy 8 csatornás logikai szintillesztő modult használtam.
+
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{szintilleszto}
+	\caption[Logikai szintillesztő]{Két irányú logikai szintillesztő}
+	\label{fig:szintilleszto}
+\end{figure}
 \subsection{Adatok beolvasása}
+
 \subsection{Szenzor mozgása}
 \section{Adatok továbbítása a Visual Studio felé}
 arduino felől rs32 és a studio felé pedig serial
@@ -142,7 +167,14 @@ soros porton küldok egy bitet hogy színes vagy szürke legyen a kép a studiob
 felbontásra vonatkozóan például  feles átfedéssel 
 \addcontentsline{toc}{chapter}{Összegzés}
 \chapter*{Források}
-\ref{fig-arduinofamily}. ábra: \emph{https://predictabledesigns.com/wp-content/uploads/2017/10/HeroImage.png}
+\begin{itemize}
+	\item \ref{fig-arduinofamily}. ábra: \emph{\url{https://predictabledesigns.com/wp-content/uploads/2017/10/HeroImage.png}}
+	\item \ref{fig:atmega328p-pu}. ábra: \emph{\url{https://techfun.hu/wp-content/uploads/2017/09/11.jpg}}
+	\item \ref{fig-arduinoparts}. ábra: \emph{\url{https://www.inf.u-szeged.hu/~makan/tananyagok/wp-content/uploads/2020/07/ArduinoParts3-768x462.png}}
+	\item \ref{fig:adns9800base}. ábra: \emph{\url{https://www.sicstock.com/cdn/shop/products/551554.jpg?v=1544514465}}
+	\item \ref{fig:szintilleszto}. ábra: \emph{\url{https://www.elektrobot.hu/items/3607_1.webp}}
+\end{itemize}
+
 \begin{thebibliography}{2}
 \addcontentsline{toc}{chapter}{\bibname}
 \bibitem{arduino} Arduino: \emph{https://www.arduino.cc/en/Guide/Introduction}

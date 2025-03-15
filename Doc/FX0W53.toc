@@ -13,14 +13,14 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {3}Hardveres megvalósítás}{9}{chapter.3}%
 \select@language {magyar} \contentsline {section}{\numberline {3.1}ADNS-9800 szenzor}{9}{section.3.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.1.1}Működése}{9}{subsection.3.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.1.2}Adatok beolvasása}{9}{subsection.3.1.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.1.3}Szenzor mozgása}{9}{subsection.3.1.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.2}Adatok továbbítása a Visual Studio felé}{9}{section.3.2}%
-\select@language {magyar} \contentsline {section}{\numberline {3.3}Hardveres bekötés}{9}{section.3.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {4}Szoftveres megvalósítás}{10}{chapter.4}%
-\select@language {magyar} \contentsline {section}{\numberline {4.1}Beolvasott értékek tárolása 2 dimenzós mátrixban}{10}{section.4.1}%
-\select@language {magyar} \contentsline {section}{\numberline {4.2}Bikubik interpoláció}{10}{section.4.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Működése}{10}{subsection.4.2.1}%
-\select@language {magyar} \contentsline {section}{\numberline {4.3}Mátrix átalakítása képpé}{10}{section.4.3}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{11}{chapter*.3}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{13}{chapter*.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1.2}Adatok beolvasása}{11}{subsection.3.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1.3}Szenzor mozgása}{11}{subsection.3.1.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.2}Adatok továbbítása a Visual Studio felé}{11}{section.3.2}%
+\select@language {magyar} \contentsline {section}{\numberline {3.3}Hardveres bekötés}{11}{section.3.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}Szoftveres megvalósítás}{12}{chapter.4}%
+\select@language {magyar} \contentsline {section}{\numberline {4.1}Beolvasott értékek tárolása 2 dimenzós mátrixban}{12}{section.4.1}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Bikubik interpoláció}{12}{section.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Működése}{12}{subsection.4.2.1}%
+\select@language {magyar} \contentsline {section}{\numberline {4.3}Mátrix átalakítása képpé}{12}{section.4.3}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{13}{chapter*.3}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{15}{chapter*.5}%
