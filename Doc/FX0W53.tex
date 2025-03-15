@@ -146,7 +146,7 @@ Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai 
 A képalkotás közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
 A működése a következő lépésekből áll:
 \begin{enumerate}
-	\item Feltöltjük a firmware-t a szenzorra. Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re.
+	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. A firmware feltöltését \aref{upload-firmware-code}. számú kód mutatja.
 	\begin{lstlisting}[language=Arduino,label=upload-firmware-code,caption=Firmware feltöltése]
 		void adns_upload_firmware(){
 			adns_write_reg(REG_Configuration_IV, 0x02);	
@@ -165,9 +165,17 @@ A működése a következő lépésekből áll:
 			adns_com_end();
 		}
 	\end{lstlisting}
-	A firmware feltöltését \aref{upload-firmware-code}. számú kód mutatja.
-	\item 
+	
+	\item Majd a \textbf{sendFrame()} metódust meghívva készítünk egy képet a szenzorral. Amit a soros adatátviteli protokollal (SPI) kiolvasunk és eltároljuk. Az SPI kommunikáció négy vezetéket használ: 
+	\begin{itemize}
+		\item \textbf{MOSI }(Master Out, Slave In): Az adatok a mikrokontroller felől a szenzor felé mennek.
+		\item \textbf{MISO }(Master In, Slave Out): Az adatok a szenzor felől mennek az Arduino felé.
+		\item \textbf{SCLK }(Serial Clock): Az órajel, amelyet az Arduino generál.
+		\item \textbf{CS }(Chip Select): Az adott szenzort választja ki a kommunikációhoz.
+	\end{itemize}
+	
 \end{enumerate}
+
 \subsection{Szenzor mozgása}
 \section{Adatok továbbítása a Visual Studio felé}
 arduino felől rs32 és a studio felé pedig serial
