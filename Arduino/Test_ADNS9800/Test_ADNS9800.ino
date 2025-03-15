@@ -67,16 +67,10 @@ void setup() {
   SPI.setBitOrder(MSBFIRST);
   SPI.setClockDivider(SPI_CLOCK_DIV8);
   
-  //attachInterrupt(0, UpdatePointer, FALLING);
 
   performStartup();
-  //enableAutoExposure();
   delay(100);
   initComplete=9;
-}
-
-void enableAutoExposure() {
-    adns_write_reg(REG_Configuration_I, 0x01);
 }
 
 void adns_com_begin(){
@@ -89,15 +83,13 @@ void adns_com_end(){
 
 byte adns_read_reg(byte reg_addr){
   adns_com_begin();
-  // send adress of the register, with MSBit = 0 to indicate it's a read
   SPI.transfer(reg_addr & 0x7f);
   delayMicroseconds(200); // tSRAD
-  // read data
   byte data = SPI.transfer(0);
   
-  delayMicroseconds(1); // tSCLK-NCS for read operation is 120ns
+  delayMicroseconds(1); 
   adns_com_end();
-  delayMicroseconds(19); //  tSRW/tSRR (=20us) minus tSCLK-NCS
+  delayMicroseconds(19); 
 
   return data;
 }
@@ -105,37 +97,28 @@ byte adns_read_reg(byte reg_addr){
 void adns_write_reg(byte reg_addr, byte data){
   adns_com_begin();
   
-  //send adress of the register, with MSBit = 1 to indicate it's a write
   SPI.transfer(reg_addr | 0x80 );
-  //sent data
   SPI.transfer(data);
   
-  delayMicroseconds(20); // tSCLK-NCS for write operation
+  delayMicroseconds(20); 
   adns_com_end();
-  delayMicroseconds(100); // tSWW/tSWR (=120us) minus tSCLK-NCS. Could be shortened, but is looks like a safe lower bound 
+  delayMicroseconds(100); 
 }
 
 void adns_upload_firmware(){
-  // send the firmware to the chip, cf p.18 of the datasheet
-  // set the configuration_IV register in 3k firmware mode
   
-  adns_write_reg(REG_Configuration_IV, 0x02); // bit 1 = 1 for 3k mode, other bits are reserved 
+  adns_write_reg(REG_Configuration_IV, 0x02);
   
-  // write 0xd in SROM_enable reg for initializing
   adns_write_reg(REG_SROM_Enable, 0xd); 
   
-  // wait for more than one frame period
-  delay(10); // assume that the frame rate is as low as 100fps... even if it should never be that low
+  delay(10); 
   
-  // write 0x8 to SROM_enable to start SROM download
   adns_write_reg(REG_SROM_Enable, 0x8); 
   
-  // write the SROM file (=firmware data) 
   adns_com_begin();
   SPI.transfer(REG_SROM_Load_Burst | 0x80); // write burst destination adress
   delayMicroseconds(15);
   
-  // send all bytes of the firmware
   unsigned char c;
   for(int i = 0; i < firmware_length; i++){ 
     c = (unsigned char)pgm_read_byte(firmware_data + i);

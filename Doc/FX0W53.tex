@@ -2,7 +2,7 @@
 \usepackage[T1]{fontenc}
 \PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
 \usepackage[magyar]{babel}
-\usepackage{mathtools,amssymb,amsthm,pdfpages}
+\usepackage{mathtools,amssymb,amsthm,pdfpages,listings}
 \footnotestyle{rule=fourth}
 
 \newtheorem{tetel}{Tétel}[chapter]
@@ -10,6 +10,9 @@
 \newtheorem{definicio}[tetel]{Definíció}
 \theoremstyle{remark}
 \newtheorem{megjegyzes}[tetel]{Megjegyzés}
+\input{arduinoLanguage.tex}  
+\def\lstlistingname{kód}
+
 
 \begin{document}
 
@@ -140,7 +143,31 @@ Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai 
 	\label{fig:szintilleszto}
 \end{figure}
 \subsection{Adatok beolvasása}
-
+A képalkotás közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
+A működése a következő lépésekből áll:
+\begin{enumerate}
+	\item Feltöltjük a firmware-t a szenzorra. Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re.
+	\begin{lstlisting}[language=Arduino,label=upload-firmware-code,caption=Firmware feltöltése]
+		void adns_upload_firmware(){
+			adns_write_reg(REG_Configuration_IV, 0x02);	
+			adns_write_reg(REG_SROM_Enable, 0xd); 
+			delay(10); 
+			adns_write_reg(REG_SROM_Enable, 0x8); 
+			adns_com_begin();
+			SPI.transfer(REG_SROM_Load_Burst | 0x80); 
+			delayMicroseconds(15);
+			unsigned char c;
+			for(int i = 0; i < firmware_length; i++){ 
+				c = (unsigned char)pgm_read_byte(firmware_data + i);
+				SPI.transfer(c);
+				delayMicroseconds(15); 
+			}
+			adns_com_end();
+		}
+	\end{lstlisting}
+	A firmware feltöltését \aref{upload-firmware-code}. számú kód mutatja.
+	\item 
+\end{enumerate}
 \subsection{Szenzor mozgása}
 \section{Adatok továbbítása a Visual Studio felé}
 arduino felől rs32 és a studio felé pedig serial

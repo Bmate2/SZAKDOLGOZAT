@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.13)  15 MAR 2025 19:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.13)  15 MAR 2025 22:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -455,9 +455,38 @@ File: pppdftex.def 2024/08/20 v0.6b Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count307
 \AM@templatesizebox=\box56
 )
-\c@tetel=\count308
+(c:/texlive/2024/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count308
+\lst@gtempboxa=\box57
+\lst@token=\toks33
+\lst@length=\count309
+\lst@currlwidth=\dimen181
+\lst@column=\count310
+\lst@pos=\count311
+\lst@lostspace=\dimen182
+\lst@width=\dimen183
+\lst@newlines=\count312
+\lst@lineno=\count313
+\lst@maxwidth=\dimen184
 
-(c:/texlive/2024/texmf-dist/tex/latex/upquote/upquote.sty
+(c:/texlive/2024/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
+)
+(c:/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
+\c@lstnumber=\count314
+\lst@skipnumbers=\count315
+\lst@framebox=\box58
+)
+(c:/texlive/2024/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/05/25 1.10b listings configuration
+))
+Package: listings 2024/05/25 1.10b (Carsten Heinz)
+\c@tetel=\count316
+
+(./arduinoLanguage.tex (c:/texlive/2024/texmf-dist/tex/latex/psnfss/courier.sty
+Package: courier 2020/03/25 PSNFSS-v9.3 (WaS) 
+)) (c:/texlive/2024/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 
@@ -466,31 +495,31 @@ Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 ))
 (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count309
-\l__pdf_internal_box=\box57
+\l__color_backend_stack_int=\count317
+\l__pdf_internal_box=\box59
 )
 (./FX0W53.aux)
 \openout1 = `FX0W53.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-Package hyperref Info: Link coloring OFF on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+Package hyperref Info: Link coloring OFF on input line 17.
  (./FX0W53.out) (./FX0W53.out)
 \@outlinefile=\write3
 \openout3 = `FX0W53.out'.
@@ -531,64 +560,64 @@ Package hyperref Info: Link coloring OFF on input line 14.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-4.
+7.
 (c:/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-4.
+7.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-14.
+17.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-14.
+17.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 14.
+(Font)              <12> on input line 17.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 14.
+(Font)              <8> on input line 17.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 14.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 14.
+(Font)              <6> on input line 17.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 17.
 
 
 (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 14.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
 
 
 (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 14.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 17.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 14.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 17.
 
 (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count310
-\scratchdimen=\dimen181
-\scratchbox=\box58
-\nofMPsegments=\count311
-\nofMParguments=\count312
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count313
-\MPscratchDim=\dimen182
-\MPnumerator=\count314
-\makeMPintoPDFobject=\count315
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count318
+\scratchdimen=\dimen185
+\scratchbox=\box60
+\nofMPsegments=\count319
+\nofMParguments=\count320
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count321
+\MPscratchDim=\dimen186
+\MPnumerator=\count322
+\makeMPintoPDFobject=\count323
+\everyMPtoPDFconversion=\toks35
 ) (c:/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -610,6 +639,8 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
+\c@lstlisting=\count324
+
 (c:/texlive/2024/texmf-dist/tex/latex/base/report.cls
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
@@ -617,7 +648,7 @@ LaTeX Info: Redefining \mit on input line 578.
 <eszterhazy-logo-hu.pdf, id=108, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
-Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 22.
+Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 25.
 (pdftex.def)             Requested size: 256.07907pt x 88.0427pt.
 
 
@@ -649,15 +680,15 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc)
 <ArduinoFamily.png, id=163, 770.88pt x 380.17032pt>
 File: ArduinoFamily.png Graphic file (type png)
 <use ArduinoFamily.png>
-Package pdftex.def Info: ArduinoFamily.png  used on input line 57.
+Package pdftex.def Info: ArduinoFamily.png  used on input line 60.
 (pdftex.def)             Requested size: 396.91325pt x 195.74059pt.
 
 
 [5
 
  <./ArduinoFamily.png (PNG copy)>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 7
-7.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
+0.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -665,7 +696,7 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 <ATMEGA328P-PU.jpg, id=170, 433.62pt x 289.08pt>
 File: ATMEGA328P-PU.jpg Graphic file (type jpg)
 <use ATMEGA328P-PU.jpg>
-Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 84.
+Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 87.
 (pdftex.def)             Requested size: 176.40439pt x 117.60165pt.
 
 
@@ -673,7 +704,7 @@ Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 84.
 <ArduinoParts.png, id=177, 770.88pt x 463.7325pt>
 File: ArduinoParts.png Graphic file (type png)
 <use ArduinoParts.png>
-Package pdftex.def Info: ArduinoParts.png  used on input line 96.
+Package pdftex.def Info: ArduinoParts.png  used on input line 99.
 (pdftex.def)             Requested size: 308.71106pt x 185.70906pt.
 
 
@@ -684,12 +715,12 @@ Package pdftex.def Info: ArduinoParts.png  used on input line 96.
 <ADNS9800base.jpg, id=195, 803.0pt x 803.0pt>
 File: ADNS9800base.jpg Graphic file (type jpg)
 <use ADNS9800base.jpg>
-Package pdftex.def Info: ADNS9800base.jpg  used on input line 120.
+Package pdftex.def Info: ADNS9800base.jpg  used on input line 123.
 (pdftex.def)             Requested size: 176.40439pt x 176.40323pt.
 <ADNS9800.jpg, id=196, 1172.38pt x 919.435pt>
 File: ADNS9800.jpg Graphic file (type jpg)
 <use ADNS9800.jpg>
-Package pdftex.def Info: ADNS9800.jpg  used on input line 129.
+Package pdftex.def Info: ADNS9800.jpg  used on input line 132.
 (pdftex.def)             Requested size: 220.50887pt x 172.92676pt.
 
 
@@ -699,13 +730,30 @@ Package pdftex.def Info: ADNS9800.jpg  used on input line 129.
 <szintilleszto.jpg, id=202, 762.85pt x 705.63625pt>
 File: szintilleszto.jpg Graphic file (type jpg)
 <use szintilleszto.jpg>
-Package pdftex.def Info: szintilleszto.jpg  used on input line 138.
+Package pdftex.def Info: szintilleszto.jpg  used on input line 141.
 (pdftex.def)             Requested size: 308.71106pt x 285.55501pt.
 
 
 [10 <./ADNS9800.jpg> <./szintilleszto.jpg>]
+(c:/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/05/25 1.10b listings language file
+)
+(c:/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/05/25 1.10b listings language file
+)
+(c:/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 150.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 15
+0.
 
-[11]
+(c:/texlive/2024/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+
+[11{c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}]
 4. fejezet.
 
 
@@ -716,26 +764,12 @@ Package pdftex.def Info: szintilleszto.jpg  used on input line 138.
 [13
 
 ]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-71.
- (c:/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Overfull \hbox (0.73772pt too wide) in paragraph at lines 171--172
-[][]\T1/lmr/m/n/12 2.1[]. áb-ra: []$\T1/lmtt/m/it/12 https : / / predictabledes
-igns . com / wp-[]content / uploads / 2017 /
- []
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 198.
 
-
-Overfull \hbox (18.00435pt too wide) in paragraph at lines 173--174
-[][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/lmtt/m/it/12 https : / / www . inf . u-
-[]szeged . hu / ~makan / tananyagok / wp-[]content /
- []
-
-
-Overfull \hbox (0.18771pt too wide) in paragraph at lines 174--175
-[][]\T1/lmr/m/n/12 3.1[]. áb-ra: []$\T1/lmtt/m/it/12 https : / / www . sicstock
- . com / cdn / shop / products / 551554 . jpg ?
+Overfull \hbox (50.7944pt too wide) in paragraph at lines 200--201
+[][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . inf . u-[
+]szeged . hu / ~makan / tananyagok / wp-[]content /
  []
 
 
@@ -743,23 +777,23 @@ Overfull \hbox (0.18771pt too wide) in paragraph at lines 174--175
 [14
 
 ]
-<nyilatkozat.pdf, id=241, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=263, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 186.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 213.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 186.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 213.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=244, page=1, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=266, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 186.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 213.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 186.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 213.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
@@ -768,17 +802,17 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 186.
 ]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 186.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 213.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 186.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 213.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 186.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 213.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [16
 
@@ -791,22 +825,23 @@ Package rerunfilecheck Info: File `FX0W53.out' has not changed.
 (rerunfilecheck)             Checksum: BB993F983C505EDE2E5495B421975670;4706.
  ) 
 Here is how much of TeX's memory you used:
- 15115 strings out of 473579
- 242157 string characters out of 5732263
- 663075 words of memory out of 5000000
- 37720 multiletter control sequences out of 15000+600000
- 618561 words of font info for 86 fonts, out of 8000000 for 9000
+ 17203 strings out of 473579
+ 270644 string characters out of 5732263
+ 932621 words of memory out of 5000000
+ 39759 multiletter control sequences out of 15000+600000
+ 619600 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,17n,93p,670b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,17n,93p,670b,1606s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
 r8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive
-/2024/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on FX0W53.pdf (16 pages, 1196555 bytes).
+/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2024/texmf-dist
+/fonts/type1/urw/courier/ucrro8a.pfb>
+Output written on FX0W53.pdf (16 pages, 1205720 bytes).
 PDF statistics:
- 314 PDF objects out of 1000 (max. 8388607)
- 265 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
+ 346 PDF objects out of 1000 (max. 8388607)
+ 295 compressed objects within 3 object streams
+ 73 named destinations out of 1000 (max. 500000)
  264 words of extra memory for PDF output out of 10000 (max. 10000000)
 
