@@ -161,53 +161,36 @@ void performStartup(void){
   Serial.println("Szenzor indul....");
 }
 void sendFrame() {
-    // Serial.println("Capturing frame: "); 
-  // send instructions to the adns to capture a frame. 
   adns_write_reg(REG_Frame_Capture,0x93);
   delayMicroseconds(120); 
   adns_write_reg(REG_Frame_Capture,0xc5);
-  delayMicroseconds(120);
- 
-
-  // wait two frames 
-  //adns_com_end(); 
-  // lower this value to increase the frame rate of the incoming data.
-  delay(1); // assuming a very slow frame rate ~200Hz
+  delayMicroseconds(120); 
+  delay(1); 
   adns_com_begin(); 
-
-  delayMicroseconds(100); //TsRAD
-
-  // wait for adns to signal that it is ready to transfer data. 
+  delayMicroseconds(100); 
   byte readys = 0;
   while(readys == 0){
     SPI.transfer(REG_Motion & 0x7f);
-    delayMicroseconds(100); // tSRAD
+    delayMicroseconds(100); 
     readys = SPI.transfer(0); 
     readys = readys & 1;
     delayMicroseconds(20);
   }
-
-    // prepare to read the pixel burst register continuously.
-    SPI.transfer(REG_Pixel_Burst & 0x7f); 
-    delayMicroseconds(100); // tSRAD
-    Serial.print("FRAME:");
-    for (int i = 0;i<900;i++){
-      byte pixelValue = SPI.transfer(0);  // Pixel beolvasása
-      Serial.print(pixelValue);
-      Serial.print(" ");
-    }
-
-  delayMicroseconds(15);
-  // end operation. 
-  adns_com_end();
-  //delayMicroseconds(100); // time to wait before another frame can be captured.  
+  SPI.transfer(REG_Pixel_Burst & 0x7f); 
+  delayMicroseconds(100); 
+  Serial.print("FRAME:");
+  for (int i = 0;i<900;i++){
+    byte pixelValue = SPI.transfer(0);  
+    Serial.print(pixelValue);
+    Serial.print(" ");
+  }
+  delayMicroseconds(15); 
+  adns_com_end();  
   delayMicroseconds(5); 
   Serial.println();
-
   adns_write_reg(REG_Power_Up_Reset, 0x5A);
   delay(50);
   adns_write_reg(REG_LASER_CTRL0, 0x00);
-
 }
 
 int row=0;

@@ -2,7 +2,7 @@
 \usepackage[T1]{fontenc}
 \PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
 \usepackage[magyar]{babel}
-\usepackage{mathtools,amssymb,amsthm,pdfpages,listings}
+\usepackage{mathtools,amssymb,amsthm,pdfpages,listings,multicol}
 \footnotestyle{rule=fourth}
 
 \newtheorem{tetel}{Tétel}[chapter]
@@ -125,7 +125,7 @@ Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800 lézere
 	\label{fig:adns9800base}
 \end{figure}
 
-Az általam választott szenzor már nyáklappal volt ellátva így azzal nem volt teendőm. Ezáltal egyszerűbb volt a bekötése is, és az elhelyezése.
+Az általam választott szenzor már nyáklappal volt ellátva így azzal nem volt teendőm. Ezáltal egyszerűbb volt a bekötése is, és az elhelyezése is.
 
 \begin{figure}[th!]
 	\centering
@@ -138,12 +138,12 @@ Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai 
 
 \begin{figure}[th!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{szintilleszto}
+	\includegraphics[width=0.6\linewidth]{szintilleszto}
 	\caption[Logikai szintillesztő]{Két irányú logikai szintillesztő}
 	\label{fig:szintilleszto}
 \end{figure}
 \subsection{Adatok beolvasása}
-A képalkotás közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
+Az adatok beolvasása közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
 A működése a következő lépésekből áll:
 \begin{enumerate}
 	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. A firmware feltöltését \aref{upload-firmware-code}. számú kód mutatja.
@@ -165,18 +165,55 @@ A működése a következő lépésekből áll:
 			adns_com_end();
 		}
 	\end{lstlisting}
-	
-	\item Majd a \textbf{sendFrame()} metódust meghívva készítünk egy képet a szenzorral. Amit a soros adatátviteli protokollal (SPI) kiolvasunk és eltároljuk. Az SPI kommunikáció négy vezetéket használ: 
+	\item Majd a \textbf{sendFrame()} metódust meghívva készítünk egy képet a szenzorral. Amit egy nagy sebességű, full--duplex kommunikációs protokollal (Serial Peripheral Interface~--~SPI) kiolvasunk és eltároljuk, ahol a kommunikáció egy órajel vezérelt mechanizmussal működik. Az SPI kommunikáció négy vezetéket használ: 
 	\begin{itemize}
 		\item \textbf{MOSI }(Master Out, Slave In): Az adatok a mikrokontroller felől a szenzor felé mennek.
 		\item \textbf{MISO }(Master In, Slave Out): Az adatok a szenzor felől mennek az Arduino felé.
 		\item \textbf{SCLK }(Serial Clock): Az órajel, amelyet az Arduino generál.
 		\item \textbf{CS }(Chip Select): Az adott szenzort választja ki a kommunikációhoz.
 	\end{itemize}
-	
+	\footnotesize{
+	\begin{lstlisting}[language=Arduino,label=sendFrame,caption=sendFrame metódus]
+		void sendFrame() {
+			adns_write_reg(REG_Frame_Capture,0x93);
+			delayMicroseconds(120); 
+			adns_write_reg(REG_Frame_Capture,0xc5);
+			delayMicroseconds(120); 
+			delay(1); 
+			adns_com_begin(); 
+			delayMicroseconds(100); 
+			byte readys = 0;
+			while(readys == 0){
+				SPI.transfer(REG_Motion & 0x7f);
+				delayMicroseconds(100); 
+				readys = SPI.transfer(0); 
+				readys = readys & 1;
+				delayMicroseconds(20);
+			}
+			SPI.transfer(REG_Pixel_Burst & 0x7f); 
+			delayMicroseconds(100); 
+			Serial.print("FRAME:");
+			for (int i = 0;i<900;i++){
+				byte pixelValue = SPI.transfer(0);  
+				Serial.print(pixelValue);
+				Serial.print(" ");
+			}
+			delayMicroseconds(15); 
+			adns_com_end();  
+			delayMicroseconds(5); 
+			Serial.println();
+			adns_write_reg(REG_Power_Up_Reset, 0x5A);
+			delay(50);
+			adns_write_reg(REG_LASER_CTRL0, 0x00);
+		}
+	\end{lstlisting}
+	}
+	A metódus lényege, hogy bele írunk a szenzor REG\_Frame\_Capture regiszterébe ezáltal az készít egy képet. Az SPI kapcsolaton keresztül elküldi az Arduino számára, amely már egyből továbbítja is az adatot a soros porton keresztül a C\# alkalmazás felé.
+	%%végén nem biztos hogy kell az ujraindítás és a laser cucc
 \end{enumerate}
 
 \subsection{Szenzor mozgása}
+A szenzort két motor fogja mozgatni az egyik vízszintesen a másik függőlegesen. 
 \section{Adatok továbbítása a Visual Studio felé}
 arduino felől rs32 és a studio felé pedig serial
 \section{Hardveres bekötés}
