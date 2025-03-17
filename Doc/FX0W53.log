@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  17 MAR 2025 15:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  17 MAR 2025 20:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -553,7 +553,16 @@ Package: multicol 2024/05/23 v1.9h multicolumn formatting (FMi)
 \colbreak@box=\box104
 \mc@col@check@num=\count325
 )
-\c@tetel=\count326
+(c:/texlive/2024/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip64
+\enit@outerparindent=\dimen194
+\enit@toks=\toks34
+\enit@inbox=\box105
+\enit@count@id=\count326
+\enitdp@description=\count327
+)
+\c@tetel=\count328
 
 (./arduinoLanguage.tex (c:/texlive/2024/texmf-dist/tex/latex/psnfss/courier.sty
 Package: courier 2020/03/25 PSNFSS-v9.3 (WaS) 
@@ -566,8 +575,8 @@ Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 ))
 (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count327
-\l__pdf_internal_box=\box105
+\l__color_backend_stack_int=\count329
+\l__pdf_internal_box=\box106
 )
 (./FX0W53.aux)
 \openout1 = `FX0W53.aux'.
@@ -678,17 +687,17 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 
 (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count328
-\scratchdimen=\dimen194
-\scratchbox=\box106
-\nofMPsegments=\count329
-\nofMParguments=\count330
-\everyMPshowfont=\toks34
-\MPscratchCnt=\count331
-\MPscratchDim=\dimen195
-\MPnumerator=\count332
-\makeMPintoPDFobject=\count333
-\everyMPtoPDFconversion=\toks35
+\scratchcounter=\count330
+\scratchdimen=\dimen195
+\scratchbox=\box107
+\nofMPsegments=\count331
+\nofMParguments=\count332
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count333
+\MPscratchDim=\dimen196
+\MPnumerator=\count334
+\makeMPintoPDFobject=\count335
+\everyMPtoPDFconversion=\toks36
 ) (c:/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -710,7 +719,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-\c@lstlisting=\count334
+\c@lstlisting=\count336
 
 (c:/texlive/2024/texmf-dist/tex/latex/base/report.cls
 LaTeX Info: Redefining \cal on input line 577.
@@ -826,9 +835,13 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 
 [11{c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}]
 
-[12]
+[12
 
-[13]
+]
+
+[13
+
+]
 4. fejezet.
 
 
@@ -840,9 +853,9 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 242.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 246.
 
-Overfull \hbox (50.7944pt too wide) in paragraph at lines 244--245
+Overfull \hbox (50.7944pt too wide) in paragraph at lines 248--249
 [][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . inf . u-[
 ]szeged . hu / ~makan / tananyagok / wp-[]content /
  []
@@ -852,23 +865,23 @@ Overfull \hbox (50.7944pt too wide) in paragraph at lines 244--245
 [16
 
 ]
-<nyilatkozat.pdf, id=307, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=311, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 257.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 261.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 257.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 261.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=310, page=1, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=314, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 257.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 261.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 257.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 261.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
@@ -877,17 +890,17 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 257.
 ]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 257.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 261.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 257.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 261.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 257.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 261.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [18
 
@@ -896,29 +909,39 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 257.
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
-Package rerunfilecheck Info: File `FX0W53.out' has not changed.
-(rerunfilecheck)             Checksum: 206FCDC5F8C0BB1B3481424FDB19C0FC;4723.
+
+
+Package rerunfilecheck Warning: File `FX0W53.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `FX0W53.out':
+(rerunfilecheck)             Before: 206FCDC5F8C0BB1B3481424FDB19C0FC;4723
+(rerunfilecheck)             After:  E70E679A2A1BCDEE64DDA73B4EB51BC9;4401.
  ) 
 Here is how much of TeX's memory you used:
- 17414 strings out of 473579
- 273927 string characters out of 5732263
- 1021451 words of memory out of 5000000
- 39928 multiletter control sequences out of 15000+600000
- 623832 words of font info for 94 fonts, out of 8000000 for 9000
+ 17745 strings out of 473579
+ 279621 string characters out of 5732263
+ 1028079 words of memory out of 5000000
+ 40252 multiletter control sequences out of 15000+600000
+ 623211 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,17n,93p,775b,2208s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
-/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
-/type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
-r12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/
-2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/fo
-nts/type1/urw/courier/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/co
-urier/ucrr8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pf
-b>
-Output written on FX0W53.pdf (18 pages, 1251852 bytes).
+ 84i,17n,93p,775b,1741s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{subsection.3.1.4} has been referenced but does not 
+exist, replaced by a fixed one
+
+<c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024/t
+exmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts/t
+ype1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr1
+2.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/20
+24/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/font
+s/type1/urw/courier/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/cour
+ier/ucrr8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
+Output written on FX0W53.pdf (18 pages, 1245249 bytes).
 PDF statistics:
- 403 PDF objects out of 1000 (max. 8388607)
- 345 compressed objects within 4 object streams
- 108 named destinations out of 1000 (max. 500000)
+ 409 PDF objects out of 1000 (max. 8388607)
+ 351 compressed objects within 4 object streams
+ 112 named destinations out of 1000 (max. 500000)
  264 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -2,7 +2,7 @@
 \usepackage[T1]{fontenc}
 \PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
 \usepackage[magyar]{babel}
-\usepackage{mathtools,amssymb,amsthm,pdfpages,listings,multicol}
+\usepackage{mathtools,amssymb,amsthm,pdfpages,listings,multicol,enumitem}
 \footnotestyle{rule=fourth}
 
 \newtheorem{tetel}{Tétel}[chapter]
@@ -165,14 +165,9 @@ A működése a következő lépésekből áll:
 			adns_com_end();
 		}
 	\end{lstlisting}
-	\item Majd a \textbf{sendFrame()} metódust meghívva készítünk egy képet a szenzorral. Amit egy nagy sebességű, full--duplex kommunikációs protokollal (Serial Peripheral Interface~--~SPI) kiolvasunk és eltároljuk, ahol a kommunikáció egy órajel vezérelt mechanizmussal működik. Az SPI kommunikáció négy vezetéket használ: 
-	\begin{itemize}
-		\item \textbf{MOSI }(Master Out, Slave In): Az adatok a mikrokontroller felől a szenzor felé mennek.
-		\item \textbf{MISO }(Master In, Slave Out): Az adatok a szenzor felől mennek az Arduino felé.
-		\item \textbf{SCLK }(Serial Clock): Az órajel, amelyet az Arduino generál.
-		\item \textbf{CS }(Chip Select): Az adott szenzort választja ki a kommunikációhoz.
-	\end{itemize}
-	\footnotesize{
+	%%talán bele lehetne vinni a winforms-os elindítást
+	\clearpage
+	\item Majd a \textbf{sendFrame()} metódust meghívva készítünk egy képet a szenzorral. Amit egy nagy sebességű, full--duplex kommunikációs protokollal (Serial Peripheral Interface~--~SPI) kiolvasunk és eltároljuk, ahol a kommunikáció egy órajel vezérelt mechanizmussal működik. 
 	\begin{lstlisting}[language=Arduino,label=sendFrame,caption=sendFrame metódus]
 		void sendFrame() {
 			adns_write_reg(REG_Power_Up_Reset, 0x5A);
@@ -207,12 +202,21 @@ A működése a következő lépésekből áll:
 			Serial.println();
 		}
 	\end{lstlisting}
-	}
-	A metódus lényege, hogy bele írunk a szenzor REG\_Frame\_Capture regiszterébe ezáltal az készít egy képet. Az SPI kapcsolaton keresztül elküldi az Arduino számára, amely már egyből továbbítja is az adatot a soros porton keresztül a C\# alkalmazás felé.
+	\clearpage
+	A metódus működése:
+	\begin{enumerate}[label=\arabic*.]
+		\item \textbf{Szenzornak kiadjuk, hogy készítsen egy képet.} Ekkor bele írjuk a megfelelő értéket a REG\_Frame\_Capture regiszterbe. A szenzor ekkor egy 30\,x\,30 pixeles képkockát olvas be.
+		\item \textbf{Várunk amíg a szenzor elkészíti a képet.} Az Arduino egy ciklusban folyamatosan ellenőri a szenzor állapotát ezért amíg a szenzor nem jelzi, nem olvassuk ki az értéket.
+		\item \textbf{A szenzor továbbítja a képkockát.} A Pixel Burst regiszteren keresztül történik a képkocka eljuttatása a szenzortól az Arduino-ig SPI kapcsolattal. Az SPI kapcsolat négy vezetéken keresztül történik:
+		\begin{itemize}
+			\item \textbf{MOSI }(Master Out, Slave In): Az adatok a mikrokontroller felől a szenzor felé mennek.
+			\item \textbf{MISO }(Master In, Slave Out): Az adatok a szenzor felől mennek az Arduino felé.
+			\item \textbf{SCLK }(Serial Clock): Az órajel, amelyet az Arduino generál.
+			\item \textbf{CS }(Chip Select): Az adott szenzort választja ki a kommunikációhoz.
+		\end{itemize}
+		\item \textbf{Az Arduino továbbítja az adatokat a számítógépre.} Az adatok soros kommunikáción keresztül kerülnek a számítógépre ahol feldolgozom az adatokat. Minden képkocka ''FRAME:'' előtaggal kezdődik, hogy könnyebben elkülöníthetőek legyenek a képkockák.
+	\end{enumerate}
 \end{enumerate}
-\subsection{Adatok továbbítása a Visual Studio felé}
-	arduino felől rs32 és a studio felé pedig serial
-
 \subsection{Szenzor mozgása}
 A szenzort két motor fogja mozgatni az egyik vízszintesen a másik függőlegesen. 
 \section{Hardveres bekötés}
