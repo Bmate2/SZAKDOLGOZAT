@@ -161,6 +161,9 @@ void performStartup(void){
   Serial.println("Szenzor indul....");
 }
 void sendFrame() {
+  adns_write_reg(REG_Power_Up_Reset, 0x5A);
+  delay(50);
+  adns_write_reg(REG_LASER_CTRL0, 0x00);
   adns_write_reg(REG_Frame_Capture,0x93);
   delayMicroseconds(120); 
   adns_write_reg(REG_Frame_Capture,0xc5);
@@ -188,9 +191,8 @@ void sendFrame() {
   adns_com_end();  
   delayMicroseconds(5); 
   Serial.println();
-  adns_write_reg(REG_Power_Up_Reset, 0x5A);
-  delay(50);
-  adns_write_reg(REG_LASER_CTRL0, 0x00);
+  
+ 
 }
 
 int row=0;

@@ -146,7 +146,7 @@ Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai 
 Az adatok beolvasása közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
 A működése a következő lépésekből áll:
 \begin{enumerate}
-	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. A firmware feltöltését \aref{upload-firmware-code}. számú kód mutatja.
+	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni mert a szenzornak nincs állandó memóriája. A firmware feltöltését \aref{upload-firmware-code}. számú metódus végzi. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés hogy a szenzor helyesen értelmezze az adatokat.
 	\begin{lstlisting}[language=Arduino,label=upload-firmware-code,caption=Firmware feltöltése]
 		void adns_upload_firmware(){
 			adns_write_reg(REG_Configuration_IV, 0x02);	
@@ -175,6 +175,9 @@ A működése a következő lépésekből áll:
 	\footnotesize{
 	\begin{lstlisting}[language=Arduino,label=sendFrame,caption=sendFrame metódus]
 		void sendFrame() {
+			adns_write_reg(REG_Power_Up_Reset, 0x5A);
+			delay(50);
+			adns_write_reg(REG_LASER_CTRL0, 0x00);
 			adns_write_reg(REG_Frame_Capture,0x93);
 			delayMicroseconds(120); 
 			adns_write_reg(REG_Frame_Capture,0xc5);
@@ -202,20 +205,16 @@ A működése a következő lépésekből áll:
 			adns_com_end();  
 			delayMicroseconds(5); 
 			Serial.println();
-			adns_write_reg(REG_Power_Up_Reset, 0x5A);
-			delay(50);
-			adns_write_reg(REG_LASER_CTRL0, 0x00);
 		}
 	\end{lstlisting}
 	}
 	A metódus lényege, hogy bele írunk a szenzor REG\_Frame\_Capture regiszterébe ezáltal az készít egy képet. Az SPI kapcsolaton keresztül elküldi az Arduino számára, amely már egyből továbbítja is az adatot a soros porton keresztül a C\# alkalmazás felé.
-	%%végén nem biztos hogy kell az ujraindítás és a laser cucc
 \end{enumerate}
+\subsection{Adatok továbbítása a Visual Studio felé}
+	arduino felől rs32 és a studio felé pedig serial
 
 \subsection{Szenzor mozgása}
 A szenzort két motor fogja mozgatni az egyik vízszintesen a másik függőlegesen. 
-\section{Adatok továbbítása a Visual Studio felé}
-arduino felől rs32 és a studio felé pedig serial
 \section{Hardveres bekötés}
 smartdraw, circuitikz
 \chapter{Szoftveres megvalósítás}
