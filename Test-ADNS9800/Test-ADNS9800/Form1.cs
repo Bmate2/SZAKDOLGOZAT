@@ -142,8 +142,6 @@ namespace Test_ADNS9800
                     frameBitmap.SetPixel(x, y, color);
                 }
             }
-            //Bitmap adjusted = AdjustBrightnessContrast(frameBitmap, 50, 50);
-            //Bitmap unsharped = UnsharpMask(adjusted,2.5f,1,7);
 
             if (this.InvokeRequired)
             {
