@@ -34,7 +34,7 @@ Manapság a családi fotókat vagy régebbi képeket is célszerű digitalizáln
 
 Bár számos szkenner van a piacon, viszont ezek drágák és nagy helyigényűek. Ezért egy saját készítésű szkenner jobban illeszkedik majd a mi igényeinkhez, valamint sokkal olcsóbb mint egy boltban vett. 
 
-Ebben a projektben megmutatom hogy lehet egy egérszenzort felhasználni hivatalos iratok vagy egyéb más papír alapú dokumentumok szkennelésére. A szenzor két sínnel vízszintesen és függőlegesen fog mozogni, és soronként készíti el a képkockákat. Ezután egy C\# alkalmazás feldolgozza azokat és ki alakít belőlük egy nagy dokumentumot.
+Ebben a projektben megmutatom, hogy lehet egy egérszenzort felhasználni hivatalos iratok vagy egyéb más papír alapú dokumentumok szkennelésére. A szenzor két sínnel vízszintesen és függőlegesen fog mozogni, és soronként készíti el a képkockákat. Ezután egy C\# alkalmazás feldolgozza azokat és kialakít belőlük egy nagy dokumentumot.
 
 \chapter{Bevezető}
 
@@ -47,29 +47,20 @@ Emellett fontos számomra, hogy egy olyan eszközt alkossak, amelyet egy egyszer
 
 Valamint kihívást látok ebben a projektben, hogy hogyan is tudom ezt megvalósítani. Izgalmas feladat az, hogy ötvözzem az informatikát az elektronikával. Ez nem csak a szakmai tudásomat fejleszti, hanem egy olyan eredményt ad, amelyre büszke lehetek.
 \section{Célkitűzés}
-A szakdolgozatom célja, egy olyan szkenner létrehozása, amely egy egyszerű egérszenzort használ a dokumentumok fekete-fehér beolvasására. Az eszköz működésének alapja, hogy a szenzor monokróm felvételeket készít a dokumentumról, majd ezeket egy számítógépes programmal feldolgozom és összeállítom egy nagy dokumentummá. Mivel a szenzor csak egy 30\,x\,30-as képet rögzít így azt interpolációval felnövelem. Ezek az algoritmusok lehetővé teszik, hogy a képet megnöveljük kevés minőség vesztéssel. 
+A szakdolgozatom célja egy olyan szkenner létrehozása, amely egy egyszerű egérszenzort használ a dokumentumok fekete-fehér beolvasására. Az eszköz működésének alapja, hogy a szenzor monokróm felvételeket készít a dokumentumról, majd ezeket egy számítógépes programmal feldolgozom és összeállítom egy nagy dokumentummá. Mivel a szenzor csak egy 30\,x\,30-as képet rögzít így azt interpolációval felnövelem. Ezek az algoritmusok lehetővé teszik, hogy a képet megnöveljük kevés minőség vesztéssel. 
 
 A dolgozat eredményeként egy egyszerű és költséghatékony szkennert szeretnék létrehozni, amely hasznos és megkönnyíti az emberek életét.
 \chapter{Felhaszánlt technológiák}
 Ebben a fejezetben a szakdolgozatomban használt technológiákról és azok előnyeiről, fogok beszámolni.
 \section{Arduino}
 \subsection{Arduino platform bemutatása}
-Az Arduino\cite{arduino} egy nyílt forráskódú platform amiket az elektronikai projektekhez találtak ki, majd bekerült az oktatásba is, oktatási céllal. Sokan használják egyszerűbb feladatok automatizálására vagy akár okos otthon rendszerek kialakítására. Ezek mellett manapság már az ipari alkalmazásuk sem ritka. A működéséhez szükség van egy mikrokontrollerre valamint egy fejlesztő környezetre az Arduino IDE-re, amivel általában USB kábelen keresztül tudjuk átküldeni a programot a fizikai eszközre.
+Az Arduino\cite{arduino} egy nyílt forráskódú platform, amiket az elektronikai projektekhez találtak ki, majd bekerült az oktatásba is, oktatási céllal. Sokan használják egyszerűbb feladatok automatizálására vagy akár okos otthon rendszerek kialakítására. Ezek mellett manapság már az ipari alkalmazásuk sem ritka. A működéséhez szükség van egy mikrokontrollerre, valamint egy fejlesztő környezetre az Arduino IDE-re, amivel általában USB kábelen keresztül tudjuk átküldeni a programot a fizikai eszközre.
 \begin{figure}[th!]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ArduinoFamily}
 	\caption[Arduino család néhány fajtája]{Arduino család néhány fajtája}
 	\label{fig-arduinofamily}
 \end{figure}
-\subsection{Miért választottam az Arduino UNO-t?}
-Szakdolgozatom során az Arduino UNO mellett dönöttem mivel több olyan előnye van ami fontos a projektem során.
-\begin{itemize}
-	\item \textbf{1. Egyszerű és széles körűen elterjedt és támogatott.} Széles körben elérhetőek könyvtárak és példakódok amik megkönnyítik a fejlesztést. Valamint ez a legjobban dokumentált mikrokontroller a felhasználók között.
-	\item \textbf{2. Megfelelő teljesítmény és I/O portok.} Ez a mikrokontroller egy ATmega328P mikrovezérlőt használ mely megfelelő arra hogy kezeljem az egérszenzort és az RGB LED-et, valamint az adatok egyszerű továbbítására.
-	\item \textbf{3. Megbízhatóság és stabilitás.} A stabilitás a projektem szempontjából nagyon fontos hisz hosszabb távon kell hiba mentes működést nyújtania, hiszen dokumentumok szkennelése közben folyamatos adatgyűjtésre és adatátvitelre van szükségem.
-	\item \textbf{4. Költséghatékonyság.} Ez az egyik legolcsóbb fejlesztői eszköz, amely a kellő igényeket kielégíti a projektemhez.
-	\item \textbf{5. Egyszerű programozhatóság valamint egyszerű kapcsolat.} Könnyen programozható mikrokontroller az Arduino IDE szoftverrel, és egyszerűen USB-n keresztül lehet áttölteni rá programokat.
-\end{itemize}
 \subsection{Arduino UNO}
 Ez volt az egyik legelső és leginkább elterjedt mikrokontroller. Ezeknek az eszközöknek a szíve és lelke egy ATmega328P mikrovezérlő melyben található: 
 \begin{itemize}
@@ -88,21 +79,29 @@ Ez volt az egyik legelső és leginkább elterjedt mikrokontroller. Ezeknek az e
 	\caption[ATmega328P]{ATmega328P mikrovezérlő}
 	\label{fig:atmega328p-pu}
 \end{figure}
-\pagebreak
-Ezek segítségével tudunk szenzorjeleket mérni, nyomógombok vagy más beviteli eszközök állapotát beolvasni. Az UNO áramkör szerepe hogy a mikrovezérlőnek a lábait kivezesse. Így kényelmesebben és egyszerűbben rá tudjuk kötni a különböző eszközöket amiket vezérelni szeretnénk, vagy értékeket beolvasni róluk. 
+Ezek segítségével tudunk szenzorjeleket mérni, nyomógombok vagy más beviteli eszközök állapotát beolvasni. Az UNO áramkör szerepe hogy a mikrovezérlőnek a lábait kivezesse. Így kényelmesebben és egyszerűbben rá tudjuk kötni a különböző eszközöket, amiket vezérelni szeretnénk, vagy értékeket beolvasni róluk. 
 
 A mikrokontrollereken általában nem szokott futni operációs rendszer, ezért minden erőforrást a feladatra összpontosít és egy garantált maximális idő alatt képes végre hajtani a feladatokat. 
 
-Ahhoz hogy külső eszközöket és áramköröket rátudjunk csatlakoztatni, ismernünk kell az UNO lábkiosztását, amikre a kódból tudunk hivatkozni és vezérelni őket. Az Arduino UNO áramköri lapon fel van tüntetve, hogy melyik lábat melyik számmal érjük el. A kimenetek lehetnek digitálisak 0--13-ig vagy analóg bemenetek A0--A5-ig. Az analóg bemenetek működhetnek digitális ki vagy bemenetekként, ez attól függ, hogy hogy állítjuk be a kódban. Van fix feszültséget leadó kivezetés is amelyen akár 3.3\,V-ot vagy 5\,V-ot is leadhatunk. Ezeket szemlélteti \aref{fig-arduinoparts}. számú ábra.
+Ahhoz hogy külső eszközöket és áramköröket rátudjunk csatlakoztatni, ismernünk kell az UNO lábkiosztását, amikre a kódból tudunk hivatkozni és vezérelni őket. Az Arduino UNO áramköri lapon fel van tüntetve, hogy melyik lábat melyik számmal érjük el. A kimenetek lehetnek digitálisak 0--13-ig vagy analóg bemenetek A0--A5-ig. Az analóg bemenetek működhetnek digitális ki-~vagy bemenetekként, ez attól függ, hogy hogyan állítjuk be a kódban. Van fix feszültséget leadó kivezetés is amelyen akár 3.3\,V-ot vagy 5\,V-ot is leadhatunk. Ezeket szemlélteti \aref{fig-arduinoparts}. számú ábra.
 \begin{figure}[th!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{ArduinoParts}
 	\caption{Az Arduino UNO részei}
 	\label{fig-arduinoparts}
 \end{figure}
+\subsection{Miért választottam az Arduino UNO-t?}
+Szakdolgozatom során az Arduino UNO mellett dönöttem mivel több olyan előnye van ami fontos a projektem során.
+\begin{itemize}
+	\item \textbf{1. Egyszerű, széles körűen elterjedt és támogatott.} Széles körben elérhetőek könyvtárak és példakódok amik megkönnyítik a fejlesztést. Valamint ez a legjobban dokumentált mikrokontroller a felhasználók között.
+	\item \textbf{2. Megfelelő teljesítmény és I/O portok.} Ez a mikrokontroller egy ATmega328P mikrovezérlőt használ, mely megfelelő arra, hogy kezeljem az egérszenzort és az RGB LED-et, valamint az adatok egyszerű továbbítására.
+	\item \textbf{3. Megbízhatóság és stabilitás.} A stabilitás a projektem szempontjából nagyon fontos hisz hosszabb távon kell hiba mentes működést nyújtania, hiszen dokumentumok szkennelése közben folyamatos adatgyűjtésre és adatátvitelre van szükségem.
+	\item \textbf{4. Költséghatékonyság.} Ez az egyik legolcsóbb fejlesztői eszköz, amely a kellő igényeket kielégíti a projektemhez.
+	\item \textbf{5. Egyszerű programozhatóság, valamint egyszerű kapcsolat.} Könnyen programozható mikrokontroller az Arduino IDE szoftverrel, és egyszerűen USB-n keresztül lehet áttölteni rá programokat.
+\end{itemize}
 \subsection{Az Arduino alkalmazási területei}
 \begin{itemize}
-	\item \textbf{Kezdő projektekhez.} Az Arduino Board-ok tökéletesek a kezdők számára akik az elektronikát és az informatikát szeretnék ötvözni. A fejlesztő környezetet egyszerű kezelni valamint a könyvtárak és a példa kódok is nagyon sokat segítenek azoknak az embereknek akik elkezdenek érdeklődni az ilyen dolgok iránt.
+	\item \textbf{Kezdő projektekhez.} Az Arduino Board-ok tökéletesek a kezdők számára akik az elektronikát és az informatikát szeretnék ötvözni. A fejlesztő környezetet egyszerű kezelni, valamint a könyvtárak és a példa kódok is nagyon sokat segítenek azoknak az embereknek akik elkezdenek érdeklődni az ilyen dolgok iránt.
 	\item \textbf{Oktatási platform.} Könnyen kezelhetősége miatt szokták alkalmazni, hogy ezekkel az eszközökkel tanítsák meg az elektronika és az informatika működését.
 	\item \textbf{Robotikában.} A nagy vállalatok vezetői is felfedezték ezt a technológiát, és gyakran Arduino Board-okat használnak a robotok megvalósításához és vezérléséhez.
 	\item \textbf{Zene és művészet.} Az Arduino Board-okat szokták egyszerű hangszerek létrehozására is alkalmazni, vagy már meglévő hangszerekbe beépíteni elektronikus alkatrészként.
@@ -115,9 +114,9 @@ A projekt szoftveres részét Visual Studio\cite{visual-studio} fejlesztői kör
 A verziókövetéshez a Githubot\cite{github} használtam azon belül is a Github Desktop-ot, mellyel könnyen tudtam több platformon is dolgozni a projekten, valamint ha valamit elrontottam könnyen vissza tudtam állítani a projektet egy korábbi verzióra.
 \chapter{Hardveres megvalósítás}
 \section{ADNS-9800 szenzor}
-Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800 lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége, és azért volt megfelelő számomra mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamera. Valamint gyors képfeldolgozási képességgel rendelkezik, ezért alkalmas dokumentumok beolvasására. 
+Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800 lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége, és azért volt megfelelő számomra, mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamerát, valamint gyors képfeldolgozási képességgel rendelkezik, ezért alkalmas dokumentumok beolvasására. 
 \subsection{Működése}
- Egy beépített lézer meg világítja a szenzor alatt lévő felületet majd a lencse készít egy képet. A beépített kis processzor dolgozza fel ezeket az adatokat és számítja ki, hogy az eszköz milyen irányba mozdult el. 
+ Egy beépített lézer megvilágítja a szenzor alatt lévő felületet, majd a lencse készít egy képet. A beépített kis processzor dolgozza fel ezeket az adatokat, és számítja ki, hogy az eszköz milyen irányba mozdult el. 
 \begin{figure}[th!]
 	\centering
 	\includegraphics[width=0.4\linewidth]{ADNS9800base}
@@ -125,7 +124,7 @@ Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800 lézere
 	\label{fig:adns9800base}
 \end{figure}
 
-Az általam választott szenzor már nyáklappal volt ellátva így azzal nem volt teendőm. Ezáltal egyszerűbb volt a bekötése is, és az elhelyezése is.
+Az általam választott szenzor már nyáklappal volt ellátva így azzal nem volt teendőm. Ezáltal egyszerűbb volt a bekötése és az elhelyezése is.
 
 \begin{figure}[th!]
 	\centering
@@ -142,11 +141,12 @@ Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai 
 	\caption[Logikai szintillesztő]{Két irányú logikai szintillesztő}
 	\label{fig:szintilleszto}
 \end{figure}
+\pagebreak
 \subsection{Adatok beolvasása}
 Az adatok beolvasása közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
 A működése a következő lépésekből áll:
 \begin{enumerate}
-	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni mert a szenzornak nincs állandó memóriája. A firmware feltöltését \aref{upload-firmware-code}. számú metódus végzi. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés hogy a szenzor helyesen értelmezze az adatokat.
+	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni, mert a szenzornak nincs állandó memóriája. A firmware feltöltését \aref{upload-firmware-code}. számú metódus végzi. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés hogy a szenzor helyesen értelmezze az adatokat.
 	\begin{lstlisting}[language=Arduino,label=upload-firmware-code,caption=Firmware feltöltése]
 		void adns_upload_firmware(){
 			adns_write_reg(REG_Configuration_IV, 0x02);	
@@ -214,7 +214,7 @@ A működése a következő lépésekből áll:
 			\item \textbf{SCLK }(Serial Clock): Az órajel, amelyet az Arduino generál.
 			\item \textbf{CS }(Chip Select): Az adott szenzort választja ki a kommunikációhoz.
 		\end{itemize}
-		\item \textbf{Az Arduino továbbítja az adatokat a számítógépre.} Az adatok soros kommunikáción keresztül kerülnek a számítógépre ahol feldolgozom az adatokat. Minden képkocka ''FRAME:'' előtaggal kezdődik, hogy könnyebben elkülöníthetőek legyenek a képkockák.
+		\item \textbf{Az Arduino továbbítja az adatokat a számítógépre.} Az adatok soros kommunikáción keresztül kerülnek a számítógépre ahol az feldolgozza ezeket. Minden képkocka ''FRAME:'' előtaggal kezdődik, hogy könnyebben elkülöníthetőek legyenek a képkockák.
 	\end{enumerate}
 \end{enumerate}
 \subsection{Szenzor mozgása}

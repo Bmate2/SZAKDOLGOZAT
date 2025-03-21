@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  17 MAR 2025 20:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  21 MAR 2025 15:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -725,7 +725,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=108, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=104, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 25.
@@ -757,7 +757,7 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc)
 
 ]
 2. fejezet.
-<ArduinoFamily.png, id=163, 770.88pt x 380.17032pt>
+<ArduinoFamily.png, id=157, 770.88pt x 380.17032pt>
 File: ArduinoFamily.png Graphic file (type png)
 <use ArduinoFamily.png>
 Package pdftex.def Info: ArduinoFamily.png  used on input line 60.
@@ -767,52 +767,54 @@ Package pdftex.def Info: ArduinoFamily.png  used on input line 60.
 [5
 
  <./ArduinoFamily.png (PNG copy)>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
-0.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 7
+1.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<ATMEGA328P-PU.jpg, id=170, 433.62pt x 289.08pt>
+<ATMEGA328P-PU.jpg, id=165, 433.62pt x 289.08pt>
 File: ATMEGA328P-PU.jpg Graphic file (type jpg)
 <use ATMEGA328P-PU.jpg>
-Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 87.
+Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 78.
 (pdftex.def)             Requested size: 176.40439pt x 117.60165pt.
-
-
-[6{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-<ArduinoParts.png, id=177, 770.88pt x 463.7325pt>
+<ArduinoParts.png, id=167, 770.88pt x 463.7325pt>
 File: ArduinoParts.png Graphic file (type png)
 <use ArduinoParts.png>
-Package pdftex.def Info: ArduinoParts.png  used on input line 99.
+Package pdftex.def Info: ArduinoParts.png  used on input line 89.
 (pdftex.def)             Requested size: 308.71106pt x 185.70906pt.
 
 
-[7 <./ATMEGA328P-PU.jpg> <./ArduinoParts.png>]
+[6{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <./ATMEGA328P-PU.j
+pg>]
+
+[7 <./ArduinoParts.png>]
 
 [8]
 3. fejezet.
-<ADNS9800base.jpg, id=195, 803.0pt x 803.0pt>
+<ADNS9800base.jpg, id=190, 803.0pt x 803.0pt>
 File: ADNS9800base.jpg Graphic file (type jpg)
 <use ADNS9800base.jpg>
-Package pdftex.def Info: ADNS9800base.jpg  used on input line 123.
+Package pdftex.def Info: ADNS9800base.jpg  used on input line 122.
 (pdftex.def)             Requested size: 176.40439pt x 176.40323pt.
-<ADNS9800.jpg, id=196, 1172.38pt x 919.435pt>
+<ADNS9800.jpg, id=191, 1172.38pt x 919.435pt>
 File: ADNS9800.jpg Graphic file (type jpg)
 <use ADNS9800.jpg>
-Package pdftex.def Info: ADNS9800.jpg  used on input line 132.
+Package pdftex.def Info: ADNS9800.jpg  used on input line 131.
 (pdftex.def)             Requested size: 220.50887pt x 172.92676pt.
 
 
 [9
 
  <./ADNS9800base.jpg>]
-<szintilleszto.jpg, id=202, 762.85pt x 705.63625pt>
+<szintilleszto.jpg, id=197, 762.85pt x 705.63625pt>
 File: szintilleszto.jpg Graphic file (type jpg)
 <use szintilleszto.jpg>
-Package pdftex.def Info: szintilleszto.jpg  used on input line 141.
+Package pdftex.def Info: szintilleszto.jpg  used on input line 140.
 (pdftex.def)             Requested size: 264.61333pt x 244.75835pt.
 
+
+[10 <./ADNS9800.jpg> <./szintilleszto.jpg>]
 (c:/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/05/25 1.10b listings language file
 )
@@ -822,8 +824,6 @@ File: lstlang1.sty 2024/05/25 1.10b listings language file
 (c:/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
 )
-
-[10 <./ADNS9800.jpg> <./szintilleszto.jpg>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 150.
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 15
@@ -865,7 +865,7 @@ Overfull \hbox (50.7944pt too wide) in paragraph at lines 248--249
 [16
 
 ]
-<nyilatkozat.pdf, id=311, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=306, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
 Package pdftex.def Info: nyilatkozat.pdf  used on input line 261.
@@ -874,7 +874,7 @@ File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
 Package pdftex.def Info: nyilatkozat.pdf  used on input line 261.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=314, page=1, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=309, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
 Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 261.
@@ -909,39 +909,29 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 261.
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
-
-
-Package rerunfilecheck Warning: File `FX0W53.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `FX0W53.out':
-(rerunfilecheck)             Before: 206FCDC5F8C0BB1B3481424FDB19C0FC;4723
-(rerunfilecheck)             After:  E70E679A2A1BCDEE64DDA73B4EB51BC9;4401.
+Package rerunfilecheck Info: File `FX0W53.out' has not changed.
+(rerunfilecheck)             Checksum: A34CA8C031D08CE1693CDCD7576E2570;4401.
  ) 
 Here is how much of TeX's memory you used:
- 17745 strings out of 473579
- 279621 string characters out of 5732263
- 1028079 words of memory out of 5000000
- 40252 multiletter control sequences out of 15000+600000
+ 17743 strings out of 473579
+ 279587 string characters out of 5732263
+ 1027307 words of memory out of 5000000
+ 40251 multiletter control sequences out of 15000+600000
  623211 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,17n,93p,775b,1741s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{subsection.3.1.4} has been referenced but does not 
-exist, replaced by a fixed one
-
-<c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024/t
-exmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts/t
-ype1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr1
-2.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/20
-24/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/font
-s/type1/urw/courier/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/cour
-ier/ucrr8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on FX0W53.pdf (18 pages, 1245249 bytes).
+ 84i,17n,93p,776b,1741s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
+/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
+/type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
+r12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/
+2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/fo
+nts/type1/urw/courier/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/co
+urier/ucrr8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pf
+b>
+Output written on FX0W53.pdf (18 pages, 1245197 bytes).
 PDF statistics:
- 409 PDF objects out of 1000 (max. 8388607)
- 351 compressed objects within 4 object streams
- 112 named destinations out of 1000 (max. 500000)
- 264 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 404 PDF objects out of 1000 (max. 8388607)
+ 346 compressed objects within 4 object streams
+ 111 named destinations out of 1000 (max. 500000)
+ 256 words of extra memory for PDF output out of 10000 (max. 10000000)
 
