@@ -34,7 +34,7 @@ namespace Test_ADNS9800
         
         private void InitializeSerialPort()
         {
-            serialPort = new SerialPort("COM3", 115200);
+            serialPort = new SerialPort("COM4", 115200);
             serialPort.DataReceived += SerialPort_DataReceived;
             serialPort.Open();
             serialPort.Write("reset");
@@ -66,9 +66,16 @@ namespace Test_ADNS9800
             {
                 int newlineIndex = buffer.ToString().IndexOf("\n");
                 string fullLine = buffer.ToString().Substring(0, newlineIndex).Trim(); 
-                buffer.Remove(0, newlineIndex + 1);
+                buffer.Remove(0, newlineIndex + 1); 
 
-                InvokeIfRequired(() => listBox1.Items.Add($"Beérkező sor: {fullLine}"));
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action(() => listBox1.Items.Add($"Beérkező sor: {fullLine}")));
+                }
+                else
+                {
+                    listBox1.Items.Add($"Beérkező sor: {fullLine}");
+                }
 
                 if (fullLine.StartsWith("FRAME:"))
                 {
@@ -77,22 +84,14 @@ namespace Test_ADNS9800
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
                         int[] frameData = Array.ConvertAll(pixels, int.Parse);
-
-                        for (int i = 0; i < frameData.Length; i++)
-                        {
-                            frameData[i]= (int)(frameData[i] * 255.0 / 127.0);
-                            
-                            if (frameData[i] < 30)
-                                frameData[i] = 0;
-                            else if (frameData[i] > 220)
-                                frameData[i] = 255;
-                        }
-
+                        
                         DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
 
                         int[] upscaled = resizer.BicubicResize(frameData);
 
                         DisplayFrame(upscaled, pictureBox2, FrameHeight*2, FrameWidth*2);
+
+                        
 
                         if (row >= listGrid.Count)
                         {
@@ -102,7 +101,14 @@ namespace Test_ADNS9800
                     }
                     else
                     {
-                        InvokeIfRequired(() => listBox1.Items.Add($"Hibás FRAME sor hossz: {pixels.Length}"));
+                        if (this.InvokeRequired)
+                        {
+                            this.Invoke(new Action(() => listBox1.Items.Add($"Hibás FRAME sor hossz: {pixels.Length}")));
+                        }
+                        else
+                        {
+                            listBox1.Items.Add($"Hibás FRAME sor hossz: {pixels.Length}");
+                        }
                     }
                     
                 }
@@ -120,6 +126,7 @@ namespace Test_ADNS9800
 
         }
 
+
         private void DisplayFrame(int[] frameData,PictureBox pictureBox,int height,int width)
         {
             Bitmap frameBitmap = new Bitmap(width, height);
@@ -129,19 +136,33 @@ namespace Test_ADNS9800
                 for (int x = 0; x < width; x++)
                 {
                     int pixelValue = frameData[y * width + x];
-                    Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
+                    Color color = Color.FromArgb(pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue, 
+                                                 pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue,
+                                                 pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue);
                     frameBitmap.SetPixel(x, y, color);
                 }
             }
 
-            InvokeIfRequired(() =>
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    pictureBox.Image = frameBitmap;
+                    pictureBox.Invalidate();
+                    pictureBox.Update();
+                }));
+            }
+            else
             {
                 pictureBox.Image = frameBitmap;
                 pictureBox.Invalidate();
                 pictureBox.Update();
-            });
-
+            }
         }
+
+
+
+
         private Bitmap matrixToBitmap(List<List<int[]>> bigGrid)
         {
             if (bigGrid.Count == 0 || bigGrid[0].Count == 0 || bigGrid[0][0] == null)
@@ -152,12 +173,9 @@ namespace Test_ADNS9800
             
             
             int width = bigGrid[0].Count*FrameWidth*2;
-            
+            MessageBox.Show("Width: " + width);
             int height = bigGrid.Count*FrameHeight*2;
-
-            InvokeIfRequired(() => MessageBox.Show(this, "Height: " + height + "\nWidth: " + width));
-
-            
+            MessageBox.Show("Height: " + height);
 
             Bitmap bmp = new Bitmap(width, height);
             for (int row = 0; row < bigGrid.Count; row++)
@@ -195,12 +213,11 @@ namespace Test_ADNS9800
 
                 string filePath = Path.Combine(folderPath);
                 matrixToBitmap(listGrid).Save(filePath + "\\frame.png", System.Drawing.Imaging.ImageFormat.Png);
-                InvokeIfRequired(() => MessageBox.Show(this, "A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information));
-                
+                MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                InvokeIfRequired(() => MessageBox.Show(this, $"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error));
+                MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -291,21 +308,9 @@ namespace Test_ADNS9800
             listBox1.Items.Clear();
         }
 
-        private void resetBtn_Click(object sender, EventArgs e)
-        {
-            if (serialPort.IsOpen)
-            {
-                serialPort.WriteLine("reset");
-                listBox1.Items.Clear();
-                listGrid.Clear();
-                row = 0;
-                resizer = new Bicubic(FrameWidth, FrameHeight, 2);
-            }
-        }
-
         #endregion
-
-
+        
+        
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (serialPort != null && serialPort.IsOpen)
@@ -315,15 +320,15 @@ namespace Test_ADNS9800
             }
         }
 
-        private void InvokeIfRequired(Action action)
+        private void resetBtn_Click(object sender, EventArgs e)
         {
-            if (this.InvokeRequired)
+            if (serialPort.IsOpen)
             {
-                this.Invoke(action);
-            }
-            else
-            {
-                action();
+                serialPort.WriteLine("reset");
+                listBox1.Items.Clear();
+                listGrid.Clear();
+                row = 0;
+                resizer = new Bicubic(FrameWidth, FrameHeight, 2);
             }
         }
     }
