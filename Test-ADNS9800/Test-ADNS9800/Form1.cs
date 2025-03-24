@@ -17,7 +17,6 @@ namespace Test_ADNS9800
         private const int FrameHeight = 30; 
         private StringBuilder buffer = new StringBuilder(); 
         private Bicubic resizer = new Bicubic(FrameWidth, FrameHeight, 2);
-        private Form form;
 
         int row = 0;
         int column = 0;
@@ -78,7 +77,17 @@ namespace Test_ADNS9800
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
                         int[] frameData = Array.ConvertAll(pixels, int.Parse);
-                        
+
+                        for (int i = 0; i < frameData.Length; i++)
+                        {
+                            int scaled = (int)(frameData[i] * 255.0 / 127.0);
+                            frameData[i] = Math.Min(Math.Max(scaled, 0), 255);
+                            if (frameData[i] < 30)
+                                frameData[i] = 0;
+                            else if (frameData[i] > 220)
+                                frameData[i] = 255;
+                        }
+
                         DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
 
                         int[] upscaled = resizer.BicubicResize(frameData);
@@ -120,9 +129,7 @@ namespace Test_ADNS9800
                 for (int x = 0; x < width; x++)
                 {
                     int pixelValue = frameData[y * width + x];
-                    Color color = Color.FromArgb(pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue, 
-                                                 pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue,
-                                                 pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue);
+                    Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
                     frameBitmap.SetPixel(x, y, color);
                 }
             }

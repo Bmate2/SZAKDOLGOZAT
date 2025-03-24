@@ -84,7 +84,7 @@ void adns_com_end(){
 byte adns_read_reg(byte reg_addr){
   adns_com_begin();
   SPI.transfer(reg_addr & 0x7f);
-  delayMicroseconds(200); // tSRAD
+  delayMicroseconds(200); 
   byte data = SPI.transfer(0);
   
   delayMicroseconds(1); 
@@ -161,14 +161,11 @@ void performStartup(void){
   Serial.println("Szenzor indul....");
 }
 void sendFrame() {
-  adns_write_reg(REG_Power_Up_Reset, 0x5A);
-  delay(50);
-  adns_write_reg(REG_LASER_CTRL0, 0x00);
   adns_write_reg(REG_Frame_Capture,0x93);
   delayMicroseconds(120); 
   adns_write_reg(REG_Frame_Capture,0xc5);
-  delayMicroseconds(120); 
-  delay(1); 
+  delayMicroseconds(120);
+ 
   adns_com_begin(); 
   delayMicroseconds(100); 
   byte readys = 0;
@@ -192,6 +189,9 @@ void sendFrame() {
   delayMicroseconds(5); 
   Serial.println();
   
+  adns_write_reg(REG_Power_Up_Reset, 0x5A);
+  delay(50);
+  adns_write_reg(REG_LASER_CTRL0, 0x00);
  
 }
 
