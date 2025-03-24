@@ -89,9 +89,8 @@ namespace Test_ADNS9800
 
                         int[] upscaled = resizer.BicubicResize(frameData);
 
-                        DisplayFrame(upscaled, pictureBox2, FrameHeight*2, FrameWidth*2);
+                        DisplayFrame(upscaled, pictureBox2, FrameHeight * 2, FrameWidth * 2);
 
-                        
 
                         if (row >= listGrid.Count)
                         {
@@ -173,11 +172,17 @@ namespace Test_ADNS9800
             
             
             int width = bigGrid[0].Count*FrameWidth*2;
-            MessageBox.Show("Width: " + width);
+            
             int height = bigGrid.Count*FrameHeight*2;
-            MessageBox.Show("Height: " + height);
-
-            Bitmap bmp = new Bitmap(width, height);
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => MessageBox.Show(this, "Height: " + height + "\nWidth: " + width)));
+            }
+            else
+            {
+                MessageBox.Show(this, "Height: " + height + "\nWidth: " + width);
+            }
+                Bitmap bmp = new Bitmap(width, height);
             for (int row = 0; row < bigGrid.Count; row++)
             {
                 for (int col = 0; col < bigGrid[row].Count; col++)
@@ -213,7 +218,16 @@ namespace Test_ADNS9800
 
                 string filePath = Path.Combine(folderPath);
                 matrixToBitmap(listGrid).Save(filePath + "\\frame.png", System.Drawing.Imaging.ImageFormat.Png);
-                MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action(() => MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+                }
+                else
+                {
+                    MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                
             }
             catch (Exception ex)
             {
