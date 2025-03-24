@@ -18,3 +18,13 @@ C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\D
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.exe
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.pdb
 C:\Users\Egyetem\Desktop\Szakdolgozat\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test_ADNS9800.Form1.resources
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\bin\Debug\Test-ADNS9800.exe.config
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\bin\Debug\Test-ADNS9800.exe
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\bin\Debug\Test-ADNS9800.pdb
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.csproj.AssemblyReference.cache
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test_ADNS9800.Form1.resources
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test_ADNS9800.Properties.Resources.resources
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.csproj.GenerateResource.cache
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.exe
+C:\Users\user\Documents\GitHub\SZAKDOGA\Test-ADNS9800\Test-ADNS9800\obj\Debug\Test-ADNS9800.pdb

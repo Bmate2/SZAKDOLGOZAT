@@ -116,7 +116,7 @@
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Szkenner";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
