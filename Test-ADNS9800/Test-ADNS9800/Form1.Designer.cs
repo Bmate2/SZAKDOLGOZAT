@@ -35,7 +35,6 @@
             this.deleteListBtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.resetBtn = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +52,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(581, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(758, 186);
+            this.listBox1.Size = new System.Drawing.Size(758, 355);
             this.listBox1.TabIndex = 1;
             // 
             // startButton
@@ -104,20 +103,11 @@
             this.resetBtn.UseVisualStyleBackColor = true;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
             // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(581, 192);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(758, 186);
-            this.listBox2.TabIndex = 7;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 423);
-            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.deleteListBtn);
@@ -142,7 +132,6 @@
         private System.Windows.Forms.Button deleteListBtn;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button resetBtn;
-        private System.Windows.Forms.ListBox listBox2;
     }
 }
 
