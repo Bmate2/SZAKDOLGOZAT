@@ -80,8 +80,8 @@ namespace Test_ADNS9800
 
                         for (int i = 0; i < frameData.Length; i++)
                         {
-                            int scaled = (int)(frameData[i] * 255.0 / 127.0);
-                            frameData[i] = Math.Min(Math.Max(scaled, 0), 255);
+                            frameData[i]= (int)(frameData[i] * 255.0 / 127.0);
+                            
                             if (frameData[i] < 30)
                                 frameData[i] = 0;
                             else if (frameData[i] > 220)
