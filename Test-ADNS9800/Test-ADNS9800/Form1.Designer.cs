@@ -35,6 +35,7 @@
             this.deleteListBtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.resetBtn = new System.Windows.Forms.Button();
+            this.pdfCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -103,11 +104,22 @@
             this.resetBtn.UseVisualStyleBackColor = true;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
             // 
+            // pdfCheckBox
+            // 
+            this.pdfCheckBox.AutoSize = true;
+            this.pdfCheckBox.Location = new System.Drawing.Point(419, 381);
+            this.pdfCheckBox.Name = "pdfCheckBox";
+            this.pdfCheckBox.Size = new System.Drawing.Size(79, 17);
+            this.pdfCheckBox.TabIndex = 7;
+            this.pdfCheckBox.Text = "PDF format";
+            this.pdfCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 423);
+            this.Controls.Add(this.pdfCheckBox);
             this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.deleteListBtn);
@@ -120,6 +132,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -132,6 +145,7 @@
         private System.Windows.Forms.Button deleteListBtn;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button resetBtn;
+        private System.Windows.Forms.CheckBox pdfCheckBox;
     }
 }
 

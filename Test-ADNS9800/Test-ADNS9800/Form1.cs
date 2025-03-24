@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Text;
 using System.Windows.Forms;
+using Aspose.Words;
 
 namespace Test_ADNS9800
 {
@@ -61,13 +62,13 @@ namespace Test_ADNS9800
             if (string.IsNullOrEmpty(data)) return;
 
             buffer.Append(data); 
-
-            while (buffer.ToString().Contains("\n"))
+            string bufferString = buffer.ToString();
+            int newlineIndex;
+            while ((newlineIndex=bufferString.IndexOf("\n"))!= -1)
             {
-                int newlineIndex = buffer.ToString().IndexOf("\n");
-                string fullLine = buffer.ToString().Substring(0, newlineIndex).Trim(); 
-                buffer.Remove(0, newlineIndex + 1); 
-
+                string fullLine = bufferString.Substring(0, newlineIndex).Trim(); 
+                buffer.Remove(0, newlineIndex + 1);
+                bufferString = bufferString.Substring(newlineIndex + 1);
                 if (this.InvokeRequired)
                 {
                     this.Invoke(new Action(() => listBox1.Items.Add($"Beérkező sor: {fullLine}")));
@@ -84,11 +85,8 @@ namespace Test_ADNS9800
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
                         int[] frameData = Array.ConvertAll(pixels, int.Parse);
-                        
                         DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
-
                         int[] upscaled = resizer.BicubicResize(frameData);
-
                         DisplayFrame(upscaled, pictureBox2, FrameHeight * 2, FrameWidth * 2);
 
 
@@ -122,7 +120,8 @@ namespace Test_ADNS9800
                     SaveDoc();
                 }
             }
-
+            buffer.Clear();
+            buffer.Append(bufferString);
         }
 
 
@@ -135,9 +134,9 @@ namespace Test_ADNS9800
                 for (int x = 0; x < width; x++)
                 {
                     int pixelValue = frameData[y * width + x];
-                    Color color = Color.FromArgb(pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue, 
-                                                 pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue,
-                                                 pixelValue < 25 ? 0 : (pixelValue > 230) ? 255 : pixelValue);
+                    if (pixelValue < 35) pixelValue = 0;
+                    if (pixelValue > 220) pixelValue = 255;
+                    Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
                     frameBitmap.SetPixel(x, y, color);
                 }
             }
@@ -208,31 +207,52 @@ namespace Test_ADNS9800
 
         private void SaveDoc()
         {
-            try
+            string folderPath = Path.Combine(Application.StartupPath, "SavedFrames");
+            if (!Directory.Exists(folderPath))
             {
-                string folderPath = Path.Combine(Application.StartupPath, "SavedFrames");
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
+                Directory.CreateDirectory(folderPath);
+            }
 
-                string filePath = Path.Combine(folderPath);
-                matrixToBitmap(listGrid).Save(filePath + "\\frame.png", System.Drawing.Imaging.ImageFormat.Png);
-                if (this.InvokeRequired)
+            string filePath = Path.Combine(folderPath);
+            try 
+            {
+                if (pdfCheckBox.Checked)
                 {
-                    this.Invoke(new Action(() => MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+                    var doc = new Document();
+                    var builder = new DocumentBuilder(doc);
+
+                    builder.InsertImage(matrixToBitmap(listGrid));
+                    doc.Save(filePath+"\\Document.pdf");
+                    if (this.InvokeRequired)
+                    {
+                        this.Invoke(new Action(() => MessageBox.Show("A pdf mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+                    }
+                    else
+                    {
+                        MessageBox.Show("A pdf mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                    matrixToBitmap(listGrid).Save(filePath + "\\frame.png", System.Drawing.Imaging.ImageFormat.Png);
+                    if (this.InvokeRequired)
+                    {
+                        this.Invoke(new Action(() => MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+                    }
+                    else
+                    {
+                        MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
-                
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
+            
+            
         }
 
 
@@ -298,9 +318,23 @@ namespace Test_ADNS9800
             return sharpened;
         }
 
+
         #endregion
 
         #region Buttons
+        private void resetBtn_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("reset");
+                listBox1.Items.Clear();
+                listGrid.Clear();
+                row = 0;
+                column = 0;
+                pdfCheckBox.Checked = false;
+                resizer = new Bicubic(FrameWidth, FrameHeight, 2);
+            }
+        }
         private void startButton_Click(object sender, EventArgs e)
         {
             if (serialPort.IsOpen)
@@ -334,16 +368,6 @@ namespace Test_ADNS9800
             }
         }
 
-        private void resetBtn_Click(object sender, EventArgs e)
-        {
-            if (serialPort.IsOpen)
-            {
-                serialPort.WriteLine("reset");
-                listBox1.Items.Clear();
-                listGrid.Clear();
-                row = 0;
-                resizer = new Bicubic(FrameWidth, FrameHeight, 2);
-            }
-        }
+        
     }
 }

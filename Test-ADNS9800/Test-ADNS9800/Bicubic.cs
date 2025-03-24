@@ -69,11 +69,11 @@ namespace Test_ADNS9800
             return 0;
         }
 
-        int Reflect(int value, int max)
+        private int Reflect(int i, int max)
         {
-            if (value < 0) return -value;
-            if (value >= max) return 2 * max - value - 1;
-            return value;
+            if (i < 0) return -i;
+            if (i >= max) return 2 * max - i - 1;
+            return i;
         }
     }
 }
