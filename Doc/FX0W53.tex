@@ -10,7 +10,8 @@
 \newtheorem{definicio}[tetel]{Definíció}
 \theoremstyle{remark}
 \newtheorem{megjegyzes}[tetel]{Megjegyzés}
-\input{arduinoLanguage.tex}  
+\input{arduinoLanguage.tex}
+\input{csharpLanguage.tex}
 \def\lstlistingname{kód}
 
 
@@ -221,14 +222,30 @@ A működése a következő lépésekből áll:
 A szenzort két motor fogja mozgatni az egyik vízszintesen a másik függőlegesen. 
 \section{Hardveres bekötés}
 smartdraw, circuitikz
+
 \chapter{Szoftveres megvalósítás}
 
-\section{Beolvasott értékek tárolása 2 dimenzós mátrixban}
-adatszeerkezet amiben a beolvasott képet tároljuk
-\section{Bikubik interpoláció}
-\subsection{Működése}
-Működésének alapjai, Matematikai leírása
-\section{Mátrix átalakítása képpé}
+%%\section{Felhasznált algoritmusok/metódusok}
+%%\section{Beolvasott értékek tárolása 2 dimenzós mátrixban}
+%%adatszeerkezet amiben a beolvasott képet tároljuk
+%%\section{Bikubik interpoláció}
+%%\subsection{Működése}
+%%Működésének alapjai, Matematikai leírása
+%%\section{Mátrix átalakítása képpé}
+
+\section{Az alap változók}
+A feldolgozó szoftver Serial porton kapja meg az adatokat az Arduino-tól. Azokat átalakítja egy Bitmap képpé és elmenti a currentFrame változóba. Van két darab konstans értékem az egyik a beérkező képkocka szélessége a másik pedig a magassága, mivel a beérkező képkocka 30\,x\,30 pixel ezért ez a két érték 30. Van egy buffer-em ahol a Serial porton beérkező adatokat tárolom, erre azért van szükség mert nem biztos, hogy egy sor át tud jönni egyszerre. Valamint van egy Bicubic osztály példányom amivel a Bikubik interpolációt végzem. Végül van egy row és egy column változóm ami annak segítségére szolgál, hogy összerakjam a képkockákat egy nagy dokumentummá.
+\begin{lstlisting}[language=CSharp]
+private SerialPort serialPort;
+private Bitmap currentFrame;
+private const int FrameWidth = 30; 
+private const int FrameHeight = 30; 
+private StringBuilder buffer = new StringBuilder(); 
+private Bicubic resizer = new Bicubic(FrameWidth, FrameHeight, 2);
+
+int row = 0;
+int column = 0;
+\end{lstlisting}
 
 
 
