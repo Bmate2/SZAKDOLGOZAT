@@ -16,8 +16,9 @@ namespace Test_ADNS9800
         private Bitmap currentFrame;
         private const int FrameWidth = 30; 
         private const int FrameHeight = 30; 
-        private StringBuilder buffer = new StringBuilder(); 
-        private Bicubic resizer = new Bicubic(FrameWidth, FrameHeight, 2);
+        private StringBuilder buffer = new StringBuilder();
+        private const int scale = 2;
+        private Bicubic resizer = new Bicubic(FrameWidth, FrameHeight, scale);
 
         int row = 0;
         int column = 0;
@@ -35,7 +36,7 @@ namespace Test_ADNS9800
         
         private void InitializeSerialPort()
         {
-            serialPort = new SerialPort("COM4", 115200);
+            serialPort = new SerialPort("COM3", 115200);
             serialPort.DataReceived += SerialPort_DataReceived;
             serialPort.Open();
             serialPort.Write("reset");
@@ -87,7 +88,7 @@ namespace Test_ADNS9800
                         int[] frameData = Array.ConvertAll(pixels, int.Parse);
                         DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
                         int[] upscaled = resizer.BicubicResize(frameData);
-                        DisplayFrame(upscaled, pictureBox2, FrameHeight * 2, FrameWidth * 2);
+                        DisplayFrame(upscaled, pictureBox2, FrameHeight * scale, FrameWidth * scale);
 
 
                         if (row >= listGrid.Count)
@@ -134,8 +135,8 @@ namespace Test_ADNS9800
                 for (int x = 0; x < width; x++)
                 {
                     int pixelValue = frameData[y * width + x];
-                    if (pixelValue < 35) pixelValue = 0;
-                    if (pixelValue > 220) pixelValue = 255;
+                    //if (pixelValue < 30) pixelValue = 0;
+                    //if (pixelValue > 225) pixelValue = 255;
                     Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
                     frameBitmap.SetPixel(x, y, color);
                 }
@@ -170,9 +171,9 @@ namespace Test_ADNS9800
             }
             
             
-            int width = bigGrid[0].Count*FrameWidth*2;
+            int width = bigGrid[0].Count*FrameWidth* scale;
             
-            int height = bigGrid.Count*FrameHeight*2;
+            int height = bigGrid.Count*FrameHeight*scale;
             if (this.InvokeRequired)
             {
                 this.Invoke(new Action(() => MessageBox.Show(this, "Height: " + height + "\nWidth: " + width)));
@@ -188,14 +189,14 @@ namespace Test_ADNS9800
                 {
                     int[] frameData = bigGrid[row][col];
 
-                    int startX = col * FrameWidth*2;
-                    int startY = row * FrameHeight*2;
+                    int startX = col * FrameWidth*scale;
+                    int startY = row * FrameHeight*scale;
 
-                    for (int y = 0; y < FrameHeight*2; y++)
+                    for (int y = 0; y < FrameHeight*scale; y++)
                     {
-                        for (int x = 0; x < FrameWidth*2; x++)
+                        for (int x = 0; x < FrameWidth*scale; x++)
                         {
-                            int pixelValue = frameData[y * (FrameWidth*2) + x];
+                            int pixelValue = frameData[y * (FrameWidth*scale) + x];
                             Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
                             bmp.SetPixel(startX + x, startY + y, color);
                         }
@@ -332,7 +333,7 @@ namespace Test_ADNS9800
                 row = 0;
                 column = 0;
                 pdfCheckBox.Checked = false;
-                resizer = new Bicubic(FrameWidth, FrameHeight, 2);
+                resizer = new Bicubic(FrameWidth, FrameHeight, scale);
             }
         }
         private void startButton_Click(object sender, EventArgs e)
