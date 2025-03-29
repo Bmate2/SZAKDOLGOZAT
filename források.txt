@@ -8,3 +8,5 @@ http://dx.doi.org/10.6084/m9.figshare.11971794.v1
 ADNS9800 szenzor:https://datasheet.octopart.com/ADNS-9800-Avago-datasheet-10666463.pdf
 	Tindie kép:https://cdn.tindiemedia.com/images/resize/VuAiDRygtQWCOde6ylqSNH0SRzk=/p/full-fit-in/1168x876/i/584034/products/2023-09-02T14%3A45%3A01.976Z-2014-04-20T19%2012%2049.170Z-RightSideUp.jpg?1693641442
 	Alap szenzor kép:https://www.sicstock.com/cdn/shop/products/551554.jpg?v=1544514465
+
+Motorvezérlés:https://docs.arduino.cc/learn/electronics/stepper-motors/

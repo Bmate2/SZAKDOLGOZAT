@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  27 MAR 2025 13:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.13)  29 MAR 2025 19:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -777,41 +777,47 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 <ATMEGA328P-PU.jpg, id=149, 433.62pt x 289.08pt>
 File: ATMEGA328P-PU.jpg Graphic file (type jpg)
 <use ATMEGA328P-PU.jpg>
-Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 79.
+Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 80.
 (pdftex.def)             Requested size: 176.40439pt x 117.60165pt.
-<ArduinoParts.png, id=151, 770.88pt x 463.7325pt>
-File: ArduinoParts.png Graphic file (type png)
-<use ArduinoParts.png>
-Package pdftex.def Info: ArduinoParts.png  used on input line 90.
-(pdftex.def)             Requested size: 308.71106pt x 185.70906pt.
+<arduino-nano-pinout.png, id=151, 1405.25pt x 1104.125pt>
+File: arduino-nano-pinout.png Graphic file (type png)
+<use arduino-nano-pinout.png>
+Package pdftex.def Info: arduino-nano-pinout.png  used on input line 93.
+(pdftex.def)             Requested size: 308.71106pt x 242.55444pt.
 
 
 [6{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <./ATMEGA328P-PU.j
 pg>]
+Overfull \hbox (4.29927pt too wide) in paragraph at lines 107--108
+[]\T1/lmr/bx/n/12 6. Egy-sze-r¶ prog-ra-moz-ha-tó-ság és csat-la-koz-ta-tás. \T
+1/lmr/m/n/12 Az Ar-du-i-no Na-no könnyen
+ []
 
-[7 <./ArduinoParts.png>]
+
+
+[7 <./arduino-nano-pinout.png>]
 
 [8]
 3. fejezet.
-<ADNS9800base.jpg, id=175, 803.0pt x 803.0pt>
+<ADNS9800base.jpg, id=174, 803.0pt x 803.0pt>
 File: ADNS9800base.jpg Graphic file (type jpg)
 <use ADNS9800base.jpg>
-Package pdftex.def Info: ADNS9800base.jpg  used on input line 123.
+Package pdftex.def Info: ADNS9800base.jpg  used on input line 129.
 (pdftex.def)             Requested size: 176.40439pt x 176.40323pt.
-<ADNS9800.jpg, id=176, 1172.38pt x 919.435pt>
+<ADNS9800.jpg, id=175, 1172.38pt x 919.435pt>
 File: ADNS9800.jpg Graphic file (type jpg)
 <use ADNS9800.jpg>
-Package pdftex.def Info: ADNS9800.jpg  used on input line 132.
+Package pdftex.def Info: ADNS9800.jpg  used on input line 138.
 (pdftex.def)             Requested size: 220.50887pt x 172.92676pt.
 
 
 [9
 
  <./ADNS9800base.jpg>]
-<szintilleszto.jpg, id=182, 762.85pt x 705.63625pt>
+<szintilleszto.jpg, id=181, 762.85pt x 705.63625pt>
 File: szintilleszto.jpg Graphic file (type jpg)
 <use szintilleszto.jpg>
-Package pdftex.def Info: szintilleszto.jpg  used on input line 141.
+Package pdftex.def Info: szintilleszto.jpg  used on input line 147.
 (pdftex.def)             Requested size: 264.61333pt x 244.75835pt.
 
 
@@ -826,9 +832,9 @@ File: lstlang1.sty 2024/05/25 1.10b listings language file
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 151.
+nput line 157.
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 15
-1.
+7.
 
 (c:/texlive/2024/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -856,11 +862,16 @@ File: lstlang1.sty 2024/05/25 1.10b listings language file
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 262.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 267.
 
-Overfull \hbox (50.7944pt too wide) in paragraph at lines 264--265
-[][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . inf . u-[
-]szeged . hu / ~makan / tananyagok / wp-[]content /
+
+LaTeX Warning: Reference `fig-arduinoparts' on page 16 undefined on input line 
+269.
+
+
+Overfull \hbox (48.53044pt too wide) in paragraph at lines 269--270
+[][]\T1/lmr/m/n/12 . áb-ra: []$\T1/pcr/m/sl/12 https : / / www . inf . u-[]szeg
+ed . hu / ~makan / tananyagok / wp-[]content /
  []
 
 
@@ -868,23 +879,23 @@ Overfull \hbox (50.7944pt too wide) in paragraph at lines 264--265
 [16
 
 ]
-<nyilatkozat.pdf, id=302, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=300, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 277.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 282.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 277.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 282.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=305, page=1, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=303, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 277.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 277.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
@@ -893,17 +904,17 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 277.
 ]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 277.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 277.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 277.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [18
 
@@ -912,14 +923,18 @@ Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 277.
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `FX0W53.out' has not changed.
-(rerunfilecheck)             Checksum: EE67A64049C7791CC683519C0CF9DAFE;3652.
+(rerunfilecheck)             Checksum: 1849E8C6C69D9DA169E6F8637FCCAC35;3662.
  ) 
 Here is how much of TeX's memory you used:
- 17845 strings out of 473579
- 280941 string characters out of 5732263
- 1028565 words of memory out of 5000000
- 40340 multiletter control sequences out of 15000+600000
+ 17846 strings out of 473579
+ 281043 string characters out of 5732263
+ 1028561 words of memory out of 5000000
+ 40341 multiletter control sequences out of 15000+600000
  626199 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,93p,776b,1741s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -931,10 +946,10 @@ r12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/
 s/type1/public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courie
 r/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:
 /texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on FX0W53.pdf (18 pages, 1271561 bytes).
+Output written on FX0W53.pdf (18 pages, 1224322 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 345 compressed objects within 4 object streams
+ 403 PDF objects out of 1000 (max. 8388607)
+ 343 compressed objects within 4 object streams
  118 named destinations out of 1000 (max. 500000)
  232 words of extra memory for PDF output out of 10000 (max. 10000000)
 

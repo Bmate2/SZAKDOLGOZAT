@@ -62,43 +62,49 @@ Az Arduino\cite{arduino} egy nyílt forráskódú platform, amiket az elektronik
 	\caption[Arduino család néhány fajtája]{Arduino család néhány fajtája}
 	\label{fig-arduinofamily}
 \end{figure}
-\subsection{Arduino UNO}
-Ez volt az egyik legelső és leginkább elterjedt mikrokontroller. Ezeknek az eszközöknek a szíve és lelke egy ATmega328P mikrovezérlő melyben található: 
+\subsection{Arduino Nano}
+Elsősorban UNO-val terveztem elkészíteni ezt a projektet, de helyszűkében kénytelen voltam egy kisebb mikrokontroller után kutatni. Ekkor esett a választásom az Arduino Nano-ra. Az Arduino Nano az Arduino UNO kompaktabb változata, mely ugyanazt az ATmega328 mikrovezérlőt használja, így teljesítményében és képességeiben nagyon hasonló az UNO-hoz. A mikrovezérlő tartalmaz:
 \begin{itemize}
-	\item Processzor
-	\item Memória
-	\item Különböző perifériák:
+	\item Processzort
+	\item Memóriát
+	\item Perifériákat:
 	\begin{itemize}
 		\item Időzítő áramkörök
-		\item Analóg és digitális be és kimenetek
-		\item Kommunikációs perifériák és még sok egyéb
+		\item Analóg és digitális be- és kimenetek
+		\item Kommunikációs interfészek (UART, SPI, I2C) és egyéb funkciók
 	\end{itemize}
 \end{itemize}
+
 \begin{figure}[th!]
 	\centering
 	\includegraphics[width=0.4\linewidth]{ATMEGA328P-PU}
 	\caption[ATmega328P]{ATmega328P mikrovezérlő}
 	\label{fig:atmega328p-pu}
 \end{figure}
-Ezek segítségével tudunk szenzorjeleket mérni, nyomógombok vagy más beviteli eszközök állapotát beolvasni. Az UNO áramkör szerepe hogy a mikrovezérlőnek a lábait kivezesse. Így kényelmesebben és egyszerűbben rá tudjuk kötni a különböző eszközöket, amiket vezérelni szeretnénk, vagy értékeket beolvasni róluk. 
 
-A mikrokontrollereken általában nem szokott futni operációs rendszer, ezért minden erőforrást a feladatra összpontosít és egy garantált maximális idő alatt képes végre hajtani a feladatokat. 
+Ezek segítségével tudunk szenzorjeleket mérni, nyomógombok vagy más beviteli eszközök állapotát beolvasni. A Nano áramköri lap szerepe az, hogy a mikrovezérlő lábait kivezesse. Így kényelmesebben és egyszerűbben rá tudjuk kötni a különböző eszközöket, amiket vezérelni szeretnénk, vagy értékeket beolvasni róluk. 
 
-Ahhoz hogy külső eszközöket és áramköröket rátudjunk csatlakoztatni, ismernünk kell az UNO lábkiosztását, amikre a kódból tudunk hivatkozni és vezérelni őket. Az Arduino UNO áramköri lapon fel van tüntetve, hogy melyik lábat melyik számmal érjük el. A kimenetek lehetnek digitálisak 0--13-ig vagy analóg bemenetek A0--A5-ig. Az analóg bemenetek működhetnek digitális ki-~vagy bemenetekként, ez attól függ, hogy hogyan állítjuk be a kódban. Van fix feszültséget leadó kivezetés is amelyen akár 3.3\,V-ot vagy 5\,V-ot is leadhatunk. Ezeket szemlélteti \aref{fig-arduinoparts}. számú ábra.
+A mikrokontrollereken általában nem fut operációs rendszer, ezért minden erőforrást a feladatra összpontosít és egy garantált maximális idő alatt képes végre hajtani a feladatokat. 
+
+Ahhoz hogy külső eszközöket és áramköröket rátudjunk csatlakoztatni, ismernünk kell a Nano lábkiosztását, amikre a kódból tudunk hivatkozni és vezérelni őket, áramköri lapon fel van tüntetve, hogy melyik lábat melyik számmal érjük el.  A Nano-n 14 digitális ki- és bemenet található (D0–D13), valamint 8 analóg bemenet (A0–A7), melyek közül az A0–A5 lábak digitális bemenetként és kimenetként is használhatók. A Nano-n található továbbá fix 3.3,V és 5,V-os kimeneti feszültségű láb is. Ez a lábkiosztás látható \aref{fig:arduino-nano-pinout}. számű ábrán.
+
 \begin{figure}[th!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{ArduinoParts}
-	\caption{Az Arduino UNO részei}
-	\label{fig-arduinoparts}
+	\includegraphics[width=0.7\linewidth]{arduino-nano-pinout}
+	\caption[Nano felépítés]{Arduino Nano lábkiosztása}
+	\label{fig:arduino-nano-pinout}
 \end{figure}
-\subsection{Miért választottam az Arduino UNO-t?}
-Szakdolgozatom során az Arduino UNO mellett dönöttem mivel több olyan előnye van ami fontos a projektem során.
+
+\subsection{Miért választottam az Arduino Nano-t?}
+Szakdolgozatom során az Arduino Nano-t választottam, mivel több olyan előnye van, amelyek különösen fontosak a projektem szempontjából:
+
 \begin{itemize}
-	\item \textbf{1. Egyszerű, széles körűen elterjedt és támogatott.} Széles körben elérhetőek könyvtárak és példakódok amik megkönnyítik a fejlesztést. Valamint ez a legjobban dokumentált mikrokontroller a felhasználók között.
-	\item \textbf{2. Megfelelő teljesítmény és I/O portok.} Ez a mikrokontroller egy ATmega328P mikrovezérlőt használ, mely megfelelő arra, hogy kezeljem az egérszenzort és az RGB LED-et, valamint az adatok egyszerű továbbítására.
-	\item \textbf{3. Megbízhatóság és stabilitás.} A stabilitás a projektem szempontjából nagyon fontos hisz hosszabb távon kell hiba mentes működést nyújtania, hiszen dokumentumok szkennelése közben folyamatos adatgyűjtésre és adatátvitelre van szükségem.
-	\item \textbf{4. Költséghatékonyság.} Ez az egyik legolcsóbb fejlesztői eszköz, amely a kellő igényeket kielégíti a projektemhez.
-	\item \textbf{5. Egyszerű programozhatóság, valamint egyszerű kapcsolat.} Könnyen programozható mikrokontroller az Arduino IDE szoftverrel, és egyszerűen USB-n keresztül lehet áttölteni rá programokat.
+	\item \textbf{1. Kompakt méret.} A Nano mérete kisebb, mint az UNO-é, így ideális választás volt, mivel helyszűkében voltam.
+	\item \textbf{2. Egyszerű használat és támogatottság.} Az Arduino Nano széles körben elterjedt mikrokontroller, amelyhez könnyen elérhetőek könyvtárak és példakódok, ezzel egyszerűsítve a fejlesztést.
+	\item \textbf{3. Megfelelő teljesítmény és elegendő számú I/O port.} A Nano szintén ATmega328 mikrovezérlőt használ, amely tökéletesen megfelel az ADNS-9800 szenzor kezelésére, a szenzor mozgatására, valamint az adatok továbbítására.
+	\item \textbf{4. Megbízhatóság és stabilitás.} A stabil működés létfontosságú, mivel a projektem dokumentumok folyamatos szkennelését, adatgyűjtést és adatátvitelt igényel hosszabb ideig.
+	\item \textbf{5. Költséghatékonyság.} Az Arduino Nano az egyik legkedvezőbb árú fejlesztőeszköz, amely tökéletesen kielégíti a projekt követelményeit.
+	\item \textbf{6. Egyszerű programozhatóság és csatlakoztatás.} Az Arduino Nano könnyen programozható az Arduino IDE használatával, programokat egyszerűen USB-n keresztül tölthetünk fel rá.
 \end{itemize}
 \subsection{Az Arduino alkalmazási területei}
 \begin{itemize}
