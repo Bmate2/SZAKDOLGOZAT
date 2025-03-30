@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.13)  29 MAR 2025 19:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.13)  30 MAR 2025 19:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -562,7 +562,15 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@count@id=\count326
 \enitdp@description=\count327
 )
-\c@tetel=\count328
+(c:/texlive/2024/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen195
+\WF@size=\dimen196
+\c@WF@wrappedlines=\count328
+\WF@box=\box106
+\WF@everypar=\toks35
+Package: wrapfig 2003/01/31  v 3.6
+)
+\c@tetel=\count329
 
 (./arduinoLanguage.tex (c:/texlive/2024/texmf-dist/tex/latex/psnfss/courier.sty
 Package: courier 2020/03/25 PSNFSS-v9.3 (WaS) 
@@ -576,8 +584,8 @@ Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 ))
 (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count329
-\l__pdf_internal_box=\box106
+\l__color_backend_stack_int=\count330
+\l__pdf_internal_box=\box107
 )
 (./FX0W53.aux)
 \openout1 = `FX0W53.aux'.
@@ -688,17 +696,17 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 
 (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count330
-\scratchdimen=\dimen195
-\scratchbox=\box107
-\nofMPsegments=\count331
-\nofMParguments=\count332
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count333
-\MPscratchDim=\dimen196
-\MPnumerator=\count334
-\makeMPintoPDFobject=\count335
-\everyMPtoPDFconversion=\toks36
+\scratchcounter=\count331
+\scratchdimen=\dimen197
+\scratchbox=\box108
+\nofMPsegments=\count332
+\nofMParguments=\count333
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count334
+\MPscratchDim=\dimen198
+\MPnumerator=\count335
+\makeMPintoPDFobject=\count336
+\everyMPtoPDFconversion=\toks37
 ) (c:/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -720,7 +728,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-\c@lstlisting=\count336
+\c@lstlisting=\count337
 
 (c:/texlive/2024/texmf-dist/tex/latex/base/report.cls
 LaTeX Info: Redefining \cal on input line 577.
@@ -845,97 +853,141 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 [12
 
 ]
+<MITSUMI-Stepping-Motor-M42SP-4NP.jpg, id=252, 602.25pt x 306.14375pt>
+File: MITSUMI-Stepping-Motor-M42SP-4NP.jpg Graphic file (type jpg)
+<use MITSUMI-Stepping-Motor-M42SP-4NP.jpg>
+Package pdftex.def Info: MITSUMI-Stepping-Motor-M42SP-4NP.jpg  used on input li
+ne 234.
+(pdftex.def)             Requested size: 176.40439pt x 89.67163pt.
+
 
 [13
 
 ]
+<stepper-motors-half-step.jpg, id=262, 505.89pt x 300.12125pt>
+File: stepper-motors-half-step.jpg Graphic file (type jpg)
+<use stepper-motors-half-step.jpg>
+Package pdftex.def Info: stepper-motors-half-step.jpg  used on input line 244.
+(pdftex.def)             Requested size: 308.71106pt x 183.14696pt.
+
+Overfull \hbox (11.11206pt too wide) in paragraph at lines 250--251
+[]\T1/lmr/m/n/12 A víz-szin-tes moz-gás-hoz be-épí-tet-tem egy uni-po-lá-ris lé
+p-te-t®-mo-tort, amely egy ULN2003
+ []
+
+<28BYJ-48-modul-ULN2003.jpg, id=263, 963.6pt x 542.025pt>
+File: 28BYJ-48-modul-ULN2003.jpg Graphic file (type jpg)
+<use 28BYJ-48-modul-ULN2003.jpg>
+Package pdftex.def Info: 28BYJ-48-modul-ULN2003.jpg  used on input line 254.
+(pdftex.def)             Requested size: 220.50887pt x 124.03455pt.
+
+
+[14 <./MITSUMI-Stepping-Motor-M42SP-4NP.jpg> <./stepper-motors-half-step.jpg> <
+./28BYJ-48-modul-ULN2003.jpg>]
+<circuit.png, id=272, 622.325pt x 682.55pt>
+File: circuit.png Graphic file (type png)
+<use circuit.png>
+Package pdftex.def Info: circuit.png  used on input line 264.
+(pdftex.def)             Requested size: 308.71106pt x 338.58713pt.
+
+
+[15 <./circuit.png>]
 4. fejezet.
 (c:/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/05/25 1.10b listings language file
 )
 
-[14
-
-]
-
-[15
-
-]
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 267.
-
-
-LaTeX Warning: Reference `fig-arduinoparts' on page 16 undefined on input line 
-269.
-
-
-Overfull \hbox (48.53044pt too wide) in paragraph at lines 269--270
-[][]\T1/lmr/m/n/12 . áb-ra: []$\T1/pcr/m/sl/12 https : / / www . inf . u-[]szeg
-ed . hu / ~makan / tananyagok / wp-[]content /
- []
-
-
-
 [16
 
 ]
-<nyilatkozat.pdf, id=300, 597.50829pt x 845.0471pt>
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 282.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 282.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=303, page=1, 597.50829pt x 845.0471pt>
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
-
 
 [17
 
 ]
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 306.
+
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 308--309
+[][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . makerguid
+es . com / wp-[]content / uploads / 2020 /
+ []
 
 
-File: nyilatkozat.pdf Graphic file (type pdf)
-<use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 282.
-(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 311--312
+[][]\T1/lmr/m/n/12 3.4[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . picmicrol
+ab . com / wp-[]content / uploads / 2014 /
+ []
+
+
+Overfull \hbox (14.24652pt too wide) in paragraph at lines 312--313
+[][]\T1/lmr/m/n/12 3.5[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . orientalm
+otor . com / images / stepper-[]motors /
+ []
+
+
+Overfull \hbox (7.14232pt too wide) in paragraph at lines 313--314
+[][]\T1/lmr/m/n/12 3.6[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . hwlibre .
+ com / wp-[]content / uploads / 2024 / 10 /
+ []
+
+
+
 [18
+
+]
+<nyilatkozat.pdf, id=326, 597.50829pt x 845.0471pt>
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 325.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 325.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+<nyilatkozat.pdf, id=329, page=1, 597.50829pt x 845.0471pt>
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 325.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 325.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+
+[19
+
+]
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 325.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 325.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+
+File: nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 325.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+[20
 
  <./nyilatkozat.pdf>] (./FX0W53.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `FX0W53.out' has not changed.
 (rerunfilecheck)             Checksum: 1849E8C6C69D9DA169E6F8637FCCAC35;3662.
  ) 
 Here is how much of TeX's memory you used:
- 17846 strings out of 473579
- 281043 string characters out of 5732263
- 1028561 words of memory out of 5000000
- 40341 multiletter control sequences out of 15000+600000
- 626199 words of font info for 93 fonts, out of 8000000 for 9000
+ 17986 strings out of 473579
+ 283981 string characters out of 5732263
+ 1030017 words of memory out of 5000000
+ 40470 multiletter control sequences out of 15000+600000
+ 629810 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,93p,776b,1741s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
@@ -946,10 +998,10 @@ r12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/
 s/type1/public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courie
 r/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:
 /texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on FX0W53.pdf (18 pages, 1224322 bytes).
+Output written on FX0W53.pdf (20 pages, 1534544 bytes).
 PDF statistics:
- 403 PDF objects out of 1000 (max. 8388607)
- 343 compressed objects within 4 object streams
- 118 named destinations out of 1000 (max. 500000)
- 232 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 431 PDF objects out of 1000 (max. 8388607)
+ 365 compressed objects within 4 object streams
+ 124 named destinations out of 1000 (max. 500000)
+ 252 words of extra memory for PDF output out of 10000 (max. 10000000)
 

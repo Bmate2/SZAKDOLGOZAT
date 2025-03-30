@@ -2,7 +2,7 @@
 \usepackage[T1]{fontenc}
 \PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
 \usepackage[magyar]{babel}
-\usepackage{mathtools,amssymb,amsthm,pdfpages,listings,multicol,enumitem}
+\usepackage{mathtools,amssymb,amsthm,pdfpages,listings,multicol,enumitem,wrapfig}
 \footnotestyle{rule=fourth}
 
 \newtheorem{tetel}{Tétel}[chapter]
@@ -221,12 +221,51 @@ A működése a következő lépésekből áll:
 			\item \textbf{SCLK }(Serial Clock): Az órajel, amelyet az Arduino generál.
 			\item \textbf{CS }(Chip Select): Az adott szenzort választja ki a kommunikációhoz.
 		\end{itemize}
-		\item \textbf{Az Arduino továbbítja az adatokat a számítógépre.} Az adatok soros kommunikáción keresztül kerülnek a számítógépre ahol az feldolgozza ezeket. Minden képkocka ''FRAME:'' előtaggal kezdődik, hogy könnyebben elkülöníthetőek legyenek a képkockák.
+		\item \textbf{Az Arduino továbbítja az adatokat a számítógépre.} Az adatok soros kommunikáción keresztül kerülnek a számítógépre ahol az feldolgozza ezeket. Minden képkocka ''FRAME:'' előtaggal kezdődik, amit a szenzor által olvasott színintenzitás értékek követnek. Egy példa frame sor:
+		
+		\verb|FRAME: 124 128 130 122 120 119 118 117 116 ...|
 	\end{enumerate}
 \end{enumerate}
 \subsection{Szenzor mozgása}
-A szenzort két motor fogja mozgatni az egyik vízszintesen a másik függőlegesen. 
+
+A szenzort két motor mozgatja az egyik vízszintesen a másik pedig függőlegesen. A projekthez egy bipoláris valamint egy unipoláris léptetőmotort használtam. Mivel egy meglévő szkennerbe építettem bele az egész elektronikát, ezért a függőleges tengely mozgatására szolgáló bipoláris léptetőmotor már adott volt. Viszont a szenzor nagyon kis képet készít ezért finom mozgásokra volt szükségem, ebben segítséget nyújtott a már előre beépített fogaskerekek, amik áttétként funkcionálnak. Ezáltal a motor egy lépése jelentősen kisebb elmozdulás volt fizikailag, így jól tudtam pozicionálni. 
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.4\linewidth]{MITSUMI-Stepping-Motor-M42SP-4NP}
+	\caption[Mitsumi]{\small{MITSUMI M42SP-4NP bipoláris motor a függőleges mozgáshoz}}
+	\label{fig:mitsumi-stepping-motor-m42sp-4np}
+\end{figure}
+\pagebreak
+
+Mindkét motornál half-step vezérlési módot használtam, hogy még finomabb és pontosabb mozgást tudjak végezni velük. Ennek az a lényege, hogy a motor kétszer annyi lépésben teszi meg ugyanazt a fordulatot. Ez úgy lehetséges, hogy a négy tekercs közül először egy tekercs kap áramot, majd az első és a második egyszerre, majd csak a második, így a lépés szám a duplájára nő a szögelfordulás pedig a felére csökken.
+
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{stepper-motors-half-step}
+	\caption[Half Step vezérlés]{Half Step vezérlés működése}
+	\label{fig:stepper-motors-half-step}
+\end{figure}
+
+
+A vízszintes mozgáshoz beépítettem egy unipoláris léptetőmotort, amely egy ULN2003 motorvezérlő modullal működik, amit nagyon gyakran használnak ilyen kis apró finom mozgásokhoz, amire nekem is szükségem volt. Mivel ez a motor úgy van felépítve, hogy alapból áttétek vannak benne ezért azzal itt sem kellett foglalkoznom. 
+
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{28BYJ-48-modul-ULN2003}
+	\caption[Unipoláris léptetőmotor]{Unipoláris léptetőmotor a vízszintes mozgáshoz}
+	\label{fig:28byj-48-modul-uln2003}
+\end{figure}
+
+ A motorok egy egy bordás szíjas sínen mozognak, ezáltal a mozgás stabil lesz és csúszásmentes. Mindkettő végén van egy végállás kapcsoló, ha a vízszintes sor a végére ér ezt aktiválja és lentebb megy egy sort, valamint vissza megy a sor elejére a szenzor. Ekkor küldd az Arduino egy ''NEW\_ROW'' kulcsszót a Serial porton a számítógép felé, ezzel jelezve a feldolgozó szoftvernek, hogy új sor következik az olvasásban. Ha pedig a függőleges végálláskapcsoló válik aktívvá akkor pedig az ''END'' kulcsszót küldi el a számítógép felé, jelezve, hogy vége a dokumentumnak.
+
 \section{Hardveres bekötés}
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{circuit}
+	\caption[Hardveres bekötés]{Hardveres bekötés}
+	\label{fig:circuit}
+\end{figure}
+
 Már kész csak nem biztos hogy jó
 \chapter{Szoftveres megvalósítás}
 
@@ -266,10 +305,14 @@ felbontásra vonatkozóan például  feles átfedéssel
 \begin{itemize}
 	\item \ref{fig-arduinofamily}. ábra: \emph{\url{https://predictabledesigns.com/wp-content/uploads/2017/10/HeroImage.png}}
 	\item \ref{fig:atmega328p-pu}. ábra: \emph{\url{https://techfun.hu/wp-content/uploads/2017/09/11.jpg}}
-	\item \ref{fig-arduinoparts}. ábra: \emph{\url{https://www.inf.u-szeged.hu/~makan/tananyagok/wp-content/uploads/2020/07/ArduinoParts3-768x462.png}}
+	\item \ref{fig:arduino-nano-pinout}. ábra: \emph{\url{https://www.makerguides.com/wp-content/uploads/2020/10/arduino-nano-pinout-768x603.png}}
 	\item \ref{fig:adns9800base}. ábra: \emph{\url{https://www.sicstock.com/cdn/shop/products/551554.jpg?v=1544514465}}
 	\item \ref{fig:szintilleszto}. ábra: \emph{\url{https://www.elektrobot.hu/items/3607_1.webp}}
+	\item \ref{fig:mitsumi-stepping-motor-m42sp-4np}. ábra: \emph{\url{https://www.picmicrolab.com/wp-content/uploads/2014/04/MITSUMI-Stepping-Motor-M42SP-4NP.jpg}}
+	\item \ref{fig:stepper-motors-half-step}. ábra: \emph{\url{https://www.orientalmotor.com/images/stepper-motors/stepper-motors-half-step.jpg}}
+	\item \ref{fig:28byj-48-modul-uln2003}. ábra: \emph{\url{https://www.hwlibre.com/wp-content/uploads/2024/10/28byj-48-circuito.jpg}}
 \end{itemize}
+
 
 \begin{thebibliography}{2}
 \addcontentsline{toc}{chapter}{\bibname}
