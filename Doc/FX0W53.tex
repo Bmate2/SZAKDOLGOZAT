@@ -55,7 +55,7 @@ A dolgozat eredményeként egy egyszerű és költséghatékony szkennert szeret
 Ebben a fejezetben a szakdolgozatomban használt technológiákról és azok előnyeiről, fogok beszámolni.
 \section{Arduino}
 \subsection{Arduino platform bemutatása}
-Az Arduino\cite{arduino} egy nyílt forráskódú platform, amiket az elektronikai projektekhez találtak ki, majd bekerült az oktatásba is, oktatási céllal. Sokan használják egyszerűbb feladatok automatizálására vagy akár okos otthon rendszerek kialakítására. Ezek mellett manapság már az ipari alkalmazásuk sem ritka. A működéséhez szükség van egy mikrokontrollerre, valamint egy fejlesztő környezetre az Arduino IDE-re, amivel általában USB kábelen keresztül tudjuk átküldeni a programot a fizikai eszközre.
+Az Arduino\cite{arduino}\cite{whatisanarduino} egy nyílt forráskódú platform, amiket az elektronikai projektekhez találtak ki, majd bekerült az oktatásba is, oktatási céllal. Sokan használják egyszerűbb feladatok automatizálására vagy akár okos otthon rendszerek kialakítására. Ezek mellett manapság már az ipari alkalmazásuk sem ritka. A működéséhez szükség van egy mikrokontrollerre, valamint egy fejlesztő környezetre az Arduino IDE-re, amivel általában USB kábelen keresztül tudjuk átküldeni a programot a fizikai eszközre.
 \begin{figure}[th!]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ArduinoFamily}
@@ -63,7 +63,7 @@ Az Arduino\cite{arduino} egy nyílt forráskódú platform, amiket az elektronik
 	\label{fig-arduinofamily}
 \end{figure}
 \subsection{Arduino Nano}
-Elsősorban UNO-val terveztem elkészíteni ezt a projektet, de helyszűkében kénytelen voltam egy kisebb mikrokontroller után kutatni. Ekkor esett a választásom az Arduino Nano-ra. Az Arduino Nano az Arduino UNO kompaktabb változata, mely ugyanazt az ATmega328 mikrovezérlőt használja, így teljesítményében és képességeiben nagyon hasonló az UNO-hoz. A mikrovezérlő tartalmaz:
+Elsősorban UNO-val\cite{arduinouno} terveztem elkészíteni ezt a projektet, de helyszűkében kénytelen voltam egy kisebb mikrokontroller után kutatni. Ekkor esett a választásom az Arduino Nano-ra\cite{arduinonano}. Az Arduino Nano az Arduino UNO kompaktabb változata, mely ugyanazt az ATmega328 mikrovezérlőt használja, így teljesítményében és képességeiben nagyon hasonló az UNO-hoz. A mikrovezérlő tartalmaz:
 \begin{itemize}
 	\item Processzort
 	\item Memóriát
@@ -121,7 +121,7 @@ A projekt szoftveres részét Visual Studio\cite{visual-studio} fejlesztői kör
 A verziókövetéshez a Githubot\cite{github} használtam azon belül is a Github Desktop-ot, mellyel könnyen tudtam több platformon is dolgozni a projekten, valamint ha valamit elrontottam könnyen vissza tudtam állítani a projektet egy korábbi verzióra.
 \chapter{Hardveres megvalósítás}
 \section{ADNS-9800 szenzor}
-Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800 lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége, és azért volt megfelelő számomra, mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamerát, valamint gyors képfeldolgozási képességgel rendelkezik, ezért alkalmas dokumentumok beolvasására. 
+Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800\cite{adns9800} lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége, és azért volt megfelelő számomra, mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamerát, valamint gyors képfeldolgozási képességgel rendelkezik, ezért alkalmas dokumentumok beolvasására. 
 \subsection{Működése}
  Egy beépített lézer megvilágítja a szenzor alatt lévő felületet, majd a lencse készít egy képet. A beépített kis processzor dolgozza fel ezeket az adatokat, és számítja ki, hogy az eszköz milyen irányba mozdult el. 
 \begin{figure}[th!]
@@ -140,7 +140,7 @@ Az általam választott szenzor már nyáklappal volt ellátva így azzal nem vo
 	\label{fig:adns9800}
 \end{figure}
 
-Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai szinttel működött viszont az Arduino UNO 5\,V-os szinttel. Így be kellett szereznem egy két irányú logikai szintillesztő modult ami átalakította a 3,3\,V-os jelet 5\,V-ossá. Ehhez a projekthez egy 8 csatornás logikai szintillesztő modult használtam.
+Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai szinttel működött viszont az Arduino UNO 5\,V-os szinttel. Így be kellett szereznem egy két irányú logikai szintillesztő\cite{szintilleszto} modult ami átalakította a 3,3\,V-os  jelet 5\,V-ossá. Ehhez a projekthez egy 8 csatornás logikai szintillesztő modult használtam.
 
 \begin{figure}[th!]
 	\centering
@@ -228,7 +228,7 @@ A működése a következő lépésekből áll:
 \end{enumerate}
 \subsection{Szenzor mozgása}
 
-A szenzort két motor mozgatja az egyik vízszintesen a másik pedig függőlegesen. A projekthez egy bipoláris valamint egy unipoláris léptetőmotort használtam. Mivel egy meglévő szkennerbe építettem bele az egész elektronikát, ezért a függőleges tengely mozgatására szolgáló bipoláris léptetőmotor már adott volt. Viszont a szenzor nagyon kis képet készít ezért finom mozgásokra volt szükségem, ebben segítséget nyújtott a már előre beépített fogaskerekek, amik áttétként funkcionálnak. Ezáltal a motor egy lépése jelentősen kisebb elmozdulás volt fizikailag, így jól tudtam pozicionálni. 
+A szenzort két motor mozgatja az egyik vízszintesen a másik pedig függőlegesen. A projekthez egy bipoláris valamint egy unipoláris léptetőmotort\cite{motorvezerlok} használtam. Mivel egy meglévő szkennerbe építettem bele az egész elektronikát, ezért a függőleges tengely mozgatására szolgáló bipoláris léptetőmotor már adott volt. Viszont a szenzor nagyon kis képet készít ezért finom mozgásokra volt szükségem, ebben segítséget nyújtott a már előre beépített fogaskerekek, amik áttétként funkcionálnak. Ezáltal a motor egy lépése jelentősen kisebb elmozdulás volt fizikailag, így jól tudtam pozicionálni. 
 \begin{figure}[th!]
 	\centering
 	\includegraphics[width=0.4\linewidth]{MITSUMI-Stepping-Motor-M42SP-4NP}
@@ -325,11 +325,24 @@ felbontásra vonatkozóan például  feles átfedéssel
 \end{itemize}
 
 
-\begin{thebibliography}{2}
+\begin{thebibliography}{8}
 \addcontentsline{toc}{chapter}{\bibname}
-\bibitem{arduino} Arduino: \emph{https://www.arduino.cc/en/Guide/Introduction}
-\bibitem{visual-studio} Microsoft Visual Studio: \emph{https://visualstudio.microsoft.com/}
-\bibitem{github} Github: \emph{https://github.com/}
+\bibitem{arduino} Arduino: \url{https://www.arduino.cc/en/Guide/Introduction}
+\bibitem{whatisanarduino} What is an Arduino: \url{https://learn.sparkfun.com/tutorials/what-is-an-arduino/all}
+\bibitem{arduinouno} Arduino UNO: \url{http://dx.doi.org/10.6084/m9.figshare.11971794.v1}
+\bibitem{arduinonano} Arduino Nano: \url{https://docs.arduino.cc/hardware/nano/}
+\bibitem{visual-studio} Microsoft Visual Studio: \url{https://visualstudio.microsoft.com/}
+\bibitem{github} Github: \url{https://github.com/}
+\bibitem{adns9800} ADNS-9800 adatlap:\url{https://datasheet.octopart.com/ADNS-9800-Avago-datasheet-10666463.pdf}
+\bibitem{adns9800_buy} ADNS-9800 vásárlás: \url{https://www.tindie.com/products/citizenjoe/adns-9800-motion-sensor/}
+\bibitem{adns9800_2} ADNS-9800 tutorial get travel distance: \url{https://www.instructables.com/Arduino-Tutorial-ADNS-9800-Laser-Mouse-Traveled-Di/}
+\bibitem{adns9800_3} ADNS-9800 5\,V mód aktiválása: \url{https://forum.arduino.cc/t/using-avago-adns9800/292172/2}
+\bibitem{szintilleszto} Logikai szintillesztő modul: \url{https://www.elektrobot.hu/termek.php?filename=3607.html&i=3607}
+\bibitem{motorvezerlok} Léptető motorok: \url{https://docs.arduino.cc/learn/electronics/stepper-motors/}
+\bibitem{bicubic_video} Bicubic Interpolation by Computerphile: \url{https://www.youtube.com/watch?v=poY_nGzEEWM}
+\bibitem{bicubic_wikipedia} Bicubic Interpolation from wikipedia: \url{https://en.wikipedia.org/wiki/Bicubic_interpolation}
+\bibitem{catmull-rom_spline} Catmull-Rom Spline: \url{https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline}
+\bibitem{image_upscale} Kép nagyítás Bikubik interpolációval: \url{https://medium.com/@amanrao032/image-upscaling-using-bicubic-interpolation-ddb37295df0}
 \end{thebibliography}
 
 % Aláírt, szkennelt nyilatkozat beillesztése a szakdolgozat végére
