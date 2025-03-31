@@ -13,41 +13,36 @@ namespace Test_ADNS9800
     public partial class Form1 : Form
     {
         private SerialPort serialPort;
-        private Bitmap currentFrame;
         private const int FrameWidth = 30; 
         private const int FrameHeight = 30; 
-        private StringBuilder buffer = new StringBuilder();
+        private StringBuilder dataBuffer = new StringBuilder();
         private const int scale = 2;
         private Bicubic resizer = new Bicubic(FrameWidth, FrameHeight, scale);
 
         int row = 0;
         int column = 0;
 
-
         private List<List<int[]>> listGrid = new List<List<int[]>>();
-        
         public Form1()
         {
             InitializeComponent();
             InitializeSerialPort();
-            InitializeImage();
-            listGrid.Add(new List<int[]>()); //első sor hozzáadása
+            InitializeImage(); 
         }
         
         private void InitializeSerialPort()
         {
             serialPort = new SerialPort("COM3", 115200);
-            serialPort.DataReceived += SerialPort_DataReceived;
+            serialPort.DataReceived += SerialPort_DataReceived; 
             serialPort.Open();
             serialPort.Write("reset");
         }
 
         private void InitializeImage()
         {
-            currentFrame = new Bitmap(FrameWidth, FrameHeight);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox.Image = currentFrame;
             pictureBox2.SizeMode = PictureBoxSizeMode.Normal;
+            listGrid.Add(new List<int[]>()); //első sor hozzáadása
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -62,13 +57,13 @@ namespace Test_ADNS9800
 
             if (string.IsNullOrEmpty(data)) return;
 
-            buffer.Append(data); 
-            string bufferString = buffer.ToString();
+            dataBuffer.Append(data); 
+            string bufferString = dataBuffer.ToString();
             int newlineIndex;
             while ((newlineIndex=bufferString.IndexOf("\n"))!= -1)
             {
                 string fullLine = bufferString.Substring(0, newlineIndex).Trim(); 
-                buffer.Remove(0, newlineIndex + 1);
+                dataBuffer.Remove(0, newlineIndex + 1);
                 bufferString = bufferString.Substring(newlineIndex + 1);
                 if (this.InvokeRequired)
                 {
@@ -121,8 +116,8 @@ namespace Test_ADNS9800
                     SaveDoc();
                 }
             }
-            buffer.Clear();
-            buffer.Append(bufferString);
+            dataBuffer.Clear();
+            dataBuffer.Append(bufferString);
         }
 
 
@@ -135,8 +130,6 @@ namespace Test_ADNS9800
                 for (int x = 0; x < width; x++)
                 {
                     int pixelValue = frameData[y * width + x];
-                    //if (pixelValue < 30) pixelValue = 0;
-                    //if (pixelValue > 225) pixelValue = 255;
                     Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
                     frameBitmap.SetPixel(x, y, color);
                 }
@@ -258,69 +251,7 @@ namespace Test_ADNS9800
 
 
 
-        #region Sharp and Brightness
-        private Bitmap AdjustBrightnessContrast(Bitmap image, float brightness, float contrast)
-        {
-            Bitmap adjustedImage = new Bitmap(image.Width, image.Height);
-            float contrastFactor = (100.0f + contrast) / 100.0f;
-            contrastFactor *= contrastFactor;
-
-            for (int y = 0; y < image.Height; y++)
-            {
-                for (int x = 0; x < image.Width; x++)
-                {
-                    Color pixel = image.GetPixel(x, y);
-
-                    float r = pixel.R / 255.0f;
-                    r += brightness / 255.0f;
-
-                    r = (((r - 0.5f) * contrastFactor) + 0.5f) * 255.0f;
-                    r = Math.Max(0, Math.Min(255, r));
-
-                    Color newColor = Color.FromArgb((int)r, (int)r, (int)r);
-                    adjustedImage.SetPixel(x, y, newColor);
-                }
-            }
-
-            return adjustedImage;
-        }
-
-        private Bitmap UnsharpMask(Bitmap image, float amount, int radius, int threshold)
-        {
-            Bitmap blurred = new Bitmap(image.Width, image.Height);
-            using (Graphics g = Graphics.FromImage(blurred))
-            {
-                System.Drawing.Imaging.ImageAttributes attributes = new System.Drawing.Imaging.ImageAttributes();
-                attributes.SetWrapMode(System.Drawing.Drawing2D.WrapMode.TileFlipXY);
-                g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, attributes);
-            }
-
-            Bitmap sharpened = new Bitmap(image.Width, image.Height);
-
-            for (int y = 0; y < image.Height; y++)
-            {
-                for (int x = 0; x < image.Width; x++)
-                {
-                    Color original = image.GetPixel(x, y);
-                    Color blur = blurred.GetPixel(x, y);
-
-                    int r = Math.Abs(original.R - blur.R) >= threshold ? (int)(original.R + amount * (original.R - blur.R)) : original.R;
-                    int g = Math.Abs(original.G - blur.G) >= threshold ? (int)(original.G + amount * (original.G - blur.G)) : original.G;
-                    int b = Math.Abs(original.B - blur.B) >= threshold ? (int)(original.B + amount * (original.B - blur.B)) : original.B;
-
-                    r = Math.Min(255, Math.Max(0, r));
-                    g = Math.Min(255, Math.Max(0, g));
-                    b = Math.Min(255, Math.Max(0, b));
-
-                    sharpened.SetPixel(x, y, Color.FromArgb(r, g, b));
-                }
-            }
-
-            return sharpened;
-        }
-
-
-        #endregion
+     
 
         #region Buttons
         private void resetBtn_Click(object sender, EventArgs e)
