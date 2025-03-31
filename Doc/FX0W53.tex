@@ -232,7 +232,7 @@ A szenzort két motor mozgatja az egyik vízszintesen a másik pedig függőlege
 \begin{figure}[th!]
 	\centering
 	\includegraphics[width=0.4\linewidth]{MITSUMI-Stepping-Motor-M42SP-4NP}
-	\caption[Mitsumi]{\small{MITSUMI M42SP-4NP bipoláris motor a függőleges mozgáshoz}}
+	\caption[Mitsumi]{\footnotesize {MITSUMI M42SP-4NP bipoláris motor a függőleges mozgáshoz}}
 	\label{fig:mitsumi-stepping-motor-m42sp-4np}
 \end{figure}
 \pagebreak
@@ -256,7 +256,7 @@ A vízszintes mozgáshoz beépítettem egy unipoláris léptetőmotort, amely eg
 	\label{fig:28byj-48-modul-uln2003}
 \end{figure}
 
- A motorok egy egy bordás szíjas sínen mozognak, ezáltal a mozgás stabil lesz és csúszásmentes. Mindkettő végén van egy végállás kapcsoló, ha a vízszintes sor a végére ér ezt aktiválja és lentebb megy egy sort, valamint vissza megy a sor elejére a szenzor. Ekkor küldd az Arduino egy ''NEW\_ROW'' kulcsszót a Serial porton a számítógép felé, ezzel jelezve a feldolgozó szoftvernek, hogy új sor következik az olvasásban. Ha pedig a függőleges végálláskapcsoló válik aktívvá akkor pedig az ''END'' kulcsszót küldi el a számítógép felé, jelezve, hogy vége a dokumentumnak.
+ A motorok egy egy bordás szíjas sínen mozognak, ezáltal a mozgás stabil lesz és csúszásmentes. Mindkettő végén van egy végállás kapcsoló, ha a vízszintes sor a végére ér ezt aktiválja és lentebb megy egy sort, valamint vissza megy a sor elejére a szenzor. Ekkor küldd az Arduino egy ''NEW\_ROW'' kulcsszót a Serial porton a számítógép felé, ezzel jelezve a feldolgozó szoftvernek, hogy új sor következik az olvasásban. Ha pedig a függőleges végálláskapcsoló válik aktívvá akkor pedig az ''END'' kulcsszót küldi el a számítógép felé, jelezve, hogy vége a dokumentumnak és vissza tér a kezdeti állásba.
 
 \section{Hardveres bekötés}
 \begin{figure}[th!]
