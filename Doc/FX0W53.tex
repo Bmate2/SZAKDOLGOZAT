@@ -48,7 +48,7 @@ Emellett fontos számomra, hogy egy olyan eszközt alkossak, amelyet egy egyszer
 
 Valamint kihívást látok ebben a projektben, hogy hogyan is tudom ezt megvalósítani. Izgalmas feladat az, hogy ötvözzem az informatikát az elektronikával. Ez nem csak a szakmai tudásomat fejleszti, hanem egy olyan eredményt ad, amelyre büszke lehetek.
 \section{Célkitűzés}
-A szakdolgozatom célja egy olyan szkenner létrehozása, amely egy egyszerű egérszenzort használ a dokumentumok fekete-fehér beolvasására. Az eszköz működésének alapja, hogy a szenzor monokróm felvételeket készít a dokumentumról, majd ezeket egy számítógépes programmal feldolgozom és összeállítom egy nagy dokumentummá. Mivel a szenzor csak egy 30\,x\,30-as képet rögzít így azt interpolációval felnövelem. Ezek az algoritmusok lehetővé teszik, hogy a képet megnöveljük kevés minőség vesztéssel. 
+A szakdolgozatom\cite{szakdolgozat} célja egy olyan szkenner létrehozása, amely egy egyszerű egérszenzort használ a dokumentumok fekete-fehér beolvasására. Az eszköz működésének alapja, hogy a szenzor monokróm felvételeket készít a dokumentumról, majd ezeket egy számítógépes programmal feldolgozom és összeállítom egy nagy dokumentummá. Mivel a szenzor csak egy 30\,x\,30-as képet rögzít így azt interpolációval felnövelem. Ezek az algoritmusok lehetővé teszik, hogy a képet megnöveljük kevés minőség vesztéssel. 
 
 A dolgozat eredményeként egy egyszerű és költséghatékony szkennert szeretnék létrehozni, amely hasznos és megkönnyíti az emberek életét.
 \chapter{Felhaszánlt technológiák}
@@ -140,7 +140,7 @@ Az általam választott szenzor már nyáklappal volt ellátva így azzal nem vo
 	\label{fig:adns9800}
 \end{figure}
 
-Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai szinttel működött viszont az Arduino UNO 5\,V-os szinttel. Így be kellett szereznem egy két irányú logikai szintillesztő\cite{szintilleszto} modult ami átalakította a 3,3\,V-os  jelet 5\,V-ossá. Ehhez a projekthez egy 8 csatornás logikai szintillesztő modult használtam.
+Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai szinttel működött viszont az Arduino Nano 5\,V-os szinttel. Így be kellett szereznem egy két irányú logikai szintillesztő\cite{szintilleszto} modult ami átalakította a 3,3\,V-os  jelet 5\,V-ossá. Ehhez a projekthez egy 8 csatornás logikai szintillesztő modult használtam.
 
 \begin{figure}[th!]
 	\centering
@@ -304,6 +304,19 @@ Van egy soros portot beállító metódus. Aminek segítségével megnyitom a so
 	}
 \end{lstlisting}
 
+\chapter{Tesztelés}
+A programomat az elejétől fogva folyamatosan teszteltem, először a szoftveres részt, majd miután megérkezett hozzám a szenzor elkezdtem azt tesztelni. 
+
+A szoftver teszteléséhez úgy fogtam hozzá, hogy egy alap mátrixot beadtam az általam írt algoritmusnak és megnéztem, hogy milyen pontosan számolja ki a pixelek közötti értékeket. Aztán megfogtam egy képet és megnéztem, hogy azzal, hogy viselkedik. Az eredmény az lett hogy a duplájára növelte a kép méretét ami a célom is volt. Ezután összpontosítottam arra, hogy az adatot megkapjam az Arduino-tól, tehát elkezdtem a soros port kommunikációt tesztelni. Fogtam egy Arduino-t és írtam rá egy példa programot aminek csak annyi dolga volt, hogy elküldjön egy 900 elemű tömböt. A szoftverben ehhez megírtam a szükséges metódust ami arra szolgál, hogy fogadja az adatokat. Ezt követően elkezdtem ki alakítani a szoftver felületét, készítettem egy tesztelő Windows Forms alkalmazást ami állt egy listBox-ból valamint egy pár gombból.
+
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{tesztalkalmazas}
+	\caption[Teszt alkalmazás]{Teszt Windows Forms alkalmazás}
+	\label{fig:tesztalkalmazas}
+\end{figure}
+
+Aztán következhetett a szenzor tesztelése. Először egy fehér lapon próbálkoztam amire kisbetűmérettel volt rá írva pár betű, viszont valamiért nem kaptam egy szép képet, ezért elkezdtem mozgatni a szenzort és rájöttem, hogy a fókusz távolság nem volt a megfelelő. Így azt kellett finom hangolnom, egyszerű kártya lapokat használtam, hogy megtaláljam a megfelelő távolságot. Miután sikerült beállítanom a kellő távolságot a papírtól, elkezdtem kinyerni a szenzorból a képeket. Megírtam hozzá a teszt alkalmazást amivel megjelenítem, hogy mit lát a szenzor, és nagyon nagy örömömre sikerült képet kinyernem a szenzorból.
 \chapter*{Összegzés}
 Tapasztalatok amiket szereztem a projekt megvalósítása közben
 Tovabbfejlesztési gondolatok
@@ -327,6 +340,7 @@ felbontásra vonatkozóan például  feles átfedéssel
 
 \begin{thebibliography}{8}
 \addcontentsline{toc}{chapter}{\bibname}
+\bibitem{szakdolgozat} Github link a szakdolgozathoz: \url{https://github.com/Bmate2/SZAKDOGA}
 \bibitem{arduino} Arduino: \url{https://www.arduino.cc/en/Guide/Introduction}
 \bibitem{whatisanarduino} What is an Arduino: \url{https://learn.sparkfun.com/tutorials/what-is-an-arduino/all}
 \bibitem{arduinouno} Arduino UNO: \url{http://dx.doi.org/10.6084/m9.figshare.11971794.v1}
@@ -338,11 +352,15 @@ felbontásra vonatkozóan például  feles átfedéssel
 \bibitem{adns9800_2} ADNS-9800 tutorial get travel distance: \url{https://www.instructables.com/Arduino-Tutorial-ADNS-9800-Laser-Mouse-Traveled-Di/}
 \bibitem{adns9800_3} ADNS-9800 5\,V mód aktiválása: \url{https://forum.arduino.cc/t/using-avago-adns9800/292172/2}
 \bibitem{szintilleszto} Logikai szintillesztő modul: \url{https://www.elektrobot.hu/termek.php?filename=3607.html&i=3607}
+\bibitem{serial} Soros kommunikáció: \url{https://docs.arduino.cc/language-reference/en/functions/communication/serial/}
 \bibitem{motorvezerlok} Léptető motorok: \url{https://docs.arduino.cc/learn/electronics/stepper-motors/}
 \bibitem{bicubic_video} Bicubic Interpolation by Computerphile: \url{https://www.youtube.com/watch?v=poY_nGzEEWM}
 \bibitem{bicubic_wikipedia} Bicubic Interpolation from wikipedia: \url{https://en.wikipedia.org/wiki/Bicubic_interpolation}
 \bibitem{catmull-rom_spline} Catmull-Rom Spline: \url{https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline}
 \bibitem{image_upscale} Kép nagyítás Bikubik interpolációval: \url{https://medium.com/@amanrao032/image-upscaling-using-bicubic-interpolation-ddb37295df0}
+\bibitem{winforms} Windows Forms: \url{https://learn.microsoft.com/hu-hu/dotnet/visual-basic/developing-apps/windows-forms/}
+\bibitem{listbox} Listbox osztály: \url{https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.listbox?view=windowsdesktop-9.0}
+\bibitem{arduino_latex} \LaTeX\ Arduino stílus fájl: \url{https://github.com/trihedral/ArduinoLatexListing}
 \end{thebibliography}
 
 % Aláírt, szkennelt nyilatkozat beillesztése a szakdolgozat végére

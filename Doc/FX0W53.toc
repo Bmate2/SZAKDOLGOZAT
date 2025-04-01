@@ -19,5 +19,6 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Szoftveres megvalósítás}{16}{chapter.4}%
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Az alap változók}{16}{section.4.1}%
 \select@language {magyar} \contentsline {section}{\numberline {4.2}Inicializáló metódusok}{16}{section.4.2}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{18}{chapter*.3}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{20}{chapter*.5}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Tesztelés}{18}{chapter.5}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{20}{chapter*.3}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{22}{chapter*.5}%
