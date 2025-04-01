@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  1 APR 2025 18:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  1 APR 2025 19:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -903,44 +903,44 @@ File: lstlang1.sty 2024/05/25 1.10b listings language file
 
 [17]
 5. fejezet.
-<tesztalkalmazas.png, id=330, 610.53094pt x 373.395pt>
+<tesztalkalmazas.png, id=330, 609.02531pt x 369.63094pt>
 File: tesztalkalmazas.png Graphic file (type png)
 <use tesztalkalmazas.png>
-Package pdftex.def Info: tesztalkalmazas.png  used on input line 314.
-(pdftex.def)             Requested size: 308.71106pt x 188.81082pt.
+Package pdftex.def Info: tesztalkalmazas.png  used on input line 331.
+(pdftex.def)             Requested size: 308.71106pt x 187.36996pt.
 
 
 [18
 
- <./tesztalkalmazas.png>]
+]
 
-[19]
+[19 <./tesztalkalmazas.png>]
 
 [20
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 330.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 347.
 
-Overfull \hbox (14.29442pt too wide) in paragraph at lines 332--333
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 349--350
 [][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . makerguid
 es . com / wp-[]content / uploads / 2020 /
  []
 
 
-Overfull \hbox (14.29442pt too wide) in paragraph at lines 335--336
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 352--353
 [][]\T1/lmr/m/n/12 3.4[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . picmicrol
 ab . com / wp-[]content / uploads / 2014 /
  []
 
 
-Overfull \hbox (14.24652pt too wide) in paragraph at lines 336--337
+Overfull \hbox (14.24652pt too wide) in paragraph at lines 353--354
 [][]\T1/lmr/m/n/12 3.5[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . orientalm
 otor . com / images / stepper-[]motors /
  []
 
 
-Overfull \hbox (7.14232pt too wide) in paragraph at lines 337--338
+Overfull \hbox (7.14232pt too wide) in paragraph at lines 354--355
 [][]\T1/lmr/m/n/12 3.6[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . hwlibre .
  com / wp-[]content / uploads / 2024 / 10 /
  []
@@ -950,37 +950,37 @@ Overfull \hbox (7.14232pt too wide) in paragraph at lines 337--338
 [21
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 345--346
+Underfull \hbox (badness 10000) in paragraph at lines 362--363
 []\T1/lmr/m/n/12 What is an Ar-du-i-no: []$\T1/pcr/m/n/12 https : / / learn . s
 parkfun . com / tutorials /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--351
+Underfull \hbox (badness 10000) in paragraph at lines 367--368
 []\T1/lmr/m/n/12 ADNS-9800 adat-lap:[]$\T1/pcr/m/n/12 https : / / datasheet . o
 ctopart . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 353--354
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
 []\T1/lmr/m/n/12 ADNS-9800 5V mód ak-ti-vá-lá-sa: []$\T1/pcr/m/n/12 https : / /
  forum . arduino . cc / t /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 355--356
+Underfull \hbox (badness 10000) in paragraph at lines 372--373
 []\T1/lmr/m/n/12 Soros kom-mu-ni-ká-ció: []$\T1/pcr/m/n/12 https : / / docs . a
 rduino . cc /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--357
+Underfull \hbox (badness 10000) in paragraph at lines 373--374
 []\T1/lmr/m/n/12 Léptet® mo-to-rok: []$\T1/pcr/m/n/12 https : / / docs . arduin
 o . cc / learn / electronics /
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 357--358
+Underfull \hbox (badness 5548) in paragraph at lines 374--375
 []\T1/lmr/m/n/12 Bicubic In-ter-po-la-ti-on by Com-pu-terp-hi-le: []$\T1/pcr/m/
 n/12 https : / / www . youtube . com /
  []
@@ -990,51 +990,51 @@ n/12 https : / / www . youtube . com /
 [22
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 361--362
+Underfull \hbox (badness 10000) in paragraph at lines 378--379
 []\T1/lmr/m/n/12 Windows Forms: []$\T1/pcr/m/n/12 https : / / learn . microsoft
  . com / hu-[]hu / dotnet /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 363--364
+Underfull \hbox (badness 10000) in paragraph at lines 380--381
 []\T1/lmr/m/n/12 L[]T[]X Ar-du-i-no stí-lus fájl: []$\T1/pcr/m/n/12 https : / /
  github . com / trihedral /
  []
 
-<nyilatkozat.pdf, id=415, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=427, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 367.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 384.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 367.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 384.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=418, page=1, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=430, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 367.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 384.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 367.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 384.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 [23]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 367.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 384.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 367.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 384.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 367.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 384.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [24
 
@@ -1047,13 +1047,13 @@ Package rerunfilecheck Info: File `FX0W53.out' has not changed.
 (rerunfilecheck)             Checksum: 3E8EFCF3B0561483B702D0BFA42B4B1F;3977.
  ) 
 Here is how much of TeX's memory you used:
- 18060 strings out of 473579
- 285170 string characters out of 5732263
+ 18076 strings out of 473579
+ 285381 string characters out of 5732263
  1030704 words of memory out of 5000000
- 40510 multiletter control sequences out of 15000+600000
+ 40514 multiletter control sequences out of 15000+600000
  626820 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,17n,93p,919b,1741s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,17n,93p,807b,1741s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
@@ -1062,10 +1062,10 @@ r12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/
 s/type1/public/lm/lmri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courie
 r/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:
 /texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on FX0W53.pdf (24 pages, 1563638 bytes).
+Output written on FX0W53.pdf (24 pages, 1567639 bytes).
 PDF statistics:
- 540 PDF objects out of 1000 (max. 8388607)
- 467 compressed objects within 5 object streams
- 158 named destinations out of 1000 (max. 500000)
+ 554 PDF objects out of 1000 (max. 8388607)
+ 481 compressed objects within 5 object streams
+ 170 named destinations out of 1000 (max. 500000)
  273 words of extra memory for PDF output out of 10000 (max. 10000000)
 
