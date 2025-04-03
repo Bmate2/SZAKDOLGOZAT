@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\test-adns9800\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\test-adns9800\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|solutionrelative:test-adns9800\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|c:\\users\\user\\documents\\github\\szakdoga\\test-adns9800\\test-adns9800\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|solutionrelative:test-adns9800\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|c:\\users\\user\\documents\\github\\szakdoga\\test-adns9800\\test-adns9800\\bicubic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\test-adns9800\\bicubic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|solutionrelative:test-adns9800\\bicubic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\test-adns9800\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{967DB6FD-D8FD-4167-A4FF-18EFA72D8026}|Test-ADNS9800\\Test-ADNS9800.csproj|solutionrelative:test-adns9800\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Bicubic.cs",
               "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\Test-ADNS9800\\Bicubic.cs",
               "RelativeDocumentMoniker": "Test-ADNS9800\\Bicubic.cs",
@@ -34,25 +34,24 @@
               "RelativeToolTip": "Test-ADNS9800\\Bicubic.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAowDwAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T15:45:13.82Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T15:45:13.82Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\Test-ADNS9800\\Form1.cs",
               "RelativeDocumentMoniker": "Test-ADNS9800\\Form1.cs",
               "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\Test-ADNS9800\\Form1.cs",
               "RelativeToolTip": "Test-ADNS9800\\Form1.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAIAwwCsAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAIA0wFAAAABmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-27T18:14:31.83Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\SZAKDOGA\\Test-ADNS9800\\Test-ADNS9800\\Form1.cs",
               "RelativeDocumentMoniker": "Test-ADNS9800\\Form1.cs",

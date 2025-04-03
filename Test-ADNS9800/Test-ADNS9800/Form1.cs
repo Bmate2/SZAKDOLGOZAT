@@ -27,7 +27,8 @@ namespace Test_ADNS9800
         {
             InitializeComponent();
             InitializeSerialPort();
-            InitializeImage(); 
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            listGrid.Add(new List<int[]>());
         }
         
         private void InitializeSerialPort()
@@ -36,13 +37,6 @@ namespace Test_ADNS9800
             serialPort.DataReceived += SerialPort_DataReceived; 
             serialPort.Open();
             serialPort.Write("reset");
-        }
-
-        private void InitializeImage()
-        {
-            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.SizeMode = PictureBoxSizeMode.Normal;
-            listGrid.Add(new List<int[]>()); //első sor hozzáadása
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -80,17 +74,14 @@ namespace Test_ADNS9800
 
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
-                        int[] frameData = Array.ConvertAll(pixels, int.Parse);
-                        DisplayFrame(frameData,pictureBox,FrameHeight,FrameWidth);
-                        int[] upscaled = resizer.BicubicResize(frameData);
-                        DisplayFrame(upscaled, pictureBox2, FrameHeight * scale, FrameWidth * scale);
-
+                        int[] frameData = resizer.BicubicResize(Array.ConvertAll(pixels, int.Parse));
+                        DisplayFrame(frameData, pictureBox, FrameHeight * scale, FrameWidth * scale);
 
                         if (row >= listGrid.Count)
                         {
                             listGrid.Add(new List<int[]>());
                         }
-                        listGrid[row].Add(upscaled);
+                        listGrid[row].Add(frameData);
                     }
                     else
                     {

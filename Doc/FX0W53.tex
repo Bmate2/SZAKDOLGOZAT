@@ -123,38 +123,37 @@ A verziókövetéshez a Githubot\cite{github} használtam azon belül is a Githu
 \section{ADNS-9800 szenzor}
 Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800\cite{adns9800} lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége, és azért volt megfelelő számomra, mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamerát, valamint gyors képfeldolgozási képességgel rendelkezik, ezért alkalmas dokumentumok beolvasására. 
 \subsection{Működése}
- Egy beépített lézer megvilágítja a szenzor alatt lévő felületet, majd a lencse készít egy képet. A beépített kis processzor dolgozza fel ezeket az adatokat, és számítja ki, hogy az eszköz milyen irányba mozdult el. 
+ A szenzor működésének alapja a LaserStream technológia, amely során egy beépített lézer folyamatosan megvilágítja a felületet. A lencse ezt követően készít egy képet és a beépített digitális jelfeldolgozó (DSP) valós időben matematikai úton kiszámítja a felület elmozdulásának irányát és mértékét. Ez a megoldás lehetővé teszi a nagyon pontos mozgásérzékelést, hiszen a szenzor akár 8200 cpi (counts per inch) felbontással is képes mérni a mozgást.
 \begin{figure}[th!]
 	\centering
-	\includegraphics[width=0.4\linewidth]{ADNS9800base}
+	\includegraphics[width=0.35\linewidth]{ADNS9800base}
 	\caption[ADNS9800]{ADNS-9800 szenzor}
 	\label{fig:adns9800base}
 \end{figure}
 
-Az általam választott szenzor már nyáklappal volt ellátva így azzal nem volt teendőm. Ezáltal egyszerűbb volt a bekötése és az elhelyezése is.
+Az általam választott szenzor már nyáklappal volt ellátva, ami nagymértékben egyszerűsítette a beépítési folyamatot. 
 
 \begin{figure}[th!]
 	\centering
-	\includegraphics[width=0.5\linewidth]{ADNS9800}
+	\includegraphics[width=0.3\linewidth]{ADNS9800}
 	\caption[ADNS9800]{ADNS-9800 szenzor nyák lapra szerelve}
 	\label{fig:adns9800}
 \end{figure}
 
-Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai szinttel működött viszont az Arduino Nano 5\,V-os szinttel. Így be kellett szereznem egy két irányú logikai szintillesztő\cite{szintilleszto} modult ami átalakította a 3,3\,V-os  jelet 5\,V-ossá. Ehhez a projekthez egy 8 csatornás logikai szintillesztő modult használtam.
+Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai szinttel működött viszont az Arduino Nano 5\,V-os jeleket használ. Így be kellett szereznem egy két irányú logikai szintillesztő\cite{szintilleszto} modult ami átalakította a 3,3\,V-os  jelet 5\,V-ossá. Ehhez a projekthez egy 8 csatornás logikai szintillesztő modult használtam.
 
 \begin{figure}[th!]
 	\centering
-	\includegraphics[width=0.6\linewidth]{szintilleszto}
+	\includegraphics[width=0.4\linewidth]{szintilleszto}
 	\caption[Logikai szintillesztő]{Két irányú logikai szintillesztő}
 	\label{fig:szintilleszto}
 \end{figure}
-\pagebreak
 \subsection{Adatok beolvasása}
 Az adatok beolvasása közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
 A működése a következő lépésekből áll:
 \begin{enumerate}
-	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni, mert a szenzornak nincs állandó memóriája. A firmware feltöltését \aref{upload-firmware-code}. számú metódus végzi. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés hogy a szenzor helyesen értelmezze az adatokat.
-	\begin{lstlisting}[language=Arduino,label=upload-firmware-code,caption=Firmware feltöltése]
+	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni, mert a szenzornak nincs állandó memóriája. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés hogy a szenzor helyesen értelmezze az adatokat.
+	\begin{lstlisting}[language=Arduino,label=upload-firmware-code]
 		void adns_upload_firmware(){
 			adns_write_reg(REG_Configuration_IV, 0x02);	
 			adns_write_reg(REG_SROM_Enable, 0xd); 
@@ -173,9 +172,8 @@ A működése a következő lépésekből áll:
 		}
 	\end{lstlisting}
 	%%talán bele lehetne vinni a winforms-os elindítást
-	\clearpage
 	\item Majd a \textbf{sendFrame()} metódust meghívva készítünk egy képet a szenzorral. Amit egy nagy sebességű, full--duplex kommunikációs protokollal (Serial Peripheral Interface~--~SPI) kiolvasunk és eltároljuk, ahol a kommunikáció egy órajel vezérelt mechanizmussal működik. 
-	\begin{lstlisting}[language=Arduino,label=sendFrame,caption=sendFrame metódus]
+	\begin{lstlisting}[language=Arduino,label=sendFrame]
 		void sendFrame() {
 			adns_write_reg(REG_Power_Up_Reset, 0x5A);
 			delay(50);
@@ -209,7 +207,6 @@ A működése a következő lépésekből áll:
 			Serial.println();
 		}
 	\end{lstlisting}
-	\clearpage
 	A metódus működése:
 	\begin{enumerate}[label=\arabic*.]
 		\item \textbf{Szenzornak kiadjuk, hogy készítsen egy képet.} Ekkor bele írjuk a megfelelő értéket a REG\_Frame\_Capture regiszterbe. A szenzor ekkor egy 30\,x\,30 pixeles képkockát olvas be.
@@ -235,19 +232,18 @@ A szenzort két motor mozgatja az egyik vízszintesen a másik pedig függőlege
 	\caption[Mitsumi]{\footnotesize {MITSUMI M42SP-4NP bipoláris motor a függőleges mozgáshoz}}
 	\label{fig:mitsumi-stepping-motor-m42sp-4np}
 \end{figure}
-\pagebreak
 
 Mindkét motornál half-step vezérlési módot használtam, hogy még finomabb és pontosabb mozgást tudjak végezni velük. Ennek az a lényege, hogy a motor kétszer annyi lépésben teszi meg ugyanazt a fordulatot. Ez úgy lehetséges, hogy a négy tekercs közül először egy tekercs kap áramot, majd az első és a második egyszerre, majd csak a második, így a lépés szám a duplájára nő a szögelfordulás pedig a felére csökken.
 
 \begin{figure}[th!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{stepper-motors-half-step}
+	\includegraphics[width=0.5\linewidth]{stepper-motors-half-step}
 	\caption[Half Step vezérlés]{Half Step vezérlés működése}
 	\label{fig:stepper-motors-half-step}
 \end{figure}
 
 
-A vízszintes mozgáshoz beépítettem egy unipoláris léptetőmotort, amely egy ULN2003 motorvezérlő modullal működik, amit nagyon gyakran használnak ilyen kis apró finom mozgásokhoz, amire nekem is szükségem volt. Mivel ez a motor úgy van felépítve, hogy alapból áttétek vannak benne ezért azzal itt sem kellett foglalkoznom. 
+A vízszintes mozgáshoz beépítettem egy unipoláris léptetőmotort, amely egy ULN2003 motorvezérlő modullal működik, amit nagyon gyakran használnak ilyen kis apró finom mozgásokhoz, amire nekem is szükségem volt. Mivel ez a motor úgy van felépítve, hogy alapból áttétek vannak benne ezért azzal itt sem kellett foglalkoznom. A motorok egy egy bordás szíjas sínen mozognak, ezáltal a mozgás stabil lesz és csúszásmentes. Mindkettő végén van egy végállás kapcsoló, ha a vízszintes sor a végére ér ezt aktiválja és lentebb megy egy sort, valamint vissza megy a sor elejére a szenzor. Ekkor küldd az Arduino egy ''NEW\_ROW'' kulcsszót a Serial porton a számítógép felé, ezzel jelezve a feldolgozó szoftvernek, hogy új sor következik az olvasásban. Ha pedig a függőleges végálláskapcsoló válik aktívvá akkor pedig az ''END'' kulcsszót küldi el a számítógép felé, jelezve, hogy vége a dokumentumnak és vissza tér a kezdeti állásba.
 
 \begin{figure}[th!]
 	\centering
@@ -256,17 +252,17 @@ A vízszintes mozgáshoz beépítettem egy unipoláris léptetőmotort, amely eg
 	\label{fig:28byj-48-modul-uln2003}
 \end{figure}
 
- A motorok egy egy bordás szíjas sínen mozognak, ezáltal a mozgás stabil lesz és csúszásmentes. Mindkettő végén van egy végállás kapcsoló, ha a vízszintes sor a végére ér ezt aktiválja és lentebb megy egy sort, valamint vissza megy a sor elejére a szenzor. Ekkor küldd az Arduino egy ''NEW\_ROW'' kulcsszót a Serial porton a számítógép felé, ezzel jelezve a feldolgozó szoftvernek, hogy új sor következik az olvasásban. Ha pedig a függőleges végálláskapcsoló válik aktívvá akkor pedig az ''END'' kulcsszót küldi el a számítógép felé, jelezve, hogy vége a dokumentumnak és vissza tér a kezdeti állásba.
+ 
 
 \section{Hardveres bekötés}
 \begin{figure}[th!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{circuit}
+	\includegraphics[width=0.8\linewidth]{circuit}
 	\caption[Hardveres bekötés]{Hardveres bekötés}
 	\label{fig:circuit}
 \end{figure}
+A bekötési rajzon narancssárgával színezett elemek a motorvezérlők, pontosan az L298 és az ULN2003AN. A kék színű elem a szintillesztő és a zöld pedig az ADNS-9800 szenzor. Valamint van még két motor és az Arduino Nano.
 
-Már kész csak nem biztos hogy jó
 \chapter{Szoftveres megvalósítás}
 
 %%\section{Felhasznált algoritmusok/metódusok}
@@ -304,6 +300,8 @@ Van egy soros portot beállító metódus. Aminek segítségével megnyitom a so
 	}
 \end{lstlisting}
 
+\section{Bejövő adatot feldolgozó metódus}
+
 \chapter{Tesztelés}
 A programomat az elejétől fogva folyamatosan teszteltem, először a szoftveres részt, majd miután megérkezett hozzám a szenzor elkezdtem azt tesztelni. 
 
@@ -334,6 +332,13 @@ A szoftverben ehhez megírtam a szükséges metódust ami arra szolgál, hogy fo
 \end{figure}
 
 Aztán következhetett a szenzor tesztelése. Először egy fehér lapon próbálkoztam amire kisbetűmérettel volt rá írva pár betű, viszont valamiért nem kaptam egy szép képet, ezért elkezdtem mozgatni a szenzort és rájöttem, hogy a fókusz távolság nem volt a megfelelő. Így azt kellett finom hangolnom, egyszerű kártya lapokat használtam, hogy megtaláljam a megfelelő távolságot. Miután sikerült beállítanom a kellő távolságot a papírtól, elkezdtem kinyerni a szenzorból a képeket. Megírtam hozzá a teszt alkalmazást amivel megjelenítem, hogy mit lát a szenzor, és nagyon nagy örömömre sikerült képet kinyernem a szenzorból.
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=1\linewidth]{tesztalkalmazas2}
+	\caption[Teszt2]{Továbbfejlesztett teszt alkalmazás}
+	\label{fig:tesztalkalmazas2}
+\end{figure}
+
 \chapter*{Összegzés}
 Tapasztalatok amiket szereztem a projekt megvalósítása közben
 Tovabbfejlesztési gondolatok
@@ -355,7 +360,7 @@ felbontásra vonatkozóan például  feles átfedéssel
 \end{itemize}
 
 
-\begin{thebibliography}{8}
+\begin{thebibliography}{9}
 \addcontentsline{toc}{chapter}{\bibname}
 \bibitem{szakdolgozat} Github link a szakdolgozathoz: \url{https://github.com/Bmate2/SZAKDOGA}
 \bibitem{arduino} Arduino: \url{https://www.arduino.cc/en/Guide/Introduction}
