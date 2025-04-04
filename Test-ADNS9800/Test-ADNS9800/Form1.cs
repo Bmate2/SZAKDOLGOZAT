@@ -34,12 +34,12 @@ namespace Test_ADNS9800
         private void InitializeSerialPort()
         {
             serialPort = new SerialPort("COM3", 115200);
-            serialPort.DataReceived += SerialPort_DataReceived; 
+            serialPort.DataReceived += DataReceived; 
             serialPort.Open();
             serialPort.Write("reset");
         }
 
-        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string data = serialPort.ReadExisting();
             ProcessSerialData(data);
@@ -49,7 +49,11 @@ namespace Test_ADNS9800
         private void ProcessSerialData(string data)
         {
 
-            if (string.IsNullOrEmpty(data)) return;
+            if (string.IsNullOrEmpty(data))
+            {
+                MessageBox.Show("A beérkezett adat üres", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             dataBuffer.Append(data); 
             string bufferString = dataBuffer.ToString();
@@ -61,16 +65,16 @@ namespace Test_ADNS9800
                 bufferString = bufferString.Substring(newlineIndex + 1);
                 if (this.InvokeRequired)
                 {
-                    this.Invoke(new Action(() => listBox1.Items.Add($"Beérkező sor: {fullLine}")));
+                    this.Invoke(new Action(() => listBox1.Items.Add("Beérkező sor: "+fullLine)));
                 }
                 else
                 {
-                    listBox1.Items.Add($"Beérkező sor: {fullLine}");
+                    listBox1.Items.Add("Beérkező sor: " + fullLine);
                 }
 
                 if (fullLine.StartsWith("FRAME:"))
                 {
-                    string[] pixels = fullLine.Substring(6).Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] pixels = fullLine.Substring(6).Split(new[] { ' ' });
 
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
@@ -87,11 +91,11 @@ namespace Test_ADNS9800
                     {
                         if (this.InvokeRequired)
                         {
-                            this.Invoke(new Action(() => listBox1.Items.Add($"Hibás FRAME sor hossz: {pixels.Length}")));
+                            this.Invoke(new Action(() => listBox1.Items.Add("Hibás FRAME sor hossz: "+pixels.Length)));
                         }
                         else
                         {
-                            listBox1.Items.Add($"Hibás FRAME sor hossz: {pixels.Length}");
+                            listBox1.Items.Add("Hibás FRAME sor hossz: "+pixels.Length);
                         }
                     }
                     
@@ -107,8 +111,6 @@ namespace Test_ADNS9800
                     SaveDoc();
                 }
             }
-            dataBuffer.Clear();
-            dataBuffer.Append(bufferString);
         }
 
 

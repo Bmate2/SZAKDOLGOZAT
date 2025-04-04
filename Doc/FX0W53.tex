@@ -14,7 +14,6 @@
 \input{csharpLanguage.tex}
 \def\lstlistingname{kód}
 
-
 \begin{document}
 
 \institute{Matematikai és Informatikai Intézet}
@@ -279,8 +278,9 @@ A feldolgozó szoftver Serial porton kapja meg az adatokat az Arduino-tól. Van 
 private SerialPort serialPort;
 private const int FrameWidth = 30; 
 private const int FrameHeight = 30; 
-private StringBuilder buffer = new StringBuilder(); 
-private Bicubic resizer = new Bicubic(FrameWidth, FrameHeight, 2);
+private StringBuilder dataBuffer = new StringBuilder(); 
+private const int scale = 2;
+private Bicubic resizer = new Bicubic(FrameWidth, FrameHeight, scale);
 
 int row = 0;
 int column = 0;
@@ -294,13 +294,85 @@ Van egy soros portot beállító metódus. Aminek segítségével megnyitom a so
 	private void InitializeSerialPort()
 	{
 		serialPort = new SerialPort("COM3", 115200);
-		serialPort.DataReceived += SerialPort_DataReceived;
+		serialPort.DataReceived += DataReceived;
 		serialPort.Open();
 		serialPort.Write("reset");
 	}
 \end{lstlisting}
 
 \section{Bejövő adatot feldolgozó metódus}
+A bejövő adatokat egy külön metódus kezeli. A metódus elején megnézem, hogy a beérkezett data üres-e, ha igen akkor jelzem a hibát és kilépek. Viszont ha van adat akkor azt hozzáadom a dataBufferhez ami tárolja az eddig beérkezett adatokat. Átalakítom a jelenlegi dataBuffert String-é, hogy könnyebb legyen vele dolgozni. Végül deklarálok egy változót amiben az aktuális sor végén lévő új sor karakter pozícióját tárolom.
+\begin{lstlisting}[language=CSharp, basicstyle=\small]
+private void ProcessSerialData(string data)
+{
+	if (string.IsNullOrEmpty(data))
+	{
+		MessageBox.Show("A beérkezett adat üres", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		return;
+	}
+	dataBuffer.Append(data); 
+	string bufferString = dataBuffer.ToString();
+	int newlineIndex;
+\end{lstlisting}
+Az adatok feldolgozását egy while ciklus végzi ami addig megy amíg a bufferstring tartalmaz új sor jelet, eközben a ciklus minden iterációjában kimentem a jelenlegi indexét az új sor jelnek. Ezen belül kinyerem az első teljes sort a bufferből és levágom a felesleges szóközöket. Eltávolítom ezt a teljes sort a dataBufferből. Frissítem a bufferstring változót is, hogy csak a még fel nem dolgozott rész maradjon. Mivel WinForms-al dolgozok ezért szükségem van az InvokeRequired feltételre, amivel megvizsgálom, hogy az adott hívás másik szálról történik-e, ha a hívás a főszálon történik akkor csak egyszerűen hozzáadom a listboxhoz a beérkezett adatot, ha nem akkor az Invoke metódussal hozzá adom a főszálon.
+\begin{lstlisting}[language=CSharp]
+	while ((newlineIndex=bufferString.IndexOf("\n"))!= -1)
+	{
+		string fullLine = bufferString.Substring(0, newlineIndex).Trim(); 
+		dataBuffer.Remove(0, newlineIndex + 1);
+		bufferString = bufferString.Substring(newlineIndex + 1);
+		if (this.InvokeRequired)
+		{
+			this.Invoke(new Action(() => listBox1.Items.Add("Beérkező sor: "+fullLine)));
+		}
+		else
+		{
+			listBox1.Items.Add("Beérkező sor: " + fullLine);
+		}
+\end{lstlisting}
+Ha a jelenlegi beérkezett sor úgy kezdődik, hogy ''FRAME'' akkor levágom az elejéről a ''FRAME'' szót és a maradék adatot kimentem egy szöveg típusú tömbbe. Leellenőrzöm, hogy ennek a tömbnek meg egyezik-e a hossza az általam előírttal. Tehát az alap FrameWidth és FrameHeight szorzatával ami 30\,x\,30, ha nem akkor hibát dobok. Az interpolációs osztály példányával meghívom erre a tömbre az interpoláló metódust, és közben az összes elemet átalakítom egész típusú számmá és kimentem egy frameData nevű egész típusú tömbbe. Ezután megjelenítem a már interpolált képet az alkmalmazásban egy pictureBox segítségével. Valamint megvizsgálom hogy a \emph{row} változónak az értéke nagyobb-e, mint a \emph{listGrid} hossza, amivel itt a sor kezelést oldom meg, ha igen akkor azt jelenti, hogy már egy új sorban vagyunk már ezért kell hozzá adnunk egy új tömbökből álló listát. Végül hozzáadjuk a jelenlegi sorhoz a tömböt. 
+\begin{lstlisting}[language=CSharp]
+		if (fullLine.StartsWith("FRAME:"))
+		{
+			string[] pixels = fullLine.Substring(6).Split(new[] { ' ' });
+			if (pixels.Length == FrameWidth * FrameHeight)
+			{
+				int[] frameData = resizer.BicubicResize(Array.ConvertAll(pixels, int.Parse));
+				DisplayFrame(frameData, pictureBox, FrameHeight * scale, FrameWidth * scale);
+				if (row >= listGrid.Count)
+				{
+					listGrid.Add(new List<int[]>());
+				}
+				listGrid[row].Add(frameData);
+			}
+			else
+			{
+				if (this.InvokeRequired)
+				{
+					this.Invoke(new Action(() => listBox1.Items.Add("Hibás FRAME sor hossz: "+pixels.Length)));
+				}
+				else
+				{
+					listBox1.Items.Add("Hibás FRAME sor hossz: "+pixels.Length);
+				}
+			}
+		}
+\end{lstlisting}
+Ha a ''NEW\_ROW'' kulcsszóval kezdődik a jelenlegi adat akkor csak simán növelem a sor indexet. Mivel ekkor jelet kapok az Arduino felől, hogy a szkennelés a következő sorban folytatódik tovább. Ha az ''END'' kulcsszó van a jelenlegi adatban akkor pedig befejeződött a szkennelés tehát leállítom a szenzort valamint elmentem a dokumentumot.
+\begin{lstlisting}[language=CSharp]
+		if (fullLine.StartsWith("NEW_ROW"))
+		{
+			row++;	
+		}
+		if (fullLine.StartsWith("END"))
+		{
+			serialPort.WriteLine("stop");
+			SaveDoc();
+		}
+	}
+}
+\end{lstlisting}
+
 
 \chapter{Tesztelés}
 A programomat az elejétől fogva folyamatosan teszteltem, először a szoftveres részt, majd miután megérkezett hozzám a szenzor elkezdtem azt tesztelni. 
