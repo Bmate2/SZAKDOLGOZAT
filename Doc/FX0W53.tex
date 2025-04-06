@@ -373,79 +373,165 @@ Ha a ''NEW\_ROW'' kulcsszóval kezdődik a jelenlegi adat akkor csak simán növ
 }
 \end{lstlisting}
 \section{Kiegészítő metódusok}
-Az első kiegészítő függvény amit használtam az a \textbf{DisplayFrame} metódus aminek a segítségével megtudtam jeleníteni egy pictureboxba, hogy mit is lát a szenzor. Ennek annyi a lényege, hogy megkapja paraméterként a pixel intenzitásokat tartalmazó tömböt valamint a képmérethez szükséges adatokat. A bemeneti tömbön végig megyek és minden egyes pixelt elmentek egy Bitmap formátumú változóba. Mivel szürkeárnyalatos képet jelenítek meg ezért az RGB értékek helyére ugyanazt a színintenzitást rendelem. Végül a létrehozott Bitmap változót hozzárendelem a pictureboxhoz.
+Az egyik legfontosabb kiegészítő metódus a matrixToBitmap amiben egy képkockákból álló két dimenziós listát alakítok át egy nagy szürkeárnyalatos Bitmap\cite{bitmap.class} képpé. A célja a metódusnak, hogy a szenzor által beolvasott és interpolált képkockákat egy nagy képpé összeállítsam. A listGrid szerkezet egy két dimenziós lista amely úgy értelmezhető, hogy az első dimenzió (külső lista) a sorokat jelenti, a második dimenzió (belső lista) pedig az oszlopokat jelképezi. Végül minden int[\,] elem egy képkockát tartalmaz ahol a színintenzitások sorban vannak felsorolva. 
+
+Példa: listGrid[1][2] jelenti a második sor harmadik képkockáját.
+
+Visszatérve a metódusra az egész metódus kezdődik egy ellenőrzéssel ahol megnézzük, hogy a listGrid üres-e, ha igen akkor hibát dobunk.
 \begin{lstlisting}[language=CSharp]
-	private void DisplayFrame(int[] frameData, int height,int width)
+	  private Bitmap matrixToBitmap()
+	 {
+	 	if (listGrid.Count == 0 || listGrid[0].Count == 0 || listGrid[0][0] == null)
+	 	{
+	 		MessageBox.Show("A mátrix üres, nem lehet képet generálni.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+	 		return null;
+	 	}
+\end{lstlisting}
+Meghatározzuk a képkockák szélességét és magasságát úgy, hogy megszorozzuk a nagyítási változóval az eredeti kép méreteit. Ezután meghatározzuk a teljes összeállított képek méretét.
+\begin{lstlisting}[language=CSharp]
+	 	int frameWidth = FrameWidth * scale;
+	 	int frameHeight = FrameHeight * scale;
+	 	int width = listGrid[0].Count * frameWidth;
+	 	int height = listGrid.Count * frameHeight;
+\end{lstlisting}
+Az általános SetPixel metódus helyett én inkább a LockBit megoldást választottam, igaz, hogy az nem olyan egyszerű de a nagy képeknél viszont sokkal gyorsabb teljesítményt tudok elérni vele. Ennek az oka hogy a memóriába írok közvetlenül a GDI hívások helyett.
+
+Létrehozok egy Bitmap példányt 24 bites RGB formátumban, ami azt jelenti, hogy minden képpont 3 bájtot foglal el. A Rectangle osztállyal meghatározom a Bitmap teljes tartományát. A Bitmap LockBits metódusának átadom az előzőleg meghatározott rectangle-t, az ImageLockMode-ot amivel úgy zárom le a Bitmap-et, hogy csak írni tudjam,olvasni ne. Valamint átadom neki a Bitmap formátumát is, és vissza kapok egy BitmapData értéket ami tartalmazza ennek a zárolásnak az információit. Ebből kinyerve megkapom a stride-ot ami egy fontos információ, mivel ez mutatja meg, hogy a Bitmap memóriájában egy-egy sor hány bite hosszú. Ez nem feltétlenül egyezik meg a képpontok számának és a színintenzitásnak megfelelő mérettel, mert a rendszer minden sort 4 bite-ra igazít a gyorsabb memóriakezelés miatt. Tehát ezzel fogom kiszámolni, hogy egy adott képpont hol helyezkedik el.
+\begin{lstlisting}[language=CSharp]	 	
+	 	Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+	 	Rectangle rect = new Rectangle(0, 0, width, height);
+	 	BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.WriteOnly, bmp.PixelFormat);	 	
+	 	int stride = bmpData.Stride;
+\end{lstlisting}
+Végig megyek a listGrid-en ami ugye a teljes nagy kép és ezen belül végig megyek a képkockákon is és minden egyes pixelt közvetlenül át másolok egy byte tömbbe. Itt alkalmaztam egy kis kontraszt javítást is mert a szenzor képe nem a legszebb de így sokkal jobban néz ki. A stride segítségével kiszámolom hogy az adott pozíció hányadik byte-nál kezdődik a memóriában.
+\begin{lstlisting}[language=CSharp]	
+		byte[] bytes = new byte[stride * height];
+	 	for (int row = 0; row < listGrid.Count; row++)
+	 	{
+	 		for (int col = 0; col < listGrid[row].Count; col++)
+	 		{
+	 			int[] frameData = listGrid[row][col];
+	 		
+	 			int startX = col * frameWidth;
+	 			int startY = row * frameHeight;
+	 		
+	 			for (int y = 0; y < frameHeight; y++)
+	 			{
+	 				for (int x = 0; x < frameWidth; x++)
+	 				{
+	 					int pixelValue = (int)(frameData[y * frameWidth + x] * 1.15); 
+	 				
+	 					int globalX = startX + x;
+	 					int globalY = startY + y;
+	 				
+	 					int offset = globalY * stride + globalX * 3;
+	 				
+	 					bytes[offset] = (byte)pixelValue;       
+	 					bytes[offset + 1] = (byte)pixelValue;   
+	 					bytes[offset + 2] = (byte)pixelValue;     
+	 				}
+	 			}
+	 		}
+	 	}
+\end{lstlisting}
+Miután végig mentem a teljes képen és megtelt a tömb, visszamásolom a tömb adatait a Bitmap memóriába. Ezt egyetlen sorral meg tudtam tenni a Marshal.Copy\cite{marshal.copy} metódussal, át adtam neki a a byte tömböt, a másolás kezdőindexét, a célmemóriát amit a bitmapData-ból tudok lekérdezni a Scan0 metódussal, valamint a másolandó bitek számát.
+\begin{lstlisting}[language=CSharp]	
+	 	Marshal.Copy(bytes, 0, bmpData.Scan0, stride * height);
+	 	bmp.UnlockBits(bmpData);
+	 	return bmp;
+	 }
+\end{lstlisting}
+A következő kiegészítő metódus amit használtam az a \textbf{DisplayFrame} metódus aminek a segítségével megtudtam jeleníteni egy pictureboxba, hogy mit is lát a szenzor. Ennek annyi a lényege, hogy megkapja paraméterként a pixel intenzitásokat tartalmazó tömböt valamint a képmérethez szükséges adatokat. 
+
+A képkocka megjelenítését hasonlóan oldottam meg mint a korábban bemutatott matrixToBitmap metódusban. LockBits segítségével.
+\begin{lstlisting}[language=CSharp]
+private void DisplayFrame(int[] frameData, int height,int width)
+{
+	Bitmap frameBitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+	Rectangle rect = new Rectangle(0, 0, width, height);
+	BitmapData bmpData = frameBitmap.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+	
+	int stride = bmpData.Stride;
+	byte[] bytes = new byte[stride * height];
+	
+	for (int y = 0; y < height; y++)
 	{
-		Bitmap frameBitmap = new Bitmap(width, height);
-		
-		for (int y = 0; y < height; y++)
+		for (int x = 0; x < width; x++)
 		{
-			for (int x = 0; x < width; x++)
-			{
-				int pixelValue = frameData[y * width + x];
-				Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
-				frameBitmap.SetPixel(x, y, color);
-			}
+			int pixelValue = (int)(frameData[y * width + x] * 1.15);
+			int offset = y * stride + x * 3;
+			
+			bytes[offset] = (byte)pixelValue;         
+			bytes[offset + 1] = (byte)pixelValue;     
+			bytes[offset + 2] = (byte)pixelValue;     
 		}
-		
-		if (this.InvokeRequired)
-		{
-			this.Invoke(new Action(() =>
-			{
-				pictureBox.Image = frameBitmap;
-				pictureBox.Invalidate();
-				pictureBox.Update();
-			}));
-		}
-		else
+	}
+	
+	Marshal.Copy(bytes, 0, bmpData.Scan0, bytes.Length);
+	frameBitmap.UnlockBits(bmpData);
+	
+	if (this.InvokeRequired)
+	{
+		this.Invoke(new Action(() =>
 		{
 			pictureBox.Image = frameBitmap;
 			pictureBox.Invalidate();
 			pictureBox.Update();
-		}
+		}));
 	}
-
-\end{lstlisting}
-Az egyik legfontosabb kiegészítő metódus a matrixToBitmap amiben egy mátrixot alakítok át egy Bitmap képpé.
-\begin{lstlisting}[language=CSharp]
-	 private Bitmap matrixToBitmap(List<List<int[]>> bigGrid)
+	else
 	{
-		if (bigGrid.Count == 0 || bigGrid[0].Count == 0 || bigGrid[0][0] == null)
+		pictureBox.Image = frameBitmap;
+		pictureBox.Invalidate();
+		pictureBox.Update();
+	}
+}	
+\end{lstlisting}
+A dokumentum mentésére szolgáló metódus a SaveDoc nevezetű metódus, ami azt a célt szolgálja, hogy a dokumentumot képként vagy pdf formátumba lementi. A metódus létrehoz egy külön mappát a dokumentumoknak SavedFrames néven. Ha a felhasználó be pipálta a pdf format checkbox-ot akkor a program pdf formátumba menti le a beszkennelt dokumentumot ellenkező esetben pedig png-ben. A pdf mentéshez az Aspose.Words\cite{aspose.word} nuget csomagot használtam.
+\begin{lstlisting}[language=CSharp]
+	private void SaveDoc()
+	{
+		string folderPath = Path.Combine(Application.StartupPath, "SavedFrames");
+		if (!Directory.Exists(folderPath))
 		{
-			MessageBox.Show("A mátrix üres, nem lehet képet generálni.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			return null;
+			Directory.CreateDirectory(folderPath);
 		}
-		int width = bigGrid[0].Count*FrameWidth* scale;
-		int height = bigGrid.Count*FrameHeight*scale;
-		if (this.InvokeRequired)
+		string filePath = Path.Combine(folderPath);
+		try 
 		{
-			this.Invoke(new Action(() => MessageBox.Show(this, "Height: " + height + "\nWidth: " + width)));
-		}
-		else
-		{
-			MessageBox.Show(this, "Height: " + height + "\nWidth: " + width);
-		}
-		Bitmap bmp = new Bitmap(width, height);
-		for (int row = 0; row < bigGrid.Count; row++)
-		{
-			for (int col = 0; col < bigGrid[row].Count; col++)
+			if (pdfCheckBox.Checked)
 			{
-				int[] frameData = bigGrid[row][col];				
-				int startX = col * FrameWidth*scale;
-				int startY = row * FrameHeight*scale;
-				for (int y = 0; y < FrameHeight*scale; y++)
+				var doc = new Document();
+				var builder = new DocumentBuilder(doc);
+				builder.InsertImage(matrixToBitmap());
+				doc.Save(filePath+"\\Document.pdf");
+				if (this.InvokeRequired)
 				{
-					for (int x = 0; x < FrameWidth*scale; x++)
-					{
-						int pixelValue = frameData[y * (FrameWidth*scale) + x];
-						Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
-						bmp.SetPixel(startX + x, startY + y, color);
-					}
+					this.Invoke(new Action(() => MessageBox.Show("A pdf mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+				}
+				else
+				{
+					MessageBox.Show("A pdf mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 			}
+			else
+			{
+				matrixToBitmap().Save(filePath + "\\frame.png", System.Drawing.Imaging.ImageFormat.Png);
+				if (this.InvokeRequired)
+				{
+					this.Invoke(new Action(() => MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+				}
+				else
+				{
+					MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				
+			}
 		}
-		return bmp;
+		catch (Exception ex)
+		{
+			MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
 	}
 \end{lstlisting}
 \chapter{Tesztelés}
@@ -529,7 +615,13 @@ felbontásra vonatkozóan például  feles átfedéssel
 \bibitem{winforms} Windows Forms: \url{https://learn.microsoft.com/hu-hu/dotnet/visual-basic/developing-apps/windows-forms/}
 \bibitem{listbox} Listbox osztály: \url{https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.listbox?view=windowsdesktop-9.0}
 \bibitem{arduino_latex} \LaTeX\ Arduino stílus fájl: \url{https://github.com/trihedral/ArduinoLatexListing}
+\bibitem{bitmap.class} Bitmap osztály: \url{https://learn.microsoft.com/en-us/dotnet/api/system.drawing.bitmap?view=windowsdesktop-9.0}
 \bibitem{matrixToBitmap} Mátrix átalakítása Bitmap képpé: \url{https://swharden.com/csdv/system.drawing/array-to-image/}
+\bibitem{lockbit} Bitmap.LockBits használata: \url{URLhttps://learn.microsoft.com/en-us/dotnet/api/system.drawing.bitmap.lockbits?view=windowsdesktop-9.0}
+\bibitem{fastpixeloperation} Lockbit vs SetPixel: \url{https://www.codeproject.com/Articles/617613/Fast-Pixel-Operations-in-NET-With-and-Without-unsa}
+\bibitem{rectangle} Rectangle osztály: \url{URLhttps://learn.microsoft.com/en-us/dotnet/api/system.drawing.rectangle?view=net-9.0&viewFallbackFrom=windowsdesktop-9.0}
+\bibitem{marshal.copy} Marshal Copy metódus: \url{https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.marshal.copy?view=net-9.0}
+\bibitem{aspose.word} Aspose.Words nuget csomag a dokumentum mentéshez:  \url{https://www.nuget.org/packages/aspose.words}
 \end{thebibliography}
 
 % Aláírt, szkennelt nyilatkozat beillesztése a szakdolgozat végére

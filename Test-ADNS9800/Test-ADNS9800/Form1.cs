@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.IO.Ports;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Aspose.Words;
@@ -116,17 +118,28 @@ namespace Test_ADNS9800
 
         private void DisplayFrame(int[] frameData, int height,int width)
         {
-            Bitmap frameBitmap = new Bitmap(width, height);
+            Bitmap frameBitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+            Rectangle rect = new Rectangle(0, 0, width, height);
+            BitmapData bmpData = frameBitmap.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+
+            int stride = bmpData.Stride;
+            byte[] bytes = new byte[stride * height];
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    int pixelValue = frameData[y * width + x];
-                    Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
-                    frameBitmap.SetPixel(x, y, color);
+                    int pixelValue = (int)(frameData[y * width + x] * 1.15);
+                    int offset = y * stride + x * 3;
+
+                    bytes[offset] = (byte)pixelValue;         
+                    bytes[offset + 1] = (byte)pixelValue;     
+                    bytes[offset + 2] = (byte)pixelValue;     
                 }
             }
+
+            Marshal.Copy(bytes, 0, bmpData.Scan0, bytes.Length);
+            frameBitmap.UnlockBits(bmpData);
 
             if (this.InvokeRequired)
             {
@@ -148,49 +161,59 @@ namespace Test_ADNS9800
 
 
 
-        private Bitmap matrixToBitmap(List<List<int[]>> bigGrid)
+        private Bitmap matrixToBitmap()
         {
-            if (bigGrid.Count == 0 || bigGrid[0].Count == 0 || bigGrid[0][0] == null)
+            if (listGrid.Count == 0 || listGrid[0].Count == 0 || listGrid[0][0] == null)
             {
                 MessageBox.Show("A mátrix üres, nem lehet képet generálni.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-            
-            
-            int width = bigGrid[0].Count*FrameWidth* scale;
-            
-            int height = bigGrid.Count*FrameHeight*scale;
-            if (this.InvokeRequired)
+
+            int frameWidth = FrameWidth * scale;
+            int frameHeight = FrameHeight * scale;
+            int width = listGrid[0].Count * frameWidth;
+            int height = listGrid.Count * frameHeight;
+
+            Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+            Rectangle rect = new Rectangle(0, 0, width, height);
+            BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.WriteOnly, bmp.PixelFormat);
+
+            int stride = bmpData.Stride;
+            byte[] bytes = new byte[stride * height];
+
+            for (int row = 0; row < listGrid.Count; row++)
             {
-                this.Invoke(new Action(() => MessageBox.Show(this, "Height: " + height + "\nWidth: " + width)));
-            }
-            else
-            {
-                MessageBox.Show(this, "Height: " + height + "\nWidth: " + width);
-            }
-                Bitmap bmp = new Bitmap(width, height);
-            for (int row = 0; row < bigGrid.Count; row++)
-            {
-                for (int col = 0; col < bigGrid[row].Count; col++)
+                for (int col = 0; col < listGrid[row].Count; col++)
                 {
-                    int[] frameData = bigGrid[row][col];
+                    int[] frameData = listGrid[row][col];
 
-                    int startX = col * FrameWidth*scale;
-                    int startY = row * FrameHeight*scale;
+                    int startX = col * frameWidth;
+                    int startY = row * frameHeight;
 
-                    for (int y = 0; y < FrameHeight*scale; y++)
+                    for (int y = 0; y < frameHeight; y++)
                     {
-                        for (int x = 0; x < FrameWidth*scale; x++)
+                        for (int x = 0; x < frameWidth; x++)
                         {
-                            int pixelValue = frameData[y * (FrameWidth*scale) + x];
-                            Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
-                            bmp.SetPixel(startX + x, startY + y, color);
+                            int pixelValue = (int)(frameData[y * frameWidth + x] * 1.15); 
+
+                            int globalX = startX + x;
+                            int globalY = startY + y;
+
+                            int offset = globalY * stride + globalX * 3;
+
+                            bytes[offset] = (byte)pixelValue;       
+                            bytes[offset + 1] = (byte)pixelValue;   
+                            bytes[offset + 2] = (byte)pixelValue;     
                         }
                     }
                 }
             }
-                return bmp;
+
+            Marshal.Copy(bytes, 0, bmpData.Scan0, stride * height);
+            bmp.UnlockBits(bmpData);
+            return bmp;
         }
+
 
         private void SaveDoc()
         {
@@ -208,7 +231,7 @@ namespace Test_ADNS9800
                     var doc = new Document();
                     var builder = new DocumentBuilder(doc);
 
-                    builder.InsertImage(matrixToBitmap(listGrid));
+                    builder.InsertImage(matrixToBitmap());
                     doc.Save(filePath+"\\Document.pdf");
                     if (this.InvokeRequired)
                     {
@@ -221,7 +244,7 @@ namespace Test_ADNS9800
                 }
                 else
                 {
-                    matrixToBitmap(listGrid).Save(filePath + "\\frame.png", System.Drawing.Imaging.ImageFormat.Png);
+                    matrixToBitmap().Save(filePath + "\\frame.png", System.Drawing.Imaging.ImageFormat.Png);
                     if (this.InvokeRequired)
                     {
                         this.Invoke(new Action(() => MessageBox.Show("A kép mentése sikeresen megtörtént.", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information)));
@@ -237,9 +260,6 @@ namespace Test_ADNS9800
             {
                 MessageBox.Show($"Hiba a képfájl mentésekor: {ex.Message}", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-            
-            
         }
 
 
