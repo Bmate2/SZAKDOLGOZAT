@@ -407,7 +407,47 @@ Az első kiegészítő függvény amit használtam az a \textbf{DisplayFrame} me
 	}
 
 \end{lstlisting}
-
+Az egyik legfontosabb kiegészítő metódus a matrixToBitmap amiben egy mátrixot alakítok át egy Bitmap képpé.
+\begin{lstlisting}[language=CSharp]
+	 private Bitmap matrixToBitmap(List<List<int[]>> bigGrid)
+	{
+		if (bigGrid.Count == 0 || bigGrid[0].Count == 0 || bigGrid[0][0] == null)
+		{
+			MessageBox.Show("A mátrix üres, nem lehet képet generálni.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return null;
+		}
+		int width = bigGrid[0].Count*FrameWidth* scale;
+		int height = bigGrid.Count*FrameHeight*scale;
+		if (this.InvokeRequired)
+		{
+			this.Invoke(new Action(() => MessageBox.Show(this, "Height: " + height + "\nWidth: " + width)));
+		}
+		else
+		{
+			MessageBox.Show(this, "Height: " + height + "\nWidth: " + width);
+		}
+		Bitmap bmp = new Bitmap(width, height);
+		for (int row = 0; row < bigGrid.Count; row++)
+		{
+			for (int col = 0; col < bigGrid[row].Count; col++)
+			{
+				int[] frameData = bigGrid[row][col];				
+				int startX = col * FrameWidth*scale;
+				int startY = row * FrameHeight*scale;
+				for (int y = 0; y < FrameHeight*scale; y++)
+				{
+					for (int x = 0; x < FrameWidth*scale; x++)
+					{
+						int pixelValue = frameData[y * (FrameWidth*scale) + x];
+						Color color = Color.FromArgb(pixelValue, pixelValue, pixelValue);
+						bmp.SetPixel(startX + x, startY + y, color);
+					}
+				}
+			}
+		}
+		return bmp;
+	}
+\end{lstlisting}
 \chapter{Tesztelés}
 A programomat az elejétől fogva folyamatosan teszteltem, először a szoftveres részt, majd miután megérkezett hozzám a szenzor elkezdtem azt tesztelni. 
 
@@ -489,6 +529,7 @@ felbontásra vonatkozóan például  feles átfedéssel
 \bibitem{winforms} Windows Forms: \url{https://learn.microsoft.com/hu-hu/dotnet/visual-basic/developing-apps/windows-forms/}
 \bibitem{listbox} Listbox osztály: \url{https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.listbox?view=windowsdesktop-9.0}
 \bibitem{arduino_latex} \LaTeX\ Arduino stílus fájl: \url{https://github.com/trihedral/ArduinoLatexListing}
+\bibitem{matrixToBitmap} Mátrix átalakítása Bitmap képpé: \url{https://swharden.com/csdv/system.drawing/array-to-image/}
 \end{thebibliography}
 
 % Aláírt, szkennelt nyilatkozat beillesztése a szakdolgozat végére
