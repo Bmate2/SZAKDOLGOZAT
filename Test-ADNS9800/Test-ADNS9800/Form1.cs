@@ -79,7 +79,7 @@ namespace Test_ADNS9800
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
                         int[] frameData = resizer.BicubicResize(Array.ConvertAll(pixels, int.Parse));
-                        DisplayFrame(frameData, pictureBox, FrameHeight * scale, FrameWidth * scale);
+                        DisplayFrame(frameData, FrameHeight * scale, FrameWidth * scale);
 
                         if (row >= listGrid.Count)
                         {
@@ -114,7 +114,7 @@ namespace Test_ADNS9800
         }
 
 
-        private void DisplayFrame(int[] frameData,PictureBox pictureBox,int height,int width)
+        private void DisplayFrame(int[] frameData, int height,int width)
         {
             Bitmap frameBitmap = new Bitmap(width, height);
 

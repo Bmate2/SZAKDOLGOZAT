@@ -20,6 +20,7 @@
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Az alap változók}{15}{section.4.1}%
 \select@language {magyar} \contentsline {section}{\numberline {4.2}Inicializáló metódusok}{15}{section.4.2}%
 \select@language {magyar} \contentsline {section}{\numberline {4.3}Bejövő adatot feldolgozó metódus}{16}{section.4.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Tesztelés}{19}{chapter.5}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{21}{chapter*.3}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{23}{chapter*.5}%
+\select@language {magyar} \contentsline {section}{\numberline {4.4}Kiegészítő metódusok}{18}{section.4.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Tesztelés}{20}{chapter.5}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{22}{chapter*.3}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{24}{chapter*.5}%
