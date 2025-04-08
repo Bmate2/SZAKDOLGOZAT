@@ -217,7 +217,7 @@ A működése a következő lépésekből áll:
 			\item \textbf{SCLK }(Serial Clock): Az órajel, amelyet az Arduino generál.
 			\item \textbf{CS }(Chip Select): Az adott szenzort választja ki a kommunikációhoz.
 		\end{itemize}
-		\item \textbf{Az Arduino továbbítja az adatokat a számítógépre.} Az adatok soros kommunikáción keresztül kerülnek a számítógépre ahol az feldolgozza ezeket. Minden képkocka ''FRAME:'' előtaggal kezdődik, amit a szenzor által olvasott színintenzitás értékek követnek. Egy példa frame sor:
+		\item \textbf{Az Arduino továbbítja az adatokat a számítógépre.} Az adatok soros kommunikáción keresztül kerülnek a számítógépre ahol az feldolgozza ezeket. Minden képkocka ''FRAME:'' előtaggal kezdődik, amit a szenzor által olvasott fényintenzitás értékek követnek. Egy példa frame sor:
 		
 		\verb|FRAME: 124 128 130 122 120 119 118 117 116 ...|
 	\end{enumerate}
@@ -273,7 +273,7 @@ A bekötési rajzon narancssárgával színezett elemek a motorvezérlők, ponto
 %%\section{Mátrix átalakítása képpé}
 
 \section{Az alap változók}
-A feldolgozó szoftver Serial porton kapja meg az adatokat az Arduino-tól. Van két darab konstans értékem az egyik a beérkező képkocka szélessége a másik pedig a magassága, mivel a beérkező képkocka 30\,x\,30 pixel ezért ez a két érték 30. Van egy buffer-em ahol a Serial porton beérkező adatokat tárolom, erre azért van szükség mert nem biztos, hogy egy sor át tud jönni egyszerre. Valamint van egy Bicubic osztály példányom amivel a Bikubik interpolációt végzem. Végül van egy row és egy column változóm ami annak segítségére szolgál, hogy összerakjam a képkockákat egy nagy dokumentummá. Ezt a nagy dokumentumot tartalmazza a listGrid nevű változó, ami egy lista amiben listák vannak amiben egész típusú tömbök vannak. 
+A feldolgozó szoftver Serial porton kapja meg az adatokat az Arduino-tól. Van két darab konstans értékem az egyik a beérkező képkocka szélessége a másik pedig a magassága, mivel a beérkező képkocka 30\,x\,30 pixel ezért ez a két érték 30. Van egy buffer-em ahol a Serial porton beérkező adatokat tárolom, erre azért van szükség mert nem biztos, hogy egy sor át tud jönni egyszerre. Valamint van egy Bicubic osztály példányom amivel a Bikubikus interpolációt végzem. Végül van egy row és egy column változóm ami annak segítségére szolgál, hogy összerakjam a képkockákat egy nagy dokumentummá. Ezt a nagy dokumentumot tartalmazza a listGrid nevű változó, ami egy lista amiben listák vannak amiben egész típusú tömbök vannak. 
 \begin{lstlisting}[language=CSharp]
 private SerialPort serialPort;
 private const int FrameWidth = 30; 
@@ -373,7 +373,7 @@ Ha a ''NEW\_ROW'' kulcsszóval kezdődik a jelenlegi adat akkor csak simán növ
 }
 \end{lstlisting}
 \section{Kiegészítő metódusok}
-Az egyik legfontosabb kiegészítő metódus a matrixToBitmap amiben egy képkockákból álló két dimenziós listát alakítok át egy nagy szürkeárnyalatos Bitmap\cite{bitmap.class} képpé. A célja a metódusnak, hogy a szenzor által beolvasott és interpolált képkockákat egy nagy képpé összeállítsam. A listGrid szerkezet egy két dimenziós lista amely úgy értelmezhető, hogy az első dimenzió (külső lista) a sorokat jelenti, a második dimenzió (belső lista) pedig az oszlopokat jelképezi. Végül minden int[\,] elem egy képkockát tartalmaz ahol a színintenzitások sorban vannak felsorolva. 
+Az egyik legfontosabb kiegészítő metódus a matrixToBitmap amiben egy képkockákból álló két dimenziós listát alakítok át egy nagy szürkeárnyalatos Bitmap\cite{bitmap.class} képpé. A célja a metódusnak, hogy a szenzor által beolvasott és interpolált képkockákat egy nagy képpé összeállítsam. A listGrid szerkezet egy két dimenziós lista amely úgy értelmezhető, hogy az első dimenzió (külső lista) a sorokat jelenti, a második dimenzió (belső lista) pedig az oszlopokat jelképezi. Végül minden int[\,] elem egy képkockát tartalmaz ahol a fényintenzitások sorban vannak felsorolva. 
 
 Példa: listGrid[1][2] jelenti a második sor harmadik képkockáját.
 
@@ -396,7 +396,7 @@ Meghatározzuk a képkockák szélességét és magasságát úgy, hogy megszoro
 \end{lstlisting}
 Az általános SetPixel metódus helyett én inkább a LockBit megoldást választottam, igaz, hogy az nem olyan egyszerű de a nagy képeknél viszont sokkal gyorsabb teljesítményt tudok elérni vele. Ennek az oka hogy a memóriába írok közvetlenül a GDI hívások helyett.
 
-Létrehozok egy Bitmap példányt 24 bites RGB formátumban, ami azt jelenti, hogy minden képpont 3 bájtot foglal el. A Rectangle osztállyal meghatározom a Bitmap teljes tartományát. A Bitmap LockBits metódusának átadom az előzőleg meghatározott rectangle-t, az ImageLockMode-ot amivel úgy zárom le a Bitmap-et, hogy csak írni tudjam,olvasni ne. Valamint átadom neki a Bitmap formátumát is, és vissza kapok egy BitmapData értéket ami tartalmazza ennek a zárolásnak az információit. Ebből kinyerve megkapom a stride-ot ami egy fontos információ, mivel ez mutatja meg, hogy a Bitmap memóriájában egy-egy sor hány bite hosszú. Ez nem feltétlenül egyezik meg a képpontok számának és a színintenzitásnak megfelelő mérettel, mert a rendszer minden sort 4 bite-ra igazít a gyorsabb memóriakezelés miatt. Tehát ezzel fogom kiszámolni, hogy egy adott képpont hol helyezkedik el.
+Létrehozok egy Bitmap példányt 24 bites RGB formátumban, ami azt jelenti, hogy minden képpont 3 bájtot foglal el. A Rectangle osztállyal meghatározom a Bitmap teljes tartományát. A Bitmap LockBits metódusának átadom az előzőleg meghatározott rectangle-t, az ImageLockMode-ot amivel úgy zárom le a Bitmap-et, hogy csak írni tudjam,olvasni ne. Valamint átadom neki a Bitmap formátumát is, és vissza kapok egy BitmapData értéket ami tartalmazza ennek a zárolásnak az információit. Ebből kinyerve megkapom a stride-ot ami egy fontos információ, mivel ez mutatja meg, hogy a Bitmap memóriájában egy-egy sor hány bite hosszú. Ez nem feltétlenül egyezik meg a képpontok számának és a fényintenzitásnak megfelelő mérettel, mert a rendszer minden sort 4 bite-ra igazít a gyorsabb memóriakezelés miatt. Tehát ezzel fogom kiszámolni, hogy egy adott képpont hol helyezkedik el.
 \begin{lstlisting}[language=CSharp]	 	
 	 	Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 	 	Rectangle rect = new Rectangle(0, 0, width, height);
@@ -441,7 +441,7 @@ Miután végig mentem a teljes képen és megtelt a tömb, visszamásolom a töm
 	 	return bmp;
 	 }
 \end{lstlisting}
-A következő kiegészítő metódus amit használtam az a \textbf{DisplayFrame} metódus aminek a segítségével megtudtam jeleníteni egy pictureboxba, hogy mit is lát a szenzor. Ennek annyi a lényege, hogy megkapja paraméterként a pixel intenzitásokat tartalmazó tömböt valamint a képmérethez szükséges adatokat. 
+A következő kiegészítő metódus amit használtam az a \textbf{DisplayFrame} metódus aminek a segítségével megtudtam jeleníteni egy pictureboxba, hogy mit is lát a szenzor. Ennek annyi a lényege, hogy megkapja paraméterként a fényintenzitásokat tartalmazó tömböt valamint a képmérethez szükséges adatokat. 
 
 A képkocka megjelenítését hasonlóan oldottam meg mint a korábban bemutatott matrixToBitmap metódusban. LockBits segítségével.
 \begin{lstlisting}[language=CSharp]
@@ -534,8 +534,10 @@ A dokumentum mentésére szolgáló metódus a SaveDoc nevezetű metódus, ami a
 		}
 	}
 \end{lstlisting}
-\section{Bikubik Interpoláció}
-A bikubikus interpoláció egy képfeldolgozási technika, amit képek méretének változtatására használják. Lényege, hogy az új pixelek színét vagy színintenzitását a környező pixel értékek alapján számolja ki. Ez a módszer 4\,x\,4-es körzetben veszi figyelembe a színeket, ez azért jobb, mert több értéket vesz figyelembe így pontosabb színt kapunk az egyes pixelekhez.
+\section{Bikubikus Interpoláció}
+A bikubikus interpoláció egy képfeldolgozási technika, amelyet elsősorban képek méretének változtatására használnak. A lényege, hogy az új pixelek színét vagy fényintenzitását nem a közvetlen szomszédjaiból számolja ki, hanem a tágabb környezetében található több pixelből. Ez a módszer egy 4\,x\,4-es pixelblokkot vesz figyelembe az új pixel színéhez, ez azért jobb, mert több értéket vesz figyelembe így pontosabb színt kapunk az egyes pixelekhez. A módszer alapja egy súlyfüggvény amely a közelebbi pixelekhez nagyobb súlyt rendel, míg a távolabbiak kevésbé lesznek figyelembe véve az új érték kiszámolásakor. Ez a súlyozás biztosítja, hogy a kép simább legyen és részletgazdagabb. Éppen ezért a bikubikus interpolációt sokan használják olyan rendszerekben ahol fontos a kép minőségének megőrzése, ezért volt tökéletes választás az én számomra is. 
+
+Visszatérve a \textbf{Bicubic} osztályhoz, van három alap mezőm ahol tárolom a kép szélességét, magasságát, valamint a nagyítási skálát. A konstruktor ezeket az értékeket kapja meg, és eltárolja őket a megfelelő mezőben.
 \begin{lstlisting}[language=CSharp]
 	private int width,height;
 	private int scale;
@@ -545,6 +547,23 @@ A bikubikus interpoláció egy képfeldolgozási technika, amit képek méretén
 		this.width = width;
 		this.height = height;
 		this.scale = scale;
+	}
+\end{lstlisting}
+\begin{lstlisting}[language=CSharp]
+	
+	private float CubicWeight(float x)
+	{
+		x = Math.Abs(x);
+		if (0 <= x && x < 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
+		if (1 <= x && x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
+		return 0;
+	}
+	
+	private int Reflect(int i, int max)
+	{
+		if (i < 0) return -i;
+		if (i >= max) return 2 * max - i - 1;
+		return i;
 	}
 	
 	public int[] BicubicResize (int[] frameData)
@@ -590,20 +609,7 @@ A bikubikus interpoláció egy képfeldolgozási technika, amit képek méretén
 		return interpolatedData;
 	}
 	
-	private float CubicWeight(float x)
-	{
-		x = Math.Abs(x);
-		if (0 <= x && x < 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
-		if (1 <= x && x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
-		return 0;
-	}
 	
-	private int Reflect(int i, int max)
-	{
-		if (i < 0) return -i;
-		if (i >= max) return 2 * max - i - 1;
-		return i;
-	}
 \end{lstlisting}
 \chapter{Tesztelés}
 A programomat az elejétől fogva folyamatosan teszteltem, először a szoftveres részt, majd miután megérkezett hozzám a szenzor elkezdtem azt tesztelni. 

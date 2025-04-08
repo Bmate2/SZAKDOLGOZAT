@@ -21,7 +21,7 @@
 \select@language {magyar} \contentsline {section}{\numberline {4.2}Inicializáló metódusok}{16}{section.4.2}%
 \select@language {magyar} \contentsline {section}{\numberline {4.3}Bejövő adatot feldolgozó metódus}{17}{section.4.3}%
 \select@language {magyar} \contentsline {section}{\numberline {4.4}Kiegészítő metódusok}{19}{section.4.4}%
-\select@language {magyar} \contentsline {section}{\numberline {4.5}Bikubik Interpoláció}{24}{section.4.5}%
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Tesztelés}{26}{chapter.5}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{28}{chapter*.3}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{30}{chapter*.5}%
+\select@language {magyar} \contentsline {section}{\numberline {4.5}Bikubikus Interpoláció}{24}{section.4.5}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Tesztelés}{27}{chapter.5}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{29}{chapter*.3}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{31}{chapter*.5}%
