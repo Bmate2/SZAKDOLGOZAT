@@ -157,3 +157,39 @@ void setStep(int step[4], int in1, int in2, int in3, int in4) {
   digitalWrite(in4, step[3]);
 }
 */
+
+/*// Include the Arduino Stepper Library
+#include <Stepper.h>
+
+// Number of steps per output rotation
+const int stepsPerRevolution = 200;
+
+// Create Instance of Stepper library
+Stepper myStepper(stepsPerRevolution, 12, 11, 10, 9);
+
+int stepCount = 0;
+  bool startPosition=false;
+void setup()
+{
+  pinMode(8,INPUT);
+ 
+	// set the speed at 20 rpm:
+	myStepper.setSpeed(20);
+	// initialize the serial port:
+	Serial.begin(9600);
+  
+}
+
+void loop() 
+{
+	if (digitalRead(8)==LOW && startPosition==false){
+    while(digitalRead(8)==LOW){
+      myStepper.step(20);
+      stepCount++;
+      Serial.println(stepCount);
+    }
+    startPosition=true;
+    Serial.println("Kezdő pozíció!");
+  }
+
+}*/
