@@ -534,7 +534,8 @@ A dokumentum mentésére szolgáló metódus a SaveDoc nevezetű metódus, ami a
 		}
 	}
 \end{lstlisting}
-\section{Interpoláció}
+\section{Bikubik Interpoláció}
+A bikubikus interpoláció egy képfeldolgozási technika, amit képek méretének változtatására használják. Lényege, hogy az új pixelek színét vagy színintenzitását a környező pixel értékek alapján számolja ki. Ez a módszer 4\,x\,4-es körzetben veszi figyelembe a színeket, ez azért jobb, mert több értéket vesz figyelembe így pontosabb színt kapunk az egyes pixelekhez.
 \begin{lstlisting}[language=CSharp]
 	private int width,height;
 	private int scale;
@@ -680,6 +681,7 @@ felbontásra vonatkozóan például  feles átfedéssel
 \bibitem{motorvezerlok} Léptető motorok: \url{https://docs.arduino.cc/learn/electronics/stepper-motors/}
 \bibitem{bicubic_video} Bicubic Interpolation by Computerphile: \url{https://www.youtube.com/watch?v=poY_nGzEEWM}
 \bibitem{bicubic_wikipedia} Bicubic Interpolation from wikipedia: \url{https://en.wikipedia.org/wiki/Bicubic_interpolation}
+\bibitem{bicubic} Bicubic Interpolation: \url{https://cloudinary.com/glossary/bicubic-interpolation}
 \bibitem{catmull-rom_spline} Catmull-Rom Spline: \url{https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline}
 \bibitem{image_upscale} Kép nagyítás Bikubik interpolációval: \url{https://medium.com/@amanrao032/image-upscaling-using-bicubic-interpolation-ddb37295df0}
 \bibitem{winforms} Windows Forms: \url{https://learn.microsoft.com/hu-hu/dotnet/visual-basic/developing-apps/windows-forms/}
