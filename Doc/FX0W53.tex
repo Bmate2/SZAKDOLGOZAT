@@ -586,7 +586,7 @@ Az egész osztály, valamint a szakdolgozatom lelke pedig a \textbf{BicubicInter
 		int newHeight = height * scale;
 		int[] interpolatedData = new int[newWidth * newHeight];
 \end{lstlisting}
-A metódusnak egy kiegészítő része, hogy a beérkezett tömböt átalakítsam mátrixszá, mert így könnyebb volt meghatározni a pixelek körülötti 16 pixelt. 
+A metódusnak egy kiegészítő része, hogy a beérkezett tömböt átalakítsam mátrixszá, mert így könnyebb volt meghatározni az adott pixelek körülötti 16 pixelt. 
 \begin{lstlisting}[language=CSharp]
 		int[,] original = new int[width, height];
 		for (int y = 0; y < height; y++)
@@ -597,7 +597,7 @@ A metódusnak egy kiegészítő része, hogy a beérkezett tömböt átalakítsa
 			}
 		}
 \end{lstlisting}
-
+A metódusnak ezen részén végig iterálok a felnagyított képen és kiszámolom a kimaradt pixel értékeket. Kiszámolom először, hogy az adott koordináta melyik helyre esik az eredeti képen, ami nem biztos, hogy egész szám lesz. Ezután meghatározom az eredeti koordináták egész részét. Végül ebből és az eredeti koordináta tizedes részéből megkapom az elmozdulást, ami később a súlyozásnak lesz az alapja. 
 \begin{lstlisting}[language=CSharp]
 		for (int y = 0; y < newHeight; y++)
 		{
@@ -609,7 +609,9 @@ A metódusnak egy kiegészítő része, hogy a beérkezett tömböt átalakítsa
 				int x0 = (int)Math.Floor(srcX);
 				float dy = srcY - y0;
 				float dx = srcX - x0;
-				
+\end{lstlisting}
+Miután meghatároztam, hogy az új pixel melyik pozíció köré esik, a következő dupla for ciklusban kiszámítom az interpolált értékét. Ehhez a pont körül lévő 4\,x\,4-es pixelblokk minden egyes elemét figyelembe veszem. Mivel a kép szélein előfordulhat, hogy a számított index a kép határain kívülre esik, ezért használom a \textbf{Reflect} metódust, így biztosítva azt, hogy az index a képen belülre essen. Minden szomszédos pixelhez kiszámítom a hozzátartozó súly értéket a \emph{dx} és \emph(dy) segítségével. A két irány súlyait összeszorozva kapom meg az adott szomszéd pixel teljes súlyát. A \emph{value} változóba elmentem ezeket a súlyozott értékeket, ami az új pixel fényintenzitását adja meg. Végül elmentem a metódus elején létrehozott tömbbe az új pixel adatokat és azt a tömböt adom vissza a metódus végén.
+\begin{lstlisting}[language=CSharp]
 				int value = 0;
 				for (int j = -1; j < 3; j++)
 				{
