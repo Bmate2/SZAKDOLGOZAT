@@ -549,29 +549,45 @@ Visszatérve a \textbf{Bicubic} osztályhoz, van három alap mezőm ahol tárolo
 		this.scale = scale;
 	}
 \end{lstlisting}
+A \textbf{GetWeight} metódus határozza meg, hogy az egyes környező pixelek milyen mértékben határozzák meg az új pixel értékét. Ez a legfőbb lényege ennek az interpolációnak, hogy nem egyszerűen átlagolom az értékeket hanem a súlyozott átlagukat veszem. Tehát minden környező pixel kap egy súly értéket, ami attól függ milyen messze van az adott pixel az új még ki nem számított értékű pixeltől. A bemeneti paramétere egy távolság ami az új pixel helyzete és egy szomszédos pixel között van.
 \begin{lstlisting}[language=CSharp]
 	
-	private float CubicWeight(float x)
+	private float GetWeight(float x)
 	{
 		x = Math.Abs(x);
-		if (0 <= x && x < 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
-		if (1 <= x && x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
+		if (x <= 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
+		if (1 < x && x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
 		return 0;
 	}
-	
-	private int Reflect(int i, int max)
+\end{lstlisting}
+Matematikai képlettel leírva pedig így néz ki:
+\[
+W(x) = 
+\begin{cases}
+	1.5|x|^3 - 2.5|x|^2 + 1, & \text{ha } |x| \leq 1 \\\
+	-0.5|x|^3 + 2.5|x|^2 - 4|x| + 2, & \text{ha } 1 < |x| < 2 \\\
+	0 & \text{ha } |x| \geq 2
+\end{cases}
+\]
+Egy kis rövid metódus aminek nagy szerepe van az interpolációban. Ahogy azt korábban említettem ehhez az interpolációhoz az új pixel körüli 16 pixelt veszem figyelembe, de mi van akkor ha a pixel a kép szélén van? Ebben segít a \textbf{Reflect} metódus ami megoldja ezt a problémát. A bemeneti paramétere egy kapott index, amit aszerint alakít, hogy az kisebb-e mint 0 vagy már a képen kívül esne. Ha kisebb, mint 0 akkor vissza adja a --1\,-szeresét, ha a képen kívül esne az index akkor vissza felé türközi az értéket és azt veszi figyelembe.
+\begin{lstlisting}[language=CSharp]
+	private int Reflect(int i)
 	{
 		if (i < 0) return -i;
-		if (i >= max) return 2 * max - i - 1;
+		if (i >= 30) return 2 * 30 - i - 1;
 		return i;
 	}
-	
-	public int[] BicubicResize (int[] frameData)
+\end{lstlisting}
+Az egész osztály, valamint a szakdolgozatom lelke pedig a \textbf{BicubicInterpolation} metódus ahol a képnagyítás történik a megadott növelési arány szerint, miközben a hiányzó pixeleket kiszámolja bikubikus interpolációval. A metódus elején meghatározom az új mátrixnak a szélességét és magasságát, valamint létrehozom azt a tömböt ahol már az új adatokat tároltam.
+\begin{lstlisting}[language=CSharp]
+	public int[] BicubicInterpolation (int[] frameData)
 	{
 		int newWidth = width * scale;
 		int newHeight = height * scale;
 		int[] interpolatedData = new int[newWidth * newHeight];
-		
+\end{lstlisting}
+A metódusnak egy kiegészítő része, hogy a beérkezett tömböt átalakítsam mátrixszá, mert így könnyebb volt meghatározni a pixelek körülötti 16 pixelt. 
+\begin{lstlisting}[language=CSharp]
 		int[,] original = new int[width, height];
 		for (int y = 0; y < height; y++)
 		{
@@ -580,7 +596,9 @@ Visszatérve a \textbf{Bicubic} osztályhoz, van három alap mezőm ahol tárolo
 				original[y, x] = frameData[y * width + x];
 			}
 		}
-		
+\end{lstlisting}
+
+\begin{lstlisting}[language=CSharp]
 		for (int y = 0; y < newHeight; y++)
 		{
 			for (int x = 0; x < newWidth; x++)
@@ -597,9 +615,9 @@ Visszatérve a \textbf{Bicubic} osztályhoz, van három alap mezőm ahol tárolo
 				{
 					for (int i = -1; i < 3; i++)
 					{
-						int xIndex = Reflect(x0 + i, 30);
-						int yIndex = Reflect(y0 + j, 30);
-						float weight = CubicWeight(dy - j) * CubicWeight(dx - i);
+						int xIndex = Reflect(x0 + i);
+						int yIndex = Reflect(y0 + j);
+						float weight = GetWeight(dy - j) * GetWeight(dx - i);
 						value += (int)(original[yIndex, xIndex] * weight);
 					}
 				}
@@ -652,9 +670,6 @@ Aztán következhetett a szenzor tesztelése. Először egy fehér lapon próbá
 Tapasztalatok amiket szereztem a projekt megvalósítása közben
 Tovabbfejlesztési gondolatok
 
-színes vagy szürke képet szeretne beolvasni
-soros porton küldok egy bitet hogy színes vagy szürke legyen a kép a studiobol
-felbontásra vonatkozóan például  feles átfedéssel 
 \addcontentsline{toc}{chapter}{Összegzés}
 \chapter*{Források}
 \begin{itemize}

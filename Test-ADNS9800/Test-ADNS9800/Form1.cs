@@ -80,7 +80,7 @@ namespace Test_ADNS9800
 
                     if (pixels.Length == FrameWidth * FrameHeight)
                     {
-                        int[] frameData = resizer.BicubicResize(Array.ConvertAll(pixels, int.Parse));
+                        int[] frameData = resizer.BicubicInterpolation(Array.ConvertAll(pixels, int.Parse));
                         DisplayFrame(frameData, FrameHeight * scale, FrameWidth * scale);
 
                         if (row >= listGrid.Count)

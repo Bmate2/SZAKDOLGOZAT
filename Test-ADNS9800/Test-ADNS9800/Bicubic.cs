@@ -18,7 +18,7 @@ namespace Test_ADNS9800
             this.scale = scale;
         }
 
-        public int[] BicubicResize (int[] frameData)
+        public int[] BicubicInterpolation (int[] frameData)
         {
             int newWidth = width * scale;
             int newHeight = height * scale;
@@ -49,9 +49,9 @@ namespace Test_ADNS9800
                     {
                         for (int i = -1; i < 3; i++)
                         {
-                            int xIndex = Reflect(x0 + i, 30);
-                            int yIndex = Reflect(y0 + j, 30);
-                            float weight = CubicWeight(dy - j) * CubicWeight(dx - i);
+                            int xIndex = Reflect(x0 + i);
+                            int yIndex = Reflect(y0 + j);
+                            float weight = GetWeight(dy - j) * GetWeight(dx - i);
                             value += (int)(original[yIndex, xIndex] * weight);
                         }
                     }
@@ -61,18 +61,18 @@ namespace Test_ADNS9800
             return interpolatedData;
         }
 
-        private float CubicWeight(float x)
+        private float GetWeight(float x)
         {
             x = Math.Abs(x);
-            if (0 <= x && x < 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
+            if (x < 1) return (1.5f * x * x * x) - (2.5f * x * x) + 1;
             if (1 <= x && x < 2) return (-0.5f * x * x * x) + (2.5f * x * x) - (4 * x) + 2;
             return 0;
         }
 
-        private int Reflect(int i, int max)
+        private int Reflect(int i)
         {
             if (i < 0) return -i;
-            if (i >= max) return 2 * max - i - 1;
+            if (i >= 30) return 2 * 30 - i - 1;
             return i;
         }
     }
