@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  10 APR 2025 23:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  12 APR 2025 21:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -945,27 +945,27 @@ Package pdftex.def Info: tesztalkalmazas2.png  used on input line 666.
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 678.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 685.
 
-Overfull \hbox (14.29442pt too wide) in paragraph at lines 680--681
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 687--688
 [][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . makerguid
 es . com / wp-[]content / uploads / 2020 /
  []
 
 
-Overfull \hbox (14.29442pt too wide) in paragraph at lines 683--684
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 690--691
 [][]\T1/lmr/m/n/12 3.4[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . picmicrol
 ab . com / wp-[]content / uploads / 2014 /
  []
 
 
-Overfull \hbox (14.24652pt too wide) in paragraph at lines 684--685
+Overfull \hbox (14.24652pt too wide) in paragraph at lines 691--692
 [][]\T1/lmr/m/n/12 3.5[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . orientalm
 otor . com / images / stepper-[]motors /
  []
 
 
-Overfull \hbox (7.14232pt too wide) in paragraph at lines 685--686
+Overfull \hbox (7.14232pt too wide) in paragraph at lines 692--693
 [][]\T1/lmr/m/n/12 3.6[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . hwlibre .
  com / wp-[]content / uploads / 2024 / 10 /
  []
@@ -975,43 +975,43 @@ Overfull \hbox (7.14232pt too wide) in paragraph at lines 685--686
 [31
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 693--694
+Underfull \hbox (badness 10000) in paragraph at lines 700--701
 []\T1/lmr/m/n/12 What is an Ar-du-i-no: []$\T1/pcr/m/n/12 https : / / learn . s
 parkfun . com / tutorials /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 698--699
+Underfull \hbox (badness 10000) in paragraph at lines 705--706
 []\T1/lmr/m/n/12 ADNS-9800 adat-lap:[]$\T1/pcr/m/n/12 https : / / datasheet . o
 ctopart . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 701--702
+Underfull \hbox (badness 10000) in paragraph at lines 708--709
 []\T1/lmr/m/n/12 ADNS-9800 5V mód ak-ti-vá-lá-sa: []$\T1/pcr/m/n/12 https : / /
  forum . arduino . cc / t /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--704
+Underfull \hbox (badness 10000) in paragraph at lines 710--711
 []\T1/lmr/m/n/12 Soros kom-mu-ni-ká-ció: []$\T1/pcr/m/n/12 https : / / docs . a
 rduino . cc /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 704--705
+Underfull \hbox (badness 10000) in paragraph at lines 711--712
 []\T1/lmr/m/n/12 Léptet® mo-to-rok: []$\T1/pcr/m/n/12 https : / / docs . arduin
 o . cc / learn / electronics /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--706
+Underfull \hbox (badness 10000) in paragraph at lines 712--713
 []\T1/lmr/m/n/12 L298N mo-tor-ve-zér-l®: []$\T1/pcr/m/n/12 https : / / componen
 ts101 . com / modules /
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 706--707
+Underfull \hbox (badness 5548) in paragraph at lines 713--714
 []\T1/lmr/m/n/12 Bicubic In-ter-po-la-ti-on by Com-pu-terp-hi-le: []$\T1/pcr/m/
 n/12 https : / / www . youtube . com /
  []
@@ -1021,61 +1021,61 @@ n/12 https : / / www . youtube . com /
 [32
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 708--709
+Underfull \hbox (badness 10000) in paragraph at lines 715--716
 []\T1/lmr/m/n/12 Bicubic In-ter-po-la-ti-on: []$\T1/pcr/m/n/12 https : / / clou
 dinary . com / glossary /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 711--712
+Underfull \hbox (badness 10000) in paragraph at lines 718--719
 []\T1/lmr/m/n/12 Windows Forms: []$\T1/pcr/m/n/12 https : / / learn . microsoft
  . com / hu-[]hu / dotnet /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 713--714
+Underfull \hbox (badness 10000) in paragraph at lines 720--721
 []\T1/lmr/m/n/12 L[]T[]X Ar-du-i-no stí-lus fájl: []$\T1/pcr/m/n/12 https : / /
  github . com / trihedral /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 716--717
+Underfull \hbox (badness 10000) in paragraph at lines 723--724
 []\T1/lmr/m/n/12 Bitmap.LockBits hasz-ná-la-ta: []$\T1/pcr/m/n/12 URLhttps : / 
 / learn . microsoft . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 716--717
+Underfull \hbox (badness 10000) in paragraph at lines 723--724
 \T1/pcr/m/n/12 en-[]us / dotnet / api / system . drawing . bitmap . lockbits ? 
 view =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
+Underfull \hbox (badness 10000) in paragraph at lines 724--725
 []\T1/lmr/m/n/12 Lockbit vs Set-Pi-xel: []$\T1/pcr/m/n/12 https : / / www . cod
 eproject . com / Articles /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 718--719
+Underfull \hbox (badness 10000) in paragraph at lines 725--726
 []\T1/lmr/m/n/12 Rectangle osz-tály: []$\T1/pcr/m/n/12 URLhttps : / / learn . m
 icrosoft . com / en-[]us /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 718--719
+Underfull \hbox (badness 10000) in paragraph at lines 725--726
 \T1/pcr/m/n/12 dotnet / api / system . drawing . rectangle ? view = net-[]9 . 0
  &
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 719--720
+Underfull \hbox (badness 10000) in paragraph at lines 726--727
 []\T1/lmr/m/n/12 Marshal Co-py me-tó-dus: []$\T1/pcr/m/n/12 https : / / learn .
  microsoft . com / en-[]us /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 719--720
+Underfull \hbox (badness 10000) in paragraph at lines 726--727
 \T1/pcr/m/n/12 dotnet / api / system . runtime . interopservices . marshal . co
 py ?
  []
@@ -1086,37 +1086,37 @@ py ?
 <nyilatkozat.pdf, id=819, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 724.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 731.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 724.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 731.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 <nyilatkozat.pdf, id=822, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 724.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 724.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 [34]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 724.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 724.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 724.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 [35
 
@@ -1126,12 +1126,12 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `FX0W53.out' has not changed.
-(rerunfilecheck)             Checksum: 905146CFD06180F4E5C3994567871955;4641.
+(rerunfilecheck)             Checksum: 15232A46B802BE04E60B8E8C522BFF2C;4641.
  ) 
 Here is how much of TeX's memory you used:
  18690 strings out of 473579
  293875 string characters out of 5732263
- 1068811 words of memory out of 5000000
+ 1068812 words of memory out of 5000000
  40824 multiletter control sequences out of 15000+600000
  633098 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1147,7 +1147,7 @@ b><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/
 type1/urw/courier/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courie
 r/ucrr8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on FX0W53.pdf (35 pages, 1726951 bytes).
+Output written on FX0W53.pdf (35 pages, 1727795 bytes).
 PDF statistics:
  1020 PDF objects out of 1200 (max. 8388607)
  918 compressed objects within 10 object streams

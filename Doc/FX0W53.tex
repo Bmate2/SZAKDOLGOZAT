@@ -30,27 +30,27 @@
 \addcontentsline{toc}{chapter}{Bevezetés}
 A digitalizálás egyre nagyobb szerepet játszik az életünkben, különösen a dokumentumok kezelésében és tárolásában, hiszen a sok ideig tárolt papír dokumentumok elveszhetnek vagy könnyen sérülhetnek.
 
-Manapság a családi fotókat vagy régebbi képeket is célszerű digitalizálni, hogy tovább megmaradjon. A digitalizálással lehetőségünk nyílik arra is hogy rendszerezzünk hivatalos iratokat, így könnyebben tudunk majd hozzájuk férni és akár keresni is köztük. 
+Manapság a családi fotókat vagy régebbi képeket is célszerű digitalizálni, hogy tovább megmaradjon. A digitalizálással lehetőségünk nyílik arra is, hogy rendszerezzünk hivatalos iratokat, így könnyebben tudunk majd hozzájuk férni és akár keresni is köztük. 
 
-Bár számos szkenner van a piacon, viszont ezek drágák és nagy helyigényűek. Ezért egy saját készítésű szkenner jobban illeszkedik majd a mi igényeinkhez, valamint sokkal olcsóbb mint egy boltban vett. 
+Bár számos szkenner van a piacon, viszont ezek drágák és nagy helyigényűek. Ezért egy saját készítésű szkenner jobban illeszkedik majd a mi igényeinkhez, valamint sokkal olcsóbb, mint egy boltban vásárolt. 
 
-Ebben a projektben megmutatom, hogy lehet egy egérszenzort felhasználni hivatalos iratok vagy egyéb más papír alapú dokumentumok szkennelésére. A szenzor két sínnel vízszintesen és függőlegesen fog mozogni, és soronként készíti el a képkockákat. Ezután egy C\# alkalmazás feldolgozza azokat és kialakít belőlük egy nagy dokumentumot.
+Ebben a projektben megmutatom, hogy lehet egy egérszenzort felhasználni hivatalos iratok vagy egyéb papír alapú dokumentumok szkennelésére. A szenzor két sínnel vízszintesen és függőlegesen fog mozogni, és soronként készíti el a képkockákat. Ezután egy C\# alkalmazás feldolgozza azokat és kialakít belőlük egy nagy dokumentumot.
 
 \chapter{Bevezető}
 
 \section{Motiváció}
 Az ötletem mögött több tényező is áll. Elsősorban szerettem volna egy olyan eszközt létrehozni, amely megfizethető alternatívát nyújt a drága szkennerekkel szemben. Az egérszenzorok könnyen beszerezhetők és viszonylag olcsók, ezért jó választásnak tűntek egy saját fejlesztésű szkennerhez. Ez különösen hasznos lehet olyan helyeken, ahol a költségek csökkentése nagyon fontos, például iskolákban vagy kisebb cégeknél.
 
-Mindig is érdekelt, hogyan lehet egy meglévő egyszerű technológiát új és kreatív módon felhasználni. Az egérszenzorokat alapvetően mozgásérzékelésre tervezték, de ebben a projektben megszeretném mutatni, hogy dokumentumok szkennelésére is alkalmasak.
+Mindig is érdekelt, hogyan lehet egy meglévő egyszerű technológiát új és kreatív módon felhasználni. Az egérszenzorokat alapvetően mozgásérzékelésre tervezték, de ebben a projektben meg szeretném mutatni, hogy dokumentumok szkennelésére is alkalmasak.
 
 Emellett fontos számomra, hogy egy olyan eszközt alkossak, amelyet egy egyszerű felhasználó is használhat, otthon vagy akár a munkahelyén anélkül, hogy drága berendezésekre kellene költenie. 
 
-Valamint kihívást látok ebben a projektben, hogy hogyan is tudom ezt megvalósítani. Izgalmas feladat az, hogy ötvözzem az informatikát az elektronikával. Ez nem csak a szakmai tudásomat fejleszti, hanem egy olyan eredményt ad, amelyre büszke lehetek.
+Emellett kihívást látok ebben a projektben, hogy hogyan is tudom ezt megvalósítani. Izgalmas feladat az, hogy ötvözzem az informatikát az elektronikával. Ez nem csak a szakmai tudásomat fejleszti, hanem egy olyan eredményt ad, amelyre büszke lehetek.
 \section{Célkitűzés}
-A szakdolgozatom\cite{szakdolgozat} célja egy olyan szkenner létrehozása, amely egy egyszerű egérszenzort használ a dokumentumok fekete-fehér beolvasására. Az eszköz működésének alapja, hogy a szenzor monokróm felvételeket készít a dokumentumról, majd ezeket egy számítógépes programmal feldolgozom és összeállítom egy nagy dokumentummá. Mivel a szenzor csak egy 30\,x\,30-as képet rögzít így azt interpolációval felnövelem. Ezek az algoritmusok lehetővé teszik, hogy a képet megnöveljük kevés minőség vesztéssel. 
+A szakdolgozatom\cite{szakdolgozat} célja egy olyan szkenner létrehozása, amely egy egyszerű egérszenzort használ a dokumentumok fekete-fehér beolvasására. Az eszköz működésének alapja, hogy a szenzor monokróm felvételeket készít a dokumentumról, majd ezeket egy számítógépes programmal feldolgozom és összeállítom egy nagy dokumentummá. Mivel a szenzor csak egy 30\,x\,30-as képet rögzít így azt interpolációval nagyítom fel. Ezek az algoritmusok lehetővé teszik, hogy a képet megnöveljük kevés minőségvesztéssel. 
 
 A dolgozat eredményeként egy egyszerű és költséghatékony szkennert szeretnék létrehozni, amely hasznos és megkönnyíti az emberek életét.
-\chapter{Felhaszánlt technológiák}
+\chapter{Felhasznált technológiák}
 Ebben a fejezetben a szakdolgozatomban használt technológiákról és azok előnyeiről, fogok beszámolni.
 \section{Arduino}
 \subsection{Arduino platform bemutatása}
@@ -85,7 +85,7 @@ Ezek segítségével tudunk szenzorjeleket mérni, nyomógombok vagy más bevite
 
 A mikrokontrollereken általában nem fut operációs rendszer, ezért minden erőforrást a feladatra összpontosít és egy garantált maximális idő alatt képes végre hajtani a feladatokat. 
 
-Ahhoz hogy külső eszközöket és áramköröket rátudjunk csatlakoztatni, ismernünk kell a Nano lábkiosztását, amikre a kódból tudunk hivatkozni és vezérelni őket, áramköri lapon fel van tüntetve, hogy melyik lábat melyik számmal érjük el.  A Nano-n 14 digitális ki- és bemenet található (D0–D13), valamint 8 analóg bemenet (A0–A7), melyek közül az A0–A5 lábak digitális bemenetként és kimenetként is használhatók. A Nano-n található továbbá fix 3.3,V és 5,V-os kimeneti feszültségű láb is. Ez a lábkiosztás látható \aref{fig:arduino-nano-pinout}. számű ábrán.
+Ahhoz, hogy külső eszközöket és áramköröket rátudjunk csatlakoztatni, ismernünk kell a Nano lábkiosztását, amikre a kódból tudunk hivatkozni és vezérelni őket, áramköri lapon fel van tüntetve, hogy melyik lábat melyik számmal érjük el.  A Nano-n 14 digitális ki- és bemenet található (D0–D13), valamint 8 analóg bemenet (A0–A7), melyek közül az A0–A5 lábak digitális bemenetként és kimenetként is használhatók. A Nano-n található továbbá fix 3.3,V és 5,V-os kimeneti feszültségű láb is. Ez a lábkiosztás látható \aref{fig:arduino-nano-pinout}. számű ábrán.
 
 \begin{figure}[th!]
 	\centering
@@ -120,7 +120,7 @@ A projekt szoftveres részét Visual Studio\cite{visual-studio} fejlesztői kör
 A verziókövetéshez a Githubot\cite{github} használtam azon belül is a Github Desktop-ot, mellyel könnyen tudtam több platformon is dolgozni a projekten, valamint ha valamit elrontottam könnyen vissza tudtam állítani a projektet egy korábbi verzióra.
 \chapter{Hardveres megvalósítás}
 \section{ADNS-9800 szenzor}
-Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800\cite{adns9800} lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége, és azért volt megfelelő számomra, mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe mint egy kis kamerát, valamint gyors képfeldolgozási képességgel rendelkezik, ezért alkalmas dokumentumok beolvasására. 
+Az általam készített szkennernek a lelke a kicsi és olcsó ADNS-9800\cite{adns9800} lézeres optikai érzékelő. Az eredeti felhasználási módja ennek az eszköznek az volt, hogy egerek mozgását kövessék. Ennek a szenzornak az a különlegessége, és azért volt megfelelő számomra, mivel úgy követi a mozgást, hogy folyamatosan képeket készít. Ezáltal fel tudtam használni a projektembe, mint egy kis kamerát, valamint gyors képfeldolgozási képességgel rendelkezik, ezért alkalmas dokumentumok beolvasására. 
 \subsection{Működése}
  A szenzor működésének alapja a LaserStream technológia, amely során egy beépített lézer folyamatosan megvilágítja a felületet. A lencse ezt követően készít egy képet és a beépített digitális jelfeldolgozó (DSP) valós időben matematikai úton kiszámítja a felület elmozdulásának irányát és mértékét. Ez a megoldás lehetővé teszi a nagyon pontos mozgásérzékelést, hiszen a szenzor akár 8200 cpi (counts per inch) felbontással is képes mérni a mozgást.
 \begin{figure}[th!]
@@ -151,7 +151,7 @@ Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai 
 Az adatok beolvasása közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
 A működése a következő lépésekből áll:
 \begin{enumerate}
-	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni, mert a szenzornak nincs állandó memóriája. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés hogy a szenzor helyesen értelmezze az adatokat.
+	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni, mert a szenzornak nincs állandó memóriája. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés, hogy a szenzor helyesen értelmezze az adatokat.
 	\begin{lstlisting}[language=Arduino,label=upload-firmware-code]
 		void adns_upload_firmware(){
 			adns_write_reg(REG_Configuration_IV, 0x02);	
@@ -289,7 +289,7 @@ private List<List<int[]>> listGrid = new List<List<int[]>>();
 \end{lstlisting}
 
 \section{Inicializáló metódusok}
-Van egy soros portot beállító metódus. Aminek segítségével megnyitom a soros portot és beállítom a megfelelő BaudRate-t. Jelen esetben 115200 bit/másodperc. Hozzárendelem a serialPort változó DataReceived eseményéhez a saját metódusomat, ami azt jelenti, hogy amikor érkezik adat a soros porton akkor meghívja azt a metódust. Ezután megnyitom a soros portot hogy tudjam olvasni az adatokat róla, és írok egy ''reset'' kulcsszót az Arduino felé ezen a porton keresztül, hogy alaphelyzetbe tegyem a szenzort.
+Van egy soros portot beállító metódus. Aminek segítségével megnyitom a soros portot és beállítom a megfelelő BaudRate-t. Jelen esetben 115200 bit/másodperc. Hozzárendelem a serialPort változó DataReceived eseményéhez a saját metódusomat, ami azt jelenti, hogy amikor érkezik adat a soros porton akkor meghívja azt a metódust. Ezután megnyitom a soros portot, hogy tudjam olvasni az adatokat róla, és írok egy ''reset'' kulcsszót az Arduino felé ezen a porton keresztül, hogy alaphelyzetbe tegyem a szenzort.
 \begin{lstlisting}[language=CSharp]
 	private void InitializeSerialPort()
 	{
@@ -330,7 +330,7 @@ Az adatok feldolgozását egy while ciklus végzi ami addig megy amíg a buffers
 			listBox1.Items.Add("Beérkező sor: " + fullLine);
 		}
 \end{lstlisting}
-Ha a jelenlegi beérkezett sor úgy kezdődik, hogy ''FRAME'' akkor levágom az elejéről a ''FRAME'' szót és a maradék adatot kimentem egy szöveg típusú tömbbe. Leellenőrzöm, hogy ennek a tömbnek meg egyezik-e a hossza az általam előírttal. Tehát az alap FrameWidth és FrameHeight szorzatával ami 30\,x\,30, ha nem akkor hibát dobok. Az interpolációs osztály példányával meghívom erre a tömbre az interpoláló metódust, és közben az összes elemet átalakítom egész típusú számmá és kimentem egy frameData nevű egész típusú tömbbe. Ezután megjelenítem a már interpolált képet az alkmalmazásban egy pictureBox segítségével. Valamint megvizsgálom hogy a \emph{row} változónak az értéke nagyobb-e, mint a \emph{listGrid} hossza, amivel itt a sor kezelést oldom meg, ha igen akkor azt jelenti, hogy már egy új sorban vagyunk már ezért kell hozzá adnunk egy új tömbökből álló listát. Végül hozzáadjuk a jelenlegi sorhoz a tömböt. 
+Ha a jelenlegi beérkezett sor úgy kezdődik, hogy ''FRAME'' akkor levágom az elejéről a ''FRAME'' szót és a maradék adatot kimentem egy szöveg típusú tömbbe. Leellenőrzöm, hogy ennek a tömbnek megegyezik-e a hossza az általam előírttal. Tehát az alap FrameWidth és FrameHeight szorzatával ami 30\,x\,30, ha nem akkor hibát dobok. Az interpolációs osztály példányával meghívom erre a tömbre az interpoláló metódust, és közben az összes elemet átalakítom egész típusú számmá és kimentem egy frameData nevű egész típusú tömbbe. Ezután megjelenítem a már interpolált képet az alkalmazásban egy pictureBox segítségével. Valamint megvizsgálom, hogy a \emph{row} változónak az értéke nagyobb-e, mint a \emph{listGrid} hossza, amivel itt a sor kezelést oldom meg, ha igen akkor azt jelenti, hogy már egy új sorban vagyunk már ezért kell hozzá adnunk egy új tömbökből álló listát. Végül hozzáadjuk a jelenlegi sorhoz a tömböt. 
 \begin{lstlisting}[language=CSharp]
 		if (fullLine.StartsWith("FRAME:"))
 		{
@@ -394,7 +394,7 @@ Meghatározzuk a képkockák szélességét és magasságát úgy, hogy megszoro
 	 	int width = listGrid[0].Count * frameWidth;
 	 	int height = listGrid.Count * frameHeight;
 \end{lstlisting}
-Az általános SetPixel metódus helyett én inkább a LockBit megoldást választottam, igaz, hogy az nem olyan egyszerű de a nagy képeknél viszont sokkal gyorsabb teljesítményt tudok elérni vele. Ennek az oka hogy a memóriába írok közvetlenül a GDI hívások helyett.
+Az általános SetPixel metódus helyett én inkább a LockBit megoldást választottam, igaz, hogy az nem olyan egyszerű de a nagy képeknél viszont sokkal gyorsabb teljesítményt tudok elérni vele. Ennek az oka, hogy a memóriába írok közvetlenül a GDI hívások helyett.
 
 Létrehozok egy Bitmap példányt 24 bites RGB formátumban, ami azt jelenti, hogy minden képpont 3 bájtot foglal el. A Rectangle osztállyal meghatározom a Bitmap teljes tartományát. A Bitmap LockBits metódusának átadom az előzőleg meghatározott rectangle-t, az ImageLockMode-ot amivel úgy zárom le a Bitmap-et, hogy csak írni tudjam,olvasni ne. Valamint átadom neki a Bitmap formátumát is, és vissza kapok egy BitmapData értéket ami tartalmazza ennek a zárolásnak az információit. Ebből kinyerve megkapom a stride-ot ami egy fontos információ, mivel ez mutatja meg, hogy a Bitmap memóriájában egy-egy sor hány bite hosszú. Ez nem feltétlenül egyezik meg a képpontok számának és a fényintenzitásnak megfelelő mérettel, mert a rendszer minden sort 4 bite-ra igazít a gyorsabb memóriakezelés miatt. Tehát ezzel fogom kiszámolni, hogy egy adott képpont hol helyezkedik el.
 \begin{lstlisting}[language=CSharp]	 	
@@ -403,7 +403,7 @@ Létrehozok egy Bitmap példányt 24 bites RGB formátumban, ami azt jelenti, ho
 	 	BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.WriteOnly, bmp.PixelFormat);	 	
 	 	int stride = bmpData.Stride;
 \end{lstlisting}
-Végig megyek a listGrid-en ami ugye a teljes nagy kép és ezen belül végig megyek a képkockákon is és minden egyes pixelt közvetlenül át másolok egy byte tömbbe. Itt alkalmaztam egy kis kontraszt javítást is mert a szenzor képe nem a legszebb de így sokkal jobban néz ki. A stride segítségével kiszámolom hogy az adott pozíció hányadik byte-nál kezdődik a memóriában.
+Végig megyek a listGrid-en ami ugye a teljes nagy kép és ezen belül végig megyek a képkockákon is és minden egyes pixelt közvetlenül átmásolok egy byte tömbbe. Itt alkalmaztam egy kis kontraszt javítást is mert a szenzor képe nem a legszebb de így sokkal jobban néz ki. A stride segítségével kiszámolom, hogy az adott pozíció hányadik byte-nál kezdődik a memóriában.
 \begin{lstlisting}[language=CSharp]	
 		byte[] bytes = new byte[stride * height];
 	 	for (int row = 0; row < listGrid.Count; row++)
@@ -441,9 +441,9 @@ Miután végig mentem a teljes képen és megtelt a tömb, visszamásolom a töm
 	 	return bmp;
 	 }
 \end{lstlisting}
-A következő kiegészítő metódus amit használtam az a \textbf{DisplayFrame} metódus aminek a segítségével megtudtam jeleníteni egy pictureboxba, hogy mit is lát a szenzor. Ennek annyi a lényege, hogy megkapja paraméterként a fényintenzitásokat tartalmazó tömböt valamint a képmérethez szükséges adatokat. 
+A következő kiegészítő metódus amit használtam az a \textbf{DisplayFrame} metódus aminek a segítségével megtudtam jeleníteni egy PictureBoxba, hogy mit is lát a szenzor. Ennek annyi a lényege, hogy megkapja paraméterként a fényintenzitásokat tartalmazó tömböt valamint a képmérethez szükséges adatokat. 
 
-A képkocka megjelenítését hasonlóan oldottam meg mint a korábban bemutatott matrixToBitmap metódusban. LockBits segítségével.
+A képkocka megjelenítését hasonlóan oldottam meg, mint a korábban bemutatott matrixToBitmap metódusban. LockBits segítségével.
 \begin{lstlisting}[language=CSharp]
 private void DisplayFrame(int[] frameData, int height,int width)
 {
@@ -487,7 +487,7 @@ private void DisplayFrame(int[] frameData, int height,int width)
 	}
 }	
 \end{lstlisting}
-A dokumentum mentésére szolgáló metódus a SaveDoc nevezetű metódus, ami azt a célt szolgálja, hogy a dokumentumot képként vagy pdf formátumba lementi. A metódus létrehoz egy külön mappát a dokumentumoknak SavedFrames néven. Ha a felhasználó be pipálta a pdf format checkbox-ot akkor a program pdf formátumba menti le a beszkennelt dokumentumot ellenkező esetben pedig png-ben. A pdf mentéshez az Aspose.Words\cite{aspose.word} nuget csomagot használtam.
+A dokumentum mentésére szolgáló metódus a SaveDoc nevezetű metódus, ami azt a célt szolgálja, hogy a dokumentumot képként vagy pdf formátumba lementi. A metódus létrehoz egy külön mappát a dokumentumoknak SavedFrames néven. Ha a felhasználó bepipálta a pdf format checkbox-ot akkor a program pdf formátumba menti le a beszkennelt dokumentumot ellenkező esetben pedig png-ben. A pdf mentéshez az Aspose.Words\cite{aspose.word} nuget csomagot használtam.
 \begin{lstlisting}[language=CSharp]
 	private void SaveDoc()
 	{
@@ -569,7 +569,7 @@ W(x) =
 	0 & \text{ha } |x| \geq 2
 \end{cases}
 \]
-Egy kis rövid metódus aminek nagy szerepe van az interpolációban. Ahogy azt korábban említettem ehhez az interpolációhoz az új pixel körüli 16 pixelt veszem figyelembe, de mi van akkor ha a pixel a kép szélén van? Ebben segít a \textbf{Reflect} metódus ami megoldja ezt a problémát. A bemeneti paramétere egy kapott index, amit aszerint alakít, hogy az kisebb-e mint 0 vagy már a képen kívül esne. Ha kisebb, mint 0 akkor vissza adja a --1\,-szeresét, ha a képen kívül esne az index akkor vissza felé türközi az értéket és azt veszi figyelembe.
+Egy kis rövid metódus aminek nagy szerepe van az interpolációban. Ahogy azt korábban említettem ehhez az interpolációhoz az új pixel körüli 16 pixelt veszem figyelembe, de mi van akkor ha a pixel a kép szélén van? Ebben segít a \textbf{Reflect} metódus ami megoldja ezt a problémát. A bemeneti paramétere egy kapott index, amit aszerint alakít, hogy az kisebb-e, mint 0 vagy már a képen kívül esne. Ha kisebb, mint 0 akkor vissza adja a --1\,-szeresét, ha a képen kívül esne az index akkor vissza felé türközi az értéket és azt veszi figyelembe.
 \begin{lstlisting}[language=CSharp]
 	private int Reflect(int i)
 	{
@@ -634,7 +634,7 @@ Miután meghatároztam, hogy az új pixel melyik pozíció köré esik, a követ
 \chapter{Tesztelés}
 A programomat az elejétől fogva folyamatosan teszteltem, először a szoftveres részt, majd miután megérkezett hozzám a szenzor elkezdtem azt tesztelni. 
 
-A szoftver teszteléséhez úgy fogtam hozzá, hogy egy alap mátrixot beadtam az általam írt algoritmusnak és megnéztem, hogy milyen pontosan számolja ki a pixelek közötti értékeket. Aztán megfogtam egy képet és megnéztem, hogy azzal, hogy viselkedik. Az eredmény az lett hogy a duplájára növelte a kép méretét ami a célom is volt. Ezután összpontosítottam arra, hogy az adatot megkapjam az Arduino-tól, tehát elkezdtem a soros port kommunikációt tesztelni. Fogtam egy Arduino-t és írtam rá egy példa programot aminek csak annyi dolga volt, hogy elküldjön egy 900 elemű tömböt.
+A szoftver teszteléséhez úgy fogtam hozzá, hogy egy alap mátrixot beadtam az általam írt algoritmusnak és megnéztem, hogy milyen pontosan számolja ki a pixelek közötti értékeket. Aztán megfogtam egy képet és megnéztem, hogy azzal, hogy viselkedik. Az eredmény az lett, hogy a duplájára növelte a kép méretét ami a célom is volt. Ezután összpontosítottam arra, hogy az adatot megkapjam az Arduino-tól, tehát elkezdtem a soros port kommunikációt tesztelni. Fogtam egy Arduino-t és írtam rá egy példa programot aminek csak annyi dolga volt, hogy elküldjön egy 900 elemű tömböt.
 
 \begin{lstlisting}[language=Arduino]
 	void setup() {
@@ -651,7 +651,7 @@ A szoftver teszteléséhez úgy fogtam hozzá, hogy egy alap mátrixot beadtam a
 	
 \end{lstlisting}
 
-A szoftverben ehhez megírtam a szükséges metódust ami arra szolgál, hogy fogadja az adatokat. Ezt követően elkezdtem ki alakítani a szoftver felületét, készítettem egy tesztelő Windows Forms alkalmazást ami állt egy listBox-ból valamint egy pár gombból. Egy \textbf{Start} gomb amivel elindítottam az adat küldést az Arduino felől, egy \textbf{Delete list} amivel törölni tudtam a lista eddigi adatait, valamint egy \textbf{Reset} gomb amivel a szenzort tudtam újraindítani. 
+A szoftverben ehhez megírtam a szükséges metódust ami arra szolgál, hogy fogadja az adatokat. Ezt követően elkezdtem kialakítani a szoftver felületét, készítettem egy tesztelő Windows Forms alkalmazást ami állt egy listBox-ból valamint egy pár gombból. Egy \textbf{Start} gomb amivel elindítottam az adat küldést az Arduino felől, egy \textbf{Delete list} amivel törölni tudtam a lista eddigi adatait, valamint egy \textbf{Reset} gomb amivel a szenzort tudtam újraindítani. 
 \pagebreak
 \begin{figure}[th!]
 	\centering
@@ -669,9 +669,16 @@ Aztán következhetett a szenzor tesztelése. Először egy fehér lapon próbá
 \end{figure}
 
 \chapter*{Összegzés}
-Tapasztalatok amiket szereztem a projekt megvalósítása közben
-Tovabbfejlesztési gondolatok
+Összességében a szakdolgozatom elkészítése közben nagyon sok új elektronikai és programozási tapasztalatra tettem szert. A projekt alatt nem csak az Arduino környezetet értettem meg jobban, hanem sok hardveres eszköz működését is jobban megértettem, például a léptetőmotorok vagy maga a szenzor. A projekt során még azt is megtanultam, hogy hogyan lehet a szoftver és hardver működését összehangolni. 
 
+Ez a szkenner egy egyszerű fekete-fehér képolvasó, viszont jó alapot biztosít a további fejlesztésekhez, mint például:
+\begin{itemize}
+	\item A jelenlegi színtelen szkennert 3 darab LED-el tovább lehetne fejleszteni egy színes szkennerré.
+	\item A mostani változat sajnos csak egy kis részt tud beolvasni, ezért az is egy továbbfejlesztési gondolat lehetne, hogy egy teljes A4-es lapot beolvasson.
+	\item Esetleg az is szóba jöhetne, hogy Wi-Fi-n keresztül telefonra kapnánk meg a beolvasott dokumentumot.
+\end{itemize}
+\vspace*{2cm}
+Köszönet nyilvánítás: 
 \addcontentsline{toc}{chapter}{Összegzés}
 \chapter*{Források}
 \begin{itemize}

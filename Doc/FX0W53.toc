@@ -2,7 +2,7 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {1}Bevezető}{5}{chapter.1}%
 \select@language {magyar} \contentsline {section}{\numberline {1.1}Motiváció}{5}{section.1.1}%
 \select@language {magyar} \contentsline {section}{\numberline {1.2}Célkitűzés}{5}{section.1.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {2}Felhaszánlt technológiák}{6}{chapter.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {2}Felhasznált technológiák}{6}{chapter.2}%
 \select@language {magyar} \contentsline {section}{\numberline {2.1}Arduino}{6}{section.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Arduino platform bemutatása}{6}{subsection.2.1.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Arduino Nano}{7}{subsection.2.1.2}%
