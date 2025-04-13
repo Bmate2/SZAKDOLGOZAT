@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  12 APR 2025 21:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  13 APR 2025 15:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -734,7 +734,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=112, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=116, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 25.
@@ -746,15 +746,15 @@ Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 25.
 
 {c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/
 texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <c:/texlive/2024/texmf-dist/tex/latex/
-thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc)
+thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc
+
+[2
+
+])
 \tf@toc=\write4
 \openout4 = `FX0W53.toc'.
 
 
-
-[2
-
-]
 
 [3]
 
@@ -768,7 +768,7 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./FX0W53.toc)
 
 ]
 2. fejezet.
-<ArduinoFamily.png, id=175, 770.88pt x 380.17032pt>
+<ArduinoFamily.png, id=180, 770.88pt x 380.17032pt>
 File: ArduinoFamily.png Graphic file (type png)
 <use ArduinoFamily.png>
 Package pdftex.def Info: ArduinoFamily.png  used on input line 60.
@@ -784,12 +784,12 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 7
 (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<ATMEGA328P-PU.jpg, id=185, 433.62pt x 289.08pt>
+<ATMEGA328P-PU.jpg, id=190, 433.62pt x 289.08pt>
 File: ATMEGA328P-PU.jpg Graphic file (type jpg)
 <use ATMEGA328P-PU.jpg>
 Package pdftex.def Info: ATMEGA328P-PU.jpg  used on input line 79.
 (pdftex.def)             Requested size: 176.40439pt x 117.60165pt.
-<arduino-nano-pinout.png, id=187, 1405.25pt x 1104.125pt>
+<arduino-nano-pinout.png, id=192, 1405.25pt x 1104.125pt>
 File: arduino-nano-pinout.png Graphic file (type png)
 <use arduino-nano-pinout.png>
 Package pdftex.def Info: arduino-nano-pinout.png  used on input line 92.
@@ -809,7 +809,7 @@ Overfull \hbox (4.29927pt too wide) in paragraph at lines 106--107
 
 [9]
 3. fejezet.
-<ADNS9800base.jpg, id=212, 803.0pt x 803.0pt>
+<ADNS9800base.jpg, id=217, 803.0pt x 803.0pt>
 File: ADNS9800base.jpg Graphic file (type jpg)
 <use ADNS9800base.jpg>
 Package pdftex.def Info: ADNS9800base.jpg  used on input line 128.
@@ -819,12 +819,12 @@ Package pdftex.def Info: ADNS9800base.jpg  used on input line 128.
 [10
 
  <./ADNS9800base.jpg>]
-<ADNS9800.jpg, id=219, 1172.38pt x 919.435pt>
+<ADNS9800.jpg, id=224, 1172.38pt x 919.435pt>
 File: ADNS9800.jpg Graphic file (type jpg)
 <use ADNS9800.jpg>
 Package pdftex.def Info: ADNS9800.jpg  used on input line 137.
 (pdftex.def)             Requested size: 132.30666pt x 103.74763pt.
-<szintilleszto.jpg, id=221, 762.85pt x 705.63625pt>
+<szintilleszto.jpg, id=226, 762.85pt x 705.63625pt>
 File: szintilleszto.jpg Graphic file (type jpg)
 <use szintilleszto.jpg>
 Package pdftex.def Info: szintilleszto.jpg  used on input line 146.
@@ -849,7 +849,7 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 
 [12{c:/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}]
-<MITSUMI-Stepping-Motor-M42SP-4NP.jpg, id=278, 602.25pt x 306.14375pt>
+<MITSUMI-Stepping-Motor-M42SP-4NP.jpg, id=283, 602.25pt x 306.14375pt>
 File: MITSUMI-Stepping-Motor-M42SP-4NP.jpg Graphic file (type jpg)
 <use MITSUMI-Stepping-Motor-M42SP-4NP.jpg>
 Package pdftex.def Info: MITSUMI-Stepping-Motor-M42SP-4NP.jpg  used on input li
@@ -858,7 +858,7 @@ ne 230.
 
 
 [13]
-<stepper-motors-half-step.jpg, id=302, 505.89pt x 300.12125pt>
+<stepper-motors-half-step.jpg, id=307, 505.89pt x 300.12125pt>
 File: stepper-motors-half-step.jpg Graphic file (type jpg)
 <use stepper-motors-half-step.jpg>
 Package pdftex.def Info: stepper-motors-half-step.jpg  used on input line 239.
@@ -869,38 +869,45 @@ Overfull \hbox (11.11206pt too wide) in paragraph at lines 245--246
 p-te-t®-mo-tort, amely egy ULN2003
  []
 
-<28BYJ-48-modul-ULN2003.jpg, id=303, 963.6pt x 542.025pt>
+<28BYJ-48-modul-ULN2003.jpg, id=308, 963.6pt x 542.025pt>
 File: 28BYJ-48-modul-ULN2003.jpg Graphic file (type jpg)
 <use 28BYJ-48-modul-ULN2003.jpg>
 Package pdftex.def Info: 28BYJ-48-modul-ULN2003.jpg  used on input line 249.
 (pdftex.def)             Requested size: 220.50887pt x 124.03455pt.
-<circuit.png, id=304, 622.325pt x 682.55pt>
-File: circuit.png Graphic file (type png)
-<use circuit.png>
-Package pdftex.def Info: circuit.png  used on input line 259.
-(pdftex.def)             Requested size: 352.81552pt x 386.96416pt.
+<MH-Infrared-Speed-Sensor-Module.jpg, id=309, 803.0pt x 803.0pt>
+File: MH-Infrared-Speed-Sensor-Module.jpg Graphic file (type jpg)
+<use MH-Infrared-Speed-Sensor-Module.jpg>
+Package pdftex.def Info: MH-Infrared-Speed-Sensor-Module.jpg  used on input lin
+e 257.
+(pdftex.def)             Requested size: 176.40439pt x 176.40323pt.
 
 
 [14 <./MITSUMI-Stepping-Motor-M42SP-4NP.jpg> <./stepper-motors-half-step.jpg>]
+<circuit.png, id=317, 762.85pt x 682.55pt>
+File: circuit.png Graphic file (type png)
+<use circuit.png>
+Package pdftex.def Info: circuit.png  used on input line 266.
+(pdftex.def)             Requested size: 441.01773pt x 394.58783pt.
 
-[15 <./28BYJ-48-modul-ULN2003.jpg> <./circuit.png>]
+
+[15 <./28BYJ-48-modul-ULN2003.jpg> <./MH-Infrared-Speed-Sensor-Module.jpg>]
+
+[16 <./circuit.png>]
 4. fejezet.
 (c:/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/05/25 1.10b listings language file
 )
 
-[16
+[17
 
 ]
 
-[17]
+[18]
 LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 3
-37.
+42.
  (c:/texlive/2024/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
-
-[18]
 
 [19]
 
@@ -914,211 +921,238 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 
 [24]
 
-[25{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/202
+[25]
+
+[26{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/202
 4/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2024/texmf-dist/fonts/enc
 /dvips/lm/lm-mathsy.enc}]
 
-[26]
-
 [27]
+
+[28]
 5. fejezet.
-<tesztalkalmazas.png, id=676, 609.02531pt x 369.63094pt>
+<tesztalkalmazas.png, id=687, 609.02531pt x 369.63094pt>
 File: tesztalkalmazas.png Graphic file (type png)
 <use tesztalkalmazas.png>
-Package pdftex.def Info: tesztalkalmazas.png  used on input line 658.
+Package pdftex.def Info: tesztalkalmazas.png  used on input line 663.
 (pdftex.def)             Requested size: 308.71106pt x 187.36996pt.
 
 
-[28
+[29
 
 ]
-<tesztalkalmazas2.png, id=694, 1017.04968pt x 341.02406pt>
+<tesztalkalmazas2.png, id=705, 1017.04968pt x 341.02406pt>
 File: tesztalkalmazas2.png Graphic file (type png)
 <use tesztalkalmazas2.png>
-Package pdftex.def Info: tesztalkalmazas2.png  used on input line 666.
+Package pdftex.def Info: tesztalkalmazas2.png  used on input line 671.
 (pdftex.def)             Requested size: 441.01773pt x 147.87593pt.
+<scanner.jpeg, id=707, 2055.68pt x 1541.76pt>
+File: scanner.jpeg Graphic file (type jpg)
+<use scanner.jpeg>
+Package pdftex.def Info: scanner.jpeg  used on input line 679.
+(pdftex.def)             Requested size: 308.71106pt x 231.5128pt.
 
 
-[29 <./tesztalkalmazas.png> <./tesztalkalmazas2.png>]
+[30 <./tesztalkalmazas.png> <./tesztalkalmazas2.png>]
+<finished_scanner.jpeg, id=718, 493.3632pt x 370.0224pt>
+File: finished_scanner.jpeg Graphic file (type jpg)
+<use finished_scanner.jpeg>
+Package pdftex.def Info: finished_scanner.jpeg  used on input line 688.
+(pdftex.def)             Requested size: 308.71106pt x 231.54008pt.
 
-[30
+
+[31 <./scanner.JPEG> <./finished_scanner.JPEG>]
+
+[32
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 685.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 707.
 
-Overfull \hbox (14.29442pt too wide) in paragraph at lines 687--688
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 709--710
 [][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . makerguid
 es . com / wp-[]content / uploads / 2020 /
  []
 
 
-Overfull \hbox (14.29442pt too wide) in paragraph at lines 690--691
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 713--714
 [][]\T1/lmr/m/n/12 3.4[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . picmicrol
 ab . com / wp-[]content / uploads / 2014 /
  []
 
 
-Overfull \hbox (14.24652pt too wide) in paragraph at lines 691--692
+Overfull \hbox (14.24652pt too wide) in paragraph at lines 714--715
 [][]\T1/lmr/m/n/12 3.5[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . orientalm
 otor . com / images / stepper-[]motors /
  []
 
 
-Overfull \hbox (7.14232pt too wide) in paragraph at lines 692--693
+Overfull \hbox (7.14232pt too wide) in paragraph at lines 715--716
 [][]\T1/lmr/m/n/12 3.6[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . hwlibre .
  com / wp-[]content / uploads / 2024 / 10 /
  []
 
 
 
-[31
+[33
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 700--701
+Underfull \hbox (badness 10000) in paragraph at lines 728--729
 []\T1/lmr/m/n/12 What is an Ar-du-i-no: []$\T1/pcr/m/n/12 https : / / learn . s
 parkfun . com / tutorials /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--706
+Underfull \hbox (badness 10000) in paragraph at lines 733--734
 []\T1/lmr/m/n/12 ADNS-9800 adat-lap:[]$\T1/pcr/m/n/12 https : / / datasheet . o
 ctopart . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 708--709
+Underfull \hbox (badness 10000) in paragraph at lines 736--737
 []\T1/lmr/m/n/12 ADNS-9800 5V mód ak-ti-vá-lá-sa: []$\T1/pcr/m/n/12 https : / /
  forum . arduino . cc / t /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 710--711
+Underfull \hbox (badness 10000) in paragraph at lines 738--739
 []\T1/lmr/m/n/12 Soros kom-mu-ni-ká-ció: []$\T1/pcr/m/n/12 https : / / docs . a
 rduino . cc /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 711--712
+Underfull \hbox (badness 10000) in paragraph at lines 739--740
 []\T1/lmr/m/n/12 Léptet® mo-to-rok: []$\T1/pcr/m/n/12 https : / / docs . arduin
 o . cc / learn / electronics /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 712--713
-[]\T1/lmr/m/n/12 L298N mo-tor-ve-zér-l®: []$\T1/pcr/m/n/12 https : / / componen
-ts101 . com / modules /
+Underfull \hbox (badness 10000) in paragraph at lines 740--741
+[]\T1/lmr/m/n/12 L298N mo-tor-ve-zér-l®: []$\T1/pcr/m/n/12 https : / / techfun 
+. hu / termek /
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 713--714
+Underfull \hbox (badness 10000) in paragraph at lines 740--741
+\T1/pcr/m/n/12 l298n-[]vezerlomodul-[]dual-[]h-[]bridge-[]v2-[]0-[]motorkerekpa
+rokhoz /
+ []
+
+
+
+[34
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 741--742
+[]\T1/lmr/m/n/12 Arduino Step-per könyv-tár: []$\T1/pcr/m/n/12 https : / / docs
+ . arduino . cc / libraries /
+ []
+
+
+Underfull \hbox (badness 5548) in paragraph at lines 742--743
 []\T1/lmr/m/n/12 Bicubic In-ter-po-la-ti-on by Com-pu-terp-hi-le: []$\T1/pcr/m/
 n/12 https : / / www . youtube . com /
  []
 
 
-
-[32
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 715--716
+Underfull \hbox (badness 10000) in paragraph at lines 744--745
 []\T1/lmr/m/n/12 Bicubic In-ter-po-la-ti-on: []$\T1/pcr/m/n/12 https : / / clou
 dinary . com / glossary /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 718--719
+Underfull \hbox (badness 10000) in paragraph at lines 747--748
 []\T1/lmr/m/n/12 Windows Forms: []$\T1/pcr/m/n/12 https : / / learn . microsoft
  . com / hu-[]hu / dotnet /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 720--721
+Underfull \hbox (badness 10000) in paragraph at lines 749--750
 []\T1/lmr/m/n/12 L[]T[]X Ar-du-i-no stí-lus fájl: []$\T1/pcr/m/n/12 https : / /
  github . com / trihedral /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 723--724
+Underfull \hbox (badness 10000) in paragraph at lines 752--753
 []\T1/lmr/m/n/12 Bitmap.LockBits hasz-ná-la-ta: []$\T1/pcr/m/n/12 URLhttps : / 
 / learn . microsoft . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 723--724
+Underfull \hbox (badness 10000) in paragraph at lines 752--753
 \T1/pcr/m/n/12 en-[]us / dotnet / api / system . drawing . bitmap . lockbits ? 
 view =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 724--725
+Underfull \hbox (badness 10000) in paragraph at lines 753--754
 []\T1/lmr/m/n/12 Lockbit vs Set-Pi-xel: []$\T1/pcr/m/n/12 https : / / www . cod
 eproject . com / Articles /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 725--726
+Underfull \hbox (badness 10000) in paragraph at lines 754--755
 []\T1/lmr/m/n/12 Rectangle osz-tály: []$\T1/pcr/m/n/12 URLhttps : / / learn . m
 icrosoft . com / en-[]us /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 725--726
+Underfull \hbox (badness 10000) in paragraph at lines 754--755
 \T1/pcr/m/n/12 dotnet / api / system . drawing . rectangle ? view = net-[]9 . 0
  &
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 726--727
+Underfull \hbox (badness 10000) in paragraph at lines 755--756
 []\T1/lmr/m/n/12 Marshal Co-py me-tó-dus: []$\T1/pcr/m/n/12 https : / / learn .
  microsoft . com / en-[]us /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 726--727
+Underfull \hbox (badness 10000) in paragraph at lines 755--756
 \T1/pcr/m/n/12 dotnet / api / system . runtime . interopservices . marshal . co
 py ?
  []
 
 
 
-[33]
-<nyilatkozat.pdf, id=819, 597.50829pt x 845.0471pt>
+[35]
+<nyilatkozat.pdf, id=851, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 731.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 760.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf>
-Package pdftex.def Info: nyilatkozat.pdf  used on input line 731.
+Package pdftex.def Info: nyilatkozat.pdf  used on input line 760.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<nyilatkozat.pdf, id=822, page=1, 597.50829pt x 845.0471pt>
+<nyilatkozat.pdf, id=854, page=1, 597.50829pt x 845.0471pt>
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 760.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 760.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
-[34]
+[36]
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 760.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 760.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 
 
 File: nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat.pdf, page 1>
-Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 731.
+Package pdftex.def Info: nyilatkozat.pdf , page1 used on input line 760.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
-[35
+[37
 
  <./nyilatkozat.pdf>] (./FX0W53.aux)
  ***********
@@ -1126,16 +1160,16 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `FX0W53.out' has not changed.
-(rerunfilecheck)             Checksum: 15232A46B802BE04E60B8E8C522BFF2C;4641.
+(rerunfilecheck)             Checksum: 0EF3E51C3E3DBF170E5DBAFA425CFF68;4747.
  ) 
 Here is how much of TeX's memory you used:
- 18690 strings out of 473579
- 293875 string characters out of 5732263
- 1068812 words of memory out of 5000000
- 40824 multiletter control sequences out of 15000+600000
+ 18748 strings out of 473579
+ 295305 string characters out of 5732263
+ 1068984 words of memory out of 5000000
+ 40876 multiletter control sequences out of 15000+600000
  633098 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,17n,93p,1031b,2225s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,17n,93p,1047b,2225s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/tex
 live/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2024/texmf-di
 st/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/pub
@@ -1147,10 +1181,10 @@ b><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/
 type1/urw/courier/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courie
 r/ucrr8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on FX0W53.pdf (35 pages, 1727795 bytes).
+Output written on FX0W53.pdf (37 pages, 3075289 bytes).
 PDF statistics:
- 1020 PDF objects out of 1200 (max. 8388607)
- 918 compressed objects within 10 object streams
- 466 named destinations out of 1000 (max. 500000)
- 302 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1060 PDF objects out of 1200 (max. 8388607)
+ 953 compressed objects within 10 object streams
+ 472 named destinations out of 1000 (max. 500000)
+ 325 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -45,7 +45,7 @@ Mindig is érdekelt, hogyan lehet egy meglévő egyszerű technológiát új és
 
 Emellett fontos számomra, hogy egy olyan eszközt alkossak, amelyet egy egyszerű felhasználó is használhat, otthon vagy akár a munkahelyén anélkül, hogy drága berendezésekre kellene költenie. 
 
-Emellett kihívást látok ebben a projektben, hogy hogyan is tudom ezt megvalósítani. Izgalmas feladat az, hogy ötvözzem az informatikát az elektronikával. Ez nem csak a szakmai tudásomat fejleszti, hanem egy olyan eredményt ad, amelyre büszke lehetek.
+Valamint kihívást látok ebben a projektben, hogy hogyan is tudom ezt megvalósítani. Izgalmas feladat az, hogy ötvözzem az informatikát az elektronikával. Ez nem csak a szakmai tudásomat fejleszti, hanem egy olyan eredményt ad, amelyre büszke lehetek.
 \section{Célkitűzés}
 A szakdolgozatom\cite{szakdolgozat} célja egy olyan szkenner létrehozása, amely egy egyszerű egérszenzort használ a dokumentumok fekete-fehér beolvasására. Az eszköz működésének alapja, hogy a szenzor monokróm felvételeket készít a dokumentumról, majd ezeket egy számítógépes programmal feldolgozom és összeállítom egy nagy dokumentummá. Mivel a szenzor csak egy 30\,x\,30-as képet rögzít így azt interpolációval nagyítom fel. Ezek az algoritmusok lehetővé teszik, hogy a képet megnöveljük kevés minőségvesztéssel. 
 
@@ -151,7 +151,7 @@ Csak egy problémám volt, hogy a nyáklappal szerelt verzió 3.3\,V-os logikai 
 Az adatok beolvasása közben a szenzor egy sorokból és egy oszlopokból álló képkockát készít, amely egy 30\,x\,30-as pixel rács. Ezáltal egy dokumentum szkennelése lehet akár több ezer képkocka is.
 A működése a következő lépésekből áll:
 \begin{enumerate}
-	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni, mert a szenzornak nincs állandó memóriája. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés, hogy a szenzor helyesen értelmezze az adatokat.
+	\item \textbf{Feltöltjük a firmware-t a szenzorra.} Erre azért van szükség, mert enélkül a szenzor csak egy hardveres érzékelő, amely a lézerrel megvilágított felületről képeket készít. Ahhoz, hogy ezt az információt feldolgozza és továbbítsa szüksége van egy vezérlőprogramra, azaz firmware-re. Ezt a firmware-t minden bekapcsolás után fel kell tölteni, mert a szenzornak nincs állandó memóriája. A regiszterek megfelelő beállítása után a firmwaret soronként továbbítja  az SPI buszon keresztül a szenzornak. Ebben a metódusban fontos az időzítés, hogy a szenzor helyesen értelmezze az adatokat.
 	\begin{lstlisting}[language=Arduino,label=upload-firmware-code]
 		void adns_upload_firmware(){
 			adns_write_reg(REG_Configuration_IV, 0x02);	
@@ -209,7 +209,7 @@ A működése a következő lépésekből áll:
 	A metódus működése:
 	\begin{enumerate}[label=\arabic*.]
 		\item \textbf{Szenzornak kiadjuk, hogy készítsen egy képet.} Ekkor bele írjuk a megfelelő értéket a REG\_Frame\_Capture regiszterbe. A szenzor ekkor egy 30\,x\,30 pixeles képkockát olvas be.
-		\item \textbf{Várunk amíg a szenzor elkészíti a képet.} Az Arduino egy ciklusban folyamatosan ellenőri a szenzor állapotát ezért amíg a szenzor nem jelzi, nem olvassuk ki az értéket.
+		\item \textbf{Várunk amíg a szenzor elkészíti a képet.} Az Arduino egy ciklusban folyamatosan ellenőrzi a szenzor állapotát ezért amíg a szenzor nem jelez, nem olvassuk ki az értéket.
 		\item \textbf{A szenzor továbbítja a képkockát.} A Pixel Burst regiszteren keresztül történik a képkocka eljuttatása a szenzortól az Arduino-ig SPI kapcsolattal. Az SPI kapcsolat négy vezetéken keresztül történik:
 		\begin{itemize}
 			\item \textbf{MOSI }(Master Out, Slave In): Az adatok a mikrokontroller felől a szenzor felé mennek.
@@ -224,7 +224,7 @@ A működése a következő lépésekből áll:
 \end{enumerate}
 \subsection{Szenzor mozgása}
 
-A szenzort két motor mozgatja az egyik vízszintesen a másik pedig függőlegesen. A projekthez egy bipoláris valamint egy unipoláris léptetőmotort\cite{motorvezerlok} használtam. Mivel egy meglévő szkennerbe építettem bele az egész elektronikát, ezért a függőleges tengely mozgatására szolgáló bipoláris léptetőmotor már adott volt. Viszont a szenzor nagyon kis képet készít ezért finom mozgásokra volt szükségem, ebben segítséget nyújtott a már előre beépített fogaskerekek, amik áttétként funkcionálnak. Ezáltal a motor egy lépése jelentősen kisebb elmozdulás volt fizikailag, így jól tudtam pozicionálni. A motort egy L298N\cite{l298n} motorvezérlőn keresztül irányítottam.
+A szenzort két motor mozgatja az egyik vízszintesen a másik pedig függőlegesen. A projekthez egy bipoláris valamint egy unipoláris léptetőmotort\cite{motorvezerlok} használtam. Mivel egy meglévő szkennerbe építettem bele az egész elektronikát, ezért a függőleges tengely mozgatására szolgáló bipoláris léptetőmotor már adott volt. Viszont a szenzor nagyon kis képet készít ezért finom mozgásokra volt szükségem, ebben segítséget nyújtottak a már előre beépített fogaskerekek, amik áttétként funkcionálnak. Ezáltal a motor egy lépése jelentősen kisebb elmozdulás volt fizikailag, így jól tudtam pozicionálni. A motort egy L298N\cite{l298n} motorvezérlőn keresztül irányítottam.
 \begin{figure}[th!]
 	\centering
 	\includegraphics[width=0.4\linewidth]{MITSUMI-Stepping-Motor-M42SP-4NP}
@@ -242,7 +242,7 @@ Mindkét motornál half-step vezérlési módot használtam, hogy még finomabb 
 \end{figure}
 
 
-A vízszintes mozgáshoz beépítettem egy unipoláris léptetőmotort, amely egy ULN2003 motorvezérlő modullal működik, amit nagyon gyakran használnak ilyen kis apró finom mozgásokhoz, amire nekem is szükségem volt. Mivel ez a motor úgy van felépítve, hogy alapból áttétek vannak benne ezért azzal itt sem kellett foglalkoznom. A motorok egy egy bordás szíjas sínen mozognak, ezáltal a mozgás stabil lesz és csúszásmentes. Mindkettő végén van egy végállás kapcsoló, ha a vízszintes sor a végére ér ezt aktiválja és lentebb megy egy sort, valamint vissza megy a sor elejére a szenzor. Ekkor küldd az Arduino egy ''NEW\_ROW'' kulcsszót a Serial porton a számítógép felé, ezzel jelezve a feldolgozó szoftvernek, hogy új sor következik az olvasásban. Ha pedig a függőleges végálláskapcsoló válik aktívvá akkor pedig az ''END'' kulcsszót küldi el a számítógép felé, jelezve, hogy vége a dokumentumnak és vissza tér a kezdeti állásba.
+A vízszintes mozgáshoz beépítettem egy unipoláris léptetőmotort, amely egy ULN2003 motorvezérlő modullal működik, amit nagyon gyakran használnak ilyen kis apró finom mozgásokhoz, amire nekem is szükségem volt. Mivel ez a motor úgy van felépítve, hogy alapból áttétek vannak benne ezért azzal itt sem kellett foglalkoznom. A motorok egy egy bordás szíjas sínen mozognak, ezáltal a mozgás stabil lesz és csúszásmentes. Mindkettő végén van egy végállás kapcsoló, ha a vízszintes sor a végére ér ezt aktiválja és lentebb megy egy sort, valamint vissza megy a sor elejére a szenzor. Ekkor küld az Arduino egy ''NEW\_ROW'' kulcsszót a Serial porton a számítógép felé, ezzel jelezve a feldolgozó szoftvernek, hogy új sor következik az olvasásban. Ha pedig a függőleges végálláskapcsoló válik aktívvá akkor pedig az ''END'' kulcsszót küldi el a számítógép felé, jelezve, hogy vége a dokumentumnak és vissza tér a kezdeti állásba.
 
 \begin{figure}[th!]
 	\centering
@@ -251,17 +251,22 @@ A vízszintes mozgáshoz beépítettem egy unipoláris léptetőmotort, amely eg
 	\label{fig:28byj-48-modul-uln2003}
 \end{figure}
 
- 
+A szenzor mozgatásához még szükségem volt két darab Infravörös szenzorra amik a segítségével a szenzor kezdőállását tudtam meghatározni. Ez egy egyszerű kis szenzor ami infravörös fényt bocsát ki az egyik oldalt és a másik oldalt van egy infravörös vevő egység és ha megszakad a jel, például valamit közé helyezünk, akkor ad magas jelet a szenzor. 
+ \begin{figure}[th!]
+ 	\centering
+ 	\includegraphics[width=0.4\linewidth]{MH-Infrared-Speed-Sensor-Module}
+ 	\caption[Infravörös kapu]{Infravörös kapu}
+ 	\label{fig:mh-infrared-speed-sensor-module}
+ \end{figure}
 
 \section{Hardveres bekötés}
+A bekötési rajzon narancssárgával színezett elemek a motorvezérlők, pontosan az L298N és az ULN2003AN. A kék színű elem a szintillesztő és a zöld pedig az ADNS-9800 szenzor. Valamint van még két motor, két infravörös érzékelő és az Arduino Nano.
 \begin{figure}[th!]
 	\centering
-	\includegraphics[width=0.8\linewidth]{circuit}
+	\includegraphics[width=1\linewidth]{circuit}
 	\caption[Hardveres bekötés]{Hardveres bekötés}
 	\label{fig:circuit}
 \end{figure}
-A bekötési rajzon narancssárgával színezett elemek a motorvezérlők, pontosan az L298 és az ULN2003AN. A kék színű elem a szintillesztő és a zöld pedig az ADNS-9800 szenzor. Valamint van még két motor és az Arduino Nano.
-
 \chapter{Szoftveres megvalósítás}
 
 %%\section{Felhasznált algoritmusok/metódusok}
@@ -273,7 +278,7 @@ A bekötési rajzon narancssárgával színezett elemek a motorvezérlők, ponto
 %%\section{Mátrix átalakítása képpé}
 
 \section{Az alap változók}
-A feldolgozó szoftver Serial porton kapja meg az adatokat az Arduino-tól. Van két darab konstans értékem az egyik a beérkező képkocka szélessége a másik pedig a magassága, mivel a beérkező képkocka 30\,x\,30 pixel ezért ez a két érték 30. Van egy buffer-em ahol a Serial porton beérkező adatokat tárolom, erre azért van szükség mert nem biztos, hogy egy sor át tud jönni egyszerre. Valamint van egy Bicubic osztály példányom amivel a Bikubikus interpolációt végzem. Végül van egy row és egy column változóm ami annak segítségére szolgál, hogy összerakjam a képkockákat egy nagy dokumentummá. Ezt a nagy dokumentumot tartalmazza a listGrid nevű változó, ami egy lista amiben listák vannak amiben egész típusú tömbök vannak. 
+A feldolgozó szoftver Serial porton kapja meg az adatokat az Arduino-tól. Van két darab konstans értékem az egyik a beérkező képkocka szélessége a másik pedig a magassága, mivel a beérkező képkocka 30\,x\,30 pixel ezért ez a két érték 30. Van egy buffer-em ahol a Serial porton beérkező adatokat tárolom, erre azért van szükség mert nem biztos, hogy egy sor át tud jönni egyszerre. Valamint van egy Bicubic osztály példányom amivel a Bikubikus interpolációt végzem. Végül van egy \emph{row} és egy \emph{column} változóm ami annak segítségére szolgál, hogy összerakjam a képkockákat egy nagy dokumentummá. Ezt a nagy dokumentumot tartalmazza a \emph{listGrid} nevű változó, ami egy lista amiben listák vannak amiben egész típusú tömbök vannak. 
 \begin{lstlisting}[language=CSharp]
 private SerialPort serialPort;
 private const int FrameWidth = 30; 
@@ -330,7 +335,7 @@ Az adatok feldolgozását egy while ciklus végzi ami addig megy amíg a buffers
 			listBox1.Items.Add("Beérkező sor: " + fullLine);
 		}
 \end{lstlisting}
-Ha a jelenlegi beérkezett sor úgy kezdődik, hogy ''FRAME'' akkor levágom az elejéről a ''FRAME'' szót és a maradék adatot kimentem egy szöveg típusú tömbbe. Leellenőrzöm, hogy ennek a tömbnek megegyezik-e a hossza az általam előírttal. Tehát az alap FrameWidth és FrameHeight szorzatával ami 30\,x\,30, ha nem akkor hibát dobok. Az interpolációs osztály példányával meghívom erre a tömbre az interpoláló metódust, és közben az összes elemet átalakítom egész típusú számmá és kimentem egy frameData nevű egész típusú tömbbe. Ezután megjelenítem a már interpolált képet az alkalmazásban egy pictureBox segítségével. Valamint megvizsgálom, hogy a \emph{row} változónak az értéke nagyobb-e, mint a \emph{listGrid} hossza, amivel itt a sor kezelést oldom meg, ha igen akkor azt jelenti, hogy már egy új sorban vagyunk már ezért kell hozzá adnunk egy új tömbökből álló listát. Végül hozzáadjuk a jelenlegi sorhoz a tömböt. 
+Ha a jelenlegi beérkezett sor úgy kezdődik, hogy ''FRAME'' akkor levágom az elejéről a ''FRAME'' szót és a maradék adatot kimentem egy szöveg típusú tömbbe. Leellenőrzöm, hogy ennek a tömbnek megegyezik-e a hossza az általam előírttal. Tehát az alap \emph{FrameWidth} és \emph{FrameHeight} szorzatával ami 30\,x\,30, ha nem akkor hibát dobok. Az interpolációs osztály példányával meghívom erre a tömbre az interpoláló metódust, közben az összes elemet átalakítom egész típusú számmá és kimentem egy \emph{frameData} nevű egész típusú tömbbe. Ezután megjelenítem a már interpolált képet az alkalmazásban egy pictureBox segítségével. Valamint megvizsgálom, hogy a \emph{row} változónak az értéke nagyobb-e, mint a \emph{listGrid} hossza, amivel itt a sor kezelést oldom meg, ha igen akkor azt jelenti, hogy már egy új sorban vagyunk már ezért kell hozzá adnunk egy új tömbökből álló listát. Végül hozzáadjuk a jelenlegi sorhoz a tömböt. 
 \begin{lstlisting}[language=CSharp]
 		if (fullLine.StartsWith("FRAME:"))
 		{
@@ -373,11 +378,11 @@ Ha a ''NEW\_ROW'' kulcsszóval kezdődik a jelenlegi adat akkor csak simán növ
 }
 \end{lstlisting}
 \section{Kiegészítő metódusok}
-Az egyik legfontosabb kiegészítő metódus a matrixToBitmap amiben egy képkockákból álló két dimenziós listát alakítok át egy nagy szürkeárnyalatos Bitmap\cite{bitmap.class} képpé. A célja a metódusnak, hogy a szenzor által beolvasott és interpolált képkockákat egy nagy képpé összeállítsam. A listGrid szerkezet egy két dimenziós lista amely úgy értelmezhető, hogy az első dimenzió (külső lista) a sorokat jelenti, a második dimenzió (belső lista) pedig az oszlopokat jelképezi. Végül minden int[\,] elem egy képkockát tartalmaz ahol a fényintenzitások sorban vannak felsorolva. 
+Az egyik legfontosabb kiegészítő metódus a \textbf{matrixToBitmap} amiben egy képkockákból álló két dimenziós listát alakítok át egy nagy szürkeárnyalatos Bitmap\cite{bitmap.class} képpé. A célja a metódusnak, hogy a szenzor által beolvasott és interpolált képkockákat egy nagy képpé összeállítsam. A listGrid szerkezet egy két dimenziós lista amely úgy értelmezhető, hogy az első dimenzió (külső lista) a sorokat jelenti, a második dimenzió (belső lista) pedig az oszlopokat jelképezi. Végül minden int[\,] elem egy képkockát tartalmaz ahol a fényintenzitások sorban vannak felsorolva. 
 
 Példa: listGrid[1][2] jelenti a második sor harmadik képkockáját.
 
-Visszatérve a metódusra az egész metódus kezdődik egy ellenőrzéssel ahol megnézzük, hogy a listGrid üres-e, ha igen akkor hibát dobunk.
+Visszatérve a metódusra az egész metódus kezdődik egy ellenőrzéssel ahol megnézzük, hogy a \emph{listGrid} üres-e, ha igen akkor hibát dobunk.
 \begin{lstlisting}[language=CSharp]
 	  private Bitmap matrixToBitmap()
 	 {
@@ -394,16 +399,16 @@ Meghatározzuk a képkockák szélességét és magasságát úgy, hogy megszoro
 	 	int width = listGrid[0].Count * frameWidth;
 	 	int height = listGrid.Count * frameHeight;
 \end{lstlisting}
-Az általános SetPixel metódus helyett én inkább a LockBit megoldást választottam, igaz, hogy az nem olyan egyszerű de a nagy képeknél viszont sokkal gyorsabb teljesítményt tudok elérni vele. Ennek az oka, hogy a memóriába írok közvetlenül a GDI hívások helyett.
+Az általános \textbf{SetPixel} metódus helyett én inkább a \textbf{LockBit} megoldást választottam, igaz, hogy az nem olyan egyszerű de a nagy képeknél viszont sokkal gyorsabb teljesítményt tudok elérni vele. Ennek az oka, hogy a memóriába írok közvetlenül a GDI hívások helyett.
 
-Létrehozok egy Bitmap példányt 24 bites RGB formátumban, ami azt jelenti, hogy minden képpont 3 bájtot foglal el. A Rectangle osztállyal meghatározom a Bitmap teljes tartományát. A Bitmap LockBits metódusának átadom az előzőleg meghatározott rectangle-t, az ImageLockMode-ot amivel úgy zárom le a Bitmap-et, hogy csak írni tudjam,olvasni ne. Valamint átadom neki a Bitmap formátumát is, és vissza kapok egy BitmapData értéket ami tartalmazza ennek a zárolásnak az információit. Ebből kinyerve megkapom a stride-ot ami egy fontos információ, mivel ez mutatja meg, hogy a Bitmap memóriájában egy-egy sor hány bite hosszú. Ez nem feltétlenül egyezik meg a képpontok számának és a fényintenzitásnak megfelelő mérettel, mert a rendszer minden sort 4 bite-ra igazít a gyorsabb memóriakezelés miatt. Tehát ezzel fogom kiszámolni, hogy egy adott képpont hol helyezkedik el.
+Létrehozok egy Bitmap példányt 24 bites RGB formátumban, ami azt jelenti, hogy minden képpont 3 bájtot foglal el. A Rectangle osztállyal meghatározom a Bitmap teljes tartományát. A Bitmap \textbf{LockBits} metódusának átadom az előzőleg meghatározott rectangle-t, az ImageLockMode-ot amivel úgy zárom le a Bitmap-et, hogy csak írni tudjam,olvasni ne. Valamint átadom neki a Bitmap formátumát is, és vissza kapok egy BitmapData értéket ami tartalmazza ennek a zárolásnak az információit. Ebből kinyerve megkapom a stride-ot ami egy fontos információ, mivel ez mutatja meg, hogy a Bitmap memóriájában egy-egy sor hány bite hosszú. Ez nem feltétlenül egyezik meg a képpontok számának és a fényintenzitásnak megfelelő mérettel, mert a rendszer minden sort 4 bite-ra igazít a gyorsabb memóriakezelés miatt. Tehát ezzel fogom kiszámolni, hogy egy adott képpont hol helyezkedik el.
 \begin{lstlisting}[language=CSharp]	 	
 	 	Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 	 	Rectangle rect = new Rectangle(0, 0, width, height);
 	 	BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.WriteOnly, bmp.PixelFormat);	 	
 	 	int stride = bmpData.Stride;
 \end{lstlisting}
-Végig megyek a listGrid-en ami ugye a teljes nagy kép és ezen belül végig megyek a képkockákon is és minden egyes pixelt közvetlenül átmásolok egy byte tömbbe. Itt alkalmaztam egy kis kontraszt javítást is mert a szenzor képe nem a legszebb de így sokkal jobban néz ki. A stride segítségével kiszámolom, hogy az adott pozíció hányadik byte-nál kezdődik a memóriában.
+Végig megyek a \emph{listGrid}-en ami ugye a teljes nagy kép és ezen belül végig megyek a képkockákon is és minden egyes pixelt közvetlenül átmásolok egy byte tömbbe. Itt alkalmaztam egy kis kontraszt javítást is mert a szenzor képe nem a legszebb de így sokkal jobban néz ki. A stride segítségével kiszámolom, hogy az adott pozíció hányadik byte-nál kezdődik a memóriában.
 \begin{lstlisting}[language=CSharp]	
 		byte[] bytes = new byte[stride * height];
 	 	for (int row = 0; row < listGrid.Count; row++)
@@ -434,7 +439,7 @@ Végig megyek a listGrid-en ami ugye a teljes nagy kép és ezen belül végig m
 	 		}
 	 	}
 \end{lstlisting}
-Miután végig mentem a teljes képen és megtelt a tömb, visszamásolom a tömb adatait a Bitmap memóriába. Ezt egyetlen sorral meg tudtam tenni a Marshal.Copy\cite{marshal.copy} metódussal, át adtam neki a a byte tömböt, a másolás kezdőindexét, a célmemóriát amit a bitmapData-ból tudok lekérdezni a Scan0 metódussal, valamint a másolandó bitek számát.
+Miután végig mentem a teljes képen és megtelt a tömb, visszamásolom a tömb adatait a Bitmap memóriába. Ezt egyetlen sorral meg tudtam tenni a \textbf{Marshal.Copy}\cite{marshal.copy} metódussal, át adtam neki a a byte tömböt, a másolás kezdőindexét, a célmemóriát amit a bitmapData-ból tudok lekérdezni a Scan0 metódussal, valamint a másolandó bitek számát.
 \begin{lstlisting}[language=CSharp]	
 	 	Marshal.Copy(bytes, 0, bmpData.Scan0, stride * height);
 	 	bmp.UnlockBits(bmpData);
@@ -443,7 +448,7 @@ Miután végig mentem a teljes képen és megtelt a tömb, visszamásolom a töm
 \end{lstlisting}
 A következő kiegészítő metódus amit használtam az a \textbf{DisplayFrame} metódus aminek a segítségével megtudtam jeleníteni egy PictureBoxba, hogy mit is lát a szenzor. Ennek annyi a lényege, hogy megkapja paraméterként a fényintenzitásokat tartalmazó tömböt valamint a képmérethez szükséges adatokat. 
 
-A képkocka megjelenítését hasonlóan oldottam meg, mint a korábban bemutatott matrixToBitmap metódusban. LockBits segítségével.
+A képkocka megjelenítését hasonlóan oldottam meg, mint a korábban bemutatott \textbf{matrixToBitmap} metódusban. LockBits segítségével.
 \begin{lstlisting}[language=CSharp]
 private void DisplayFrame(int[] frameData, int height,int width)
 {
@@ -487,7 +492,7 @@ private void DisplayFrame(int[] frameData, int height,int width)
 	}
 }	
 \end{lstlisting}
-A dokumentum mentésére szolgáló metódus a SaveDoc nevezetű metódus, ami azt a célt szolgálja, hogy a dokumentumot képként vagy pdf formátumba lementi. A metódus létrehoz egy külön mappát a dokumentumoknak SavedFrames néven. Ha a felhasználó bepipálta a pdf format checkbox-ot akkor a program pdf formátumba menti le a beszkennelt dokumentumot ellenkező esetben pedig png-ben. A pdf mentéshez az Aspose.Words\cite{aspose.word} nuget csomagot használtam.
+A dokumentum mentésére szolgáló metódus a \textbf{SaveDoc} nevezetű metódus, ami azt a célt szolgálja, hogy a dokumentumot képként vagy pdf formátumba lementi. A metódus létrehoz egy külön mappát a dokumentumoknak SavedFrames néven. Ha a felhasználó bepipálta a \emph{pdf format checkbox}-ot akkor a program pdf formátumba menti le a beszkennelt dokumentumot ellenkező esetben pedig png-ben. A pdf mentéshez az Aspose.Words\cite{aspose.word} nuget csomagot használtam.
 \begin{lstlisting}[language=CSharp]
 	private void SaveDoc()
 	{
@@ -668,6 +673,23 @@ Aztán következhetett a szenzor tesztelése. Először egy fehér lapon próbá
 	\label{fig:tesztalkalmazas2}
 \end{figure}
 
+Végezetül a motorok teszteléséhez half-step módot próbáltam alkalmazni, viszont a bipoláris léptető motorral nem működött, ezért ott a Stepper könyvtárat kellett használnom. Közben felmerült egy olyan probléma, hogy az általam használt motorvezérlő elromlott ezért egy másikat kellett beszerelnem. Ezután jöhetett a szkennerbe való beszerelés, amelyben Geda Gábor tanár úr segített nekem. Így született meg \aref{fig:scanner_prototype}. számú ábrán látható szkenner.
+	\begin{figure}[th!]
+		\centering
+		\includegraphics[width=0.7\linewidth]{scanner}
+		\caption[Összeépített szkenner]{Összeépített szkenner}
+		\label{fig:scanner_prototype}
+	\end{figure}
+\pagebreak
+
+Ezután a helyére kerültek a fénykapuk is amikkel a kezdőpozícióját tudtam megállapítani a szenzornak. Két kis zászlót készítettünk amik a sínen valamint a szenzornál helyezkednek el, ezáltal ha a zászló be megy az infravörös érzékelők közé, jelez, hogy megérkezett a kezdőállapotba. Végezetül összeállt a végleges szkenner amelyet \aref{fig:finishedscanner}. számú ábrán láthatunk.
+\begin{figure}[th!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{finished_scanner}
+	\caption[Végleges szkenner]{Végleges szkenner}
+	\label{fig:finishedscanner}
+\end{figure}
+
 \chapter*{Összegzés}
 Összességében a szakdolgozatom elkészítése közben nagyon sok új elektronikai és programozási tapasztalatra tettem szert. A projekt alatt nem csak az Arduino környezetet értettem meg jobban, hanem sok hardveres eszköz működését is jobban megértettem, például a léptetőmotorok vagy maga a szenzor. A projekt során még azt is megtanultam, hogy hogyan lehet a szoftver és hardver működését összehangolni. 
 
@@ -678,21 +700,27 @@ Ez a szkenner egy egyszerű fekete-fehér képolvasó, viszont jó alapot biztos
 	\item Esetleg az is szóba jöhetne, hogy Wi-Fi-n keresztül telefonra kapnánk meg a beolvasott dokumentumot.
 \end{itemize}
 \vspace*{2cm}
-Köszönet nyilvánítás: 
+%%Köszönet nyilvánítás: 
 \addcontentsline{toc}{chapter}{Összegzés}
-\chapter*{Források}
+\chapter*{Ábrajegyzék}
 \begin{itemize}
 	\item \ref{fig-arduinofamily}. ábra: \emph{\url{https://predictabledesigns.com/wp-content/uploads/2017/10/HeroImage.png}}
 	\item \ref{fig:atmega328p-pu}. ábra: \emph{\url{https://techfun.hu/wp-content/uploads/2017/09/11.jpg}}
 	\item \ref{fig:arduino-nano-pinout}. ábra: \emph{\url{https://www.makerguides.com/wp-content/uploads/2020/10/arduino-nano-pinout-768x603.png}}
 	\item \ref{fig:adns9800base}. ábra: \emph{\url{https://www.sicstock.com/cdn/shop/products/551554.jpg?v=1544514465}}
+	\item \ref{fig:adns9800}. ábra: \emph{\url{https://tinyurl.com/2z4zn3d9}} 
 	\item \ref{fig:szintilleszto}. ábra: \emph{\url{https://www.elektrobot.hu/items/3607_1.webp}}
 	\item \ref{fig:mitsumi-stepping-motor-m42sp-4np}. ábra: \emph{\url{https://www.picmicrolab.com/wp-content/uploads/2014/04/MITSUMI-Stepping-Motor-M42SP-4NP.jpg}}
 	\item \ref{fig:stepper-motors-half-step}. ábra: \emph{\url{https://www.orientalmotor.com/images/stepper-motors/stepper-motors-half-step.jpg}}
 	\item \ref{fig:28byj-48-modul-uln2003}. ábra: \emph{\url{https://www.hwlibre.com/wp-content/uploads/2024/10/28byj-48-circuito.jpg}}
+	\item \ref{fig:mh-infrared-speed-sensor-module}. ábra: \emph{\url{https://einstronic.com/wp-content/uploads/2020/11/MH-Infrared-Speed-Sensor-Module-1.jpg}}
+	\item \ref{fig:circuit}. ábra: \emph{Saját ábra a \url{https://www.circuit-diagram.org/} segítségével}
+	\item \ref{fig:tesztalkalmazas} .ábra: \emph{Saját ábra}
+	\item \ref{fig:tesztalkalmazas2} .ábra: \emph{Saját ábra}
+	\item \ref{fig:scanner_prototype} .ábra: \emph{Saját ábra}
+	\item \ref{fig:finishedscanner} .ábra: \emph{Saját ábra}
 \end{itemize}
-
-
+\addcontentsline{toc}{chapter}{Ábrajegyzék}
 \begin{thebibliography}{9}
 \addcontentsline{toc}{chapter}{\bibname}
 \bibitem{szakdolgozat} Github link a szakdolgozathoz: \url{https://github.com/Bmate2/SZAKDOGA}
@@ -709,7 +737,8 @@ Köszönet nyilvánítás:
 \bibitem{szintilleszto} Logikai szintillesztő modul: \url{https://www.elektrobot.hu/termek.php?filename=3607.html&i=3607}
 \bibitem{serial} Soros kommunikáció: \url{https://docs.arduino.cc/language-reference/en/functions/communication/serial/}
 \bibitem{motorvezerlok} Léptető motorok: \url{https://docs.arduino.cc/learn/electronics/stepper-motors/}
-\bibitem{l298n} L298N motorvezérlő: \url{https://components101.com/modules/l293n-motor-driver-module}
+\bibitem{l298n} L298N motorvezérlő: \url{https://techfun.hu/termek/l298n-vezerlomodul-dual-h-bridge-v2-0-motorkerekparokhoz/?gad_source=1}
+\bibitem{stepper} Arduino Stepper könyvtár: \url{https://docs.arduino.cc/libraries/stepper/}
 \bibitem{bicubic_video} Bicubic Interpolation by Computerphile: \url{https://www.youtube.com/watch?v=poY_nGzEEWM}
 \bibitem{bicubic_wikipedia} Bicubic Interpolation from wikipedia: \url{https://en.wikipedia.org/wiki/Bicubic_interpolation}
 \bibitem{bicubic} Bicubic Interpolation: \url{https://cloudinary.com/glossary/bicubic-interpolation}
