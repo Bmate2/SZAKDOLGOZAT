@@ -1,4 +1,5 @@
 #include <SPI.h>
+#include <Stepper.h>
 #include <avr/pgmspace.h>
 #define REG_Product_ID                           0x00
 #define REG_Revision_ID                          0x01
@@ -45,7 +46,12 @@
 #define REG_Motion_Burst                         0x50
 #define REG_SROM_Load_Burst                      0x62
 #define REG_Pixel_Burst                          0x64
-
+#define IN1 2
+#define IN2 3
+#define IN3 4
+#define IN4 5
+#define PhotoUni A0
+#define PhotoBi A1
 byte initComplete=0;
 
 const int ncs = 10;
@@ -54,13 +60,34 @@ extern const unsigned short firmware_length;
 extern const unsigned char firmware_data[];
 
 bool shouldCapture=false;
+bool startUni=false;
+bool startBi=false;
+int halfStepSequence[8][4] = {
+  {1, 0, 0, 0},
+  {1, 1, 0, 0},
+  {0, 1, 0, 0},
+  {0, 1, 1, 0},
+  {0, 0, 1, 0},
+  {0, 0, 1, 1},
+  {0, 0, 0, 1},
+  {1, 0, 0, 1}
+};
+int delayTime = 5;
 
+const int stepsPerRevolution = 200;
+Stepper myStepper(stepsPerRevolution, 9,8,7,6);
 void setup() {
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  pinMode(PhotoUni, INPUT);
+  pinMode(PhotoBi, INPUT);
+  myStepper.setSpeed(20);
   Serial.begin(115200); 
   while (!Serial);
   
   pinMode(ncs, OUTPUT);
-  pinMode(2, INPUT); 
   
   SPI.begin();
   SPI.setDataMode(SPI_MODE3);
@@ -71,6 +98,7 @@ void setup() {
   performStartup();
   delay(100);
   initComplete=9;
+  
 }
 
 void adns_com_begin(){
@@ -195,10 +223,42 @@ void sendFrame() {
  
 }
 
+void moveSteps(int steps, bool forward) {
+  for (int s = 0; s < steps; s++) {
+    for (int i = 0; i < 8; i++) {
+      int index = forward ? i : (7 - i);
+      setStep(halfStepSequence[index]);
+      delay(delayTime);
+    }
+  }
+}
+
+void setStep(int step[4]) {
+  digitalWrite(IN1, step[0]);
+  digitalWrite(IN2, step[1]);
+  digitalWrite(IN3, step[2]);
+  digitalWrite(IN4, step[3]);
+}
+
+void moveHome(){
+  if (digitalRead(PhotoUni)==LOW && startUni==false){
+    while(digitalRead(PhotoUni)==LOW){
+      moveSteps(10, false);
+    }
+    startUni=true;
+  }
+  if (digitalRead(PhotoBi)==LOW && startBi==false){
+    while(digitalRead(PhotoBi)==LOW){
+      myStepper.step(-20);
+    }
+    startBi=true;  
+  }
+}
 int row=0;
 int column=0;
 
 void loop() {
+  moveHome();
   if(Serial.available()>0){
     String command=Serial.readStringUntil('\n');
     command.trim();
@@ -223,13 +283,20 @@ void loop() {
   if(shouldCapture){
     sendFrame();
     column++;
+    moveSteps(10,true);
+    Serial.print("SS ");
+    Serial.println(row);
     delay(100);
   }
 
-  if(column==20){
-    if(row++<2){
+  if(column==30){
+    if(row++<37){
       row++;
       column=0;
+      while(digitalRead(PhotoUni)==LOW){
+      moveSteps(10, false);
+      }
+      myStepper.step(20);
       Serial.println("NEW_ROW");
     }
     else{

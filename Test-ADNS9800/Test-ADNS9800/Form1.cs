@@ -35,7 +35,7 @@ namespace Test_ADNS9800
         
         private void InitializeSerialPort()
         {
-            serialPort = new SerialPort("COM3", 115200);
+            serialPort = new SerialPort("COM4", 115200);
             serialPort.DataReceived += DataReceived; 
             serialPort.Open();
             serialPort.Write("reset");
@@ -111,6 +111,10 @@ namespace Test_ADNS9800
                 {
                     serialPort.WriteLine("stop");
                     SaveDoc();
+                }
+                if (fullLine.StartsWith("SS"))
+                {
+
                 }
             }
         }
