@@ -21,7 +21,7 @@
 \author{Bodnár Máté\\Programtervező informatikus BSc}
 \supervisor{Dr. Geda Gábor\\Egyetemi docens}
 \city{Eger}
-\date{2024}
+\date{2025}
 \maketitle
 
 \tableofcontents
@@ -565,7 +565,7 @@ A \textbf{GetWeight} metódus határozza meg, hogy az egyes környező pixelek m
 		return 0;
 	}
 \end{lstlisting}
-Matematikai képlettel leírva pedig így néz ki:
+A súlyozás alapja a Catmull-Rom spline\cite{catmull-rom_spline} elnevezésű interpolációs függvény. Matematikai képlettel leírva pedig így néz ki:
 \[
 W(x) = 
 \begin{cases}
@@ -691,7 +691,7 @@ Ezután a helyére kerültek a fénykapuk is amikkel a kezdőpozícióját tudta
 \end{figure}
 
 \chapter*{Összegzés}
-Összességében a szakdolgozatom elkészítése közben nagyon sok új elektronikai és programozási tapasztalatra tettem szert. A projekt alatt nem csak az Arduino környezetet értettem meg jobban, hanem sok hardveres eszköz működését is jobban megértettem, például a léptetőmotorok vagy maga a szenzor. A projekt során még azt is megtanultam, hogy hogyan lehet a szoftver és hardver működését összehangolni. 
+Összességében a szakdolgozatom elkészítése közben nagyon sok új elektronikai és programozási tapasztalatra tettem szert. A projekt alatt nem csak az Arduino környezetet értettem meg jobban, hanem sok hardveres eszköz működését is jobban megértettem, például a léptetőmotorok vagy maga a szenzor. A projekt során még azt is megtanultam, hogy hogyan lehet a szoftver és hardver működését összehangolni. Igaz, hogy sajnálatos módon egy olyan szenzort sikerült beszereznem, amely a fókusztávolságból adódó hardveres korlátok miatt nem képes jó minőségű képet alkotni.
 
 Ez a szkenner egy egyszerű fekete-fehér képolvasó, viszont jó alapot biztosít a további fejlesztésekhez, mint például:
 \begin{itemize}
@@ -700,7 +700,9 @@ Ez a szkenner egy egyszerű fekete-fehér képolvasó, viszont jó alapot biztos
 	\item Esetleg az is szóba jöhetne, hogy Wi-Fi-n keresztül telefonra kapnánk meg a beolvasott dokumentumot.
 \end{itemize}
 \vspace*{2cm}
-%%Köszönet nyilvánítás: 
+Köszönet nyilvánítás: 
+
+Külön köszönettel tartozom Dr. Geda Gábor tanár úrnak, aki az egész projekt során végig rendkívül segítőkész és támogató volt. Az iránymutatásai és tanácsai nélkül a szakdolgozatom nem valósulhatott volna meg ilyen formában.
 \addcontentsline{toc}{chapter}{Összegzés}
 \chapter*{Ábrajegyzék}
 \begin{itemize}
