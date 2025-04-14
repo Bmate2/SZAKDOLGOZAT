@@ -85,9 +85,7 @@ void setup() {
   pinMode(PhotoBi, INPUT);
   myStepper.setSpeed(20);
   Serial.begin(115200);
-  while (!Serial)
-    ;
-
+  while (!Serial);
   pinMode(ncs, OUTPUT);
 
   SPI.begin();
@@ -248,18 +246,20 @@ void moveHome() {
   }
   if (digitalRead(PhotoBi) == LOW && startBi == false) {
     while (digitalRead(PhotoBi) == LOW) {
+      analogWrite(3,150);
       myStepper.step(-20);
     }
     startBi = true;
   }
+  analogWrite(3,0);
 }
 int row = 0;
 int column = 0;
 
 void loop() {
   moveHome();
-  analogWrite(3,127);
-  /*if (Serial.available() > 0) {
+
+  if (Serial.available() > 0) {
     String command = Serial.readStringUntil('\n');
     command.trim();
 
@@ -280,8 +280,7 @@ void loop() {
       moveHome();
       performStartup();
     }
-  }*/
-  shouldCapture=true;
+  }
   if (shouldCapture) {
     sendFrame();
     column++;
@@ -298,7 +297,9 @@ void loop() {
       while (digitalRead(PhotoUni) == LOW) {
         moveSteps(10, false);
       }
+      analogWrite(3,150);
       myStepper.step(20);
+      analogWrite(3,0);
       Serial.println("NEW_ROW");
     } else {
       row = 0;
