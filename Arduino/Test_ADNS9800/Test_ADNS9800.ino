@@ -47,7 +47,7 @@
 #define REG_SROM_Load_Burst 0x62
 #define REG_Pixel_Burst 0x64
 #define IN1 A2
-#define IN2 3
+#define IN2 A3
 #define IN3 4
 #define IN4 5
 #define PhotoUni A0
@@ -258,7 +258,8 @@ int column = 0;
 
 void loop() {
   moveHome();
-  if (Serial.available() > 0) {
+  analogWrite(3,127);
+  /*if (Serial.available() > 0) {
     String command = Serial.readStringUntil('\n');
     command.trim();
 
@@ -279,7 +280,8 @@ void loop() {
       moveHome();
       performStartup();
     }
-  }
+  }*/
+  shouldCapture=true;
   if (shouldCapture) {
     sendFrame();
     column++;
@@ -301,6 +303,7 @@ void loop() {
     } else {
       row = 0;
       column = 0;
+      shouldCapture=false;
       Serial.println("END");
     }
   }
