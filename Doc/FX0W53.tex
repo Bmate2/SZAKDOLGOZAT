@@ -540,9 +540,9 @@ A dokumentum mentésére szolgáló metódus a \textbf{SaveDoc} nevezetű metód
 	}
 \end{lstlisting}
 \section{Bikubikus Interpoláció}
-A bikubikus interpoláció egy képfeldolgozási technika, amelyet elsősorban képek méretének változtatására használnak. A lényege, hogy az új pixelek színét vagy fényintenzitását nem a közvetlen szomszédjaiból számolja ki, hanem a tágabb környezetében található több pixelből. Ez a módszer egy 4\,x\,4-es pixelblokkot vesz figyelembe az új pixel színéhez, ez azért jobb, mert több értéket vesz figyelembe így pontosabb színt kapunk az egyes pixelekhez. A módszer alapja egy súlyfüggvény amely a közelebbi pixelekhez nagyobb súlyt rendel, míg a távolabbiak kevésbé lesznek figyelembe véve az új érték kiszámolásakor. Ez a súlyozás biztosítja, hogy a kép simább legyen és részletgazdagabb. Éppen ezért a bikubikus interpolációt sokan használják olyan rendszerekben ahol fontos a kép minőségének megőrzése, ezért volt tökéletes választás az én számomra is. 
+A bikubikus interpoláció egy olyan képfeldolgozási technika, amelyet elsősorban a képek nagyítására vagy kicsinyítésére használnak. A lényege, hogy az új pixelek színét vagy fényintenzitását nem a közvetlen szomszédjaiból számolja ki, hanem a tágabb környezetében található több pixelből. Ez a módszer egy 4\,x\,4-es pixelblokkot vesz figyelembe az új pixel színéhez, így összesen 16 szomszédos pixelből számolja ki az új színt. Ez azért előnyösebb, mert több pixelből finomabb átmeneteket kapunk, valamint így pontosabb színt kapunk az egyes pixelekhez. A módszer alapja egy súlyfüggvény, amely a közelebbi pixelekhez nagyobb súlyt rendel, míg a távolabbiak kevésbé lesznek figyelembe véve az új érték kiszámolásakor. Ez a súlyozás egy kocka (cubic) interpolációs függvény alapján történik amely a távolság függvényében csökkenő hatású és biztosítja, hogy a kép simább legyen valamint részletgazdagabb. Matematikailag a súlyfüggvény az $f(x) = ax^3 + bx^2 + cx + d$ típusú harmadfokú polinomokból áll, amelyek biztosítják a folytonosságot és simaságot. A bikubikus interpoláció előnye, hogy a képminőség megőrzése mellett képes a részletek kiemelésére, éppen ezért használják ezt nagyon sok helyen fontos a kép minőségének megőrzése és ezért volt számomra is tökéletes. 
 
-Visszatérve a \textbf{Bicubic} osztályhoz, van három alap mezőm ahol tárolom a kép szélességét, magasságát, valamint a nagyítási skálát. A konstruktor ezeket az értékeket kapja meg, és eltárolja őket a megfelelő mezőben.
+Visszatérve a \textbf{Bicubic} osztályhoz, van három alap mezőm, ahol tárolom a kép szélességét, magasságát, valamint a nagyítási skálát. A konstruktor ezeket az értékeket kapja meg, és eltárolja őket a megfelelő mezőben.
 \begin{lstlisting}[language=CSharp]
 	private int width,height;
 	private int scale;
@@ -583,7 +583,7 @@ Egy kis rövid metódus aminek nagy szerepe van az interpolációban. Ahogy azt 
 		return i;
 	}
 \end{lstlisting}
-Az egész osztály, valamint a szakdolgozatom lelke pedig a \textbf{BicubicInterpolation} metódus ahol a képnagyítás történik a megadott növelési arány szerint, miközben a hiányzó pixeleket kiszámolja bikubikus interpolációval. A metódus elején meghatározom az új mátrixnak a szélességét és magasságát, valamint létrehozom azt a tömböt ahol már az új adatokat tároltam.
+Az egész osztály, valamint a szakdolgozatom lelke pedig a \textbf{BicubicInterpolation} metódus, ahol a képnagyítás történik a megadott növelési arány szerint, miközben a hiányzó pixeleket kiszámolja bikubikus interpolációval. A metódus elején meghatározom az új mátrixnak a szélességét és magasságát, valamint létrehozom azt a tömböt ahol már az új adatokat tároltam.
 \begin{lstlisting}[language=CSharp]
 	public int[] BicubicInterpolation (int[] frameData)
 	{
@@ -632,9 +632,7 @@ Miután meghatároztam, hogy az új pixel melyik pozíció köré esik, a követ
 			}
 		}
 		return interpolatedData;
-	}
-	
-	
+	}	
 \end{lstlisting}
 \chapter{Tesztelés}
 A programomat az elejétől fogva folyamatosan teszteltem, először a szoftveres részt, majd miután megérkezett hozzám a szenzor elkezdtem azt tesztelni. 
