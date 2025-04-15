@@ -1,0 +1,53 @@
+\usepackage{color}
+\usepackage{listings}
+\usepackage{courier}
+
+\definecolor{csharpBlue}    {rgb} {0.0 , 0.0 , 0.7 }
+\definecolor{csharpGreen}   {rgb} {0.0 , 0.5 , 0.0 }
+\definecolor{csharpOrange}  {rgb} {0.8 , 0.4 , 0.0 }
+\definecolor{csharpGrey}    {rgb} {0.5 , 0.5 , 0.5 }
+
+\lstdefinelanguage{CSharp}{
+	language=[Sharp]C,
+	morekeywords={
+		var, dynamic, using, namespace, class, partial, public, private, protected, internal, static,
+		void, int, string, double, float, bool, object, decimal, char, byte, sbyte, short, ushort, long, ulong, uint,
+		true, false, null, this, base, new, override, virtual, abstract, async, await, try, catch, finally, throw,
+		if, else, switch, case, default, for, foreach, while, do, break, continue, return, in, is, as, out, ref,
+		get, set, add, remove, event, delegate, interface, struct, enum, readonly, const, lock, yield,
+		Console, WriteLine, ReadLine, ToString, Math, List, Dictionary, HashSet, Queue, Stack
+	},
+	keywordstyle=\color{csharpBlue}\bfseries,
+	sensitive=true,
+	commentstyle=\color{csharpGreen}\ttfamily,
+	stringstyle=\color{csharpOrange},
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	numbers=left,
+	numberstyle=\color{csharpGrey}\tiny,
+	stepnumber=1,
+	numbersep=8pt,
+	backgroundcolor=\color{white},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=trbl,
+	tabsize=2,
+	captionpos=b,
+	breaklines=true,
+	breakatwhitespace=true,
+	escapeinside={\%*}{*)},
+	basicstyle=\footnotesize\ttfamily,
+	literate=
+	{á}{{\'a}}1
+	{é}{{\'e}}1
+	{í}{{\'i}}1
+	{ó}{{\'o}}1
+	{ö}{{\"o}}1
+	{ő}{{\H{o}}}1
+	{ú}{{\'u}}1
+	{ü}{{\"u}}1
+	{ű}{{\H{u}}}1
+}
+ 

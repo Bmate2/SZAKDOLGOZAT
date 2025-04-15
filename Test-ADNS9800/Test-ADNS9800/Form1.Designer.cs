@@ -29,35 +29,26 @@
         private void InitializeComponent()
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.startButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.deleteListBtn = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.resetBtn = new System.Windows.Forms.Button();
+            this.pdfCheckBox = new System.Windows.Forms.CheckBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Location = new System.Drawing.Point(27, 12);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(284, 261);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(581, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(758, 316);
-            this.listBox1.TabIndex = 1;
-            // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(26, 376);
+            this.startButton.Location = new System.Drawing.Point(27, 279);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(75, 23);
             this.startButton.TabIndex = 2;
@@ -67,7 +58,7 @@
             // 
             // stopButton
             // 
-            this.stopButton.Location = new System.Drawing.Point(107, 376);
+            this.stopButton.Location = new System.Drawing.Point(27, 308);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(75, 23);
             this.stopButton.TabIndex = 3;
@@ -77,25 +68,17 @@
             // 
             // deleteListBtn
             // 
-            this.deleteListBtn.Location = new System.Drawing.Point(291, 376);
+            this.deleteListBtn.Location = new System.Drawing.Point(317, 282);
             this.deleteListBtn.Name = "deleteListBtn";
-            this.deleteListBtn.Size = new System.Drawing.Size(111, 23);
+            this.deleteListBtn.Size = new System.Drawing.Size(177, 23);
             this.deleteListBtn.TabIndex = 4;
             this.deleteListBtn.Text = "DELETE LIST";
             this.deleteListBtn.UseVisualStyleBackColor = true;
             this.deleteListBtn.Click += new System.EventHandler(this.deleteListBtn_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(291, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(284, 261);
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
-            // 
             // resetBtn
             // 
-            this.resetBtn.Location = new System.Drawing.Point(188, 376);
+            this.resetBtn.Location = new System.Drawing.Point(27, 337);
             this.resetBtn.Name = "resetBtn";
             this.resetBtn.Size = new System.Drawing.Size(75, 23);
             this.resetBtn.TabIndex = 6;
@@ -103,35 +86,53 @@
             this.resetBtn.UseVisualStyleBackColor = true;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
             // 
+            // pdfCheckBox
+            // 
+            this.pdfCheckBox.AutoSize = true;
+            this.pdfCheckBox.Location = new System.Drawing.Point(108, 285);
+            this.pdfCheckBox.Name = "pdfCheckBox";
+            this.pdfCheckBox.Size = new System.Drawing.Size(79, 17);
+            this.pdfCheckBox.TabIndex = 7;
+            this.pdfCheckBox.Text = "PDF format";
+            this.pdfCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(317, 12);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(177, 264);
+            this.listBox1.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1351, 423);
+            this.ClientSize = new System.Drawing.Size(521, 423);
+            this.Controls.Add(this.pdfCheckBox);
             this.Controls.Add(this.resetBtn);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.deleteListBtn);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Szkenner";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button deleteListBtn;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button resetBtn;
+        private System.Windows.Forms.CheckBox pdfCheckBox;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
