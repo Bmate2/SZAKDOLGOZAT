@@ -667,21 +667,34 @@
 		\label{fig:tesztalkalmazas2}
 	\end{figure}
 	
-	Végezetül a motorok teszteléséhez half-step módot próbáltam alkalmazni, viszont a bipoláris léptető motorral nem működött, ezért ott a Stepper\cite{stepper} könyvtárat kellett használnom. Közben felmerült egy olyan probléma, hogy az általam használt motorvezérlő elromlott ezért egy másikat kellett beszerelnem. Ezután jöhetett a szkennerbe való beszerelés, amelyben Geda Gábor tanár úr segített nekem. Így született meg \aref{fig:scanner_prototype}. számú ábrán látható szkenner.
+	Miután megjelenítettem a szenzor képét, majd következett a képek összerakása. A képeket sorokba és oszlopokba rendezve egymás mellé pakoltam és kaptam egy elég szép teljes képet az összeállt dokumentumról.
+	
 	\begin{figure}[th!]
 		\centering
-		\includegraphics[width=0.7\linewidth]{scanner}
-		\caption[Összeépített szkenner]{Összeépített szkenner}
-		\label{fig:scanner_prototype}
+		\includegraphics[width=0.7\linewidth]{osszeillesztett_tesztkep}
+		\caption[Összeillesztett kép]{Összeillesztett kép}
+		\label{fig:osszeillesztetttesztkep}
 	\end{figure}
-	\pagebreak
+	
+	Végezetül a motorok teszteléséhez half-step módot próbáltam alkalmazni, viszont a bipoláris léptető motorral nem működött, ezért ott a Stepper\cite{stepper} könyvtárat kellett használnom. Közben felmerült egy olyan probléma, hogy az általam használt motorvezérlő elromlott ezért egy másikat kellett beszerelnem. Ezután jöhetett a szkennerbe való beszerelés, amelyben Geda Gábor tanár úr segített nekem. Így született meg \aref{fig:scanner_prototype}. számú ábrán látható szkenner. 
 	
 	Ezután a helyére kerültek a fénykapuk is amikkel a kezdőpozícióját tudtam megállapítani a szenzornak. Két kis zászlót készítettünk amik a sínen valamint a szenzornál helyezkednek el, ezáltal ha a zászló be megy az infravörös érzékelők közé, jelez, hogy megérkezett a kezdőállapotba. Felmerült közben sajnos egy olyan probléma, hogy az Arduino tápja nem bírta el a terhelést, ezért be kellett építeni egy külön 5\,V-os tápot az unipoláris motor működéséhez. Végezetül összeállt a végleges szkenner amelyet \aref{fig:finishedscanner}. számú ábrán láthatunk.
-	\begin{figure}[th!]
+	
+	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.7\linewidth]{finished_scanner}
-		\caption[Végleges szkenner]{Végleges szkenner}
-		\label{fig:finishedscanner}
+		\begin{minipage}[b]{0.47\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{scanner}
+			\caption[Összeépített szkenner]{Összeépített szkenner}
+			\label{fig:scanner_prototype}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.47\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{finished_scanner}
+			\caption[Végleges szkenner]{Végleges szkenner}
+			\label{fig:finishedscanner}
+		\end{minipage}
 	\end{figure}
 	
 	\chapter*{Összegzés}

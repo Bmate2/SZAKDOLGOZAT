@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  15 APR 2025 22:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.14)  15 APR 2025 22:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -944,19 +944,26 @@ File: tesztalkalmazas2.png Graphic file (type png)
 <use tesztalkalmazas2.png>
 Package pdftex.def Info: tesztalkalmazas2.png  used on input line 665.
 (pdftex.def)             Requested size: 441.01773pt x 147.87593pt.
-<scanner.jpeg, id=742, 2055.68pt x 1541.76pt>
+<osszeillesztett_tesztkep.jpeg, id=740, 1204.5pt x 120.45pt>
+File: osszeillesztett_tesztkep.jpeg Graphic file (type jpg)
+<use osszeillesztett_tesztkep.jpeg>
+Package pdftex.def Info: osszeillesztett_tesztkep.jpeg  used on input line 674.
+
+(pdftex.def)             Requested size: 308.71106pt x 30.87148pt.
+
+
+[30 <./tesztalkalmazas.png> <./tesztalkalmazas2.png> <./osszeillesztett_tesztke
+p.JPEG>]
+<scanner.jpeg, id=753, 2055.68pt x 1541.76pt>
 File: scanner.jpeg Graphic file (type jpg)
 <use scanner.jpeg>
-Package pdftex.def Info: scanner.jpeg  used on input line 673.
-(pdftex.def)             Requested size: 308.71106pt x 231.5128pt.
-
-
-[30 <./tesztalkalmazas.png> <./tesztalkalmazas2.png>]
+Package pdftex.def Info: scanner.jpeg  used on input line 687.
+(pdftex.def)             Requested size: 207.27887pt x 155.4554pt.
 <finished_scanner.jpeg, id=754, 2055.68pt x 1469.49pt>
 File: finished_scanner.jpeg Graphic file (type jpg)
 <use finished_scanner.jpeg>
-Package pdftex.def Info: finished_scanner.jpeg  used on input line 682.
-(pdftex.def)             Requested size: 308.71106pt x 220.66063pt.
+Package pdftex.def Info: finished_scanner.jpeg  used on input line 694.
+(pdftex.def)             Requested size: 207.27887pt x 148.16843pt.
 
 
 [31 <./scanner.JPEG> <./finished_scanner.JPEG>]
@@ -965,27 +972,27 @@ Package pdftex.def Info: finished_scanner.jpeg  used on input line 682.
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <12> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 703.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 716.
 
-Overfull \hbox (14.29442pt too wide) in paragraph at lines 705--706
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 718--719
 [][]\T1/lmr/m/n/12 2.3[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . makerguid
 es . com / wp-[]content / uploads / 2020 /
  []
 
 
-Overfull \hbox (14.29442pt too wide) in paragraph at lines 709--710
+Overfull \hbox (14.29442pt too wide) in paragraph at lines 722--723
 [][]\T1/lmr/m/n/12 3.4[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . picmicrol
 ab . com / wp-[]content / uploads / 2014 /
  []
 
 
-Overfull \hbox (14.24652pt too wide) in paragraph at lines 710--711
+Overfull \hbox (14.24652pt too wide) in paragraph at lines 723--724
 [][]\T1/lmr/m/n/12 3.5[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . orientalm
 otor . com / images / stepper-[]motors /
  []
 
 
-Overfull \hbox (7.14232pt too wide) in paragraph at lines 711--712
+Overfull \hbox (7.14232pt too wide) in paragraph at lines 724--725
 [][]\T1/lmr/m/n/12 3.6[]. áb-ra: []$\T1/pcr/m/sl/12 https : / / www . hwlibre .
  com / wp-[]content / uploads / 2024 / 10 /
  []
@@ -995,49 +1002,49 @@ Overfull \hbox (7.14232pt too wide) in paragraph at lines 711--712
 [33
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 722--723
+Underfull \hbox (badness 10000) in paragraph at lines 735--736
 []\T1/lmr/m/n/12 Github link a szak-dol-go-zat-hoz: []$\T1/pcr/m/n/12 https : /
  / github . com / Bmate2 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 724--725
+Underfull \hbox (badness 10000) in paragraph at lines 737--738
 []\T1/lmr/m/n/12 What is an Ar-du-i-no: []$\T1/pcr/m/n/12 https : / / learn . s
 parkfun . com / tutorials /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 729--730
+Underfull \hbox (badness 10000) in paragraph at lines 742--743
 []\T1/lmr/m/n/12 ADNS-9800 adat-lap:[]$\T1/pcr/m/n/12 https : / / datasheet . o
 ctopart . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 732--733
+Underfull \hbox (badness 10000) in paragraph at lines 745--746
 []\T1/lmr/m/n/12 ADNS-9800 5V mód ak-ti-vá-lá-sa: []$\T1/pcr/m/n/12 https : / /
  forum . arduino . cc / t /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 734--735
+Underfull \hbox (badness 10000) in paragraph at lines 747--748
 []\T1/lmr/m/n/12 Soros kom-mu-ni-ká-ció: []$\T1/pcr/m/n/12 https : / / docs . a
 rduino . cc /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 735--736
+Underfull \hbox (badness 10000) in paragraph at lines 748--749
 []\T1/lmr/m/n/12 Léptet® mo-to-rok: []$\T1/pcr/m/n/12 https : / / docs . arduin
 o . cc / learn / electronics /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 736--737
+Underfull \hbox (badness 10000) in paragraph at lines 749--750
 []\T1/lmr/m/n/12 L298N mo-tor-ve-zér-l®: []$\T1/pcr/m/n/12 https : / / techfun 
 . hu / termek /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 736--737
+Underfull \hbox (badness 10000) in paragraph at lines 749--750
 \T1/pcr/m/n/12 l298n-[]vezerlomodul-[]dual-[]h-[]bridge-[]v2-[]0-[]motorkerekpa
 rokhoz /
  []
@@ -1047,73 +1054,73 @@ rokhoz /
 [34
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 737--738
+Underfull \hbox (badness 10000) in paragraph at lines 750--751
 []\T1/lmr/m/n/12 Arduino Step-per könyv-tár: []$\T1/pcr/m/n/12 https : / / docs
  . arduino . cc / libraries /
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 738--739
+Underfull \hbox (badness 5548) in paragraph at lines 751--752
 []\T1/lmr/m/n/12 Bicubic In-ter-po-la-ti-on by Com-pu-terp-hi-le: []$\T1/pcr/m/
 n/12 https : / / www . youtube . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 740--741
+Underfull \hbox (badness 10000) in paragraph at lines 753--754
 []\T1/lmr/m/n/12 Bicubic In-ter-po-la-ti-on: []$\T1/pcr/m/n/12 https : / / clou
 dinary . com / glossary /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 743--744
+Underfull \hbox (badness 10000) in paragraph at lines 756--757
 []\T1/lmr/m/n/12 Windows Forms: []$\T1/pcr/m/n/12 https : / / learn . microsoft
  . com / hu-[]hu / dotnet /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 745--746
+Underfull \hbox (badness 10000) in paragraph at lines 758--759
 []\T1/lmr/m/n/12 L[]T[]X Ar-du-i-no stí-lus fájl: []$\T1/pcr/m/n/12 https : / /
  github . com / trihedral /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 748--749
+Underfull \hbox (badness 10000) in paragraph at lines 761--762
 []\T1/lmr/m/n/12 Bitmap.LockBits hasz-ná-la-ta: []$\T1/pcr/m/n/12 URLhttps : / 
 / learn . microsoft . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 748--749
+Underfull \hbox (badness 10000) in paragraph at lines 761--762
 \T1/pcr/m/n/12 en-[]us / dotnet / api / system . drawing . bitmap . lockbits ? 
 view =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 749--750
+Underfull \hbox (badness 10000) in paragraph at lines 762--763
 []\T1/lmr/m/n/12 Lockbit vs Set-Pi-xel: []$\T1/pcr/m/n/12 https : / / www . cod
 eproject . com / Articles /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 750--751
+Underfull \hbox (badness 10000) in paragraph at lines 763--764
 []\T1/lmr/m/n/12 Rectangle osz-tály: []$\T1/pcr/m/n/12 URLhttps : / / learn . m
 icrosoft . com / en-[]us /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 750--751
+Underfull \hbox (badness 10000) in paragraph at lines 763--764
 \T1/pcr/m/n/12 dotnet / api / system . drawing . rectangle ? view = net-[]9 . 0
  &
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 751--752
+Underfull \hbox (badness 10000) in paragraph at lines 764--765
 []\T1/lmr/m/n/12 Marshal Co-py me-tó-dus: []$\T1/pcr/m/n/12 https : / / learn .
  microsoft . com / en-[]us /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 751--752
+Underfull \hbox (badness 10000) in paragraph at lines 764--765
 \T1/pcr/m/n/12 dotnet / api / system . runtime . interopservices . marshal . co
 py ?
  []
@@ -1121,25 +1128,25 @@ py ?
 
 
 [35]
-<Nyilatkozat/nyilatkozat.pdf, id=870, 1682.285pt x 2535.4725pt>
+<Nyilatkozat/nyilatkozat.pdf, id=872, 1682.285pt x 2535.4725pt>
 File: Nyilatkozat/nyilatkozat.pdf Graphic file (type pdf)
 <use Nyilatkozat/nyilatkozat.pdf>
-Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf  used on input line 756.
+Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf  used on input line 769.
 (pdftex.def)             Requested size: 1682.28091pt x 2535.46635pt.
 File: Nyilatkozat/nyilatkozat.pdf Graphic file (type pdf)
 <use Nyilatkozat/nyilatkozat.pdf>
-Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf  used on input line 756.
+Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf  used on input line 769.
 (pdftex.def)             Requested size: 1682.28091pt x 2535.46635pt.
-<Nyilatkozat/nyilatkozat.pdf, id=873, page=1, 1682.285pt x 2535.4725pt>
+<Nyilatkozat/nyilatkozat.pdf, id=875, page=1, 1682.285pt x 2535.4725pt>
 File: Nyilatkozat/nyilatkozat.pdf Graphic file (type pdf)
 <use Nyilatkozat/nyilatkozat.pdf, page 1>
 Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf , page1 used on input line
- 756.
+ 769.
 (pdftex.def)             Requested size: 1682.28091pt x 2535.46635pt.
 File: Nyilatkozat/nyilatkozat.pdf Graphic file (type pdf)
 <use Nyilatkozat/nyilatkozat.pdf, page 1>
 Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf , page1 used on input line
- 756.
+ 769.
 (pdftex.def)             Requested size: 560.7774pt x 845.18123pt.
 
 
@@ -1147,19 +1154,19 @@ Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf , page1 used on input line
 File: Nyilatkozat/nyilatkozat.pdf Graphic file (type pdf)
 <use Nyilatkozat/nyilatkozat.pdf, page 1>
 Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf , page1 used on input line
- 756.
+ 769.
 (pdftex.def)             Requested size: 560.7774pt x 845.18123pt.
 File: Nyilatkozat/nyilatkozat.pdf Graphic file (type pdf)
 <use Nyilatkozat/nyilatkozat.pdf, page 1>
 Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf , page1 used on input line
- 756.
+ 769.
 (pdftex.def)             Requested size: 560.7774pt x 845.18123pt.
 
 
 File: Nyilatkozat/nyilatkozat.pdf Graphic file (type pdf)
 <use Nyilatkozat/nyilatkozat.pdf, page 1>
 Package pdftex.def Info: Nyilatkozat/nyilatkozat.pdf , page1 used on input line
- 756.
+ 769.
 (pdftex.def)             Requested size: 560.7774pt x 845.18123pt.
 [37
 
@@ -1172,10 +1179,10 @@ Package rerunfilecheck Info: File `FX0W53.out' has not changed.
 (rerunfilecheck)             Checksum: 0EF3E51C3E3DBF170E5DBAFA425CFF68;4747.
  ) 
 Here is how much of TeX's memory you used:
- 18748 strings out of 473579
- 295455 string characters out of 5732263
- 1069213 words of memory out of 5000000
- 40876 multiletter control sequences out of 15000+600000
+ 18769 strings out of 473579
+ 296137 string characters out of 5732263
+ 1069261 words of memory out of 5000000
+ 40896 multiletter control sequences out of 15000+600000
  633098 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,93p,1511b,2229s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1190,10 +1197,10 @@ b><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/
 type1/urw/courier/ucrb8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courie
 r/ucrr8a.pfb><c:/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on FX0W53.pdf (37 pages, 3587501 bytes).
+Output written on FX0W53.pdf (37 pages, 3608488 bytes).
 PDF statistics:
- 1066 PDF objects out of 1200 (max. 8388607)
- 960 compressed objects within 10 object streams
- 472 named destinations out of 1000 (max. 500000)
- 325 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1068 PDF objects out of 1200 (max. 8388607)
+ 961 compressed objects within 10 object streams
+ 473 named destinations out of 1000 (max. 500000)
+ 330 words of extra memory for PDF output out of 10000 (max. 10000000)
 
