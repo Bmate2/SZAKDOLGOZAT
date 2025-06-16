@@ -88,6 +88,7 @@ namespace Test_ADNS9800
                             listGrid.Add(new List<int[]>());
                         }
                         listGrid[row].Add(frameData);
+                        column++;
                     }
                     else
                     {
@@ -105,6 +106,7 @@ namespace Test_ADNS9800
                 if (fullLine.StartsWith("NEW_ROW"))
                 {
                     row++;
+                    column = 0;
 
                 }
                 if (fullLine.StartsWith("END"))

@@ -291,8 +291,8 @@ void loop() {
   }
 
   if (column == 30) {
-    if (row++ < 37) {
-      row++;
+    row++;
+    if (row < 3) {//38
       column = 0;
       while (digitalRead(PhotoUni) == LOW) {
         moveSteps(10, false);
